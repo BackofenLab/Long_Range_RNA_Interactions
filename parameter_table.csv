@@ -1,4 +1,4 @@
-name,family,virus,gene_name,5UTRend,CDSend,3UTRend,energyVRNA,qintLenMax,tintLenMax,qidxpos0
+id,class,type,virus,5UTRend,CDSend,3UTRend,energyVRNA,qintLenMax,tintLenMax,qidxpos0
 NC_012932.1,ISFV,cISFVG,AEFV,96,10122,11064,rna_andronescu2007.par,20,20,0
 NC_001564.2,ISFV,cISFVG,CFAV,103,10129,10682,rna_andronescu2007.par,20,20,0
 NC_030290.1,ISFV,cISFVG,CFV,91,10282,10864,rna_andronescu2007.par,20,20,0
