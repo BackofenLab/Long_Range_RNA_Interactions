@@ -7,6 +7,7 @@ import subprocess
 import matplotlib.pyplot as plt
 #import matplotlib as mpl##??
 from matplotlib.collections import LineCollection
+import re
 
 database_path = "Flavivirus_NCBI/Flavivirus_RefSeq_20220621"
 
@@ -65,7 +66,7 @@ def execute_IntaRNA(UTR5, UTR3, row):
     return p
 
 
-def get_ranges(p, f):
+def read_output(p, f):
     linecounter = 0
     t_inter_range = (0,0)
     q_inter_range = (0,0)
@@ -73,35 +74,46 @@ def get_ranges(p, f):
         dline = line.decode("utf-8")
         f.write(dline)
         if linecounter == 2:
-            split_line = dline.strip(" ").split(" ")
-            t_inter_range = (int(split_line[0]), int(split_line[-1].rstrip("\n")))
+##            split_line = dline.strip(" ").split(" ")
+            l = re.findall(r'\d+', dline)
+            t_inter_range = (int(l[0]), int(l[1]))
+##            t_inter_range = (int(split_line[0]), int(split_line[-1].rstrip("\n")))
         elif linecounter == 10:
-            split_line = dline.strip(" ").split(" ")
-            q_inter_range = (int(split_line[0]), int(split_line[-1].rstrip("\n")))
+##            split_line = dline.strip(" ").split(" ")
+            l = re.findall(r'\d+', dline)
+            q_inter_range = (int(l[0]), int(l[1]))
+##            q_inter_range = (int(split_line[0]), int(split_line[-1].rstrip("\n")))
+        elif linecounter == 13:
+            energy = float(re.findall(r'[-]\d+[.]\d+', dline)[0])
         linecounter += 1
-    return t_inter_range, q_inter_range
+    return t_inter_range, q_inter_range, energy
 
 
-def drawplot(trange, qrange, UTR5end, CDSend, UTR3end, extra_bases):
-    fig, ax = plt.subplots(1)
-    tlines = [((0,0), (trange[0],0)),((trange[0],0),(trange[1],0)), ((trange[1],0),(UTR5end+extra_bases,0))]
-    qlines = [((CDSend-extra_bases,0), (qrange[1],0)),((qrange[1],0),(qrange[0],0)), ((qrange[0],0),(UTR3end,0))]
-    clines = [((0,1), (UTR5end,1)),((UTR5end,1),(CDSend,1)), ((CDSend,1),(UTR3end,1))]
-    colors1 = ["c", "r", "c"]
-    colors2 = ["c", "grey", "c"]
-    colored_lines = LineCollection(tlines, colors=colors1, linewidths=(2,))
+def draw_lineplot(sequence_range, interaction_range, UTRrange, nr, ax):
+    lines = [((sequence_range[0], nr), (sequence_range[1], nr)),
+             ((UTRrange[0], nr), (UTRrange[1], nr)),
+             ((interaction_range[0], nr), (interaction_range[1], nr)),
+             ]
+    colors = ["grey", "c", "r"]
+    colored_lines = LineCollection(lines, colors=colors, linewidths=(2,))
     ax.add_collection(colored_lines)
-    colored_lines2 = LineCollection(qlines, colors=colors1, linewidths=(2,))
-    ax.add_collection(colored_lines2)
-    colored_lines3 = LineCollection(clines, colors=colors2, linewidths=(2,))
-    ax.add_collection(colored_lines3)
-    ax.autoscale_view()
-    plt.show()
+
+
+def draw_energy_histo(energies):
+    plt.hist(energies, bins=int(len(energies)/2))
+    plt.xticks(range(int(min(energies)),int(max(energies))))
+    plt.xlabel("Interaction energy kcal/mol")
+    plt.ylabel("Amount of interactions")
+    plt.suptitle("Interaction Energy Histogram")
+    plt.savefig("energy_histo.png")
 
 
 def main():
     df = pd.read_csv("parameter_table.csv")
     f = open("test.txt", "w")
+    t_ranges = []
+    q_ranges = []
+    energies = []
     for index, row in df.iterrows():
         if not math.isnan(row["3UTRend"]):
 ##            if row['virus'] != "JEV":
@@ -116,10 +128,25 @@ def main():
             f.write(f"{row['id']} :\n")
             f.write(f"{'#'*(len(row['id']) + 2)}\n")
             p = execute_IntaRNA(UTR5, UTR3, row)
-            t_inter_range, q_inter_range= get_ranges(p, f)
+            t_inter_range, q_inter_range, energy = read_output(p, f)
             p.wait()
             f.write(f"{'#'*(len(row['id']) + 2)}\n")
+            t_ranges.append(t_inter_range) ## This is fairly suboptimal right now.
+            q_ranges.append(q_inter_range) ## Might need to rework if used on large dbs
+            energies.append(energy)        ##
+    draw_energy_histo(energies)
+    df["t_inter_range"] = t_ranges
+    df["q_inter_range"] = q_ranges
+    df["energy"] = energies
+    df.to_csv("parameter_table.csv", index=False)
 
-##create_parameter_table()
+#create_parameter_table()
 main()
-#drawplot((45,51),(866,860), 55, 900, 1000, extra_bases)
+##fig, ax = plt.subplots(1)
+##draw_lineplot((0,500),(51,60), (0, 300), 0, ax)
+##draw_lineplot((0,500),(51,60), (0, 55), 1, ax)
+##draw_lineplot((0,500),(51,60), (300, 500), 2, ax)
+##ax.autoscale_view()
+##plt.show()
+##df = pd.read_csv("parameter_table.csv")
+##draw_energy_histo(df["energy"])
