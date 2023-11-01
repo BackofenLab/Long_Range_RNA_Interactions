@@ -5,9 +5,9 @@ from Bio import SeqIO
 import subprocess
 #import seaborn as sns
 import matplotlib.pyplot as plt
-#import matplotlib as mpl##??
 from matplotlib.collections import LineCollection
 import re
+import ast
 
 database_path = "Flavivirus_NCBI/Flavivirus_RefSeq_20220621"
 
@@ -24,7 +24,7 @@ def read_out_bed6_data(file):
     f = open(file, "r")
     UTR5end, CDSend, UTR3end = None, None, None
     lines = f.readlines()
-    if len(lines) == 3:
+    if len(lines) == 3: ## Filter files without UTR data
         UTR5end = lines[0].split("\t")[2]
         CDSend = lines[1].split("\t")[2]
         UTR3end = lines[2].split("\t")[2]
@@ -42,11 +42,11 @@ def create_parameter_table():
                 UTR5end, CDSend, UTR3end = read_out_bed6_data(f"{root}/{file}")
                 if UTR5end is None:
                     continue
-                d[vid] = [vclass, vtype, virus, UTR5end, CDSend, UTR3end,
+                d[vid] = [vclass, vtype, virus, UTR5end, CDSend, UTR3end, extra_bases,
                            energyVRNA, qintLenMax, tintLenMax, qidxpos0]
 
     columns = ["class", "type", "virus", "5UTRend", "CDSend", "3UTRend",
-               "energyVRNA", "qintLenMax", "tintLenMax", "qidxpos0"]
+               "extra_bases", "energyVRNA", "qintLenMax", "tintLenMax", "qidxpos0"]
     df = pd.DataFrame(d)
     df.index = pd.Index(columns, name="id")
     df = df.T
@@ -74,32 +74,60 @@ def read_output(p, f):
         dline = line.decode("utf-8")
         f.write(dline)
         if linecounter == 2:
-##            split_line = dline.strip(" ").split(" ")
             l = re.findall(r'\d+', dline)
             t_inter_range = (int(l[0]), int(l[1]))
-##            t_inter_range = (int(split_line[0]), int(split_line[-1].rstrip("\n")))
         elif linecounter == 10:
-##            split_line = dline.strip(" ").split(" ")
             l = re.findall(r'\d+', dline)
             q_inter_range = (int(l[0]), int(l[1]))
-##            q_inter_range = (int(split_line[0]), int(split_line[-1].rstrip("\n")))
         elif linecounter == 13:
             energy = float(re.findall(r'[-]\d+[.]\d+', dline)[0])
         linecounter += 1
     return t_inter_range, q_inter_range, energy
 
 
-def draw_lineplot(sequence_range, interaction_range, UTRrange, nr, ax):
-    lines = [((sequence_range[0], nr), (sequence_range[1], nr)),
-             ((UTRrange[0], nr), (UTRrange[1], nr)),
-             ((interaction_range[0], nr), (interaction_range[1], nr)),
-             ]
-    colors = ["grey", "c", "r"]
-    colored_lines = LineCollection(lines, colors=colors, linewidths=(2,))
-    ax.add_collection(colored_lines)
+def draw_lineplots(df):
+    ## Need 2 plots:
+    ## 1: UTR5+some_CDS+t_inter
+    ## 2: some_CDS+UTR3+q_inter
+    ## inter can be either on UTR or CDS (or maybe overlapping both)
+    row_dict = {}###
+    #plt.figure(figsize=(12.8, 9.6))
+    fig, (side5, side3) = plt.subplots(2, figsize=(16, 9))
+    for index, row in df.iterrows():
+        ext_end5 = row["5UTRend"]+row["extra_bases"]
+        ext_end3 = (row["3UTRend"]-row["CDSend"])+row["extra_bases"]
+        t_tuple = ast.literal_eval(row["t_inter_range"])
+        q_tuple = ast.literal_eval(row["q_inter_range"])
+        line5 = [((0, index), (ext_end5, index)), ## grey
+                ((0, index), (row["5UTRend"], index)), ## blue
+                ((t_tuple[0], index),
+                 (t_tuple[1], index)) ## red
+                 ]
+        line3 = [((0, index), (-ext_end3, index)), ## grey
+                 ((0, index), (-(row["3UTRend"]-row["CDSend"]), index)), ## blue
+                 #((-q_tuple[0], index),
+                 #(-q_tuple[1], index)) ## red
+                 ((-ext_end3+q_tuple[0], index), ## This works (might have small index issue +-1?)
+                                                 ## but is incredibly ugly and hacky.
+                                                 ## Definitely needs to be reworked after the indexing is cleared up
+                 (-ext_end3+q_tuple[1], index)) ## red
+                 ]
+        colors = ["grey", "c", "r"]
+        side5.add_collection(LineCollection(line5, colors=colors, linewidths=(2,)))
+        side3.add_collection(LineCollection(line3, colors=colors, linewidths=(2,)))
+    side5.set_xlabel("Bases after 5' end")
+    side3.set_xlabel("Bases before 3' end")
+    side5.set_ylabel("Index")
+    side3.set_ylabel("Index")
+    side5.autoscale_view()
+    side3.autoscale_view()
+    plt.suptitle("Interaction Lineplot")
+    plt.savefig("interaction_lineplot.png")
 
 
-def draw_energy_histo(energies):
+def draw_energy_histo(df):
+    energies = df["energy"]
+    plt.figure(figsize=(12.8, 9.6))
     plt.hist(energies, bins=int(len(energies)/2))
     plt.xticks(range(int(min(energies)),int(max(energies))))
     plt.xlabel("Interaction energy kcal/mol")
@@ -110,12 +138,12 @@ def draw_energy_histo(energies):
 
 def main():
     df = pd.read_csv("parameter_table.csv")
-    f = open("test.txt", "w")
+    f = open("IntaRNA_Output.txt", "w")
     t_ranges = []
     q_ranges = []
     energies = []
     for index, row in df.iterrows():
-        if not math.isnan(row["3UTRend"]):
+        if not math.isnan(row["3UTRend"]): ## Should be unneccessary now but just in case
 ##            if row['virus'] != "JEV":
 ##                continue
             file = f"{database_path}/{row['class']}/{row['type']}/{row['virus']}/{row['id']}.fa"
@@ -134,19 +162,16 @@ def main():
             t_ranges.append(t_inter_range) ## This is fairly suboptimal right now.
             q_ranges.append(q_inter_range) ## Might need to rework if used on large dbs
             energies.append(energy)        ##
-    draw_energy_histo(energies)
     df["t_inter_range"] = t_ranges
     df["q_inter_range"] = q_ranges
     df["energy"] = energies
     df.to_csv("parameter_table.csv", index=False)
+    return df
 
-#create_parameter_table()
-main()
-##fig, ax = plt.subplots(1)
-##draw_lineplot((0,500),(51,60), (0, 300), 0, ax)
-##draw_lineplot((0,500),(51,60), (0, 55), 1, ax)
-##draw_lineplot((0,500),(51,60), (300, 500), 2, ax)
-##ax.autoscale_view()
-##plt.show()
-##df = pd.read_csv("parameter_table.csv")
-##draw_energy_histo(df["energy"])
+
+if __name__ == "__main__":
+    create_parameter_table()
+    df = main()
+    df = pd.read_csv("parameter_table.csv")
+    draw_lineplots(df)
+    draw_energy_histo(df)
