@@ -6,6 +6,7 @@ import subprocess
 #import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
+from matplotlib.lines import Line2D
 import re
 import ast
 
@@ -121,6 +122,11 @@ def draw_lineplots(df):
     side3.set_ylabel("Index")
     side5.autoscale_view()
     side3.autoscale_view()
+    legend_elements = [Line2D([0], [0], color='grey', lw=4, label='CDS'),
+                       Line2D([0], [0], color='c', lw=4, label='UTR'),
+                       Line2D([0], [0], color='r', lw=4, label='Interaction')]
+    side5.legend(handles=legend_elements,loc="upper right")
+    side3.legend(handles=legend_elements,loc="upper left")
     plt.suptitle("Interaction Lineplot")
     plt.savefig("interaction_lineplot.png")
 
