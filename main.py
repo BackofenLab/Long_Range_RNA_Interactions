@@ -11,8 +11,8 @@ raw_IntaRNA_output = "Results/IntaRNA_raw_output.txt"
 IntaRNA_output = "Results/IntaRNA_output.csv"
 
 ## Outputs
-energy_histo = "energy_histo.png"
-line_plot = "interaction_lineplot.png"
+energy_histo = "Results/energy_histo.png"
+line_plot = "Results/interaction_lineplot.png"
 
 
 static_d = {"energyVRNA": ["Data/rna_andronescu2007.par"],
@@ -27,5 +27,5 @@ if __name__ == "__main__":
     main_intarna(database_path, static_param_file, parameter_table_file,
                  IntaRNA_output, raw_IntaRNA_output)
     df = pd.read_csv("Results/IntaRNA_output.csv")
-    draw_lineplots(df, static_d["extra_bases"][0], line_plot)
+    draw_lineplots(df, static_d["extra_bases_roi"][0], line_plot)
     draw_energy_histo(df, energy_histo)
