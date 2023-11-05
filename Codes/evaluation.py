@@ -38,8 +38,8 @@ def draw_lineplots(df, extra_bases_roi, output):
         colors = [CDS_colors[row["class"]], "c", "r"]
         side5.add_collection(LineCollection(line5, colors=colors, linewidths=(2,)))
         side3.add_collection(LineCollection(line3, colors=colors, linewidths=(2,)))
-    side5.set_xlabel("Bases after 5' end")
-    side3.set_xlabel("Bases before 3' end")
+    side5.set_xlabel("Distance from 5'UTR-CDS transition")
+    side3.set_xlabel("Distance from CDS-3'UTR transition")
     side5.set_ylabel("Index")
     side3.set_ylabel("Index")
     side5.autoscale_view()
