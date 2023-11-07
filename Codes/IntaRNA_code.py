@@ -4,38 +4,36 @@ import subprocess
 import re
 
 
-def execute_IntaRNA(UTR5pCDS, UTR3pCDS, ID, static_params):
+def execute_IntaRNA(UTR5pCDS, UTR3pCDS, ID, extra_bases, extra_bases_roi, static_param_path):
     """Starts a subprocess for IntaRNA with given parameters.
     UTR5pCDS (str): 5'UTR+ the extra bases from the CDS
     UTR3pCDS (str): 3'UTR+ the extra bases from the CDS
     ID (str): ID code of the current sequence ("NC_XXXXX.X")
-    static_params (df): Dataframe of predefined static parameters
+    static_param_path (str): Filepath for the static parameter file to be used
     """
     # extra_region cuts off the difference between
     # the extra CDS bases and the extra CDS bases as region of interest
-    extra_region = static_params["extra_bases"][0]-static_params["extra_bases_roi"][0] # = 100
-    tidxpos0 = -(len(UTR5pCDS)-static_params["extra_bases"][0]) # len of UTR5 alone
+    extra_region = extra_bases-extra_bases_roi # = 100
+    tidxpos0 = -(len(UTR5pCDS)-extra_bases) # len of UTR5 alone
     tregion_s = tidxpos0 # = len(UTR5)
     tregion_e = extra_region # = 100
-    qidxpos0 = -static_params["extra_bases"][0] # = -200
+    qidxpos0 = -extra_bases # = -200
     qregion_s = -extra_region # = -100
-    qregion_e = len(UTR3pCDS)-static_params["extra_bases"][0] # len of UTR3 alone
+    qregion_e = len(UTR3pCDS)-extra_bases # len of UTR3 alone
     cmd = ["IntaRNA", "-t", UTR5pCDS, "-q", UTR3pCDS,
-           "--energyVRNA", str(static_params["energyVRNA"][0]),
-           "--intLenMax", str(static_params["intLenMax"][0]),
            "--tidxpos0", str(tidxpos0), ## Transition UTR5-CDS
            "--qidxpos0", str(qidxpos0),  ## Transition CDS-UTR3
            "--tregion", f"{str(tregion_s)}-{str(tregion_e)}", ## UTR5start to end+100CDS
            "--qregion", f"{str(qregion_s)}-{str(qregion_e)}", ## 100CDS to UTR3end
-           "--seedBP", str(static_params["seedlength"][0]),
            "--tId", f"{ID}.5UTR",
            "--qId", f"{ID}.3UTR",
+           "--parameterFile", static_param_path,
            #"--outMode", "C" # This seems incredibly useful but I opt to not
            # use it for now to preserve the readable textfile!
            # (and because I already went through the effort to write code
            # to interpret the normal output..
-           
            ]
+
     #print(cmd)
     #raise
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
@@ -66,19 +64,19 @@ def read_output(p, f):
     return t_inter_range, q_inter_range, energy
 
 
-def main_intarna(database_path, static_params, params,
+def main_intarna(database_path, static_param_path, extra_bases, extra_bases_roi, params,
                  output_path, raw_intarna_output_path):
-    static_params = pd.read_csv(static_params)
     params = pd.read_csv(params)
     output = pd.DataFrame()
-    f = open(raw_intarna_output_path, "w")
     t_ranges = []
     q_ranges = []
     energies = []
-    for index, row in params.iterrows():
+    with open(raw_intarna_output_path, "w") as f:
+        for index, row in params.iterrows():
             f.write(f"{row['id']} :\n")
             f.write(f"{'#'*(len(row['id']) + 2)}\n")
-            p = execute_IntaRNA(row["seq5"], row["seq3"], row['id'], static_params)
+            p = execute_IntaRNA(row["seq5"], row["seq3"], row['id'], 
+                                extra_bases, extra_bases_roi, static_param_path)
             t_inter_range, q_inter_range, energy = read_output(p, f)
             p.wait()
             f.write(f"{'#'*(len(row['id']) + 2)}\n")

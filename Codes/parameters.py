@@ -16,12 +16,17 @@ def read_out_bed6_data(file):
     return UTR5len, CDSlen, UTR3len
 
 
-def write_static_parameters(static_d, output):
+def write_static_parameters(static_d, static_param_path):
     """Writes a file with all the parameters,
     that should be the same for all IntaRNA processes.
+    static_d (dict): Dictionary with the static parameters
+    static_param_path (str): String for resulting .cfg filepath
     """
-    df = pd.DataFrame(static_d)
-    df.to_csv(output)
+    f = open(static_param_path, "w")
+    with open(static_param_path, "w") as f:
+        for param, value in static_d.items():
+            f.write(f"{param} = {value} \n")
+
 
 def create_parameter_table(database_path, extra_bases, output):
     """Scans a given directory for .bed6 files and extracts their information
