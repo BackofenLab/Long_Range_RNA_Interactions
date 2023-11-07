@@ -22,7 +22,6 @@ def write_static_parameters(static_d, static_param_path):
     static_d (dict): Dictionary with the static parameters
     static_param_path (str): String for resulting .cfg filepath
     """
-    f = open(static_param_path, "w")
     with open(static_param_path, "w") as f:
         for param, value in static_d.items():
             f.write(f"{param} = {value} \n")

@@ -17,12 +17,14 @@ line_plot = "Results/interaction_lineplot.png"
 ## Static Parameters
 extra_bases = 200
 extra_bases_roi = 100
+outNumber = 2 # Allow n-1 subops, must be at least 1
+
 ## IntaRNA specific:
 static_d = {"energyVRNA": "Data/rna_andronescu2007.par",
             "intLenMax": 20,
             "seedBP": 7,
             "accW": 100,
-            "accL": 100
+            "accL": 100,
             }
 
 
@@ -30,7 +32,8 @@ if __name__ == "__main__":
     write_static_parameters(static_d, static_param_path)
     create_parameter_table(database_path, extra_bases, parameter_table_file)
     main_intarna(database_path, static_param_path, extra_bases, extra_bases_roi,
-                 parameter_table_file, IntaRNA_output, raw_IntaRNA_output)
+                 parameter_table_file, IntaRNA_output, raw_IntaRNA_output,
+                 outNumber)
     df = pd.read_csv("Results/IntaRNA_output.csv")
     draw_lineplots(df, extra_bases_roi, line_plot)
     draw_energy_histo(df, energy_histo)
