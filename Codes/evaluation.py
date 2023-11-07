@@ -19,23 +19,37 @@ def draw_lineplots(df, extra_bases_roi, output):
     ## inter can be either on UTR or CDS (or maybe overlapping both)
     plt.style.use("seaborn-darkgrid")
     fig, (side5, side3) = plt.subplots(2, figsize=(16, 9))
+
     for index, row in df.iterrows():
         #if row["id"] != "NC_001437.1":
         #    continue
+        #row["suboptqs"]
         t_tuple = ast.literal_eval(row["t_inter_range"])
         q_tuple = ast.literal_eval(row["q_inter_range"])
+        line5sub = []
+        line3sub = []
+        for suboptt in ast.literal_eval(row["suboptts"]): ## Subopt stuff..
+            if suboptt:
+                line5sub.append(((suboptt[0][0], index),
+                              (suboptt[0][1], index))) ## orange?
+        subopt_len5 = len(line5sub)
+        for suboptq in ast.literal_eval(row["suboptqs"]): ## Subopt stuff..
+            if suboptq:
+                line3sub.append(((suboptq[0][0], index),
+                              (suboptq[0][1], index))) ## orange?
+        subopt_len3 = len(line3sub)
         line5 = [((0, index), (extra_bases_roi, index)), ## grey
-                ((0, index), (-row["UTR5len"], index)), ## blue
-                ((t_tuple[0], index),
-                 (t_tuple[1], index)) ## red
-                 ]
+                 ((0, index), (-row["UTR5len"], index))] ## blue
+        line5 += line5sub
+        line5 += [((t_tuple[0], index),
+                  (t_tuple[1], index))] ## red
         line3 = [((0, index), (-extra_bases_roi, index)),#((0, index), (-ext_end3, index)), ## grey
-                 ((0, index), ((row["UTR3len"]), index)), ## blue
-                 ((q_tuple[0], index),
-                 (q_tuple[1], index)) ## red
-                 ]
-        CDS_colors = {"ISFV":"y","MBFV":"b","NKV":"g","TBFV":"m"}
-        colors = [CDS_colors[row["class"]], "c", "r"]
+                 ((0, index), ((row["UTR3len"]), index))] ## blue
+        line3 += line3sub
+        line3 += [((q_tuple[0], index),
+                 (q_tuple[1], index))] ## red
+        CDS_colors = {"ISFV":"lime","MBFV":"b","NKV":"g","TBFV":"m"}
+        colors = [CDS_colors[row["class"]], "c"] + ["orange"]*subopt_len3 + ["r"]
         side5.add_collection(LineCollection(line5, colors=colors, linewidths=(2,)))
         side3.add_collection(LineCollection(line3, colors=colors, linewidths=(2,)))
     side5.set_xlabel("Distance from 5'UTR-CDS transition")
@@ -49,7 +63,8 @@ def draw_lineplots(df, extra_bases_roi, output):
                        Line2D([0], [0], color=CDS_colors["NKV"], lw=4, label='NKV-CDS'),
                        Line2D([0], [0], color=CDS_colors["TBFV"], lw=4, label='TBFV-CDS'),
                        Line2D([0], [0], color='c', lw=4, label='UTR'),
-                       Line2D([0], [0], color='r', lw=4, label='Interaction')]
+                       Line2D([0], [0], color='r', lw=4, label='Interaction'),
+                       Line2D([0], [0], color='orange', lw=4, label='Subopt')]
     side5.legend(handles=legend_elements,loc="upper left")
     side3.legend(handles=legend_elements,loc="upper right")
     plt.suptitle("Interaction Lineplot")
@@ -61,6 +76,7 @@ def draw_energy_histo(df, output):
     df (df): the dataframe outputted by main_intarna
     output (str): Filepath where the plot should be saved
     """
+    #print(df["suboptes"]) # These need to go into the histogram..somehow or just a second?
     energies = df["energy"]
     plt.figure(figsize=(12.8, 9.6))
     #plt.hist(energies, bins=int(len(energies)/2))
