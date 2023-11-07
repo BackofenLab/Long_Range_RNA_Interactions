@@ -59,7 +59,7 @@ def read_output(p, f):
             l = re.findall(r'-?\d+', dline)
             q_inter_range = (int(l[0]), int(l[1]))
         elif linecounter == 13:
-            energy = float(re.findall(r'-?\d+[.]\d+', dline)[0])
+            energy = float(re.findall(r'-?\d+[.]?\d*', dline)[0])
         linecounter += 1
     return t_inter_range, q_inter_range, energy
 

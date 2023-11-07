@@ -13,7 +13,7 @@ NC_012932.1.5UTR
           +666     +660
 NC_012932.1.3UTR
 
-interaction energy = -5.15 kcal/mol
+interaction energy = -5.5 kcal/mol
 #############
 NC_001564.2 :
 #############
@@ -30,24 +30,24 @@ NC_001564.2.5UTR
           +331       +323
 NC_001564.2.3UTR
 
-interaction energy = -10.22 kcal/mol
+interaction energy = -10.57 kcal/mol
 #############
 NC_030290.1 :
 #############
 
 NC_030290.1.5UTR
-           +69     +75
-             |     |
-5'-UUU...AAAU       CCGC...AAU-3'
-             GAUGGGG
-             +++++++
-             CUACCCC
-3'-CCU...CAAC       AAGG...CUU-5'
-             |     |
-          +348     +342
+           +27            +40
+             |            |
+5'-UUU...AGAA       AC     GAGG...AAU-3'
+             GGGAAAU  CCUGG
+             +++++++  ||||:
+             CCCUUUA  GGACU
+3'-CCU...GUAG       A-     ACGG...CUU-5'
+             |            |
+           -55            -67
 NC_030290.1.3UTR
 
-interaction energy = -2.94 kcal/mol
+interaction energy = -2.61 kcal/mol
 #############
 NC_040682.1 :
 #############
@@ -57,31 +57,31 @@ NC_040682.1.5UTR
              |           |
 5'-AUA...GCCA             ACCA...UCA-3'
              ACCAGCGUGUUGG
-             +++++++++++++
+             ++++++++++++:
              UGGUUGCACGACU
           3'-             CACC...UGC-5'
              |           |
           +112           +100
 NC_040682.1.3UTR
 
-interaction energy = -8.82 kcal/mol
+interaction energy = -8 kcal/mol
 #############
 NC_040645.1 :
 #############
 
 NC_040645.1.5UTR
-          -133     -127
-             |     |
-5'-CGC...CGAA       AUCG...CAC-3'
-             UCAGUUU
-             +++++++
-             AGUCAAA
-3'-UCC...CAAC       GACA...CUU-5'
-             |     |
-           +42     +36
+           -48                 -33
+             |                 |
+5'-CGC...AUGA   ---       A  A  AAAG...CAC-3'
+             GCC   UGGGAGG GG GG
+             |||   +++++++ || ||
+             CGG   GUUCUCC CC CC
+3'-UCC...CGCA   GAU       -  -  ACCA...CUU-5'
+             |                 |
+          +167                 +151
 NC_040645.1.3UTR
 
-interaction energy = -3.88 kcal/mol
+interaction energy = -4.34 kcal/mol
 #############
 NC_008604.2 :
 #############
@@ -98,75 +98,75 @@ NC_008604.2.5UTR
           +115       +107
 NC_008604.2.3UTR
 
-interaction energy = -8.95 kcal/mol
+interaction energy = -9.9 kcal/mol
 #############
 NC_035118.1 :
 #############
 
 NC_035118.1.5UTR
-           -98              -84
-             |              |
-5'-AUG...ACCU         -      GUUA...UCG-3'
-             GCCUGUGUU UUCUUG
-             +++++++++ ::||||
-             CGGACACAA GGGAAC
-3'-AGA...UUAU         C      AGUA...AUC-5'
-             |              |
-          +426              +411
+           +31        +40
+             |        |
+5'-AUG...UGGU  A       GAAA...UCG-3'
+             GG GGAGGUG
+             :| +++++++
+             UC CCUCCAC
+3'-AGA...AGUG  -       AGCG...AUC-5'
+             |        |
+           +94        +86
 NC_035118.1.3UTR
 
-interaction energy = -7.8 kcal/mol
+interaction energy = -6.39 kcal/mol
 #############
 NC_005064.1 :
 #############
 
 NC_005064.1.5UTR
-           +30      +37
-             |      |
-5'-AGU...GGCC        CAAC...GCA-3'
-             UCCGGGCC
-             ++++++++
-             AGGCCCGG
-3'-UCG...CUGC        CCGU...CCU-5'
-             |      |
-          +644      +637
+           +70          +81
+             |          |
+5'-AGU...GCCC       C    AAAC...GCA-3'
+             GACUCGG GGGA
+             +++++++ ||||
+             CUGAGCC CCCU
+3'-UCG...UCCC       -    CGCC...CCU-5'
+             |          |
+          +834          +824
 NC_005064.1.3UTR
 
-interaction energy = -4.86 kcal/mol
+interaction energy = -4.91 kcal/mol
 #############
 NC_027819.1 :
 #############
 
 NC_027819.1.5UTR
-           +49               +65
-             |               |
-5'-AGU...AGGA      AAA        UGAG...GCG-3'
-             GGAGGA   CGGGGCUU
-             ||||||   +++++++:
-             CCUCCU   GCCUCGGG
-3'-UCG...CAAG      ---        CACG...UGC-5'
-             |               |
-          +467               +454
+           +49              +64
+             |              |
+5'-AGU...AGGA      AAA       UUGA...GCG-3'
+             GGAGGA   CGGGGCU
+             ||||||   +++++++
+             CCUCCU   GCCUCGG
+3'-UCG...CAAG      ---       GCAC...UGC-5'
+             |              |
+          +467              +455
 NC_027819.1.3UTR
 
-interaction energy = -8.18 kcal/mol
+interaction energy = -7.1 kcal/mol
 #############
 NC_021069.1 :
 #############
 
 NC_021069.1.5UTR
-           -69      -62
+           +45      +52
              |      |
-5'-UAG...GAUU        AUUA...GAA-3'
-             AAGCCUGU
+5'-UAG...GUAC        CGAC...GAA-3'
+             GCGCCCUC
              ++++++++
-             UUCGGACA
-3'-UCU...CUCG        GUGU...UGC-5'
+             CGCGGGAG
+3'-UCU...AAAU        UGUC...UGC-5'
              |      |
-          +613      +606
+          +252      +245
 NC_021069.1.3UTR
 
-interaction energy = -5.14 kcal/mol
+interaction energy = -4.82 kcal/mol
 #############
 NC_024299.2 :
 #############
@@ -183,7 +183,7 @@ NC_024299.2.5UTR
            -23       -31
 NC_024299.2.3UTR
 
-interaction energy = -4.19 kcal/mol
+interaction energy = -4.01 kcal/mol
 #############
 NC_034242.1 :
 #############
@@ -193,31 +193,31 @@ NC_034242.1.5UTR
              |                 |
 5'-GUC...CCGA     GGAAG         AGUC...GAC-3'
              CAAGG     AAAAAUCGU
-             |||:|     |++++++++
+             |||:|     +++++++++
              GUUUC     UUUUUAGCA
 3'-AUC...CCCA     AUAAA         GCAG...AUC-5'
              |                 |
            +53                 +35
 NC_034242.1.3UTR
 
-interaction energy = -3.55 kcal/mol
+interaction energy = -4.19 kcal/mol
 #############
 NC_027817.1 :
 #############
 
 NC_027817.1.5UTR
-           +28     +34
-             |     |
-5'-AGU...UCCC       GGAA...GUC-3'
-             CUCCGAG
-             +++++++
-             GGGGCUC
-3'-UCG...CUUA       UGUU...CCA-5'
-             |     |
-          +204     +198
+           -23              -8
+             |              |
+5'-AGU...ACUC      CCA       UAUU...GUC-3'
+             UGGUGU   ACGUUUG
+             ::||||   +++++++
+             GUCACA   UGCAAAC
+3'-UCG...CCCA      ---       CUUG...CCA-5'
+             |              |
+           -18              -30
 NC_027817.1.3UTR
 
-interaction energy = -3.97 kcal/mol
+interaction energy = -5.78 kcal/mol
 #############
 NC_012671.1 :
 #############
@@ -234,7 +234,7 @@ NC_012671.1.5UTR
           +361                +346
 NC_012671.1.3UTR
 
-interaction energy = -9.43 kcal/mol
+interaction energy = -9.28 kcal/mol
 #############
 NC_034017.1 :
 #############
@@ -251,7 +251,7 @@ NC_034017.1.5UTR
           +173                +156
 NC_034017.1.3UTR
 
-interaction energy = -8.33 kcal/mol
+interaction energy = -8.96 kcal/mol
 #############
 NC_017086.1 :
 #############
@@ -268,7 +268,7 @@ NC_017086.1.5UTR
           +223         +213
 NC_017086.1.3UTR
 
-interaction energy = -8.73 kcal/mol
+interaction energy = -8.93 kcal/mol
 #############
 NC_016997.1 :
 #############
@@ -285,24 +285,24 @@ NC_016997.1.5UTR
           +241          +230
 NC_016997.1.3UTR
 
-interaction energy = -9.37 kcal/mol
+interaction energy = -9.12 kcal/mol
 #############
 NC_027999.1 :
 #############
 
 NC_027999.1.5UTR
-           +38                +55
-             |                |
-5'-AGU...AAAA   GA             UUAG...AAA-3'
-             CCC  GGUGUCAAUAUGA
-             |||  +++++++++++++
-             GGG  CCACAGUUAUACU
-3'-UCU...AAAA   A-             UCGA...UUC-5'
-             |                |
-          +218                +202
+           +43           +55
+             |           |
+5'-AGU...CCGA             UUAG...AAA-3'
+             GGUGUCAAUAUGA
+             +++++++++++++
+             CCACAGUUAUACU
+3'-UCU...GGGA             UCGA...UUC-5'
+             |           |
+          +214           +202
 NC_027999.1.3UTR
 
-interaction energy = -12.05 kcal/mol
+interaction energy = -10.61 kcal/mol
 #############
 NC_040610.1 :
 #############
@@ -319,7 +319,7 @@ NC_040610.1.5UTR
           +292         +282
 NC_040610.1.3UTR
 
-interaction energy = -7.67 kcal/mol
+interaction energy = -7.49 kcal/mol
 #############
 NC_024017.1 :
 #############
@@ -336,7 +336,7 @@ NC_024017.1.5UTR
           +343           +331
 NC_024017.1.3UTR
 
-interaction energy = -5.34 kcal/mol
+interaction energy = -5.5 kcal/mol
 #############
 NC_033715.1 :
 #############
@@ -353,7 +353,7 @@ NC_033715.1.5UTR
           +155     +149
 NC_033715.1.3UTR
 
-interaction energy = -2.57 kcal/mol
+interaction energy = -2.48 kcal/mol
 #############
 NC_009026.2 :
 #############
@@ -370,7 +370,7 @@ NC_009026.2.5UTR
           +332                +316
 NC_009026.2.3UTR
 
-interaction energy = -7.57 kcal/mol
+interaction energy = -8.96 kcal/mol
 #############
 NC_001477.1 :
 #############
@@ -387,7 +387,7 @@ NC_001477.1.5UTR
           +367         +357
 NC_001477.1.3UTR
 
-interaction energy = -7.89 kcal/mol
+interaction energy = -7.57 kcal/mol
 #############
 NC_001474.2 :
 #############
@@ -404,7 +404,7 @@ NC_001474.2.5UTR
           +356         +346
 NC_001474.2.3UTR
 
-interaction energy = -7.61 kcal/mol
+interaction energy = -7.75 kcal/mol
 #############
 NC_001475.2 :
 #############
@@ -421,7 +421,7 @@ NC_001475.2.5UTR
           +345         +335
 NC_001475.2.3UTR
 
-interaction energy = -8.53 kcal/mol
+interaction energy = -8.29 kcal/mol
 #############
 NC_002640.1 :
 #############
@@ -438,7 +438,7 @@ NC_002640.1.5UTR
           +289         +279
 NC_002640.1.3UTR
 
-interaction energy = -7.53 kcal/mol
+interaction energy = -7.5 kcal/mol
 #############
 NC_012533.1 :
 #############
@@ -455,24 +455,24 @@ NC_012533.1.5UTR
           +291         +281
 NC_012533.1.3UTR
 
-interaction energy = -10.04 kcal/mol
+interaction energy = -10.06 kcal/mol
 #############
 NC_001437.1 :
 #############
 
 NC_001437.1.5UTR
-           +33                 +51
-             |                 |
-5'-AGA...AAAA     CUA           AAAC...AGG-3'
-             CCGGG   UCAAUAUGCUG
-             ||:||   +++++++++++
-             GGUCC   AGUUAUACGAC
-3'-UCU...UAAG     AC-           AAAC...GCA-5'
-             |                 |
-          +486                 +469
+           +41         +51
+             |         |
+5'-AGA...GCUA           AAAC...AGG-3'
+             UCAAUAUGCUG
+             +++++++++++
+             AGUUAUACGAC
+3'-UCU...CCAC           AAAC...GCA-5'
+             |         |
+          +479         +469
 NC_001437.1.3UTR
 
-interaction energy = -8.66 kcal/mol
+interaction energy = -7.44 kcal/mol
 #############
 NC_000943.1 :
 #############
@@ -482,14 +482,14 @@ NC_000943.1.5UTR
              |                 |
 5'-AGA...AAGC       C           AAAA...GAG-3'
              CCCGGGU GUCAAUAUGCU
-             +++++++ +++++++++++
+             |||:||| +++++++++++
              GGGUCCA CAGUUAUACGA
 3'-UCU...AAAA       -           CAAC...GAA-5'
              |                 |
           +519                 +502
 NC_000943.1.3UTR
 
-interaction energy = -13.48 kcal/mol
+interaction energy = -8.84 kcal/mol
 #############
 NC_007580.2 :
 #############
@@ -506,24 +506,24 @@ NC_007580.2.5UTR
           +459                +443
 NC_007580.2.3UTR
 
-interaction energy = -12.49 kcal/mol
+interaction energy = -11.81 kcal/mol
 #############
 NC_006551.1 :
 #############
 
 NC_006551.1.5UTR
-           +33                 +51
-             |                 |
-5'-AGU...GAAA     CCA           AAAC...AGG-3'
-             CCGGG   UCAAUAUGCUG
-             ||:||   +++++++++++
-             GGUCC   AGUUAUACGAC
-3'-UCU...UAAG     AC-           AAAA...ACA-5'
-             |                 |
-          +568                 +551
+           +41         +51
+             |         |
+5'-AGU...GCCA           AAAC...AGG-3'
+             UCAAUAUGCUG
+             +++++++++++
+             AGUUAUACGAC
+3'-UCU...CCAC           AAAA...ACA-5'
+             |         |
+          +561         +551
 NC_006551.1.3UTR
 
-interaction energy = -10.57 kcal/mol
+interaction energy = -8.45 kcal/mol
 #############
 NC_001563.2 :
 #############
@@ -540,24 +540,24 @@ NC_001563.2.5UTR
           +483                +467
 NC_001563.2.3UTR
 
-interaction energy = -12.76 kcal/mol
+interaction energy = -11.27 kcal/mol
 #############
 NC_009942.1 :
 #############
 
 NC_009942.1.5UTR
-           +33                +50
-             |                |
-5'-AGU...AGAG     C            AAAA...GGA-3'
-             CCGGG UGUCAAUAUGCU
-             ||:|| ++++++++++++
-             GGUCC ACAGUUAUACGA
-3'-UCU...AUAG     -            CAAA...GCA-5'
-             |                |
-          +541                +525
+           +39          +50
+             |          |
+5'-AGU...GGGC            AAAA...GGA-3'
+             UGUCAAUAUGCU
+             ++++++++++++
+             ACAGUUAUACGA
+3'-UCU...GUCC            CAAA...GCA-5'
+             |          |
+          +536          +525
 NC_009942.1.3UTR
 
-interaction energy = -12.14 kcal/mol
+interaction energy = -8.9 kcal/mol
 #############
 NC_009029.2 :
 #############
@@ -574,7 +574,7 @@ NC_009029.2.5UTR
           +466         +456
 NC_009029.2.3UTR
 
-interaction energy = -7.51 kcal/mol
+interaction energy = -6.91 kcal/mol
 #############
 NC_032088.1 :
 #############
@@ -591,7 +591,7 @@ NC_032088.1.5UTR
           +456          +445
 NC_032088.1.3UTR
 
-interaction energy = -9.72 kcal/mol
+interaction energy = -8.86 kcal/mol
 #############
 NC_012534.1 :
 #############
@@ -608,7 +608,7 @@ NC_012534.1.5UTR
           +477                 +460
 NC_012534.1.3UTR
 
-interaction energy = -12.94 kcal/mol
+interaction energy = -13.02 kcal/mol
 #############
 NC_009028.2 :
 #############
@@ -625,7 +625,7 @@ NC_009028.2.5UTR
           +292         +282
 NC_009028.2.3UTR
 
-interaction energy = -6.93 kcal/mol
+interaction energy = -6.64 kcal/mol
 #############
 NC_018705.3 :
 #############
@@ -642,7 +642,7 @@ NC_018705.3.5UTR
           +544                 +527
 NC_018705.3.3UTR
 
-interaction energy = -14.17 kcal/mol
+interaction energy = -12.3 kcal/mol
 #############
 NC_040776.1 :
 #############
@@ -659,7 +659,7 @@ NC_040776.1.5UTR
           +330           +318
 NC_040776.1.3UTR
 
-interaction energy = -10.46 kcal/mol
+interaction energy = -11.32 kcal/mol
 #############
 NC_034151.1 :
 #############
@@ -676,24 +676,24 @@ NC_034151.1.5UTR
           +463                 +446
 NC_034151.1.3UTR
 
-interaction energy = -11.97 kcal/mol
+interaction energy = -10.09 kcal/mol
 #############
 NC_015843.2 :
 #############
 
 NC_015843.2.5UTR
-           +36                +53
-             |                |
-5'-AGA...CAGG      U           AAAG...GCU-3'
-             CCGGGU GUCAAUAUGCU
-             ||:||| +++++++++++
-             GGUCCA CAGUUAUACGA
-3'-UCU...AUAG      -           CAAA...GAA-5'
-             |                |
-          +528                +512
+           +42          +53
+             |          |
+5'-AGA...GGGU            AAAG...GCU-3'
+             UGUCAAUAUGCU
+             ++++++++++++
+             ACAGUUAUACGA
+3'-UCU...GUCC            CAAA...GAA-5'
+             |          |
+          +523          +512
 NC_015843.2.3UTR
 
-interaction energy = -12.7 kcal/mol
+interaction energy = -8.72 kcal/mol
 #############
 NC_012532.1 :
 #############
@@ -703,14 +703,14 @@ NC_012532.1.5UTR
              |          |
 5'-AGU...ACGA            AUGA...CAA-3'
              GAGUUUCUGGUC
-             ||++++++++++
+             ++++++++++++
              CUCAGAGACCAG
 3'-UCU...GUAC            AAAG...CUU-5'
              |          |
           +350          +339
 NC_012532.1.3UTR
 
-interaction energy = -8.11 kcal/mol
+interaction energy = -9 kcal/mol
 #############
 NC_035889.1 :
 #############
@@ -727,7 +727,7 @@ NC_035889.1.5UTR
           +330                 +312
 NC_035889.1.3UTR
 
-interaction energy = -8.26 kcal/mol
+interaction energy = -8.57 kcal/mol
 #############
 NC_008719.1 :
 #############
@@ -744,7 +744,7 @@ NC_008719.1.5UTR
           +364                +347
 NC_008719.1.3UTR
 
-interaction energy = -13.43 kcal/mol
+interaction energy = -13.97 kcal/mol
 #############
 NC_012735.1 :
 #############
@@ -761,7 +761,7 @@ NC_012735.1.5UTR
           +384                  +366
 NC_012735.1.3UTR
 
-interaction energy = -13.39 kcal/mol
+interaction energy = -13.99 kcal/mol
 #############
 NC_002031.1 :
 #############
@@ -778,7 +778,7 @@ NC_002031.1.5UTR
           +412                 +395
 NC_002031.1.3UTR
 
-interaction energy = -16.57 kcal/mol
+interaction energy = -13.22 kcal/mol
 #############
 NC_008718.1 :
 #############
@@ -795,7 +795,7 @@ NC_008718.1.5UTR
           +134       +126
 NC_008718.1.3UTR
 
-interaction energy = -5.33 kcal/mol
+interaction energy = -5.21 kcal/mol
 #############
 NC_005039.1 :
 #############
@@ -812,41 +812,41 @@ NC_005039.1.5UTR
           +308        +299
 NC_005039.1.3UTR
 
-interaction energy = -8.49 kcal/mol
+interaction energy = -8.76 kcal/mol
 #############
 NC_003635.1 :
 #############
 
 NC_003635.1.5UTR
-            +4              +19
-             |              |
-5'-AGU...AAUG  C             AAAA...AAA-3'
-             UG GAAAAUAACAGGA
-             || +++++++++++++
-             AC CUUUUAUUGUCCU
-3'-UCG...UUAA  -             CCGU...GAA-5'
-             |              |
-          +267              +253
+            -7                  +13
+             |                  |
+5'-AGU...UUGU         G  C       ACAG...AAA-3'
+             GGCGGGAAU UG GAAAAUA
+             +++++++++ || +++++++
+             UUGCCCUUA AC CUUUUAU
+3'-UCG...GCCA         A  -       UGUC...GAA-5'
+             |                  |
+          +277                  +259
 NC_003635.1.3UTR
 
-interaction energy = -9.06 kcal/mol
+interaction energy = -7.83 kcal/mol
 #############
 NC_004119.1 :
 #############
 
 NC_004119.1.5UTR
-            +9                +26
-             |                |
-5'-AGU...CGAA      AA          GAAU...UAA-3'
-             AGGCAA  UGAAAAACGC
-             ||||||  ++++++++++
-             UCCGUU  ACUUUUUGCG
-3'-UCG...CUAC      AA          CCCU...GUA-5'
-             |                |
-          +363                +346
+            +9                 +27
+             |                 |
+5'-AGU...CGAA      AA           AAUA...UAA-3'
+             AGGCAA  UGAAAAACGCG
+             ||||||  +++++++++++
+             UCCGUU  ACUUUUUGCGC
+3'-UCG...CUAC      AA           CCUC...GUA-5'
+             |                 |
+          +363                 +345
 NC_004119.1.3UTR
 
-interaction energy = -9.36 kcal/mol
+interaction energy = -9.55 kcal/mol
 #############
 NC_003690.1 :
 #############
@@ -863,7 +863,7 @@ NC_003690.1.5UTR
           +498             +484
 NC_003690.1.3UTR
 
-interaction energy = -11.3 kcal/mol
+interaction energy = -12.09 kcal/mol
 #############
 NC_001809.1 :
 #############
@@ -880,7 +880,7 @@ NC_001809.1.5UTR
           +427             +413
 NC_001809.1.3UTR
 
-interaction energy = -11.72 kcal/mol
+interaction energy = -12.28 kcal/mol
 #############
 NC_005062.1 :
 #############
@@ -890,14 +890,14 @@ NC_005062.1.5UTR
              |             |
 5'-AGA...CUUA               GGGA...CCC-3'
              GGAGAACAAGAGCUG
-             +++++++++++++:|
+             +++++++++++++++
              CCUCUUGUUCUUGGC
 3'-UCG...AGUC               GGGG...UAC-5'
              |             |
           +340             +326
 NC_005062.1.3UTR
 
-interaction energy = -11.52 kcal/mol
+interaction energy = -12.05 kcal/mol
 #############
 NC_003687.1 :
 #############
@@ -907,14 +907,14 @@ NC_003687.1.5UTR
              |             |
 5'-AGA...CUUA               GGAG...GCG-3'
              GGAGAACAAGAGCUG
-             ++++++++++++++|
+             +++++++++++++:|
              CCUCUUGUUCUUGGC
 3'-UCG...AGUC               GGGG...UCC-5'
              |             |
           +410             +396
 NC_003687.1.3UTR
 
-interaction energy = -11.15 kcal/mol
+interaction energy = -11.71 kcal/mol
 #############
 NC_027709.1 :
 #############
@@ -931,7 +931,7 @@ NC_027709.1.5UTR
           +423             +409
 NC_027709.1.3UTR
 
-interaction energy = -11.98 kcal/mol
+interaction energy = -12.36 kcal/mol
 #############
 NC_001672.1 :
 #############
@@ -948,7 +948,7 @@ NC_001672.1.5UTR
           +694             +680
 NC_001672.1.3UTR
 
-interaction energy = -12.25 kcal/mol
+interaction energy = -12.42 kcal/mol
 #############
 NC_023439.1 :
 #############
@@ -965,7 +965,7 @@ NC_023439.1.5UTR
            +65             +52
 NC_023439.1.3UTR
 
-interaction energy = -9.91 kcal/mol
+interaction energy = -9.75 kcal/mol
 #############
 NC_023424.1 :
 #############
@@ -982,5 +982,5 @@ NC_023424.1.5UTR
           +243     +237
 NC_023424.1.3UTR
 
-interaction energy = -1.69 kcal/mol
+interaction energy = -2.09 kcal/mol
 #############

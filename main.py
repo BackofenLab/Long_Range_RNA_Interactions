@@ -20,7 +20,10 @@ extra_bases_roi = 100
 ## IntaRNA specific:
 static_d = {"energyVRNA": "Data/rna_andronescu2007.par",
             "intLenMax": 20,
-            "seedBP": 7}
+            "seedBP": 7,
+            "accW": 100,
+            "accL": 100
+            }
 
 
 if __name__ == "__main__":
