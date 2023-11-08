@@ -1,6 +1,7 @@
 
 library(tidyverse)
 library(ggnewscale) # for separated color scales
+library(ggpubr) # multiplot grid
 
 # load rri data
 rri <- 
@@ -39,20 +40,63 @@ genome <-
   pivot_longer(starts_with("UTR"), names_to="utr",values_to = "len") |> 
   mutate(utr = str_extract(utr,"\\d")) |> 
   mutate(id = fct_reorder2(id,id,class)) |> 
-  mutate(lenCDS = ifelse(utr=="5",lenCDSext,-lenCDSext))
+  mutate(lenCDS = ifelse(utr=="5",lenCDSext,-lenCDSext),
+         len = ifelse(utr=="5",-len,len)) 
 
 
 
+pu5 <- 
 genome |> 
   filter(utr==5) |> 
   ggplot() +
   xlim(-350,100)+
-  geom_segment( aes(x = -len,y=id,yend=id), xend=0, size=2, col="gray" ) + # UTR
-  geom_segment( aes(y=id,yend=id, col=class), x=0, xend=lenCDS, size=2 ) + # CDS
+  geom_segment( aes(x = len,y=id,yend=id), xend=0, size=2, col="gray" ) + # UTR
+  geom_segment( aes(y=id,yend=id, col=class, xend=lenCDS), x=0, size=2 ) + # CDS
   new_scale_color() +
   geom_segment(
     data= rri |> filter(utr=="5"),
     aes(x=start,xend=end,y=id,yend=id,alpha=-E),size=2, col="darkblue"
   ) + 
-  theme_light()
+  theme_light() +
+  labs(
+    x="position w.r.t. 5'UTR-CDS transition",
+  ) +
+  theme(
+    axis.title.y = element_blank()
+  )
+
+# genome |> 
+#   filter(utr==3) |> 
+#   ggplot() +
+#   xlim(-100,1250)+
+#   geom_segment( aes(x = len,y=id,yend=id), xend=0, size=2, col="gray" ) + # UTR
+#   geom_segment( aes(y=id,yend=id, col=class, xend=lenCDS), x=0, size=2 ) + # CDS
+#   new_scale_color() +
+#   geom_segment(
+#     data= rri |> filter(utr=="3"),
+#     aes(x=start,xend=end,y=id,yend=id,alpha=-E),size=2, col="darkblue"
+#   ) + 
+#   theme_light()
   
+pu3 <- 
+genome |> 
+  filter(utr==3) |> 
+  ggplot() +
+  xlim(-1350,0)+
+  geom_segment( aes(x = -len,y=id,yend=id), xend=0, size=2, col="gray" ) + # UTR
+  geom_segment( aes(y=id,yend=id, col=class, xend=lenCDS-len, x=-len), size=2 ) + # CDS
+  new_scale_color() +
+  geom_segment(
+    data= rri |> filter(utr=="3") |> left_join(genome),
+    aes(x=start-len,xend=end-len,y=id,yend=id,alpha=-E),size=2, col="darkblue"
+  ) + 
+  theme_light()
+
+
+ggarrange(
+  pu5,
+  pu3,
+  nrow = 2, ncol=1
+) 
+
+ggsave("Results/rri-position.pdf", width=21, height=30, units="cm")  
