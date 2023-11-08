@@ -1,5 +1,5 @@
 from Codes.parameters import write_static_parameters, create_parameter_table
-from Codes.evaluation import draw_lineplots, draw_energy_histo
+from Codes.evaluation import draw_lineplots, draw_energy_histo, draw_energy_histo_subopt
 from Codes.IntaRNA_code import main_intarna
 import pandas as pd
 
@@ -37,3 +37,4 @@ if __name__ == "__main__":
     df = pd.read_csv("Results/IntaRNA_output.csv")
     draw_lineplots(df, extra_bases_roi, line_plot)
     draw_energy_histo(df, energy_histo)
+    draw_energy_histo_subopt(df, energy_histo)

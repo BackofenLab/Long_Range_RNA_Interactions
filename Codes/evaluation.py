@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
 from matplotlib.lines import Line2D
 import ast
+import pandas as pd
 
 
 def draw_lineplots(df, extra_bases_roi, output):
@@ -69,6 +70,7 @@ def draw_lineplots(df, extra_bases_roi, output):
     side3.legend(handles=legend_elements,loc="upper right")
     plt.suptitle("Interaction Lineplot")
     plt.savefig(output)
+    plt.close()
 
 
 def draw_energy_histo(df, output):
@@ -87,3 +89,19 @@ def draw_energy_histo(df, output):
     plt.ylabel("Amount of interactions")
     plt.suptitle("Interaction Energy Histogram")
     plt.savefig(output)
+    plt.close()
+
+
+def draw_energy_histo_subopt(df, output):
+    subopt_df = {}
+    classlist = []
+    energylist = []
+    for index, row in df.iterrows():
+        for el in ast.literal_eval(row["suboptes"]):
+            for e in el: ## Not a fan of this
+                classlist.append(row["class"])
+                energylist.append(e)
+    edf = pd.DataFrame({"class": classlist, "energy": energylist})
+    sns.histplot(edf, x="energy", hue="class", multiple="stack")
+    plt.savefig(f"{output.rstrip('.png')}_subopt.png")
+    plt.close()
