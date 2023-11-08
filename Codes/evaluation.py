@@ -31,13 +31,15 @@ def draw_lineplots(df, extra_bases_roi, output):
         line3sub = []
         for suboptt in ast.literal_eval(row["suboptts"]): ## Subopt stuff..
             if suboptt:
-                line5sub.append(((suboptt[0][0], index),
-                              (suboptt[0][1], index))) ## orange?
+                for subopt in suboptt:
+                    line5sub.append(((subopt[0], index),
+                              (subopt[1], index))) ## orange?
         subopt_len5 = len(line5sub)
         for suboptq in ast.literal_eval(row["suboptqs"]): ## Subopt stuff..
             if suboptq:
-                line3sub.append(((suboptq[0][0], index),
-                              (suboptq[0][1], index))) ## orange?
+                for subopt in suboptq:
+                    line3sub.append(((subopt[0], index),
+                                     (subopt[1], index))) ## orange?
         subopt_len3 = len(line3sub)
         line5 = [((0, index), (extra_bases_roi, index)), ## grey
                  ((0, index), (-row["UTR5len"], index))] ## blue
@@ -50,9 +52,10 @@ def draw_lineplots(df, extra_bases_roi, output):
         line3 += [((q_tuple[0], index),
                  (q_tuple[1], index))] ## red
         CDS_colors = {"ISFV":"lime","MBFV":"b","NKV":"g","TBFV":"m"}
-        colors = [CDS_colors[row["class"]], "c"] + ["orange"]*subopt_len3 + ["r"]
-        side5.add_collection(LineCollection(line5, colors=colors, linewidths=(2,)))
-        side3.add_collection(LineCollection(line3, colors=colors, linewidths=(2,)))
+        colors5 = [CDS_colors[row["class"]], "c"] + ["orange"]*subopt_len5 + ["r"]
+        colors3 = [CDS_colors[row["class"]], "c"] + ["orange"]*subopt_len3 + ["r"]
+        side5.add_collection(LineCollection(line5, colors=colors5, linewidths=(2,)))
+        side3.add_collection(LineCollection(line3, colors=colors3, linewidths=(2,)))
     side5.set_xlabel("Distance from 5'UTR-CDS transition")
     side3.set_xlabel("Distance from CDS-3'UTR transition")
     side5.set_ylabel("Index")
