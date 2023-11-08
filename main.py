@@ -23,8 +23,8 @@ outNumber = 4 # Allow n-1 subops, must be at least 1
 static_d = {"energyVRNA": "Data/rna_andronescu2007.par",
             "intLenMax": 20,
             "seedBP": 5,
-            "accW": 100,
-            "accL": 100,
+            "accW": 50,
+            "accL": 50,
             }
 
 
