@@ -17,7 +17,7 @@ line_plot = "Results/interaction_lineplot.png"
 ## Static Parameters
 extra_bases = 200
 extra_bases_roi = 100
-outNumber = 2 # Allow n-1 subops, must be at least 1
+outNumber = 4 # Allow n-1 subops, must be at least 1
 
 ## IntaRNA specific:
 static_d = {"energyVRNA": "Data/rna_andronescu2007.par",
