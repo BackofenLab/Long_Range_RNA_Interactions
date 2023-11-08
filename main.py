@@ -22,7 +22,7 @@ outNumber = 2 # Allow n-1 subops, must be at least 1
 ## IntaRNA specific:
 static_d = {"energyVRNA": "Data/rna_andronescu2007.par",
             "intLenMax": 20,
-            "seedBP": 7,
+            "seedBP": 5,
             "accW": 100,
             "accL": 100,
             }
