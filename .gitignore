@@ -1,4 +1,5 @@
-
 Flavivirus_NCBI/
 *.cpython-37.pyc
 *.cpython-39.pyc
+.Rproj.user
+*.Rproj
