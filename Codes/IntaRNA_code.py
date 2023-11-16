@@ -1,7 +1,6 @@
 import pandas as pd
 import math
 import subprocess
-import re
 
 
 def execute_IntaRNA(UTR5pCDS, UTR3pCDS, ID,

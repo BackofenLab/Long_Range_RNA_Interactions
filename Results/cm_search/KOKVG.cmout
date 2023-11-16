@@ -1,0 +1,14 @@
+#target name         accession query name           accession mdl mdl from   mdl to seq from   seq to strand trunc pass   gc  bias  score   E-value inc description of target
+#------------------- --------- -------------------- --------- --- -------- -------- -------- -------- ------ ----- ---- ---- ----- ------ --------- --- ---------------------
+KOKV_1.4.1.1         -         KOKVG.3SL            -          cm        1       90      469      558      +    no    1 0.59   0.0  110.8   1.7e-27 !   NC_009029.2 Kokobera virus, complete genome.
+NMV_1.4.2.1          -         KOKVG.3SL            -          cm        1       90      458      546      +    no    1 0.54   0.0  104.7   5.6e-26 !   NC_032088.1 New Mapoon virus, complete cds.
+#
+# Program:         cmsearch
+# Version:         1.1.4 (Dec 2020)
+# Pipeline mode:   SEARCH
+# Query file:      Data/Flavivirus_Covariance/KOKVG_3SL.cm
+# Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/MBFV/KOKVG/all_KOKVG_3UTR.fa
+# Option settings: cmsearch --tblout Results/cm_search/KOKVG.cmout --toponly Data/Flavivirus_Covariance/KOKVG_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/MBFV/KOKVG/all_KOKVG_3UTR.fa 
+# Current dir:     /home/arkanini/Long_Range_RNA_Interactions
+# Date:            Thu Nov 16 17:02:23 2023
+# [ok]
