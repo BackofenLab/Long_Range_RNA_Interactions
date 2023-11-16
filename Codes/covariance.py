@@ -5,6 +5,9 @@ import re
 
 def run_cmbuild(input_stk, output_cm):
     """Create a covariance models from a stockholm file.
+    
+    input_stk (str): Filepath to a stockholm file
+    output_cm (str): Filepath of the resulting CM file
     """
     print(f"cmbuild: {input_stk} `=> {output_cm}")
     cmd = ["cmbuild", output_cm, input_stk]
@@ -15,6 +18,8 @@ def run_cmbuild(input_stk, output_cm):
 def calibrate_cm(cm):
     """Calibrate the created covariance model.
     Takes a long time and is expensive on CPU.
+    
+    cm (str): Filepath of the CM file to be calibrated
     """
     cmd = ["cmcalibrate", cm]
     p = subprocess.Popen(cmd)
@@ -25,6 +30,9 @@ def create_cms(stk_dir, out_cm_dir):
     """Creates a directory of covariance models out of a given directory of
     stockholm files.
     Warning: Calibrating is slow and expensive.
+    
+    stk_dir (str): Filepath to the directory of stockholm files.
+    out_cm_dir (str): Filepath for the directory of finished cm files
     """
     os.makedirs(out_cm_dir, exist_ok=True)
     expression = re.compile(".*3SL.*")
@@ -37,8 +45,16 @@ def create_cms(stk_dir, out_cm_dir):
 
 
 def run_cm_search(cm_file, seq_file, output):
-    ## cm_file = {cm_dir}/XXXX_3SL.cm
-    ## seq_file = {seq_dir}/YYYY/XXXX/all_XXXX_3UTR.fa
+    """
+    Runs cm_search with the given files.
+    Should look like:
+        cm_file = {cm_dir}/XXXX_3SL.cm
+        seq_file = {seq_dir}/YYYY/XXXX/all_XXXX_3UTR.fa
+    
+    cm_file (str): Filepath for CM file
+    seq_file (str): Filepath for Sequence file 
+    output (str): Filepath of the resulting output table
+    """
     cmd = ["cmsearch", "--tblout", output, "--toponly", cm_file, seq_file]
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     p.wait()
@@ -47,6 +63,7 @@ def run_cm_search(cm_file, seq_file, output):
 def cm_search(df, cm_dir, seq_dir, output_path):
     """Applies cm_search with a given cm directory on a given
     Sequence directory.
+
     df (df): Dataframe that will be updated with the locations of found matches.
     cm_dir (str): Path to the directory of .cm files. Files need to contain
                   a "_" after their main name. (eg.: "JEVG_3SL.cm")
@@ -58,9 +75,6 @@ def cm_search(df, cm_dir, seq_dir, output_path):
     cm_dir_names = os.listdir(cm_dir)      ## This part is maybe unneccessary
     cm_end = cm_dir_names[0].split("_")[1] ## But I want to ensure modability
     cm_files = [i.split("_")[0] for i in os.listdir(cm_dir)]
-    #df.loc[df.index == "NC_030290.1", "Banana"] = 666
-    #print(df)
-    #raise
     for root, dirs, files in os.walk(seq_dir):
         #print(cm_files) -> So far good
         dir = root.split("/")[-1]
@@ -80,12 +94,4 @@ def cm_search(df, cm_dir, seq_dir, output_path):
                         f, t = split_line[7:9]
                         df.loc[df.id == id, "cm_hit_f"] = int(f)
                         df.loc[df.id == id, "cm_hit_t"] = int(t)
-                    
-            ###for subroot, _, files in os.walk(root): 
-            ###    # Look at subdirectories of that match to find fitting files
-            ###    for file in files:
-            ###        if file.endswith("3UTR.fa"):  
-            ###            # => Sequencefile we can use cm_search on
-            ###            run_cm_search(f"{cm_dir}/{dir}_{cm_end}", f"{subroot}/{file}")
-        ## run_cm_search()
     return df

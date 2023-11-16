@@ -12,6 +12,7 @@ def draw_lineplots(df, extra_bases_roi, output):
     """
     Draw an interaction lineplot 
     showcasing interaction position relative to UTR/CDS.
+    
     df (df): the dataframe outputted by main_intarna
     extra_bases_roi (int): Amount of extra bases from the CDS used on each side
     output (str): Filepath where the plot should be saved
@@ -95,6 +96,7 @@ def draw_lineplots(df, extra_bases_roi, output):
 
 def draw_energy_histo(df, output):
     """Plots a simple histogram of the of the MFEs of a dataframe.
+    
     df (df): the dataframe outputted by main_intarna
     output (str): Filepath where the plot should be saved
     """
@@ -111,6 +113,12 @@ def draw_energy_histo(df, output):
 
 
 def draw_energy_histo_subopt(df, output):
+    """Plots a simple energy histogram for the subopt MFEs of a dataframe.
+    Similarly to draw_energy_histo()
+    
+    df (df): the dataframe outputted by main_intarna
+    output (str): Filepath where the plot should be saved
+    """
     subopt_df = {}
     classlist = []
     energylist = []

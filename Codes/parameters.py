@@ -3,6 +3,11 @@ import os
 from Bio import SeqIO
 
 def read_out_bed6_data(file):
+    """
+    Read a bed6 file and return the length of the UTRs and CDS.
+    
+    file (str): Filepath to the bed6 file
+    """
     f = open(file, "r")
     UTR5len, CDSlen, UTR3len = None, None, None
     lines = f.readlines()
@@ -19,6 +24,7 @@ def read_out_bed6_data(file):
 def write_static_parameters(static_d, static_param_path):
     """Writes a file with all the parameters,
     that should be the same for all IntaRNA processes.
+    
     static_d (dict): Dictionary with the static parameters
     static_param_path (str): String for resulting .cfg filepath
     """
@@ -28,7 +34,11 @@ def write_static_parameters(static_d, static_param_path):
 
 
 def create_parameter_table(database_path, extra_bases, output):
-    """Scans a given directory for .bed6 files and extracts their information
+    """Scans a given directory for .bed6 files and extracts their information.
+    
+    database_path (str): Path to the directories of the fasta files.
+    extra_bases (int): Amount of extra bases of the CDS, that were given to IntaRNA.
+    output (str): Where and as what to save the output
     """
     d = {}
     for root, dirs, files in os.walk(database_path):

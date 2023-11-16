@@ -13,5 +13,5 @@ KEDV_1.2.5.1         -         DENVG.3SL            -          cm        1      
 # Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/MBFV/DENVG/all_DENVG_3UTR.fa
 # Option settings: cmsearch --tblout Results/cm_search/DENVG.cmout --toponly Data/Flavivirus_Covariance/DENVG_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/MBFV/DENVG/all_DENVG_3UTR.fa 
 # Current dir:     /home/arkanini/Long_Range_RNA_Interactions
-# Date:            Thu Nov 16 17:02:23 2023
+# Date:            Thu Nov 16 17:23:46 2023
 # [ok]
