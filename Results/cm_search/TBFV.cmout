@@ -1,0 +1,18 @@
+#target name         accession query name           accession mdl mdl from   mdl to seq from   seq to strand trunc pass   gc  bias  score   E-value inc description of target
+#------------------- --------- -------------------- --------- --- -------- -------- -------- -------- ------ ----- ---- ---- ----- ------ --------- --- ---------------------
+LIV_2.1.12.1         -         T.3SL                -          cm        1       87      411      497      +    no    1 0.54   0.0  113.8   1.4e-31 !   NC_001809.1 Louping ill virus, complete genome.
+SGEV_2.1.14.1        -         T.3SL                -          cm        1       87      407      493      +    no    1 0.55   0.0  112.9   2.6e-31 !   NC_027709.1 Spanish goat encephalitis virus isolate AstGoatIREC2011, complete genome.
+POWV_2.1.10.1        -         T.3SL                -          cm        1       87      394      480      +    no    1 0.56   0.0  112.3   3.8e-31 !   NC_003687.1 Powassan virus, complete genome.
+TBEV_2.1.11.1        -         T.3SL                -          cm        1       87      678      764      +    no    1 0.55   0.0  111.4   6.8e-31 !   NC_001672.1 Tick-borne encephalitis virus, complete genome.
+LGTV_2.1.1.1         -         T.3SL                -          cm        1       87      482      568      +    no    1 0.53   0.0  107.8   7.5e-30 !   NC_003690.1 Langat virus, complete genome.
+OHFV_2.1.7.1         -         T.3SL                -          cm        1       87      324      410      +    no    1 0.56   0.0  102.0   3.5e-28 !   NC_005062.1 Omsk hemorrhagic fever virus, complete genome.
+#
+# Program:         cmsearch
+# Version:         1.1.4 (Dec 2020)
+# Pipeline mode:   SEARCH
+# Query file:      Data/Flavivirus_Covariance/TBFV_3SL.cm
+# Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/TBFV/all_TBFV_3UTR.fa
+# Option settings: cmsearch --tblout Results/cm_search/TBFV.cmout --toponly Data/Flavivirus_Covariance/TBFV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/TBFV/all_TBFV_3UTR.fa 
+# Current dir:     /home/arkanini/Long_Range_RNA_Interactions
+# Date:            Fri Nov 17 10:40:20 2023
+# [ok]
