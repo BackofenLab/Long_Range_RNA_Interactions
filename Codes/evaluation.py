@@ -5,12 +5,14 @@ from matplotlib.lines import Line2D
 import ast
 import pandas as pd
 import numpy as np
+import math
 
 
 def draw_lineplots(df, extra_bases_roi, output):
     """
     Draw an interaction lineplot 
     showcasing interaction position relative to UTR/CDS.
+    
     df (df): the dataframe outputted by main_intarna
     extra_bases_roi (int): Amount of extra bases from the CDS used on each side
     output (str): Filepath where the plot should be saved
@@ -40,23 +42,36 @@ def draw_lineplots(df, extra_bases_roi, output):
         subopt_len3 = len(line3sub)
         line5 = [((0, index), (extra_bases_roi, index)), ## grey
                  ((0, index), (-row["UTR5len"], index))] ## blue
-        line5 += line5sub
-        line5 += [((t_tuple[0], index),
-                  (t_tuple[1], index))] ## red
         line3 = [((0 - row["UTR3len"], index), (-extra_bases_roi - row["UTR3len"], index)),#((0, index), (-ext_end3, index)), ## grey
                  ((0 - row["UTR3len"], index), (0, index))] ## blue
-        line3 += line3sub
+        if math.isnan(row["cm_hit_f"]):
+            cmsearch_hit = 0
+        else:
+            cmsearch_hit = 1
+            line3 += [((row["cm_hit_f"] - row["UTR3len"], index),
+                       (row["cm_hit_t"] - row["UTR3len"], index))] ## yellow?
+        line5 += line5sub ## orange
+        line3 += line3sub ## orange
+        line5 += [((t_tuple[0], index),
+                  (t_tuple[1], index))] ## red
         line3 += [((q_tuple[0] - row["UTR3len"], index),
                  (q_tuple[1] - row["UTR3len"], index))] ## red
         CDS_colors = {"ISFV":"c","MBFV":"b","NKV":"g","TBFV":"m"}
         colors5 = [CDS_colors[row["class"]], "gray"] + ["orange"]*subopt_len5 + ["r"]
-        colors3 = [CDS_colors[row["class"]], "gray"] + ["orange"]*subopt_len3 + ["r"]
-        side5.add_collection(LineCollection(line5, colors=colors5, linewidths=(4,)))
-        side3.add_collection(LineCollection(line3, colors=colors3, linewidths=(4,)))
+        colors3 = [CDS_colors[row["class"]], "gray"] + ["yellow"]*cmsearch_hit + ["orange"]*subopt_len3 + ["r"]
+        linewidths5 = [4] + [4] + [4]*subopt_len5 + [4]
+        linewidths3 = [4] + [4] + [8]*cmsearch_hit + [4]*subopt_len3 + [4]
+        side5.add_collection(LineCollection(line5, colors=colors5, linewidths=linewidths5))
+        side3.add_collection(LineCollection(line3, colors=colors3, linewidths=linewidths3))
     side5.set_xlabel("Distance from 5'UTR-CDS transition", fontsize=16)
     side3.set_xlabel("Distance from 3'UTR end", fontsize=16)
     side5.set_ylabel("Index", fontsize=16)
     side3.set_ylabel("Index", fontsize=16)
+    side5.yaxis.set_label_position("right")
+    side5.yaxis.tick_right()
+    side3.yaxis.set_label_position("right")
+    side3.yaxis.tick_right()
+
     #print(list(df["id"]))
     side5.set_yticks(np.arange(len(df["id"])))
     side5.set_yticklabels(list(df["id"]))
@@ -70,7 +85,8 @@ def draw_lineplots(df, extra_bases_roi, output):
                        Line2D([0], [0], color=CDS_colors["TBFV"], lw=8, label='TBFV-CDS'),
                        Line2D([0], [0], color='gray', lw=8, label='UTR'),
                        Line2D([0], [0], color='r', lw=8, label='Interaction'),
-                       Line2D([0], [0], color='orange', lw=8, label='Subopt')]
+                       Line2D([0], [0], color='orange', lw=8, label='Subopt'),
+                       Line2D([0], [0], color='yellow', lw=8, label='CM Hit'),]
     side5.legend(handles=legend_elements,loc="upper left", prop={"size": 16})
     side3.legend(handles=legend_elements,loc="upper left", prop={"size": 16})
     plt.suptitle("Interaction Lineplot", fontsize=48)
@@ -80,6 +96,7 @@ def draw_lineplots(df, extra_bases_roi, output):
 
 def draw_energy_histo(df, output):
     """Plots a simple histogram of the of the MFEs of a dataframe.
+    
     df (df): the dataframe outputted by main_intarna
     output (str): Filepath where the plot should be saved
     """
@@ -96,6 +113,12 @@ def draw_energy_histo(df, output):
 
 
 def draw_energy_histo_subopt(df, output):
+    """Plots a simple energy histogram for the subopt MFEs of a dataframe.
+    Similarly to draw_energy_histo()
+    
+    df (df): the dataframe outputted by main_intarna
+    output (str): Filepath where the plot should be saved
+    """
     subopt_df = {}
     classlist = []
     energylist = []

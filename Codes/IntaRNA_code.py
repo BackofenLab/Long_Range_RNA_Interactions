@@ -1,13 +1,13 @@
 import pandas as pd
 import math
 import subprocess
-import re
 
 
 def execute_IntaRNA(UTR5pCDS, UTR3pCDS, ID,
                     extra_bases, extra_bases_roi, static_param_path,
                     additional_args=[]):
     """Starts a subprocess for IntaRNA with given parameters.
+    
     UTR5pCDS (str): 5'UTR+ the extra bases from the CDS
     UTR3pCDS (str): 3'UTR+ the extra bases from the CDS
     ID (str): ID code of the current sequence ("NC_XXXXX.X")
@@ -48,6 +48,9 @@ def read_output(p, f):
     """Reads output of the IntaRNA process,
     writes the output in a currently open file f
     and processes the data to return the relevant parts.
+    
+    p (subprocess): Process created by execute_IntaRNA
+    f (open file): File for the raw output
     """
     t_inter_range = []
     q_inter_range = []
@@ -70,9 +73,25 @@ def read_output(p, f):
     return opt_t, opt_q, opt_energy, subopt_t, subopt_q, subopt_e
 
 
-def main_intarna(database_path, static_param_path, extra_bases, extra_bases_roi,
+def main_intarna(static_param_path, extra_bases, extra_bases_roi,
                  parameter_table_file, output_path, raw_intarna_output_path,
-                 outNumber = 2):
+                 outNumber):
+    """
+    Main IntaRNA process.
+    Iterates over the parameter file, runs IntaRNA for each row and 
+    returns the outputs as a single dataframe.
+    
+    static_param_path (str): Filepath for the file that will be fed to IntaRNA directly
+    extra_bases (int): #Extra bases of the CDS to include in IntaRNA input
+    extra_bases_roi (int): #Extra bases that of the CDS that IntaRNA is allowed to find interactions in
+    parameter_table_file (str): Filepath to parameter file for most variable IntaRNA parameters
+    output_path (str): Where to save the output file
+    raw_intarna_output_path (str): Where to save the raw IntaRNA output
+    outNumber (int): Sets how many subopts are allowed (N-1)
+    
+    Output:
+    output (df): Resulting dataframe with the IntaRNA results
+    """
     params = pd.read_csv(parameter_table_file)
     additional_args = []
     output = pd.DataFrame()

@@ -1,0 +1,15 @@
+#target name         accession query name           accession mdl mdl from   mdl to seq from   seq to strand trunc pass   gc  bias  score   E-value inc description of target
+#------------------- --------- -------------------- --------- --- -------- -------- -------- -------- ------ ----- ---- ---- ----- ------ --------- --- ---------------------
+WESSV_1.7.3.1        -         YFVG.3SL             -          cm        1      101      378      478      +    no    1 0.51   0.0  113.1   2.1e-25 !   NC_012735.1 Wesselsbron virus strain SAH177, complete genome.
+SEPV_1.7.4.1         -         YFVG.3SL             -          cm        1      101      359      459      +    no    1 0.50   0.0  111.2   5.6e-25 !   NC_008719.1 Sepik virus, complete genome.
+YFV17D_1.7.2.1       -         YFVG.3SL             -          cm        1      101      407      508      +    no    1 0.48   0.0   95.9   1.7e-21 !   NC_002031.1 Yellow fever virus, complete genome.
+#
+# Program:         cmsearch
+# Version:         1.1.4 (Dec 2020)
+# Pipeline mode:   SEARCH
+# Query file:      Data/Flavivirus_Covariance/YFVG_3SL.cm
+# Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/MBFV/YFVG/all_YFVG_3UTR.fa
+# Option settings: cmsearch --tblout Results/cm_search/YFVG.cmout --toponly Data/Flavivirus_Covariance/YFVG_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/MBFV/YFVG/all_YFVG_3UTR.fa 
+# Current dir:     /home/arkanini/Long_Range_RNA_Interactions
+# Date:            Fri Nov 17 10:40:20 2023
+# [ok]

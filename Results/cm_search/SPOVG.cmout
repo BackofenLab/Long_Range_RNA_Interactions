@@ -1,0 +1,14 @@
+#target name         accession query name           accession mdl mdl from   mdl to seq from   seq to strand trunc pass   gc  bias  score   E-value inc description of target
+#------------------- --------- -------------------- --------- --- -------- -------- -------- -------- ------ ----- ---- ---- ----- ------ --------- --- ---------------------
+ZIKV_1.6.2.1         -         SPOVG.3SL            -          cm        1       97      332      428      +    no    1 0.62   0.0  119.2     1e-27 !   NC_035889.1 Zika virus isolate ZIKV/H. sapiens/Brazil/Natal/2015, complete genome.
+ZIKV_1.6.2.2         -         SPOVG.3SL            -          cm        1       97      331      428      +    no    1 0.60   0.0  105.3   1.8e-24 !   NC_012532.1 Zika virus, complete genome.
+#
+# Program:         cmsearch
+# Version:         1.1.4 (Dec 2020)
+# Pipeline mode:   SEARCH
+# Query file:      Data/Flavivirus_Covariance/SPOVG_3SL.cm
+# Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/MBFV/SPOVG/all_SPOVG_3UTR.fa
+# Option settings: cmsearch --tblout Results/cm_search/SPOVG.cmout --toponly Data/Flavivirus_Covariance/SPOVG_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/MBFV/SPOVG/all_SPOVG_3UTR.fa 
+# Current dir:     /home/arkanini/Long_Range_RNA_Interactions
+# Date:            Fri Nov 17 10:40:20 2023
+# [ok]
