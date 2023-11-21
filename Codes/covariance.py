@@ -26,13 +26,14 @@ def calibrate_cm(cm):
     p.wait()
 
   
-def create_cms(stk_dir, out_cm_dir):
+def create_cms(stk_dir, out_cm_dir, calibrate=True):
     """Creates a directory of covariance models out of a given directory of
-    stockholm files.
+    stockholm files and calibrates them afterwards.
     Warning: Calibrating is slow and expensive.
     
     stk_dir (str): Filepath to the directory of stockholm files.
     out_cm_dir (str): Filepath for the directory of finished cm files
+    calibrate (bool): If True, calibrates cmfiles after creating them
     """
     os.makedirs(out_cm_dir, exist_ok=True)
     expression = re.compile(".*3SL.*")
@@ -41,7 +42,8 @@ def create_cms(stk_dir, out_cm_dir):
             if expression.match(file):
                 cmfile_path = f"{out_cm_dir}/{file.split('.')[0]}_3SL.cm"
                 run_cmbuild(f"{root}/{file}", cmfile_path)
-                calibrate_cm(cmfile_path)
+                if calibrate:
+                    calibrate_cm(cmfile_path)
 
 
 def run_cm_search(cm_file, seq_file, output):
@@ -79,6 +81,7 @@ def cm_search(df, cm_dir, seq_dir, output_path):
         #print(cm_files) -> So far good
         dir = root.split("/")[-1]
         if dir in cm_files:  # = Match in cm_dir
+            print(dir)
             for file in files:
                 if file.endswith("3UTR.fa"): ## Find the right file
                     out_file = f"{output_path}/{dir}.cmout"

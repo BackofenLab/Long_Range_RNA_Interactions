@@ -1,0 +1,37 @@
+#target name         accession query name           accession mdl mdl from   mdl to seq from   seq to strand trunc pass   gc  bias  score   E-value inc description of target
+#------------------- --------- -------------------- --------- --- -------- -------- -------- -------- ------ ----- ---- ---- ----- ------ --------- --- ---------------------
+JEV_1.3.1.1          -         JEVG.3SL             -          cm        1       99      483      582      +    no    1 0.50   0.0  110.3   3.4e-25 !   NC_001437.1 Japanese encephalitis virus, genome.
+MVEV_1.3.6.1         -         JEVG.3SL             -          cm        1       99      515      614      +    no    1 0.52   0.0  108.1   1.1e-24 !   NC_000943.1 Murray Valley encephalitis virus, complete genome.
+USUV_1.3.7.1         -         JEVG.3SL             -          cm        1       99      565      665      +    no    1 0.50   0.0   99.9   1.1e-22 !   NC_006551.1 Usutu virus, complete cds.
+WNV_1.3.2.1          -         JEVG.3SL             -          cm        1       99      538      631      +    no    1 0.57   0.0   99.1   1.6e-22 !   NC_009942.1 West Nile virus lineage 1, complete genome.
+SLEV_1.3.3.1         -         JEVG.3SL             -          cm        1       99      455      549      +    no    1 0.52   0.0   98.2   2.8e-22 !   NC_007580.2 Saint Louis encephalitis virus, complete genome.
+WNV_1.3.2.2          -         JEVG.3SL             -          cm        1       99      480      573      +    no    1 0.57   0.0   95.0   1.7e-21 !   NC_001563.2 West Nile virus lineage 2, complete genome.
+ROCV_1.5.1.1         -         JEVG.3SL             -          cm        1       99      332      424      +    no    1 0.57   0.0   88.3   6.4e-20 !   NC_040776.1 Rocio virus strain SPH 34675, complete genome.
+THOV_1.5.16.1        -         JEVG.3SL             -          cm        1       99      460      556      +    no    1 0.52   0.0   86.9   1.4e-19 !   NC_034151.1 T'Ho virus strain T'Ho-Mex07, complete genome.
+ILHV_1.5.2.1         -         JEVG.3SL             -          cm        1       99      295      388      +    no    1 0.54   0.0   84.6   4.9e-19 !   NC_009028.2 Ilheus virus, complete genome.
+TMUV_1.5.5.1         -         JEVG.3SL             -          cm        1       99      525      618      +    no    1 0.54   0.0   81.6   2.7e-18 !   NC_015843.2 Tembusu virus flavivirus polyprotein (flavivirus polyprotein gene) gene, complete cds.
+BAGV_1.5.4.1         -         JEVG.3SL             -          cm        1       99      473      566      +    no    1 0.57   0.0   75.2   8.9e-17 !   NC_012534.1 Bagaza virus strain DakAr B209, complete genome.
+NMV_1.4.2.1          -         JEVG.3SL             -          cm        1       99      458      546      +    no    1 0.54   0.0   64.1   4.1e-14 !   NC_032088.1 New Mapoon virus, complete cds.
+KOKV_1.4.1.1         -         JEVG.3SL             -          cm        1       99      469      558      +    no    1 0.59   0.0   61.0   2.3e-13 !   NC_009029.2 Kokobera virus, complete genome.
+AROAV_1.1.1.1        -         JEVG.3SL             -          cm        1       99      329      420      +    no    1 0.60   0.0   60.2   3.7e-13 !   NC_009026.2 Bussuquara virus, complete genome.
+ZIKV_1.6.2.1         -         JEVG.3SL             -          cm        1       99      332      428      +    no    1 0.62   0.0   57.6   1.5e-12 !   NC_035889.1 Zika virus isolate ZIKV/H. sapiens/Brazil/Natal/2015, complete genome.
+DENV4_1.2.4.1        -         JEVG.3SL             -          cm        1       99      292      383      +    no    1 0.52   0.0   53.3   1.6e-11 !   NC_002640.1 Dengue virus 4, complete genome.
+DENV1_1.2.1.1        -         JEVG.3SL             -          cm        1       99      370      461      +    no    1 0.49   0.0   52.7   2.2e-11 !   NC_001477.1 Dengue virus 1, complete genome.
+ZIKV_1.6.2.2         -         JEVG.3SL             -          cm        1       99      331      428      +    no    1 0.60   0.0   52.3   2.8e-11 !   NC_012532.1 Zika virus, complete genome.
+KEDV_1.2.5.1         -         JEVG.3SL             -          cm        1       99      295      390      +    no    1 0.62   0.0   50.5   7.8e-11 !   NC_012533.1 Kedougou virus strain DakAar D1470, complete genome.
+DENV2_1.2.2.1        -         JEVG.3SL             -          cm        1       99      359      450      +    no    1 0.50   0.0   48.8     2e-10 !   NC_001474.2 Dengue virus 2, complete genome.
+DENV3_1.2.3.1        -         JEVG.3SL             -          cm        1       99      348      439      +    no    1 0.51   0.0   47.3   4.5e-10 !   NC_001475.2 Dengue virus 3, complete genome.
+WESSV_1.7.3.1        -         JEVG.3SL             -          cm        1       99      378      477      +    no    1 0.52   0.0   43.3   4.2e-09 !   NC_012735.1 Wesselsbron virus strain SAH177, complete genome.
+YFV17D_1.7.2.1       -         JEVG.3SL             -          cm        1       99      407      506      +    no    1 0.48   0.0   42.0   8.4e-09 !   NC_002031.1 Yellow fever virus, complete genome.
+SEPV_1.7.4.1         -         JEVG.3SL             -          cm        1       99      360      458      +    no    1 0.51   0.0   41.9   8.9e-09 !   NC_008719.1 Sepik virus, complete genome.
+NTAV_1.5.3.1         -         JEVG.3SL             -          cm        1       27      540      565      +    3'    3 0.54   0.0   17.4    0.0068 !   NC_018705.3 Ntaya virus, complete cds.
+#
+# Program:         cmsearch
+# Version:         1.1.4 (Dec 2020)
+# Pipeline mode:   SEARCH
+# Query file:      Data/Flavivirus_Covariance/MBFV_3SL.cm
+# Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/MBFV/all_MBFV_3UTR.fa
+# Option settings: cmsearch --tblout Results/cm_search/MBFV.cmout --toponly Data/Flavivirus_Covariance/MBFV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/MBFV/all_MBFV_3UTR.fa 
+# Current dir:     /home/arkanini/Long_Range_RNA_Interactions
+# Date:            Tue Nov 21 15:25:49 2023
+# [ok]

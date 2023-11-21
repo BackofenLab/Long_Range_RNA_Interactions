@@ -10,5 +10,5 @@ MMLV_3.3.4.1         -         N.3SL                -          cm        1      
 # Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/NKV/all_NKV_3UTR.fa
 # Option settings: cmsearch --tblout Results/cm_search/NKV.cmout --toponly Data/Flavivirus_Covariance/NKV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/NKV/all_NKV_3UTR.fa 
 # Current dir:     /home/arkanini/Long_Range_RNA_Interactions
-# Date:            Fri Nov 17 10:40:20 2023
+# Date:            Tue Nov 21 15:25:50 2023
 # [ok]
