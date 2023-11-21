@@ -6,11 +6,16 @@ import ast
 import pandas as pd
 import numpy as np
 import math
+from collections import defaultdict
 
 
 main_colours = {"UTR": "gray", "interaction" : "red", "subopt": "orange"}
-CDS_colours = {"ISFV":"c","MBFV":"blue","NKV":"green","TBFV":"m"}
-CMS_hit_colours = {"ISFV":"lightcyan","MBFV":"cornflowerblue","NKV":"limegreen","TBFV":"plum"}
+CDS_colours = defaultdict(lambda:"hotpink")
+CMS_hit_colours = defaultdict(lambda:"hotpink")
+for k, v in [("ISFV","c"),("MBFV","blue"),("NKV","green"),("TBFV","m")]:
+    CDS_colours[k] = v
+for k, v in [("ISFV","lightcyan"),("MBFV","cornflowerblue"),("NKV","limegreen"),("TBFV","plum")]:
+    CMS_hit_colours[k] = v
 
 def draw_lineplots(df, extra_bases_roi, output):
     """

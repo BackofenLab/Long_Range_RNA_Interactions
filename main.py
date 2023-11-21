@@ -6,7 +6,7 @@ from Codes.alignment import get_alignment_sequences
 import pandas as pd
 
 ## Input IntaRNA Paths:
-database_path = "Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621"
+database_path = "Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111"
 
 ## Output IntaRNA Paths:
 static_param_path = "Data/static_parameter.cfg"
@@ -40,11 +40,11 @@ static_d = {"energyVRNA": "Data/rna_andronescu2007.par",
 
 
 if __name__ == "__main__":
-    #write_static_parameters(static_d, static_param_path)
-    #create_parameter_table(database_path, extra_bases, parameter_table_file)
-    #main_intarna(static_param_path, extra_bases, extra_bases_roi,
-    #             parameter_table_file, IntaRNA_output, raw_IntaRNA_output,
-    #             outNumber)
+    write_static_parameters(static_d, static_param_path)
+    create_parameter_table(database_path, extra_bases, parameter_table_file)
+    main_intarna(static_param_path, extra_bases, extra_bases_roi,
+                 parameter_table_file, IntaRNA_output, raw_IntaRNA_output,
+                 outNumber)
     df = pd.read_csv(IntaRNA_output)
     ###create_cms(stockholm_directory, covariance_dir) ## Do not uncomment unless new data.
     df = cm_search(df, covariance_dir, database_path, cm_output)
