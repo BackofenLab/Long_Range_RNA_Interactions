@@ -77,24 +77,32 @@ def cm_search(df, cm_dir, seq_dir, output_path):
     cm_dir_names = os.listdir(cm_dir)      ## This part is maybe unneccessary
     cm_end = cm_dir_names[0].split("_")[1] ## But I want to ensure modability
     cm_files = [i.split("_")[0] for i in os.listdir(cm_dir)]
-    for root, dirs, files in os.walk(seq_dir):
-        #print(cm_files) -> So far good
-        dir = root.split("/")[-1]
-        if dir in cm_files:  # = Match in cm_dir
-            print(dir)
-            for file in files:
-                if file.endswith("3UTR.fa"): ## Find the right file
-                    out_file = f"{output_path}/{dir}.cmout"
-                    p = run_cm_search(f"{cm_dir}/{dir}_{cm_end}", 
-                                      f"{root}/{file}", 
-                                      out_file)
-                    f = open(out_file, "r")
-                    for line in f.readlines():
-                        if line.startswith("#"):
-                            continue
-                        split_line = line.split()
-                        id = split_line[17]
-                        f, t = split_line[7:9]
+    for file in os.listdir(seq_dir):
+        if file.endswith("3UTR.fa"): ## Find the right file
+        
+        ####dir = root.split("/")[-1]
+        ####if dir in cm_files:  # = Match in cm_dir
+        ####for file in files:
+        ####    if file.endswith("3UTR.fa"): 
+            scores = {}
+            for cm_file in cm_files:
+                if not os.path.isfile(f"{cm_dir}/{cm_file}_{cm_end}"):
+                    continue # Skip directories
+                out_file = f"{output_path}/{cm_file}.cmout"
+                p = run_cm_search(f"{cm_dir}/{cm_file}_{cm_end}", 
+                                  f"{seq_dir}/{file}", out_file)
+                f = open(out_file, "r")
+                for line in f.readlines():
+                    if line.startswith("#"):
+                        continue
+                    split_line = line.split()
+                    id = split_line[17]
+                    score = split_line[14]
+                    if (not id in scores) or (scores[id] < score):
+                        scores[id] = score # Update score if its better
+                        f, t = split_line[7:9] # Save hit with best score
                         df.loc[df.id == id, "cm_hit_f"] = int(f)
                         df.loc[df.id == id, "cm_hit_t"] = int(t)
+                        df.loc[df.id == id, "cm_hit_src"] = cm_file
+    df.to_csv(f"{output_path}/Inta_plus_CM.csv", index=False)
     return df

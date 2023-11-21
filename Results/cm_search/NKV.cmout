@@ -1,14 +1,16 @@
 #target name         accession query name           accession mdl mdl from   mdl to seq from   seq to strand trunc pass   gc  bias  score   E-value inc description of target
 #------------------- --------- -------------------- --------- --- -------- -------- -------- -------- ------ ----- ---- ---- ----- ------ --------- --- ---------------------
-MODV_3.2.4.1         -         N.3SL                -          cm        1       77      290      366      +    no    1 0.45   0.0   80.8   3.7e-23 !   NC_003635.1 Modoc virus, complete genome.
-MMLV_3.3.4.1         -         N.3SL                -          cm        1       77      387      460      +    no    1 0.46   0.0   73.9     4e-21 !   NC_004119.1 Montana myotis leukoencephalitis virus, complete genome.
+MODV_3.2.4.1         -         N.3SL                -          cm        1       77      290      366      +    no    1 0.45   0.0   80.8   7.6e-22 !   NC_003635.1 Modoc virus, complete genome.
+MMLV_3.3.4.1         -         N.3SL                -          cm        1       77      387      460      +    no    1 0.46   0.0   73.9   8.3e-20 !   NC_004119.1 Montana myotis leukoencephalitis virus, complete genome.
+WESSV_1.7.3.1        -         N.3SL                -          cm        1       77      404      471      +    no    1 0.50   0.0   22.3   0.00018 !   NC_012735.1 Wesselsbron virus strain SAH177, complete genome.
+SEPV_1.7.4.1         -         N.3SL                -          cm        1       77      383      455      +    no    1 0.47   0.0   17.9    0.0038 !   NC_008719.1 Sepik virus, complete genome.
 #
 # Program:         cmsearch
 # Version:         1.1.4 (Dec 2020)
 # Pipeline mode:   SEARCH
 # Query file:      Data/Flavivirus_Covariance/NKV_3SL.cm
-# Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/NKV/all_NKV_3UTR.fa
-# Option settings: cmsearch --tblout Results/cm_search/NKV.cmout --toponly Data/Flavivirus_Covariance/NKV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/NKV/all_NKV_3UTR.fa 
+# Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/all_Flavivirus_RefSeq_20220621_3UTR.fa
+# Option settings: cmsearch --tblout Results/cm_search/NKV.cmout --toponly Data/Flavivirus_Covariance/NKV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/all_Flavivirus_RefSeq_20220621_3UTR.fa 
 # Current dir:     /home/arkanini/Long_Range_RNA_Interactions
-# Date:            Tue Nov 21 15:25:50 2023
+# Date:            Tue Nov 21 16:42:46 2023
 # [ok]
