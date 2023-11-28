@@ -127,6 +127,7 @@ def main_intarna(static_param_path, extra_bases, extra_bases_roi,
             suboptes.append((subopt1_e, subopt2_e))
     output["id"] = params["id"]
     output["class"] = params["class"]
+    output["type"] = params["type"]
     output["UTR5len"] = params["UTR5len"]
     output["CDSlen"] = params["CDSlen"]
     output["UTR3len"] = params["UTR3len"]

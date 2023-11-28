@@ -25,5 +25,3 @@ def get_alignment_sequences(param_df_path, inta_df_path, extra_bases):
         #print(row["q_inter_range"])
         #print(int_seq_5)
         #print(int_seq_3)
-        # Should be 78 on 5'side  but is 173 UTR5len = 96 => Add UTR5len
-        # Should be 117 on 3'side but is 316 => Add 200 (=extra bases)

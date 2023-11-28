@@ -10,12 +10,15 @@ from collections import defaultdict
 
 
 main_colours = {"UTR": "gray", "interaction" : "red", "subopt": "orange"}
-CDS_colours = defaultdict(lambda:"hotpink")
-CMS_hit_colours = defaultdict(lambda:"hotpink")
-for k, v in [("ISFV","c"),("MBFV","blue"),("NKV","green"),("TBFV","m")]:
+CDS_colours = defaultdict(lambda:"black")
+for k, v in [("ISFV","m"), ("cISFVG","m"), ("dISFVG","plum"),("MBFV","blue"),("NKV","green"),("TBFV","c")]:
     CDS_colours[k] = v
-for k, v in [("ISFV","lightcyan"),("MBFV","cornflowerblue"),("NKV","limegreen"),("TBFV","plum")]:
-    CMS_hit_colours[k] = v
+linewidths = {"UTR": 4,
+              "CDS": 4,
+              "CMHit": 8,
+              "Subopt": 4,
+              "Interaction": 4
+              }
 
 def draw_lineplots(df, extra_bases_roi, output):
     """
@@ -37,43 +40,39 @@ def draw_lineplots(df, extra_bases_roi, output):
         q_tuple = ast.literal_eval(row["q_inter_range"])
         line5sub = []
         line3sub = []
-        for suboptt in ast.literal_eval(row["suboptts"]): ## Subopt stuff..
+        ## Plot CDS:
+        ## Differentiate between cISFVG and dISFVG
+        cds_colour = CDS_colours[row["type"]] if row["class"] == "ISFV" else  CDS_colours[row["class"]]
+        side5.plot((0, extra_bases_roi), (index, index), 
+                   linewidth=linewidths["CDS"], color=cds_colour)
+        side3.plot((0 - row["UTR3len"], -extra_bases_roi - row["UTR3len"]), (index, index), 
+                   linewidth=linewidths["CDS"], color=cds_colour)
+        ## Plot UTR:
+        side5.plot((0, -row["UTR5len"]), (index, index), 
+                   linewidth=linewidths["UTR"], color=main_colours["UTR"])
+        side3.plot((0 - row["UTR3len"], 0), (index, index), 
+                   linewidth=linewidths["UTR"], color=main_colours["UTR"])
+        ## Plot CM hits:
+        if "cm_hit_f" in row and not math.isnan(row["cm_hit_f"]):
+            side3.plot((row["cm_hit_f"] - row["UTR3len"], row["cm_hit_t"] - row["UTR3len"]), (index, index), 
+                       linewidth=linewidths["CMHit"], color=CDS_colours[row["cm_hit_src"]], alpha=0.5)
+        ## Plot Subopt Interactions:
+        for suboptt in ast.literal_eval(row["suboptts"]): ## 5' Subopt stuff..
             if suboptt:
                 for subopt in suboptt:
-                    line5sub.append(((subopt[0], index),
-                              (subopt[1], index)))
-        subopt_len5 = len(line5sub)
-        for suboptq in ast.literal_eval(row["suboptqs"]): ## Subopt stuff..
+                    side5.plot((subopt[0], subopt[1]), (index, index), 
+                               linewidth=linewidths["Subopt"], color=main_colours["subopt"])
+        for suboptq in ast.literal_eval(row["suboptqs"]): ## 3' Subopt stuff..
             if suboptq:
                 for subopt in suboptq:
-                    line3sub.append(((subopt[0] - row["UTR3len"], index),
-                                     (subopt[1] - row["UTR3len"], index))) 
-        subopt_len3 = len(line3sub)
-        line5 = [((0, index), (extra_bases_roi, index)), ## CDS
-                 ((0, index), (-row["UTR5len"], index))] ## 5'UTR
-        line3 = [((0 - row["UTR3len"], index), (-extra_bases_roi - row["UTR3len"], index)), ## CDS
-                 ((0 - row["UTR3len"], index), (0, index))] ## 3'UTR
-        if math.isnan(row["cm_hit_f"]):
-            cmsearch_hit = 0
-        else:
-            cmsearch_hit = 1
-            line3 += [((row["cm_hit_f"] - row["UTR3len"], index),
-                       (row["cm_hit_t"] - row["UTR3len"], index))] ## CM Hit
-        line5 += line5sub ## Subopt
-        line3 += line3sub ## Subopt
-        line5 += [((t_tuple[0], index),
-                  (t_tuple[1], index))] ## Main Interaction
-        line3 += [((q_tuple[0] - row["UTR3len"], index),
-                 (q_tuple[1] - row["UTR3len"], index))] ## Main Interaction
-        colours5 = [CDS_colours[row["class"]]] + [main_colours["UTR"]] + [main_colours["subopt"]]*subopt_len5 + [main_colours["interaction"]]
-        if cmsearch_hit:
-            colours3 = [CDS_colours[row["class"]]] + [main_colours["UTR"]] + [CMS_hit_colours[row["cm_hit_src"]]] + [main_colours["subopt"]]*subopt_len3 + [main_colours["interaction"]]
-        else:
-            colours3 = [CDS_colours[row["class"]]] + [main_colours["UTR"]] + [main_colours["subopt"]]*subopt_len3 + [main_colours["interaction"]]
-        linewidths5 = [4] + [4] + [4]*subopt_len5 + [4]
-        linewidths3 = [4] + [4] + [8]*cmsearch_hit + [4]*subopt_len3 + [4]
-        side5.add_collection(LineCollection(line5, colors=colours5, linewidths=linewidths5))
-        side3.add_collection(LineCollection(line3, colors=colours3, linewidths=linewidths3))
+                    side3.plot((subopt[0] - row["UTR3len"], subopt[1] - row["UTR3len"]), (index, index), 
+                               linewidth=linewidths["Subopt"], color=main_colours["subopt"])
+        ## Plot Main Interactions:
+        side5.plot((t_tuple[0], t_tuple[1]), (index, index), 
+                   linewidth=linewidths["Interaction"], color=main_colours["interaction"])
+        side3.plot((q_tuple[0] - row["UTR3len"], q_tuple[1] - row["UTR3len"]), (index, index), 
+                   linewidth=linewidths["Interaction"], color=main_colours["interaction"])
+    ## Annotations:
     side5.set_xlabel("Distance from 5'UTR-CDS transition", fontsize=16)
     side3.set_xlabel("Distance from 3'UTR end", fontsize=16)
     side5.set_ylabel("Index", fontsize=16)
@@ -83,25 +82,22 @@ def draw_lineplots(df, extra_bases_roi, output):
     side3.yaxis.set_label_position("right")
     side3.yaxis.tick_right()
 
-    #print(list(df["id"]))
     side5.set_yticks(np.arange(len(df["id"])))
     side5.set_yticklabels(list(df["id"]))
     side3.set_yticks(np.arange(len(df["id"])))
     side3.set_yticklabels(list(df["id"]))
     side5.autoscale_view()
     side3.autoscale_view()
-    legend_elements = [Line2D([0], [0], color=CDS_colours["ISFV"], lw=8, label='ISFV-CDS'),
+    legend_elements = [Line2D([0], [0], color=CDS_colours["cISFVG"], lw=8, label='cISFV-CDS'),
+                       Line2D([0], [0], color=CDS_colours["dISFVG"], lw=8, label='dISFV-CDS'),
                        Line2D([0], [0], color=CDS_colours["MBFV"], lw=8, label='MBFV-CDS'),
                        Line2D([0], [0], color=CDS_colours["NKV"], lw=8, label='NKV-CDS'),
                        Line2D([0], [0], color=CDS_colours["TBFV"], lw=8, label='TBFV-CDS'),
                        Line2D([0], [0], color='gray', lw=8, label='UTR'),
                        Line2D([0], [0], color='r', lw=8, label='Interaction'),
                        Line2D([0], [0], color='orange', lw=8, label='Subopt'),
-                       Line2D([0], [0], color=CMS_hit_colours["ISFV"], lw=8, label='CM Hit ISFV'),
-                       Line2D([0], [0], color=CMS_hit_colours["MBFV"], lw=8, label='CM Hit MBFV'),
-                       Line2D([0], [0], color=CMS_hit_colours["NKV"], lw=8, label='CM Hit NKV'),
-                       Line2D([0], [0], color=CMS_hit_colours["TBFV"], lw=8, label='CM Hit TBFV'),]
-    side5.legend(handles=legend_elements[:-4],loc="upper left", prop={"size": 16})
+                       Line2D([0], [0], color="blue", lw=8, label='CM Hit', alpha=0.5),]
+    side5.legend(handles=legend_elements[:-1],loc="upper left", prop={"size": 16})
     side3.legend(handles=legend_elements,loc="upper left", prop={"size": 16})
     plt.suptitle("Interaction Lineplot", fontsize=48)
     plt.savefig(output)
