@@ -44,34 +44,34 @@ def draw_lineplots(df, extra_bases_roi, output):
         ## Differentiate between cISFVG and dISFVG
         cds_colour = CDS_colours[row["type"]] if row["class"] == "ISFV" else  CDS_colours[row["class"]]
         side5.plot((0, extra_bases_roi), (index, index), 
-                   linewidth=linewidths["CDS"], color=cds_colour)
+                   linewidth=linewidths["CDS"], color=cds_colour, solid_capstyle="butt")
         side3.plot((0 - row["UTR3len"], -extra_bases_roi - row["UTR3len"]), (index, index), 
-                   linewidth=linewidths["CDS"], color=cds_colour)
+                   linewidth=linewidths["CDS"], color=cds_colour, solid_capstyle="butt")
         ## Plot UTR:
         side5.plot((0, -row["UTR5len"]), (index, index), 
-                   linewidth=linewidths["UTR"], color=main_colours["UTR"])
+                   linewidth=linewidths["UTR"], color=main_colours["UTR"], solid_capstyle="butt")
         side3.plot((0 - row["UTR3len"], 0), (index, index), 
-                   linewidth=linewidths["UTR"], color=main_colours["UTR"])
+                   linewidth=linewidths["UTR"], color=main_colours["UTR"], solid_capstyle="butt")
         ## Plot CM hits:
         if "cm_hit_f" in row and not math.isnan(row["cm_hit_f"]):
             side3.plot((row["cm_hit_f"] - row["UTR3len"], row["cm_hit_t"] - row["UTR3len"]), (index, index), 
-                       linewidth=linewidths["CMHit"], color=CDS_colours[row["cm_hit_src"]], alpha=0.5)
+                       linewidth=linewidths["CMHit"], color=CDS_colours[row["cm_hit_src"]], alpha=0.5, solid_capstyle="butt")
         ## Plot Subopt Interactions:
         for suboptt in ast.literal_eval(row["suboptts"]): ## 5' Subopt stuff..
             if suboptt:
                 for subopt in suboptt:
                     side5.plot((subopt[0], subopt[1]), (index, index), 
-                               linewidth=linewidths["Subopt"], color=main_colours["subopt"])
+                               linewidth=linewidths["Subopt"], color=main_colours["subopt"], solid_capstyle="butt")
         for suboptq in ast.literal_eval(row["suboptqs"]): ## 3' Subopt stuff..
             if suboptq:
                 for subopt in suboptq:
                     side3.plot((subopt[0] - row["UTR3len"], subopt[1] - row["UTR3len"]), (index, index), 
-                               linewidth=linewidths["Subopt"], color=main_colours["subopt"])
+                               linewidth=linewidths["Subopt"], color=main_colours["subopt"], solid_capstyle="butt")
         ## Plot Main Interactions:
         side5.plot((t_tuple[0], t_tuple[1]), (index, index), 
-                   linewidth=linewidths["Interaction"], color=main_colours["interaction"])
+                   linewidth=linewidths["Interaction"], color=main_colours["interaction"], solid_capstyle="butt")
         side3.plot((q_tuple[0] - row["UTR3len"], q_tuple[1] - row["UTR3len"]), (index, index), 
-                   linewidth=linewidths["Interaction"], color=main_colours["interaction"])
+                   linewidth=linewidths["Interaction"], color=main_colours["interaction"], solid_capstyle="butt")
     ## Annotations:
     side5.set_xlabel("Distance from 5'UTR-CDS transition", fontsize=16)
     side3.set_xlabel("Distance from 3'UTR end", fontsize=16)
