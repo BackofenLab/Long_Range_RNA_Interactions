@@ -50,9 +50,10 @@ if __name__ == "__main__":
                  outNumber)
     df = pd.read_csv(IntaRNA_output)
     ###create_cms(stockholm_directory, covariance_dir) ## Do not uncomment unless new data.
-    df = cm_search(df, covariance_dir, database_path, cm_output)
+    cm_search(df, covariance_dir, database_path, cm_output)
+    df = pd.read_csv(f"{cm_output}/Inta_plus_CM.csv")
     draw_lineplots(df, extra_bases_roi, line_plot)
     draw_energy_histo(df, energy_histo)
     draw_energy_histo_subopt(df, energy_histo)
     ##get_alignment_sequences(parameter_table_file, IntaRNA_output, extra_bases)
-    get_meme_sequences(parameter_table_file, meme_output, IntaRNA_output, extra_bases)
+    get_meme_sequences(parameter_table_file, f"{cm_output}/Inta_plus_CM.csv", meme_output, extra_bases)
