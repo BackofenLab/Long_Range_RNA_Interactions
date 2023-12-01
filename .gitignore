@@ -3,3 +3,4 @@ Flavivirus_NCBI/
 Flavivirus_Stockholm/
 *.cpython-37.pyc
 *.cpython-39.pyc
+*.Identifier
