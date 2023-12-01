@@ -15,7 +15,7 @@ def make_fasta(l, output_name):
             f.write(f"\n")
 
 
-def get_meme_sequences(param_df_path, inta_df_path, output_path, extra_bases):
+def get_meme_sequences(param_df_path, inta_df_path, output_path):
     """Get the sequences from the following 4 sites:
       1. 5': -30 to +10 from CDS start
       2. 5': +20 to +60 in CDS
@@ -23,8 +23,6 @@ def get_meme_sequences(param_df_path, inta_df_path, output_path, extra_bases):
       4. 3': +5 to +35 from CM hit start
     param_df_path (str): Path to the parameter dataframe
     inta_df_path (str): Path to the dataframe resulting from IntaRNA
-    extra_bases (int): Extra bases that were used for IntaRNA. 
-                       Neccessary because they need to be added to the 3' ranges
     """
     os.makedirs(output_path, exist_ok=True)
     list_site_1 = []
@@ -39,12 +37,10 @@ def get_meme_sequences(param_df_path, inta_df_path, output_path, extra_bases):
             raise Exception("Dataframe provided does not contain CM-search hits")
         elif math.isnan(row["cm_hit_f"]):
             continue
-        print(row["seq3"])
-        raise
         seq5 = row["seq5"]
         seq3 = row["seq3"]
         CDS_start = row["UTR5len_x"]
-        CMhit_start = int(row["cm_hit_f"])
+        CMhit_start = int(row["cm_hit_f"]) - row["UTR3len_x"]
         part1 = seq5[CDS_start-30:CDS_start+10]
         part2 = seq5[CDS_start+20:CDS_start+60]
         part3 = seq3[CMhit_start-25:CMhit_start+5]
