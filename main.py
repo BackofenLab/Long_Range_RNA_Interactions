@@ -2,7 +2,6 @@ from Codes.parameters import write_static_parameters, create_parameter_table
 from Codes.evaluation import draw_lineplots, draw_energy_histo, draw_energy_histo_subopt
 from Codes.IntaRNA_code import main_intarna
 from Codes.covariance import create_cms, cm_search
-from Codes.alignment import get_alignment_sequences
 from Codes.meme import get_meme_sequences
 import pandas as pd
 
@@ -55,5 +54,4 @@ if __name__ == "__main__":
     draw_lineplots(df, extra_bases_roi, line_plot)
     draw_energy_histo(df, energy_histo)
     draw_energy_histo_subopt(df, energy_histo)
-    ##get_alignment_sequences(parameter_table_file, IntaRNA_output, extra_bases)
     get_meme_sequences(parameter_table_file, f"{cm_output}/Inta_plus_CM.csv", meme_output)
