@@ -1,6 +1,7 @@
 
 Flavivirus_NCBI/
 Flavivirus_Stockholm/
+locARNA/*/intermediates
 *.cpython-37.pyc
 *.cpython-39.pyc
 *.Identifier
