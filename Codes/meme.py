@@ -1,7 +1,5 @@
 import pandas as pd
-import ast
 import os
-from collections import defaultdict
 import math
 
 def make_fasta(l, output_name):
@@ -15,7 +13,6 @@ def make_fasta(l, output_name):
             if len(i[1]) > 0:
                 f.write(f">{i[0]}\n")
                 f.write(f"{i[1]}\n")
-                ## f.write((len(i[1])-200)*"."+"xxx"+"."*197+"\n") ## Only do this for site_all_5
                 f.write(f"\n")
 
 
@@ -27,6 +24,7 @@ def get_meme_sequences(param_df_path, inta_df_path, output_path):
       4. 3': +5 to +35 from CM hit start
     param_df_path (str): Path to the parameter dataframe
     inta_df_path (str): Path to the dataframe resulting from IntaRNA
+    output_path (str): Output directory for the extracted sequences
     """
     os.makedirs(output_path, exist_ok=True)
     list_site_1 = []
@@ -64,31 +62,3 @@ def get_meme_sequences(param_df_path, inta_df_path, output_path):
     make_fasta(list_all_5, f"{output_path}/site_all_5.fa")
     make_fasta(list_all_3, f"{output_path}/site_all_3.fa")
 
-
-def old_get_meme_sequences(param_df_path, inta_df_path, output_path, extra_bases):
-    """Get the sequences of the main interaction.
-    param_df_path (str): Path to the parameter dataframe
-    inta_df_path (str): Path to the dataframe resulting from IntaRNA
-    extra_bases (int): Extra bases that were used for IntaRNA. 
-                       Neccessary because they need to be added to the 3' ranges
-    """
-    os.makedirs(output_path, exist_ok=True)
-    dict5 = defaultdict(list)
-    dict3 = defaultdict(list)
-    param_df = pd.read_csv(param_df_path)
-    inta_df = pd.read_csv(inta_df_path)
-    merged_df = pd.merge(param_df, inta_df, on=["id"], how="inner")
-    for index, row in merged_df.iterrows():
-        t_range = ast.literal_eval(row["t_inter_range"])
-        q_range = ast.literal_eval(row["q_inter_range"])
-        UTR5len = row["UTR5len_x"]
-        center_5 = round((t_range[1]+UTR5len + t_range[0]+UTR5len-1)/2)
-        center_3 = round((q_range[0]+extra_bases-1 + q_range[1]+extra_bases)/2)
-        dict5[row["class_x"]].append((f"{row['class_x']}-{row['id']}", row["seq5"][center_5 - 15: center_5 + 15]))
-        dict3[row["class_x"]].append((f"{row['class_x']}-{row['id']}", row["seq3"][center_3 - 15: center_3 + 15]))
-    for i5 in dict5:
-        make_fasta(dict5[i5], f"{output_path}/{i5}_5.fa")
-    for i3 in dict3:
-        make_fasta(dict3[i3], f"{output_path}/{i3}_3.fa")
-    
-        #raise
