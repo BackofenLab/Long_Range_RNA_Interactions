@@ -1,0 +1,953 @@
+GLAM2: Gapped Local Alignment of Motifs
+Version 1056
+
+/data/apache-tomcat/instance/meme/work/meme-5.5.5/bin/glam2 -Q -O . -M -z 2 -a 2 -b 50 -w 20 -r 10 -n 2000 -D 0.1 -E 2.0 -I 0.02 -J 1.0 n site_1.fa
+Sequences: 51
+Greatest sequence length: 40
+Residue counts: a=644 c=304 g=491 t=601 N=0
+
+Score: 424.270  Columns: 24  Sequences: 37
+
+                ************************
+ISFV-NC_0129 15 gtttg.gaaa.agagatatctggt 36 + 9.23
+ISFV-NC_0086 10 gttgtttata.atag.tcgttttt 31 + 4.65
+ISFV-NC_0242  5 ggttgtttga.aaaa.cttttgcg 26 + 8.33
+ISFV-NC_0278 15 ctctg.gtgt.ccaacgtttgtat 36 + 2.50
+ISFV-NC_0340  3 agtgttgtta.aaaa.tttctttg 24 + 9.36
+ISFV-NC_0170  5 cacgt.ttga.atag.gtttattg 25 + 12.2
+ISFV-NC_0169  9 cgcat.taga.atag.gtttgaaa 29 + 5.32
+ISFV-NC_0279 13 gtttgagaga.acagcgagaagta 35 + 0.199
+ISFV-NC_0240  4 cgcattttgatagag.ttgactag 26 + 7.79
+MBFV-NC_0014  2 cgtagttcta.acag.ttttttat 23 + 20.2
+MBFV-NC_0014  1 cgtagttcta.acag.ttttttaa 22 + 19.5
+MBFV-NC_0014  2 cgtagtgctg.acag.ttttttat 23 + 16.2
+MBFV-NC_0026  8 gtttgtttga.atagagagcagat 30 + 9.41
+MBFV-NC_0125 18 gaaag..aaa.acag.attcttcg 37 + 0.301
+MBFV-NC_0014  5 tgcagtttaa.acag.ttttttag 26 + 17.8
+MBFV-NC_0009  4 cgcggtttga.acag.ttttttgg 25 + 23.8
+MBFV-NC_0075  7 gactg..cga.acag.ttttttag 26 + 14.8
+MBFV-NC_0065  5 cacagtgccg.gcag.tttctttg 26 + 10.3
+MBFV-NC_0015  6 cacagtgcga.gctg.tttcttgg 27 + 17.4
+MBFV-NC_0099  6 cacagtgcga.gctg.tttcttag 27 + 17.0
+MBFV-NC_0090 12 cacagtgtga.acaa.gttttttg 33 + 25.1
+MBFV-NC_0320  8 ctcagtgtga.acaa.gttttttg 29 + 25.2
+MBFV-NC_0125  8 cacagtttga.ac.g.ttttttgg 28 + 21.1
+MBFV-NC_0090  6 cacagtctga.atag.ttttttag 27 + 21.7
+MBFV-NC_0187  8 cacagtttga.ac.g.ttttttgg 28 + 21.1
+MBFV-NC_0407  6 cacagtctga.atag.ttttttag 27 + 21.7
+MBFV-NC_0341  4 cacagtgtga.atag.ttttttga 25 + 22.8
+MBFV-NC_0158  8 cacagtttga.ac.g.ttttttgg 28 + 21.1
+MBFV-NC_0125 17 atttg.gaaa.cgagagtttctgg 38 + 6.07
+MBFV-NC_0358 17 atttg.gaaa.cgagagtttctgg 38 + 6.07
+MBFV-NC_0087 15 ggtag..aga.aaag.gagttttg 34 + 10.4
+TBFV-NC_0036 19 cttag.gaga.acaa.gagctggg 39 + 18.4
+TBFV-NC_0018 19 cttag.gaga.acaa.gagctggg 39 + 18.4
+TBFV-NC_0050 19 cttag.gaga.acaa.gagctggg 39 + 18.4
+TBFV-NC_0036 13 cttag.gaga.acaa.gagctggg 33 + 18.4
+TBFV-NC_0277 19 cttag.gaga.acaa.gagctggg 39 + 18.4
+TBFV-NC_0016 19 cttag.gaga.acaa.gagctggg 39 + 18.4
+
+                ctcagtgtgatacagattttttgg
+                gatt  ta      acgagc ga 
+                 g                    t 
+
+ a  c  g  t Del Ins Score
+ 3 25  8  1   0      18.1
+                  0 -0.121
+13  0 10 14   0      7.61
+                  0 -0.121
+ 1 18  0 18   0      23.3
+                  0 -0.121
+25  0  4  8   0      21.2
+                  0 -0.121
+ 0  0 32  5   0      44.8
+                  0 -0.121
+ 1  0  0 21  15     -9.52
+                  0 -0.121
+ 0  2 19 13   3      0.132
+                  0 -0.121
+14  7  0 16   0      9.96
+                  0 -0.121
+ 5  1 26  5   0      18.7
+                  0 -0.121
+34  0  2  1   0      48.4
+                  0 -0.121
+ 0  0  0  1  36     -17.8
+                  0 -0.121
+31  3  3  0   0      36.3
+                  0 -0.121
+ 3 23  4  7   0      9.57
+                  0 -0.121
+32  0  0  2   3      31.4
+                  0 -0.121
+11  0 26  0   0      33.3
+                  0 -0.121
+ 4  2  0  0  31     -29.7
+                  0 -0.121
+ 1  1 16 19   0      18.0
+                  0 -0.121
+10  1  0 26   0      28.6
+                  0 -0.121
+ 0  0 11 26   0      33.3
+                  0 -0.121
+ 2 13  0 22   0      21.3
+                  0 -0.121
+ 3  3  2 29   0      25.7
+                  0 -0.121
+ 1  0 10 26   0      28.6
+                  0 -0.121
+12  2 15  8   0      0.686
+                  0 -0.121
+ 4  0 27  6   0      25.0
+
+Score: 424.077  Columns: 23  Sequences: 39
+
+                ***.*****....***************
+ISFV-NC_0129  1 aaa..atct....ag.aa.gttgtttgg 20 + 7.24
+ISFV-NC_0086  9 agt.tgttt....ataatagtcgttttt 31 + 5.29
+ISFV-NC_0278 17 aat..agct....tgagaagaagcttac 38 + 5.32
+ISFV-NC_0242 16 aaa.cttttg...cg.ac.gttgttgag 37 + 7.00
+ISFV-NC_0340  3 agt..gttg....ttaaaaatttctttg 24 + 9.48
+ISFV-NC_0170  4 aca.cg.tt....tgaataggtttattg 25 + 12.7
+ISFV-NC_0169  8 acg.ca.tt....agaataggtt.tgaa 28 + 6.47
+ISFV-NC_0406 13 aga..agtc....aaaactagaaattta 34 + 5.07
+ISFV-NC_0240  3 gcg.cattt....tg.at.agagttgac 23 + -0.166
+MBFV-NC_0014  1 acg.tagtt....ctaacagttttttat 23 + 17.2
+MBFV-NC_0014  1 cgt..agtt....ctaacagttttttaa 22 + 10.7
+MBFV-NC_0014  1 acg.tagtgc...tg.acagttttttat 23 + 14.0
+MBFV-NC_0026  7 agt.ttgtt....tgaat.agagagcag 28 + -0.374
+MBFV-NC_0125 17 aga..a.ag....aaaacagattcttcg 37 + 1.95
+MBFV-NC_0014  3 agtgcagtt....taaacagttttttag 26 + 14.0
+MBFV-NC_0009  3 acg.cggtt....tgaacagttttttgg 25 + 25.4
+MBFV-NC_0075  3 act.tgactg...cgaacagttttttag 26 + 13.4
+MBFV-NC_0065  4 aca.cagtgc...cg.gcagtttctttg 26 + 15.2
+MBFV-NC_0015  5 aca.cagtg....cgagctgtttcttgg 27 + 19.7
+MBFV-NC_0099  5 aca.cagtg....cgagctgtttcttag 27 + 19.6
+MBFV-NC_0090 11 aca.cagtg....tgaacaagttttttg 33 + 25.5
+MBFV-NC_0320  7 act.cagtg....tgaacaagttttttg 29 + 24.1
+MBFV-NC_0125  7 aca.cagtt....tgaac.gttttttgg 28 + 25.6
+MBFV-NC_0090  5 aca.cagtc....tgaatagttttttag 27 + 24.6
+MBFV-NC_0187  7 aca.cagtt....tgaac.gttttttgg 28 + 25.6
+MBFV-NC_0407  5 aca.cagtc....tgaatagttttttag 27 + 24.6
+MBFV-NC_0341  3 aca.cagtg....tgaatagttttttga 25 + 24.5
+MBFV-NC_0158  7 aca.cagtt....tgaac.gttttttgg 28 + 25.6
+MBFV-NC_0125  2 aca..ggtt....taatttggatttgga 23 + 9.07
+MBFV-NC_0358  1 aca..ggttt...tattttggatttgga 23 + 1.63
+MBFV-NC_0087 11 aaa.gggtag...agaaaaggagttttg 34 + 9.00
+MBFV-NC_0127 12 agg..agtaga..agaaa.ggagattca 34 + 0.672
+NKV-NC_00871  4 aat.tatttctg.aaaacagaaaatcag 29 + 0.680
+TBFV-NC_0036 13 aga.cagcttaggagaacaagagctggg 39 + 17.2
+TBFV-NC_0018 13 aga.cagcttaggagaacaagagctggg 39 + 17.2
+TBFV-NC_0050 13 aga.cagcttaggagaacaagagctggg 39 + 17.2
+TBFV-NC_0036  7 aga.cagcttaggagaacaagagctggg 33 + 17.2
+TBFV-NC_0277 13 aga.cagcttaggagaacaagagctggg 39 + 17.2
+TBFV-NC_0016 13 aga.cagcttaggagaacaagagctggg 39 + 17.2
+
+                aca cagtt    tgaacagttttttgg
+                 gt tg cg    a   t agagc ga 
+                                          t 
+
+ a  c  g  t Del Ins Score
+37  1  1  0   0      56.7
+                  0 -0.122
+ 5 20 14  0   0      14.9
+                  0 -0.122
+24  0  6  9   0      17.6
+                  1 -11.1
+ 0 23  1  6   9     -9.42
+                  0 -0.122
+29  0  8  2   0      30.6
+                  0 -0.122
+ 1  0 29  6   3      16.4
+                  0 -0.122
+ 1  9  0 29   0      33.2
+                  0 -0.122
+ 2  3  9 25   0      15.1
+                 35 -81.2
+14  7  0 18   0      11.5
+                  0 -0.122
+ 6  0 29  4   0      28.0
+                  0 -0.122
+33  0  0  1   5      29.0
+                  0 -0.122
+33  0  4  2   0      40.2
+                  0 -0.122
+ 5 24  0 10   0      18.4
+                  0 -0.122
+26  0  0  5   8      2.29
+                  0 -0.122
+12  0 27  0   0      35.0
+                  0 -0.122
+ 3  0 17 19   0      18.5
+                  0 -0.122
+15  1  0 23   0      26.3
+                  0 -0.122
+ 2  0 14 23   0      23.0
+                  0 -0.122
+ 4 12  0 22   1      8.82
+                  0 -0.122
+ 1  0  1 37   0      56.7
+                  0 -0.122
+ 0  2 11 26   0      25.9
+                  0 -0.122
+14  2 15  8   0      1.48
+                  0 -0.122
+ 7  2 27  3   0      18.5
+
+Score: 422.058  Columns: 22  Sequences: 44
+
+                *********...*************
+ISFV-NC_0129  7 tagaagttg...tttggaaaagaga 28 + 18.1
+ISFV-NC_0086  8 gagttgttt...ataa..tagtcgt 27 + 0.597
+ISFV-NC_0050  7 aaggagttg...ttcggaaaagtga 28 + 9.40
+ISFV-NC_0278 16 gaatagcttg..agaag.aagctta 37 + 9.20
+ISFV-NC_0242 13 gaaaaactt...ttgcg.acgttgt 33 + 1.37
+ISFV-NC_0340 11 taaaaatttc..tttgg.cgacgta 32 + 5.73
+ISFV-NC_0170 12 gaataggttta.ttgtgaatcgaaa 35 + 11.2
+ISFV-NC_0169 16 gaataggtt...tgaa..agagttg 35 + 8.24
+ISFV-NC_0279  5 taattgttgt..ttgag.agaacag 26 + 6.88
+ISFV-NC_0406  1 gaacaattt...taaag.aagtcaa 21 + 8.39
+ISFV-NC_0240 14 ta.gagttg...actag.ataacga 33 + 6.23
+MBFV-NC_0090  2 gaaaagtttt..cgaggaaagacga 24 + 13.1
+MBFV-NC_0014 10 taacagttt...ttta..ttagaga 29 + 16.1
+MBFV-NC_0014  9 taacagttt...ttta.attagaga 29 + 16.7
+MBFV-NC_0014 11 ga.cagttt...ttta..ttagaga 29 + 14.8
+MBFV-NC_0026  3 taacagttt...gtttgaatagaga 24 + 16.4
+MBFV-NC_0125  1 aa.cagttttcgtgttg.agaaaga 23 + 8.40
+MBFV-NC_0014 13 aaacagttt...tttag.aacggaa 33 + 19.4
+MBFV-NC_0009 12 gaacagttt...tttgg.agctttt 32 + 14.4
+MBFV-NC_0075 13 gaacagttt...tttag.cagggaa 33 + 17.8
+MBFV-NC_0065 14 gg.cagttt...ctttg.agcgttg 33 + 4.51
+MBFV-NC_0015 14 gagctgttt...cttggcacgaaga 35 + 13.4
+MBFV-NC_0099 14 gagctgttt...cttagcacgaaga 35 + 14.1
+MBFV-NC_0090 20 gaacaagtt...ttttg.aacagca 40 + 11.4
+MBFV-NC_0320 16 gaacaagtt...ttttg.atcagtg 36 + 12.0
+MBFV-NC_0125 16 gaac.gttt...tttgg.agagaga 35 + 20.2
+MBFV-NC_0090 14 gaatagttt...tttag.caaggga 34 + 20.2
+MBFV-NC_0187 16 gaac.gttt...tttgg.agagaga 35 + 20.2
+MBFV-NC_0407 14 gaatagttt...tttagcagaggta 35 + 19.5
+MBFV-NC_0341 12 gaatagttt...tttg.aacagagg 32 + 16.3
+MBFV-NC_0158 16 gaac.gttt...tttgg.atagaga 35 + 20.0
+MBFV-NC_0125  9 taat.ttgga..tttggaaacgaga 30 + 5.27
+MBFV-NC_0358  9 ta.ttttgga..tttggaaacgaga 30 + 4.47
+MBFV-NC_0087 10 ga.aagggt...agag..aaaagga 28 + 4.31
+MBFV-NC_0127  9 gaaaggagt...agaagaaaggaga 30 + 5.90
+MBFV-NC_0020 13 gagc.gatt...agcag.agaactg 32 + 2.15
+NKV-NC_00871  3 aaattattt...ctga..aaacaga 22 + 6.46
+NKV-NC_00503 16 gaacaactg...tccggaatcaaag 37 + 5.88
+TBFV-NC_0036 14 ga.cagctt...aggag.aacaaga 33 + 17.8
+TBFV-NC_0018 14 ga.cagctt...aggag.aacaaga 33 + 17.8
+TBFV-NC_0050 14 ga.cagctt...aggag.aacaaga 33 + 17.8
+TBFV-NC_0036  8 ga.cagctt...aggag.aacaaga 27 + 17.8
+TBFV-NC_0277 14 ga.cagctt...aggag.aacaaga 33 + 17.8
+TBFV-NC_0016 14 ga.cagctt...aggag.aacaaga 33 + 17.8
+
+                gaacagttt   tttagaaaagaga
+                t  t  c     aggg c gca   
+                                   tg    
+
+ a  c  g  t Del Ins Score
+ 4  0 31  9   0      29.4
+                  0 -0.126
+43  0  1  0   0      72.9
+                  0 -0.126
+26  0  6  0  12     -7.39
+                  0 -0.126
+ 6 25  2 11   0      10.9
+                  0 -0.126
+32  0  1  6   5      13.7
+                  0 -0.126
+ 7  0 35  2   0      40.6
+                  0 -0.126
+ 2  9  5 28   0      16.1
+                  0 -0.126
+ 0  0  4 40   0      60.3
+                  0 -0.126
+ 0  0  7 37   0      51.7
+                 11 -46.0
+12  5  1 26   0      16.2
+                  0 -0.126
+ 1  2 13 28   0      24.2
+                  0 -0.126
+ 7  3 10 24   0      6.89
+                  0 -0.126
+23  1 14  6   0      12.2
+                  0 -0.126
+ 0  0 36  0   8      30.3
+                  0 -0.126
+11  3  0  0  30     -34.9
+                  0 -0.126
+37  3  0  4   0      44.9
+                  0 -0.126
+21  4 10  9   0      1.16
+                  0 -0.126
+20 15  9  0   0      12.7
+                  0 -0.126
+17  3 20  4   0      7.94
+                  0 -0.126
+24  6  8  6   0      4.25
+                  0 -0.126
+ 6  1 29  8   0      19.8
+                  0 -0.126
+34  0  7  3   0      36.7
+
+Score: 416.407  Columns: 20  Sequences: 40
+
+                ********************
+ISFV-NC_0129  3 aa.tctag.aagttgtttgg 20 + 12.3
+ISFV-NC_0086  2 ag.gcttg.a.gttgtttat 18 + 4.77
+ISFV-NC_0050  2 aatcaaagga.gttgttcgg 20 + 5.91
+ISFV-NC_0278 20 agcttgag.aagaagcttac 38 + 3.11
+ISFV-NC_0242  8 tgtttgaa.aaacttttgcg 26 + 4.49
+ISFV-NC_0340  8 tg.ttaaa.a.atttctttg 24 + 5.94
+ISFV-NC_0170  7 cgtttgaataggtttattgt 26 + 6.48
+ISFV-NC_0169 21 ggtttgaa.a.g.agttgaa 37 + 8.22
+ISFV-NC_0279  1 gg.attaatt.gttgtttga 18 + 5.80
+ISFV-NC_0406 16 agtcaaaactagaaatttaa 35 + 7.14
+MBFV-NC_0014  5 agttctaaca.gttttttat 23 + 18.5
+MBFV-NC_0014  4 agttctaaca.gttttttaa 22 + 19.0
+MBFV-NC_0014  5 agtgctgaca.gttttttat 23 + 14.4
+MBFV-NC_0026 19 ta.gagagca.g.atctctg 35 + 3.76
+MBFV-NC_0125 20 aa.gaaaaca.gattcttcg 37 + 10.9
+MBFV-NC_0014  8 agtttaaaca.gttttttag 26 + 21.3
+MBFV-NC_0009  7 ggtttgaaca.gttttttgg 25 + 20.5
+MBFV-NC_0075  8 actgcgaaca.gttttttag 26 + 19.1
+MBFV-NC_0065  8 agtgccggca.gtttctttg 26 + 8.73
+MBFV-NC_0015  9 agtgcgagct.gtttcttgg 27 + 18.7
+MBFV-NC_0099  9 agtgcgagct.gtttcttag 27 + 18.1
+MBFV-NC_0090 15 agtgtgaacaagttttttga 34 + 24.1
+MBFV-NC_0320 11 agtgtgaacaagttttttga 30 + 24.1
+MBFV-NC_0125 11 agtttgaa.c.gttttttgg 28 + 17.7
+MBFV-NC_0090  9 agtctgaata.gttttttag 27 + 19.5
+MBFV-NC_0187 11 agtttgaa.c.gttttttgg 28 + 17.7
+MBFV-NC_0407  9 agtctgaata.gttttttag 27 + 19.5
+MBFV-NC_0341  7 agtgtgaata.gttttttga 25 + 20.8
+MBFV-NC_0158 11 agtttgaa.c.gttttttgg 28 + 17.7
+MBFV-NC_0125 23 aa.acgag.a.gtttctggt 39 + 8.28
+MBFV-NC_0358 23 aa.acgag.a.gtttctggt 39 + 8.28
+MBFV-NC_0087 17 ta.gagaa.aaggagttttg 34 + 6.55
+MBFV-NC_0127 18 ag.aagaa.a.ggagattca 34 + 2.75
+NKV-NC_00871 11 tctgaaaaca.gaaaatcag 29 + -0.315
+TBFV-NC_0036 22 ag.gagaacaag.agctggg 39 + 15.1
+TBFV-NC_0018 22 ag.gagaacaag.agctggg 39 + 15.1
+TBFV-NC_0050 22 ag.gagaacaag.agctggg 39 + 15.1
+TBFV-NC_0036 16 ag.gagaacaag.agctggg 33 + 15.1
+TBFV-NC_0277 22 ag.gagaacaag.agctggg 39 + 15.1
+TBFV-NC_0016 22 ag.gagaacaag.agctggg 39 + 15.1
+
+                agtgtgaacaagttttttgg
+                   ta  g     agc gaa
+                    c               
+
+ a  c  g  t Del Ins Score
+31  1  3  5   0      29.0
+                  0 -0.123
+ 7  2 31  0   0      34.1
+                  0 -0.123
+ 0  1  0 23  16     -8.63
+                  0 -0.123
+ 4  4 19 13   0      3.58
+                  0 -0.123
+13 11  0 16   0      8.85
+                  0 -0.123
+ 6  1 27  6   0      18.3
+                  0 -0.123
+37  0  2  1   0      53.9
+                  0 -0.123
+30  0 10  0   0      39.2
+                  0 -0.123
+ 0 21  1  5  13     -18.6
+                  0 -0.123
+33  3  0  4   0      38.1
+                  0 -0.123
+13  0  1  0  26     -26.8
+                  0 -0.123
+ 2  0 38  0   0      60.4
+                  0 -0.123
+ 4  1  2 25   8     -10.0
+                  0 -0.123
+13  0  0 27   0      35.3
+                  0 -0.123
+ 2  0 14 24   0      24.2
+                  0 -0.123
+ 3 15  0 22   0      20.3
+                  0 -0.123
+ 0  0  0 40   0      71.8
+                  0 -0.123
+ 0  3 10 27   0      25.2
+                  0 -0.123
+13  3 20  4   0      6.09
+                  0 -0.123
+ 8  1 25  6   0      14.5
+
+Score: 414.914  Columns: 23  Sequences: 37
+
+                *************...**.********
+ISFV-NC_0129 10 aagttgtttggaaaagag.atatctgg 35 + 7.63
+ISFV-NC_0050 10 gagttgttcggaaa..agtgaccttgg 34 + 4.11
+ISFV-NC_0278 16 gaatagcttgaga...ag.aagcttac 38 + 0.456
+ISFV-NC_0242  4 tggttgtttgaaaa..ac.ttttgcga 27 + 3.73
+ISFV-NC_0340  4 gtgttg.ttaaaa...at.ttctttgg 25 + 7.95
+ISFV-NC_0170  4 acac.gtttgaat...aggtttattgt 26 + 6.66
+ISFV-NC_0169  8 acgcat.tagaat...ag.gtttgaaa 29 + 6.63
+ISFV-NC_0406 12 aagaagtcaaaact..ag.aaatttaa 35 + 5.75
+ISFV-NC_0240  3 gcgcattttgatag..ag.ttgactag 26 + 2.71
+MBFV-NC_0014  1 acgtagttctaac...ag.ttttttat 23 + 20.8
+MBFV-NC_0014  1 .cgtagttctaac...ag.ttttttaa 22 + 13.2
+MBFV-NC_0014  1 acgtagtgctgac...ag.ttttttat 23 + 17.5
+MBFV-NC_0026 16 gaatag..agagc...ag.atctctgg 36 + 13.0
+MBFV-NC_0125 17 agaaag..aaaac...agattcttcgg 38 + 4.95
+MBFV-NC_0014  4 gtgcagtttaaac...ag.ttttttag 26 + 21.0
+MBFV-NC_0009  3 acgcggtttgaac...ag.ttttttgg 25 + 23.4
+MBFV-NC_0075  6 tgactg..cgaac...ag.ttttttag 26 + 12.0
+MBFV-NC_0065  4 acacagtgccggc...agtttctttga 27 + 11.5
+MBFV-NC_0015  5 acacagtgcgagc...tg.tttcttgg 27 + 18.2
+MBFV-NC_0099  5 acacagtgcgagc...tg.tttcttag 27 + 17.1
+MBFV-NC_0090 11 acacagtgtgaaca..ag.ttttttga 34 + 26.8
+MBFV-NC_0320  7 actcagtgtgaaca..ag.ttttttga 30 + 26.0
+MBFV-NC_0125  7 acacagtttgaac....g.ttttttgg 28 + 23.8
+MBFV-NC_0090  5 acacagtctgaat...ag.ttttttag 27 + 23.5
+MBFV-NC_0187  7 acacagtttgaac....g.ttttttgg 28 + 23.8
+MBFV-NC_0407  5 acacagtctgaat...ag.ttttttag 27 + 23.5
+MBFV-NC_0341  3 acacagtgtgaat...ag.ttttttga 25 + 26.0
+MBFV-NC_0158  7 acacagtttgaac....g.ttttttgg 28 + 23.8
+MBFV-NC_0125 16 gatttg.ga.aacg..agagtttctgg 38 + 5.39
+MBFV-NC_0358 16 gatttg.ga.aacg..agagtttctgg 38 + 5.39
+MBFV-NC_0087 14 gggtag..agaaa...aggagttttgc 35 + 7.35
+TBFV-NC_0036 18 gcttag.gagaaca..ag.agctggga 40 + 14.5
+TBFV-NC_0018 18 gcttag.gagaaca..ag.agctgggg 40 + 15.7
+TBFV-NC_0050 18 gcttag.gagaaca..ag.agctgggg 40 + 15.7
+TBFV-NC_0036 12 gcttag.gagaaca..ag.agctggga 34 + 14.5
+TBFV-NC_0277 18 gcttag.gagaaca..ag.agctgggg 40 + 15.7
+TBFV-NC_0016 18 gcttag.gagaaca..ag.agctgggg 40 + 15.7
+
+                acatagtgtgaac   ag ttttttgg
+                g gc   ta          a c g aa
+                  t     c                  
+
+ a  c  g  t Del Ins Score
+19  0 15  2   1      10.5
+                  0 -0.121
+ 7 24  4  2   0      12.9
+                  0 -0.121
+15  0 13  9   0      8.22
+                  0 -0.121
+ 2 17  0 18   0      19.7
+                  0 -0.121
+28  0  1  7   1      23.6
+                  0 -0.121
+ 0  0 35  2   0      54.8
+                  0 -0.121
+ 0  1  0 22  14     -6.90
+                  0 -0.121
+ 0  3 15 15   4     -7.70
+                  0 -0.121
+13  8  0 16   0      9.10
+                  0 -0.121
+ 4  1 27  3   2      10.1
+                  0 -0.121
+33  0  4  0   0      47.6
+                  0 -0.121
+31  0  5  1   0      38.5
+                  0 -0.121
+ 7 25  0  5   0      20.4
+                 17 -55.2
+32  0  0  2   3      31.4
+                  0 -0.121
+ 0  1 35  1   0      53.0
+                  7 -33.7
+11  0  4 22   0      17.2
+                  0 -0.121
+ 3  0  7 27   0      25.9
+                  0 -0.121
+ 2 11  2 22   0      13.4
+                  0 -0.121
+ 2  4  0 31   0      36.8
+                  0 -0.121
+ 0  5  8 24   0      18.7
+                  0 -0.121
+ 1  2  6 28   0      25.4
+                  0 -0.121
+12  0 25  0   0      32.2
+                  0 -0.121
+10  2 22  3   0      11.2
+
+Score: 401.127  Columns: 24  Sequences: 41
+
+                *****.*********....**********
+ISFV-NC_0129  7 tagaa.gttgttt.g....gaaaagagat 29 + 18.6
+ISFV-NC_0050  7 aagga.gttgttc.g....gaaaagtgac 29 + 3.97
+ISFV-NC_0278 16 gaata.gcttgagaa....ga.agcttac 38 + 4.96
+ISFV-NC_0242 13 gaaaa.ac.tttt.gc...ga.cgttgtt 34 + 4.10
+ISFV-NC_0340 11 taaaa.atttctttg....gcgacgtacg 34 + 10.8
+ISFV-NC_0170 12 gaata.ggtttattgt...gaatcgaaat 36 + 11.8
+ISFV-NC_0169 16 gaata.gg.tttg.a....aagagttgaa 37 + 8.71
+ISFV-NC_0279  5 taatt.gttgttt.ga...gagaacagcg 28 + 15.5
+ISFV-NC_0406  1 gaaca.attttaaag....aag.tcaaaa 23 + 9.35
+MBFV-NC_0090  2 gaaaa.gttttcgagga..aagacgagaa 27 + 17.7
+MBFV-NC_0014 10 taaca.gttttttatta..gagagcagat 35 + 21.3
+MBFV-NC_0014  9 taaca.gttttttaatta.gagagcagat 35 + 19.7
+MBFV-NC_0014 11 g.aca.gttttttatta..gagagcagat 35 + 16.7
+MBFV-NC_0026  3 taaca.gtttgtttgaatagagagcagat 30 + 14.0
+MBFV-NC_0125  1 a.aca.gttttcgtgttgaga.aagaaaa 26 + 4.52
+MBFV-NC_0014 13 aaaca.gttttttag....aa.cggaaga 35 + 20.5
+MBFV-NC_0009 12 gaaca.gtttttt.g....gagcttttga 34 + 13.7
+MBFV-NC_0075 13 gaaca.gttttttag....cag.ggaatt 35 + 17.9
+MBFV-NC_0065 14 g.gca.gtttctt.t....gagcgttgat 35 + 7.43
+MBFV-NC_0015 14 gagct.gtttctt.g....gc.acgaaga 35 + 10.9
+MBFV-NC_0099 14 gagct.gtttcttagc...acgaagatct 38 + 12.4
+MBFV-NC_0090 20 gaaca.agttttt.t....ga..acagca 40 + 11.8
+MBFV-NC_0320 16 gaaca.agttttt.t....gatcagtgga 38 + 11.2
+MBFV-NC_0125 16 gaac..gtttttt.g....gag.agagat 36 + 18.4
+MBFV-NC_0090 14 gaata.gttttttagc...aag.ggattt 37 + 16.5
+MBFV-NC_0187 16 gaac..gtttttt.g....gag.agagac 36 + 16.2
+MBFV-NC_0407 14 gaata.gttttttag....cagaggtact 37 + 20.4
+MBFV-NC_0341 12 gaata.gtttttt.g....aa.cagaggt 33 + 19.6
+MBFV-NC_0158 16 gaac..gtttttt.g....ga.tagagac 36 + 13.1
+MBFV-NC_0125  9 taatttggatttg.g....aa.acgagag 31 + 6.90
+MBFV-NC_0358  9 tattttggatttg.g....aa.acgagag 31 + 0.470
+MBFV-NC_0087 10 gaaa..gg.gtagag....aaaaggagtt 31 + 4.46
+MBFV-NC_0127  9 gaaa..ggagtagaa....gaaaggagat 31 + 9.41
+NKV-NC_00871  3 aaatt.atttctgaa....aa.cagaaaa 25 + 12.3
+NKV-NC_00503  1 aaatt.atttccg.g....aagaacaact 23 + 12.0
+TBFV-NC_0036  9 aaaaagacagcttag....gagaacaaga 33 + 16.2
+TBFV-NC_0018  9 aaaaagacagcttag....gagaacaaga 33 + 16.2
+TBFV-NC_0050  9 aaaaagacagcttag....gagaacaaga 33 + 16.2
+TBFV-NC_0036  3 aaaaagacagcttag....gagaacaaga 27 + 16.2
+TBFV-NC_0277  9 aaaaagacagcttag....gagaacaaga 33 + 16.2
+TBFV-NC_0016  9 aaaaagacagcttag....gagaacaaga 33 + 16.2
+
+                gaaca gttttttag    gagaagagat
+                a  a  a agc g      a  cgctaga
+                   t                         
+
+ a  c  g  t Del Ins Score
+11  0 22  8   0      14.0
+                  0 -0.124
+38  0  0  0   3      49.7
+                  0 -0.124
+35  0  5  1   0      45.3
+                  0 -0.124
+12 17  1 11   0      4.55
+                  0 -0.124
+29  0  0  7   5      13.3
+                  8 -37.4
+13  0 28  0   0      36.7
+                  0 -0.124
+ 0  8  8 25   0      18.0
+                  0 -0.124
+ 9  0  0 29   3      19.6
+                  0 -0.124
+ 0  0 11 30   0      39.2
+                  0 -0.124
+ 0 12  2 27   0      27.4
+                  0 -0.124
+ 5  3  0 33   0      36.9
+                  0 -0.124
+ 1  1 10 29   0      28.3
+                  0 -0.124
+20  0  0  4  17     -19.8
+                  0 -0.124
+ 5  0 31  5   0      30.8
+                 22 -65.7
+12  2 27  0   0      27.4
+                  0 -0.124
+38  3  0  0   0      58.3
+                  0 -0.124
+ 5  0 24  1  11     -11.5
+                  0 -0.124
+26  7  0  2   6     -1.56
+                  0 -0.124
+19  6 14  2   0      5.49
+                  0 -0.124
+ 0 15 22  4   0      18.6
+                  0 -0.124
+32  0  0  9   0      42.5
+                  0 -0.124
+16  0 21  4   0      18.2
+                  0 -0.124
+20  6 11  4   0      1.90
+                  0 -0.124
+16  4  4 17   0      3.41
+
+Score: 373.342  Columns: 21  Sequences: 48
+
+                ************..*********
+ISFV-NC_0129 15 gt.ttg.ga.aa..agaga.tat 31 + 12.9
+ISFV-NC_0015  2 at.ttttgc.cg..agaga.ccg 19 + 1.88
+ISFV-NC_0086 11 ttgtttata.at..agtcg.ttt 29 + 7.32
+ISFV-NC_0050 13 ttgttc.ggaaa..agtga.cct 31 + 7.87
+ISFV-NC_0278  6 gt.ttgtca.cg..gaata.gct 23 + 7.04
+ISFV-NC_0342  2 tt.ttcttt.ag..cgaca.gaa 19 + 10.7
+ISFV-NC_0242  5 gg.ttgtttgaa..aaact.ttt 23 + 8.08
+ISFV-NC_0340  4 gtgttgtta.aa..aattt.ctt 22 + 9.43
+ISFV-NC_0170 19 tt.tattgtgaat.cgaaa.tac 38 + 3.85
+ISFV-NC_0169 22 gt.ttgaaagag..ttgaa.tca 40 + 2.15
+ISFV-NC_0279 13 gt.ttgagagaa..cagcgagaa 32 + 12.2
+ISFV-NC_0406  6 at.tttaaagaagtcaaaa.cta 26 + 2.15
+ISFV-NC_0240  8 tt.ttgatagagt.tgactagat 28 + 7.92
+MBFV-NC_0090  9 tt.tcgagg.aa..agacgagaa 27 + 6.06
+MBFV-NC_0014 15 gt.ttttta.tt..agaga.gca 32 + 12.9
+MBFV-NC_0014 14 gt.tttttaatt..agaga.gca 32 + 14.6
+MBFV-NC_0014 15 gt.ttttta.tt..agaga.gca 32 + 12.9
+MBFV-NC_0026  8 gt.ttgtttgaat.agaga.gca 27 + 16.2
+MBFV-NC_0125 11 gtgttgagaaaga.aaaca.gat 31 + 12.9
+MBFV-NC_0014 18 gt.tttttagaa..cggaa.gat 36 + 17.1
+MBFV-NC_0009 17 gt.tttttggag..ctttt.gat 35 + 7.11
+MBFV-NC_0075 18 gt.tttttagca..gggaa.tta 36 + 12.9
+MBFV-NC_0065 18 gt.ttctttgag..cgttgattt 37 + 8.55
+MBFV-NC_0015 19 gt.ttcttggca..cgaagatct 38 + 12.4
+MBFV-NC_0099 19 gt.ttcttagca..cgaagatct 38 + 14.0
+MBFV-NC_0090  3 at.tacataacac.agtgt.gaa 22 + 4.40
+MBFV-NC_0320 22 gt.tttttg.at..cagtg.gat 39 + 6.17
+MBFV-NC_0125 20 gt.tttttggag..agaga.tta 38 + 16.8
+MBFV-NC_0090 19 gt.tttttagca..aggga.ttt 37 + 16.1
+MBFV-NC_0187 20 gt.tttttggag..agaga.cta 38 + 16.2
+MBFV-NC_0407 19 gt.tttttagcag.aggta.cta 38 + 11.0
+MBFV-NC_0341 18 tt.ttttgaaca..gaggt.gaa 36 + 8.54
+MBFV-NC_0158 20 gt.tttttggat..agaga.caa 38 + 15.5
+MBFV-NC_0125 17 at.ttg.ga.aa..cgaga.gtt 33 + 10.8
+MBFV-NC_0358 17 at.ttg.ga.aa..cgaga.gtt 33 + 10.8
+MBFV-NC_0087 14 gggtagagaaaa..ggagt.ttt 33 + 6.42
+MBFV-NC_0127  2 ttctactga.aa..ggagtagaa 21 + 4.32
+MBFV-NC_0020  6 gt.tcgttg.ag..cgattagca 24 + 7.24
+NKV-NC_00871  8 at.ttctgaaaac.agaaaatca 28 + 12.1
+NKV-NC_00503  3 at.tatttc.cg..gaagaacaa 21 + 0.845
+NKV-NC_00363  4 ttgttctgtgcg..cgtcacgcc 24 + 1.51
+NKV-NC_00411  7 gt.ttc.cggct..ggaaa.cca 24 + 2.02
+TBFV-NC_0036  1 gtgttgagaaaa..agaca.gct 20 + 19.2
+TBFV-NC_0018  1 gtgttgagaaaa..agaca.gct 20 + 19.2
+TBFV-NC_0050  1 gtgttgagaaaa..agaca.gct 20 + 19.2
+TBFV-NC_0036 13 ct.tag.gagaa..caaga.gct 30 + 5.17
+TBFV-NC_0277  1 gtgttgagaaaa..agaca.gct 20 + 19.2
+TBFV-NC_0016  1 gtgttgagaaaa..agaca.gct 20 + 19.2
+
+                gtgttgttagaa  agagaagct
+                     taggacg  ca c  taa
+                     c               t 
+
+ a  c  g  t Del Ins Score
+ 7  1 31  9   0      21.1
+                  0 -0.128
+ 0  0  2 46   0      75.5
+                  0 -0.128
+ 0  1 11  0  36     -32.9
+                  0 -0.128
+ 0  0  0 48   0      87.5
+                  0 -0.128
+ 6  2  0 40   0      49.8
+                  0 -0.128
+ 0 10 20 18   0      13.8
+                  0 -0.128
+14  0  0 28   6      7.66
+                  0 -0.128
+ 2  2 20 24   0      19.8
+                  0 -0.128
+30  2 10  6   0      17.2
+                  0 -0.128
+12  0 21  0  15     -20.5
+                  0 -0.128
+33 12  0  3   0      33.5
+                  0 -0.128
+28  0 13  7   0      21.5
+                  9 -41.9
+24 15  7  2   0      9.50
+                  0 -0.128
+10  0 36  2   0      40.7
+                  0 -0.128
+33  0  8  7   0      29.3
+                  0 -0.128
+ 9 13 19  7   0     -3.93
+                  0 -0.128
+32  0  7  9   0      27.4
+                  0 -0.128
+10  1  0  0  37     -33.1
+                  0 -0.128
+ 0  9 26 13   0      18.0
+                  0 -0.128
+15 20  0 13   0      12.2
+                  0 -0.128
+21  2  1 24   0      23.7
+
+Score: 368.754  Columns: 19  Sequences: 46
+
+                *******...********...****
+ISFV-NC_0129 11 agttgtt...tggaaaag...agat 29 + 17.0
+ISFV-NC_0015  1 aat.ttt...t.gccgag...agac 17 + 5.60
+ISFV-NC_0086  9 agttgtt...tataatagt..cgtt 28 + 6.36
+ISFV-NC_0050 11 agttgttc..g.gaaaag...tgac 29 + 7.24
+ISFV-NC_0278 17 aatagctt..gagaa.ga...agct 35 + 4.89
+ISFV-NC_0342  1 attttct...ttagcgac...agaa 19 + 2.46
+ISFV-NC_0242  4 tggttgt...ttgaa.aa...actt 21 + 3.64
+ISFV-NC_0340  3 agt.gtt...gttaa.aa...attt 19 + 2.86
+ISFV-NC_0170 16 aggtttatt.gtgaatcg...aaat 36 + 7.96
+ISFV-NC_0169 17 aataggt...ttgaa.ag...agtt 34 + 9.64
+ISFV-NC_0279 12 tgtttga...gagaacagcg.agaa 32 + 10.5
+ISFV-NC_0406  5 aattttaaa.gaagtcaa...aact 25 + 4.16
+ISFV-NC_0240  4 cgcattt...t.gat.ag...agtt 20 + 4.59
+MBFV-NC_0090  6 agt.tttc..gaggaaagacgagaa 27 + 9.72
+MBFV-NC_0014 14 agtttttta.ttagagagc..agat 35 + 16.1
+MBFV-NC_0014 13 agttttttaattagagagc..agat 35 + 14.4
+MBFV-NC_0014 14 agtttttta.ttagagagc..agat 35 + 16.1
+MBFV-NC_0026  7 agtttgt...ttgaatag...agag 25 + 12.2
+MBFV-NC_0125 10 cgt.gtt...gagaa.ag...aaaa 26 + 8.93
+MBFV-NC_0014 17 agttttt...tagaacgga..agat 36 + 19.8
+MBFV-NC_0009 16 agt.ttt...ttggagcttt.tgat 35 + 3.93
+MBFV-NC_0075 17 agttttt...tagcaggg...aatt 35 + 15.8
+MBFV-NC_0065 17 agtttct...ttg.agcgt..tgat 35 + 5.91
+MBFV-NC_0015 18 tgtttct...tggcacga...agat 36 + 9.10
+MBFV-NC_0099 18 tgtttct...tagcacga...agat 36 + 13.1
+MBFV-NC_0090 25 agt.ttt...ttg.a.ac...agca 40 + 3.99
+MBFV-NC_0320 21 agt.ttt...ttgatcagt..ggat 39 + 11.6
+MBFV-NC_0125 19 cgt.ttt...ttggagag...agat 36 + 17.8
+MBFV-NC_0090 18 agttttt...tagca.ag...ggat 35 + 14.8
+MBFV-NC_0187 19 cgt.ttt...ttggagag...agac 36 + 14.4
+MBFV-NC_0407 18 agttttt...tagcagagg..tact 37 + 14.3
+MBFV-NC_0341 16 agt.ttt...ttgaacag...aggt 33 + 16.0
+MBFV-NC_0158 19 cgt.ttt...ttggatag...agac 36 + 12.3
+MBFV-NC_0125 14 tggatttg..gaaacgag...agtt 33 + 9.07
+MBFV-NC_0358 14 tggatttg..gaaacgag...agtt 33 + 9.07
+MBFV-NC_0087 13 agg.gta...gagaaaagg..agtt 31 + 11.2
+MBFV-NC_0127 12 aggagta...gaagaaagg..agat 31 + 9.83
+MBFV-NC_0020 14 agc.gat...tagcagag...aact 31 + 6.75
+NKV-NC_00871  7 tatttct...gaaaacaga..aaat 26 + 10.1
+NKV-NC_00503  3 attatttcc.g.gaagaac..aact 23 + 3.65
+TBFV-NC_0036 17 agc.ttag..gagaacaag..agct 36 + 12.7
+TBFV-NC_0018 17 agc.ttag..gagaacaag..agct 36 + 12.7
+TBFV-NC_0050 17 agc.ttag..gagaacaag..agct 36 + 12.7
+TBFV-NC_0036 11 agc.ttag..gagaacaag..agct 30 + 12.7
+TBFV-NC_0277 17 agc.ttag..gagaacaag..agct 36 + 12.7
+TBFV-NC_0016 17 agc.ttag..gagaacaag..agct 36 + 12.7
+
+                agttttt   tagaagag   agat
+                   ag a   gt g c a     c 
+
+ a  c  g  t Del Ins Score
+34  5  0  7   0      33.6
+                  0 -0.127
+ 5  0 39  2   0      49.2
+                  0 -0.127
+ 0  8  6 32   0      28.8
+                  0 -0.127
+ 7  0  0 20  19     -25.6
+                  0 -0.127
+ 0  0 10 36   0      48.7
+                  0 -0.127
+ 1  6  4 35   0      32.5
+                  0 -0.127
+11  0  0 35   0      46.9
+                 24 -71.9
+ 0  0 20 26   0      37.9
+                  0 -0.127
+23  0  2 17   4      2.14
+                  0 -0.127
+ 9  0 35  2   0      39.5
+                  0 -0.127
+26  7 11  0   2      4.85
+                  0 -0.127
+39  4  0  3   0      48.3
+                  0 -0.127
+ 5 14 15  4   8     -34.4
+                  0 -0.127
+38  3  5  0   0      45.2
+                  0 -0.127
+13  2 30  1   0      26.8
+                 25 -73.4
+39  1  2  4   0      45.8
+                  0 -0.127
+ 8  1 36  1   0      39.7
+                  0 -0.127
+24 12  1  9   0      10.9
+                  0 -0.127
+ 5  4  1 36   0      35.2
+
+Score: 359.687  Columns: 22  Sequences: 46
+
+                ******..****************
+ISFV-NC_0129 14 tgtttg..gaa.aaga.gata.tc 32 + 16.1
+ISFV-NC_0015  3 tttttgccgag..aga.ccgtgag 23 + 3.70
+ISFV-NC_0086 11 ttgttta.taa.tagtcgtttttc 32 + 7.75
+ISFV-NC_0050 14 tgttcg..gaa.aagt.gaccttg 33 + 12.8
+ISFV-NC_0278 19 tagctt..gag.aagaagctt.ac 38 + 6.14
+ISFV-NC_0342  2 ttttctt.tag..cga.caga.ag 20 + 6.48
+ISFV-NC_0242  7 ttgttt..gaa..aaa.cttt.tg 24 + 8.43
+ISFV-NC_0340  4 gtgttgt.taa.aaat.ttctttg 24 + 4.82
+ISFV-NC_0170  6 acgttt..gaa.tagg.tttattg 25 + 6.43
+ISFV-NC_0169 20 aggttt..gaa..agagttga.at 38 + 3.13
+ISFV-NC_0279 11 ttgttt..gag..agaacagcgag 30 + 12.7
+ISFV-NC_0406  5 aatttta.aag.aagt.caaa.ac 24 + 3.33
+ISFV-NC_0240  7 attttga.tag..agttgact.ag 26 + 7.04
+MBFV-NC_0090  8 ttttcga.gga.aagacgaga.ag 28 + 9.87
+MBFV-NC_0014 15 gttttt..tat.taga.gagc.ag 33 + 14.0
+MBFV-NC_0014 14 gttttt..taattaga.gagc.ag 33 + 13.6
+MBFV-NC_0014 15 gttttt..tat.taga.gagc.ag 33 + 14.0
+MBFV-NC_0026 10 ttgttt..gaa.taga.gagc.ag 28 + 17.6
+MBFV-NC_0125 11 gtgttga.gaa..aga.aaac.ag 29 + 6.84
+MBFV-NC_0014 19 tttttta.gaac.ggaagata.ac 39 + 8.73
+MBFV-NC_0009  6 cggttt..gaac.agt.tttt.tg 24 + 5.65
+MBFV-NC_0075 18 gttttt..tagc.agg.gaattac 37 + 12.2
+MBFV-NC_0065 18 gtttctttgag..cgttgattttc 39 + 5.03
+MBFV-NC_0015 19 gtttct..tggcacgaagatc.tc 39 + 11.7
+MBFV-NC_0099 19 gtttct..tagcacgaagatc.tc 39 + 15.3
+MBFV-NC_0090 14 cagtgt..gaacaagt.tttt.tg 33 + 4.75
+MBFV-NC_0320 10 cagtgt..gaacaagt.tttt.tg 29 + 4.75
+MBFV-NC_0125 22 tttttg..gag..aga.gatt.at 39 + 13.9
+MBFV-NC_0090 19 gttttt..tagcaagg.gatt.tc 38 + 16.1
+MBFV-NC_0187 22 tttttg..gag..aga.gact.ac 39 + 15.1
+MBFV-NC_0407 19 gttttt..tagc.agaggtactac 39 + 12.1
+MBFV-NC_0341 18 tttttt..gaac.agaggtga.aa 37 + 8.49
+MBFV-NC_0158 21 tttttt..gga.taga.gaca.ac 39 + 12.0
+MBFV-NC_0125 16 gatttg..gaa.acga.gagtttc 35 + 15.8
+MBFV-NC_0358 16 gatttg..gaa.acga.gagtttc 35 + 15.8
+MBFV-NC_0087 14 gggtaga.gaa.aaggagttt.tg 34 + 9.63
+MBFV-NC_0127 14 gagtag..aag.aaag.gagattc 33 + 3.98
+MBFV-NC_0020 17 gattagcagag.aact.gacc.ag 37 + 7.47
+NKV-NC_00871  8 atttct..gaa.aaca.gaaa.at 26 + 9.24
+NKV-NC_00503  6 atttcc..gga..agaacaac.tg 24 + 2.03
+TBFV-NC_0036 18 gcttag..gag.aacaagagc.tg 37 + 16.1
+TBFV-NC_0018 18 gcttag..gag.aacaagagc.tg 37 + 16.1
+TBFV-NC_0050 18 gcttag..gag.aacaagagc.tg 37 + 16.1
+TBFV-NC_0036 12 gcttag..gag.aacaagagc.tg 31 + 16.1
+TBFV-NC_0277 18 gcttag..gag.aacaagagc.tg 37 + 16.1
+TBFV-NC_0016 18 gcttag..gag.aacaagagc.tg 37 + 16.1
+
+                gttttt  gaacaagaagagcttg
+                t g  g  t g t  t  ttt ac
+                                    a   
+
+ a  c  g  t Del Ins Score
+ 6  3 22 15   0      6.24
+                  0 -0.127
+ 8  7  5 26   0      6.71
+                  0 -0.127
+ 0  0 14 32   0      42.6
+                  0 -0.127
+ 0  1  0 45   0      76.7
+                  0 -0.127
+ 9  8  2 27   0      12.2
+                  0 -0.127
+ 0  1 20 25   0      32.0
+                 15 -55.6
+ 2  0 32 12   0      34.4
+                  0 -0.127
+42  0  4  0   0      63.9
+                  0 -0.127
+22  0 22  2   0      27.6
+                  0 -0.127
+ 0 10  0  1  35     -32.2
+                  0 -0.127
+23  0  0  7  16     -18.6
+                  0 -0.127
+39  6  1  0   0      51.2
+                  0 -0.127
+ 3  8 35  0   0      37.7
+                  0 -0.127
+31  0  5 10   0      27.7
+                  0 -0.127
+13  2  3  2  26     -47.4
+                  0 -0.127
+ 1  6 33  6   0      26.9
+                  0 -0.127
+33  2  0 11   0      35.9
+                  0 -0.127
+ 6  6 19 15   0     -0.475
+                  0 -0.127
+11 18  0 17   0      11.8
+                  0 -0.127
+ 0  0  2 10  34     -34.8
+                  0 -0.127
+22  0  0 24   0      37.4
+                  0 -0.127
+ 1 16 26  3   0      20.4
+
+Score: 343.792  Columns: 18  Sequences: 46
+
+                **********.********
+ISFV-NC_0129 20 gaa.aagaga.tatctggt 36 + 11.5
+ISFV-NC_0086  7 .tg.agttgt.ttataata 22 + 1.52
+ISFV-NC_0050  6 .aa.aggagttgttcggaa 22 + 6.31
+ISFV-NC_0210 16 .tt.acctctggtactaaa 32 + 3.70
+ISFV-NC_0242 12 .tgaaaaact.tttgcgac 28 + 6.58
+ISFV-NC_0278 25 .ca.acgttt.gtattaaa 40 + 2.24
+ISFV-NC_0126 16 .tt.acctctggtactaac 32 + 2.98
+ISFV-NC_0340  9 gttaaaaatt.tctttggc 26 + 11.1
+ISFV-NC_0170  1 .at.aacac..gtttgaat 15 + 6.21
+ISFV-NC_0169 15 .ag.aatag..gtttgaaa 29 + 6.98
+ISFV-NC_0279  4 .tt.aattgttgtttgaga 20 + 7.55
+ISFV-NC_0406 20 .aaaactaga.aatttaat 36 + 3.28
+ISFV-NC_0240 20 .tg.actaga.taacgaat 35 + 4.27
+MBFV-NC_0090  1 .ag.aaaagt.tttcgagg 16 + 6.96
+MBFV-NC_0014  9 .ct.aacagt.tttttatt 24 + 9.06
+MBFV-NC_0014  8 .ct.aacagt.tttttaat 23 + 12.0
+MBFV-NC_0014  8 gct.gacagt.tttttatt 24 + 4.05
+MBFV-NC_0026 21 gag.agcaga.tctctgga 37 + 11.4
+MBFV-NC_0125 22 gaa.aacagattcttcgga 39 + 9.19
+MBFV-NC_0014 11 .ttaaacagt.tttttaga 27 + 16.4
+MBFV-NC_0009 11 .tg.aacagt.tttttgga 26 + 16.0
+MBFV-NC_0075 11 gcg.aacagt.tttttagc 27 + 14.7
+MBFV-NC_0065  1 .tt.aacaca.gtgccggc 16 + 6.41
+MBFV-NC_0015  2 .tt.aacaca.gtgcgagc 17 + 8.65
+MBFV-NC_0099  2 .tt.aacaca.gtgcgagc 17 + 8.65
+MBFV-NC_0090 18 gtgaacaagt.tttttgaa 35 + 15.5
+MBFV-NC_0320 14 gtgaacaagt.tttttgat 31 + 14.6
+MBFV-NC_0125  3 gta.aacaca.gtttgaac 19 + 15.3
+MBFV-NC_0090 13 .tg.aatagt.tttttagc 28 + 14.0
+MBFV-NC_0187  3 gta.aacaca.gtttgaac 19 + 15.3
+MBFV-NC_0407 13 .tg.aatagt.tttttagc 28 + 14.0
+MBFV-NC_0341 10 gtg.aatagt.tttttgaa 26 + 16.3
+MBFV-NC_0158  3 gta.aacaca.gtttgaac 19 + 15.3
+MBFV-NC_0125 22 gaa.acgagagtttctggt 39 + 9.92
+MBFV-NC_0358 22 gaa.acgagagtttctggt 39 + 9.92
+MBFV-NC_0087 19 gagaaaagga.gttttgct 36 + 5.88
+MBFV-NC_0127  8 .tg.aaagga.gtagaaga 23 + 2.04
+MBFV-NC_0020 19 .tt.agcaga.gaactgac 34 + 4.93
+NKV-NC_00871  1 .tg.aaatta.tttctgaa 16 + 7.63
+NKV-NC_00503 15 .agaacaact.gtccggaa 31 + 4.44
+TBFV-NC_0036  8 gaaaaagaca.gcttagga 25 + 13.4
+TBFV-NC_0018  8 gaaaaagaca.gcttagga 25 + 13.4
+TBFV-NC_0050  8 gaaaaagaca.gcttagga 25 + 13.4
+TBFV-NC_0036  2 gaaaaagaca.gcttagga 19 + 13.4
+TBFV-NC_0277  8 gaaaaagaca.gcttagga 25 + 13.4
+TBFV-NC_0016  8 gaaaaagaca.gcttagga 25 + 13.4
+
+                gtgaaacaga gttttaga
+                 aa  cg ct t  cggac
+                  t               t
+
+ a  c  g  t Del Ins Score
+ 0  0 21  0  25     -16.3
+                  0 -0.127
+18  5  0 23   0      20.0
+                  0 -0.127
+16  0 17 13   0      10.8
+                  0 -0.127
+14  0  0  0  32     -25.6
+                  0 -0.127
+45  0  1  0   0      76.7
+                  0 -0.127
+32 10  4  0   0      30.5
+                  0 -0.127
+ 9 18 11  8   0     -5.21
+                  0 -0.127
+38  0  2  6   0      46.4
+                  0 -0.127
+ 0 17 26  3   0      25.8
+                  0 -0.127
+23  0  0 21   2      21.3
+                  7 -35.7
+ 1  0 23 22   0      31.6
+                  0 -0.127
+ 4  9  0 33   0      32.3
+                  0 -0.127
+ 7  1  3 35   0      33.4
+                  0 -0.127
+ 0 15  2 29   0      30.8
+                  0 -0.127
+ 8  3 12 23   0      5.06
+                  0 -0.127
+23  0 23  0   0      37.4
+                  0 -0.127
+19  1 23  3   0      18.9
+                  0 -0.127
+21 13  1 11   0      7.72
+

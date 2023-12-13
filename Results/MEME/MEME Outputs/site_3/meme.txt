@@ -1,0 +1,431 @@
+********************************************************************************
+MEME - Motif discovery tool
+********************************************************************************
+MEME version 5.5.5 (Release date: Thu Sep 14 08:48:04 2023 +1000)
+
+For further information on how to interpret these results please access https://meme-suite.org/meme.
+To get a copy of the MEME Suite software please access https://meme-suite.org.
+
+********************************************************************************
+
+
+********************************************************************************
+REFERENCE
+********************************************************************************
+If you use this program in your research, please cite:
+
+Timothy L. Bailey and Charles Elkan,
+"Fitting a mixture model by expectation maximization to
+discover motifs in biopolymers",
+Proceedings of the Second International Conference on Intelligent Systems
+for Molecular Biology, pp. 28-36, AAAI Press, Menlo Park, California, 1994.
+********************************************************************************
+
+
+********************************************************************************
+TRAINING SET
+********************************************************************************
+PRIMARY SEQUENCES= site_3.fa
+CONTROL SEQUENCES= --none--
+ALPHABET= ACGT
+Sequence name            Weight Length  Sequence name            Weight Length  
+-------------            ------ ------  -------------            ------ ------  
+ISFV-NC_012932.1         1.0000     30  ISFV-NC_001564.2         1.0000     30  
+ISFV-NC_008604.2         1.0000     30  ISFV-NC_005064.1         1.0000     30  
+ISFV-NC_027819.1         1.0000     30  ISFV-NC_034204.1         1.0000     30  
+ISFV-NC_021069.1         1.0000     30  ISFV-NC_024299.2         1.0000     30  
+ISFV-NC_027817.1         1.0000     30  ISFV-NC_012671.1         1.0000     30  
+ISFV-NC_034017.1         1.0000     30  ISFV-NC_017086.1         1.0000     30  
+ISFV-NC_016997.1         1.0000     30  ISFV-NC_027999.1         1.0000     30  
+ISFV-NC_040610.1         1.0000     30  ISFV-NC_024017.1         1.0000     30  
+MBFV-NC_009026.2         1.0000     30  MBFV-NC_001477.1         1.0000     30  
+MBFV-NC_001474.2         1.0000     30  MBFV-NC_001475.2         1.0000     30  
+MBFV-NC_002640.1         1.0000     30  MBFV-NC_012533.1         1.0000     30  
+MBFV-NC_001437.1         1.0000     30  MBFV-NC_000943.1         1.0000     30  
+MBFV-NC_007580.2         1.0000     30  MBFV-NC_006551.1         1.0000     30  
+MBFV-NC_001563.2         1.0000     30  MBFV-NC_009942.1         1.0000     30  
+MBFV-NC_009029.2         1.0000     30  MBFV-NC_032088.1         1.0000     30  
+MBFV-NC_012534.1         1.0000     30  MBFV-NC_009028.2         1.0000     30  
+MBFV-NC_018705.3         1.0000     30  MBFV-NC_040776.1         1.0000     30  
+MBFV-NC_034151.1         1.0000     30  MBFV-NC_015843.2         1.0000     30  
+MBFV-NC_012532.1         1.0000     30  MBFV-NC_035889.1         1.0000     30  
+MBFV-NC_008719.1         1.0000     30  MBFV-NC_012735.1         1.0000     30  
+MBFV-NC_002031.1         1.0000     30  NKV-NC_008718.1          1.0000     30  
+NKV-NC_005039.1          1.0000     30  NKV-NC_003635.1          1.0000     30  
+NKV-NC_004119.1          1.0000     30  TBFV-NC_003690.1         1.0000     30  
+TBFV-NC_001809.1         1.0000     30  TBFV-NC_005062.1         1.0000     30  
+TBFV-NC_003687.1         1.0000     30  TBFV-NC_027709.1         1.0000     30  
+TBFV-NC_001672.1         1.0000     30  
+********************************************************************************
+
+********************************************************************************
+COMMAND LINE SUMMARY
+********************************************************************************
+This information can also be useful in the event you wish to report a
+problem with the MEME software.
+
+command: meme site_3.fa -dna -oc . -nostatus -time 14400 -mod oops -nmotifs 1 -minw 10 -maxw 20 -objfun classic -markov_order 0 
+
+model:  mod=          oops    nmotifs=         1    evt=           inf
+objective function:           em=       E-value of product of p-values
+                              starts=   E-value of product of p-values
+strands: +
+width:  minw=           10    maxw=           20
+nsites: minsites=       51    maxsites=       51    wnsites=       0.8
+theta:  spmap=         uni    spfuzz=        0.5
+em:     prior=   dirichlet    b=            0.01    maxiter=        50
+        distance=    1e-05
+trim:   wg=             11    ws=              1    endgaps=       yes
+data:   n=            1530    N=              51
+sample: seed=            0    hsfrac=          0
+        searchsize=   1530    norand=         no    csites=       1000
+Letter frequencies in dataset:
+A 0.344 C 0.243 G 0.214 T 0.199 
+Background letter frequencies (from file dataset with add-one prior applied):
+A 0.344 C 0.243 G 0.214 T 0.199 
+Background model order: 0
+********************************************************************************
+
+
+********************************************************************************
+MOTIF ACASCATATTGACACCTGGG MEME-1	width =  20  sites =  51  llr = 566  E-value = 1.3e-142
+********************************************************************************
+--------------------------------------------------------------------------------
+	Motif ACASCATATTGACACCTGGG MEME-1 Description
+--------------------------------------------------------------------------------
+Simplified        A  6161:62921:7:52121:3
+pos.-specific     C  272471:::1:17176:1::
+probability       G  11:512::::8133112886
+matrix            T  1121217:7822:1126:11
+
+         bits    2.3                     
+                 2.1                     
+                 1.9                     
+                 1.6                     
+Relative         1.4           *       * 
+Entropy          1.2        ****       * 
+(16.0 bits)      0.9     * ***** *    ***
+                 0.7  *  * ***** * * ****
+                 0.5  ************ ******
+                 0.2 ********************
+                 0.0 --------------------
+
+Multilevel           ACAGCATATTGACACCTGGG
+consensus            C  C GA A   GG TA  A
+sequence                                 
+                                         
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif ACASCATATTGACACCTGGG MEME-1 sites sorted by position p-value
+--------------------------------------------------------------------------------
+Sequence name             Start   P-value                    Site      
+-------------             ----- ---------            --------------------
+NKV-NC_008718.1              10  9.88e-13  CAACATAAA ACAGCATATTGACACCTGGG A         
+MBFV-NC_015843.2             10  9.88e-13  CCACAAGAA ACAGCATATTGACACCTGGG A         
+MBFV-NC_034151.1             10  9.88e-13  CAAATAAAA ACAGCATATTGACACCTGGG A         
+MBFV-NC_040776.1             10  9.88e-13  CAAAGACAA ACAGCATATTGACACCTGGG A         
+MBFV-NC_018705.3             10  9.88e-13  CACACAAAA ACAGCATATTGACACCTGGG A         
+MBFV-NC_012534.1             10  9.88e-13  CAAAACAAA ACAGCATATTGACACCTGGG A         
+MBFV-NC_032088.1             10  9.88e-13  CAAAACAAA ACAGCATATTGACACCTGGG A         
+MBFV-NC_009029.2             10  9.88e-13  AAACACAAA ACAGCATATTGACACCTGGG A         
+MBFV-NC_009942.1             10  9.88e-13  CACAACAAA ACAGCATATTGACACCTGGG A         
+MBFV-NC_001563.2             10  9.88e-13  CCAAAAGAA ACAGCATATTGACACCTGGG A         
+MBFV-NC_006551.1             10  9.88e-13  ATCAAAAAA ACAGCATATTGACACCTGGG A         
+MBFV-NC_000943.1             10  9.88e-13  CATCAAACA ACAGCATATTGACACCTGGG A         
+MBFV-NC_012533.1             10  9.88e-13  CAACATAAA ACAGCATATTGACACCTGGG A         
+MBFV-NC_009026.2             10  9.88e-13  CCAAAAGAA ACAGCATATTGACACCTGGG A         
+MBFV-NC_009028.2             10  1.60e-12  GCGAAACAA ACAGCATATTGACGCCTGGG A         
+MBFV-NC_007580.2             11  2.82e-11 AACGCAAACA ACAGCATATTGACACCTGGA           
+ISFV-NC_040610.1             11  3.70e-11 TATTTATATA ACAGCATATTGACACCAGGG           
+ISFV-NC_024017.1             10  1.55e-10  GAGAGCAAA ATAGCATATTGACACTTGGG A         
+MBFV-NC_035889.1             11  1.86e-09 AAAACGCAAA ACAGCATATTGACGCTGGGA           
+MBFV-NC_002640.1             11  1.86e-09 CAACACAAAA ACAGCATATTGACGCTGGGA           
+MBFV-NC_001475.2             11  1.86e-09 GCAAATAAAA ACAGCATATTGACGCTGGGA           
+MBFV-NC_001474.2             11  1.86e-09 GAAACAAAAA ACAGCATATTGACGCTGGGA           
+MBFV-NC_001477.1             11  1.86e-09 ACAACAACAA ACAGCATATTGACGCTGGGA           
+MBFV-NC_008719.1             10  4.09e-09  CACTATAGC GGACCATATTGACGCCTGGG A         
+ISFV-NC_027999.1             10  2.30e-08  GGAAATTTA GCTTCATATTGACACCAGGG A         
+MBFV-NC_002031.1             11  3.44e-08 ACAAATAGTG GGACCATATTGACGCCAGGG           
+MBFV-NC_012735.1             11  3.44e-08 CACACATAGC GGACCATATTGACGCCAGGG           
+ISFV-NC_017086.1             10  3.92e-08  AAATGAAGG GCACTATATCGACACTTGGG A         
+ISFV-NC_016997.1             10  4.98e-06  ATGTATAGG CTATTATATCGACACCTAGG A         
+NKV-NC_005039.1              10  1.22e-05  ATGGATTTT GCAATATGTTGACATCAGGG A         
+TBFV-NC_001809.1             11  3.04e-05 TCCTCCTCCT ATACCAAATTTCCCCCTCGA           
+TBFV-NC_003687.1             11  4.87e-05 TCCGCCTCCT ATACTAAATTTCCCCCAGGA           
+ISFV-NC_012671.1              6  7.65e-05      GCCAC CCCCCGAAATGTGTATTGTG ACAGG     
+ISFV-NC_021069.1              6  7.65e-05      GCCAC CCCCCGAAATGTGTATTGTG ACAGG     
+ISFV-NC_005064.1              3  3.66e-04         CC CCTCCGTAATGTGAAAAAGT ATGGGGAA  
+ISFV-NC_008604.2              6  1.24e-03      GCCAC CTCCCGAAATGTGTATAGTA ACAGA     
+MBFV-NC_012532.1             10  1.31e-03  GAAAACGCA AAACAGCATATTGACGTGGG A         
+MBFV-NC_001437.1              6  1.54e-03      TGACA CCTGGGAATAGACTGGGAGA TCTTC     
+ISFV-NC_024299.2             10  1.54e-03  ACCCCCCGA AATGTGTATATAGCCCATGT T         
+ISFV-NC_027819.1              6  1.99e-03      CACAC CCCCCGAAACGTGATTTATA TGATG     
+ISFV-NC_012932.1              6  2.80e-03      AACCC CCTCCGAAATGTGAAAAATT ATGGG     
+NKV-NC_003635.1               6  2.94e-03      CAAAT TCCCGTTACCGGGGGTGGGG TGATT     
+ISFV-NC_001564.2              6  4.63e-03      ACCTC CTCCGTTAATGTGAAAAAGT ATGGG     
+TBFV-NC_001672.1             10  4.84e-03  AAAATTCCC CCTCGGTAGAGGGGGGGCGG T         
+TBFV-NC_005062.1              7  4.84e-03     CAAATT CCCCCTCATCTGAGGGGGGG CGGT      
+TBFV-NC_027709.1             11  5.99e-03 TTCCTCCTCC TATACCAAATTCCCCCTCGA           
+NKV-NC_004119.1               3  5.99e-03         TC ATCTTGAATGGGGGGCGGCG TGGATATA  
+ISFV-NC_034017.1             11  5.99e-03 CACCCTCTGT AATGTTTAATAAGTTGTGCG           
+ISFV-NC_027817.1              6  6.79e-03      CGTCA CCCCCCGGTTGTGAAAACGA TTGCG     
+TBFV-NC_003690.1             11  7.07e-03 TTCCTCCTCC TATACCAAATTCCCCCTCGT           
+ISFV-NC_034204.1              9  1.66e-02   CACCCTCT GAAATGTTAATAAAACTGTG CG        
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif ACASCATATTGACACCTGGG MEME-1 block diagrams
+--------------------------------------------------------------------------------
+SEQUENCE NAME            POSITION P-VALUE  MOTIF DIAGRAM
+-------------            ----------------  -------------
+NKV-NC_008718.1                   9.9e-13  9_[+1]_1
+MBFV-NC_015843.2                  9.9e-13  9_[+1]_1
+MBFV-NC_034151.1                  9.9e-13  9_[+1]_1
+MBFV-NC_040776.1                  9.9e-13  9_[+1]_1
+MBFV-NC_018705.3                  9.9e-13  9_[+1]_1
+MBFV-NC_012534.1                  9.9e-13  9_[+1]_1
+MBFV-NC_032088.1                  9.9e-13  9_[+1]_1
+MBFV-NC_009029.2                  9.9e-13  9_[+1]_1
+MBFV-NC_009942.1                  9.9e-13  9_[+1]_1
+MBFV-NC_001563.2                  9.9e-13  9_[+1]_1
+MBFV-NC_006551.1                  9.9e-13  9_[+1]_1
+MBFV-NC_000943.1                  9.9e-13  9_[+1]_1
+MBFV-NC_012533.1                  9.9e-13  9_[+1]_1
+MBFV-NC_009026.2                  9.9e-13  9_[+1]_1
+MBFV-NC_009028.2                  1.6e-12  9_[+1]_1
+MBFV-NC_007580.2                  2.8e-11  10_[+1]
+ISFV-NC_040610.1                  3.7e-11  10_[+1]
+ISFV-NC_024017.1                  1.5e-10  9_[+1]_1
+MBFV-NC_035889.1                  1.9e-09  10_[+1]
+MBFV-NC_002640.1                  1.9e-09  10_[+1]
+MBFV-NC_001475.2                  1.9e-09  10_[+1]
+MBFV-NC_001474.2                  1.9e-09  10_[+1]
+MBFV-NC_001477.1                  1.9e-09  10_[+1]
+MBFV-NC_008719.1                  4.1e-09  9_[+1]_1
+ISFV-NC_027999.1                  2.3e-08  9_[+1]_1
+MBFV-NC_002031.1                  3.4e-08  10_[+1]
+MBFV-NC_012735.1                  3.4e-08  10_[+1]
+ISFV-NC_017086.1                  3.9e-08  9_[+1]_1
+ISFV-NC_016997.1                    5e-06  9_[+1]_1
+NKV-NC_005039.1                   1.2e-05  9_[+1]_1
+TBFV-NC_001809.1                    3e-05  10_[+1]
+TBFV-NC_003687.1                  4.9e-05  10_[+1]
+ISFV-NC_012671.1                  7.7e-05  5_[+1]_5
+ISFV-NC_021069.1                  7.7e-05  5_[+1]_5
+ISFV-NC_005064.1                  0.00037  2_[+1]_8
+ISFV-NC_008604.2                   0.0012  5_[+1]_5
+MBFV-NC_012532.1                   0.0013  9_[+1]_1
+MBFV-NC_001437.1                   0.0015  5_[+1]_5
+ISFV-NC_024299.2                   0.0015  9_[+1]_1
+ISFV-NC_027819.1                    0.002  5_[+1]_5
+ISFV-NC_012932.1                   0.0028  5_[+1]_5
+NKV-NC_003635.1                    0.0029  5_[+1]_5
+ISFV-NC_001564.2                   0.0046  5_[+1]_5
+TBFV-NC_001672.1                   0.0048  9_[+1]_1
+TBFV-NC_005062.1                   0.0048  6_[+1]_4
+TBFV-NC_027709.1                    0.006  10_[+1]
+NKV-NC_004119.1                     0.006  2_[+1]_8
+ISFV-NC_034017.1                    0.006  10_[+1]
+ISFV-NC_027817.1                   0.0068  5_[+1]_5
+TBFV-NC_003690.1                   0.0071  10_[+1]
+ISFV-NC_034204.1                    0.017  8_[+1]_2
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif ACASCATATTGACACCTGGG MEME-1 in BLOCKS format
+--------------------------------------------------------------------------------
+BL   MOTIF ACASCATATTGACACCTGGG width=20 seqs=51
+NKV-NC_008718.1          (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_015843.2         (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_034151.1         (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_040776.1         (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_018705.3         (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_012534.1         (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_032088.1         (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_009029.2         (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_009942.1         (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_001563.2         (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_006551.1         (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_000943.1         (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_012533.1         (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_009026.2         (   10) ACAGCATATTGACACCTGGG  1 
+MBFV-NC_009028.2         (   10) ACAGCATATTGACGCCTGGG  1 
+MBFV-NC_007580.2         (   11) ACAGCATATTGACACCTGGA  1 
+ISFV-NC_040610.1         (   11) ACAGCATATTGACACCAGGG  1 
+ISFV-NC_024017.1         (   10) ATAGCATATTGACACTTGGG  1 
+MBFV-NC_035889.1         (   11) ACAGCATATTGACGCTGGGA  1 
+MBFV-NC_002640.1         (   11) ACAGCATATTGACGCTGGGA  1 
+MBFV-NC_001475.2         (   11) ACAGCATATTGACGCTGGGA  1 
+MBFV-NC_001474.2         (   11) ACAGCATATTGACGCTGGGA  1 
+MBFV-NC_001477.1         (   11) ACAGCATATTGACGCTGGGA  1 
+MBFV-NC_008719.1         (   10) GGACCATATTGACGCCTGGG  1 
+ISFV-NC_027999.1         (   10) GCTTCATATTGACACCAGGG  1 
+MBFV-NC_002031.1         (   11) GGACCATATTGACGCCAGGG  1 
+MBFV-NC_012735.1         (   11) GGACCATATTGACGCCAGGG  1 
+ISFV-NC_017086.1         (   10) GCACTATATCGACACTTGGG  1 
+ISFV-NC_016997.1         (   10) CTATTATATCGACACCTAGG  1 
+NKV-NC_005039.1          (   10) GCAATATGTTGACATCAGGG  1 
+TBFV-NC_001809.1         (   11) ATACCAAATTTCCCCCTCGA  1 
+TBFV-NC_003687.1         (   11) ATACTAAATTTCCCCCAGGA  1 
+ISFV-NC_012671.1         (    6) CCCCCGAAATGTGTATTGTG  1 
+ISFV-NC_021069.1         (    6) CCCCCGAAATGTGTATTGTG  1 
+ISFV-NC_005064.1         (    3) CCTCCGTAATGTGAAAAAGT  1 
+ISFV-NC_008604.2         (    6) CTCCCGAAATGTGTATAGTA  1 
+MBFV-NC_012532.1         (   10) AAACAGCATATTGACGTGGG  1 
+MBFV-NC_001437.1         (    6) CCTGGGAATAGACTGGGAGA  1 
+ISFV-NC_024299.2         (   10) AATGTGTATATAGCCCATGT  1 
+ISFV-NC_027819.1         (    6) CCCCCGAAACGTGATTTATA  1 
+ISFV-NC_012932.1         (    6) CCTCCGAAATGTGAAAAATT  1 
+NKV-NC_003635.1          (    6) TCCCGTTACCGGGGGTGGGG  1 
+ISFV-NC_001564.2         (    6) CTCCGTTAATGTGAAAAAGT  1 
+TBFV-NC_001672.1         (   10) CCTCGGTAGAGGGGGGGCGG  1 
+TBFV-NC_005062.1         (    7) CCCCCTCATCTGAGGGGGGG  1 
+TBFV-NC_027709.1         (   11) TATACCAAATTCCCCCTCGA  1 
+NKV-NC_004119.1          (    3) ATCTTGAATGGGGGGCGGCG  1 
+ISFV-NC_034017.1         (   11) AATGTTTAATAAGTTGTGCG  1 
+ISFV-NC_027817.1         (    6) CCCCCCGGTTGTGAAAACGA  1 
+TBFV-NC_003690.1         (   11) TATACCAAATTCCCCCTCGT  1 
+ISFV-NC_034204.1         (    9) GAAATGTTAATAAAACTGTG  1 
+//
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif ACASCATATTGACACCTGGG MEME-1 position-specific scoring matrix
+--------------------------------------------------------------------------------
+log-odds matrix: alength= 4 w= 20 n= 561 bayes= 3.32193 E= 1.3e-142 
+    73     -5    -64   -176 
+  -155    150   -186    -54 
+    91    -46  -1232    -18 
+  -213     54    125   -176 
+  -413    162   -145    -35 
+    87   -205     14   -135 
+   -67   -263   -344    186 
+   145  -1232   -244   -334 
+   -67   -363   -344    190 
+  -181   -131   -344    198 
+  -413  -1232    195    -35 
+    96   -163   -145    -18 
+  -313    150     36  -1232 
+    68   -131     25   -102 
+  -113    150   -112   -176 
+  -213    127   -112     24 
+   -55  -1232    -12    151 
+  -155   -131    184   -334 
+ -1232   -263    198    -76 
+   -43  -1232    160   -102 
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif ACASCATATTGACACCTGGG MEME-1 position-specific probability matrix
+--------------------------------------------------------------------------------
+letter-probability matrix: alength= 4 w= 20 nsites= 51 E= 1.3e-142 
+ 0.568627  0.235294  0.137255  0.058824 
+ 0.117647  0.686275  0.058824  0.137255 
+ 0.647059  0.176471  0.000000  0.176471 
+ 0.078431  0.352941  0.509804  0.058824 
+ 0.019608  0.745098  0.078431  0.156863 
+ 0.627451  0.058824  0.235294  0.078431 
+ 0.215686  0.039216  0.019608  0.725490 
+ 0.941176  0.000000  0.039216  0.019608 
+ 0.215686  0.019608  0.019608  0.745098 
+ 0.098039  0.098039  0.019608  0.784314 
+ 0.019608  0.000000  0.823529  0.156863 
+ 0.666667  0.078431  0.078431  0.176471 
+ 0.039216  0.686275  0.274510  0.000000 
+ 0.549020  0.098039  0.254902  0.098039 
+ 0.156863  0.686275  0.098039  0.058824 
+ 0.078431  0.588235  0.098039  0.235294 
+ 0.235294  0.000000  0.196078  0.568627 
+ 0.117647  0.098039  0.764706  0.019608 
+ 0.000000  0.039216  0.843137  0.117647 
+ 0.254902  0.000000  0.647059  0.098039 
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif ACASCATATTGACACCTGGG MEME-1 regular expression
+--------------------------------------------------------------------------------
+[AC]CA[GC]C[AG][TA]A[TA]TGA[CG][AG]C[CT][TA]GG[GA]
+--------------------------------------------------------------------------------
+
+
+
+
+Time  0.37 secs.
+
+********************************************************************************
+
+
+********************************************************************************
+SUMMARY OF MOTIFS
+********************************************************************************
+
+--------------------------------------------------------------------------------
+	Combined block diagrams: non-overlapping sites with p-value < 0.0001
+--------------------------------------------------------------------------------
+SEQUENCE NAME            COMBINED P-VALUE  MOTIF DIAGRAM
+-------------            ----------------  -------------
+ISFV-NC_012932.1                 3.04e-02  30
+ISFV-NC_001564.2                 4.98e-02  30
+ISFV-NC_008604.2                 1.36e-02  30
+ISFV-NC_005064.1                 4.02e-03  30
+ISFV-NC_027819.1                 2.16e-02  30
+ISFV-NC_034204.1                 1.68e-01  30
+ISFV-NC_021069.1                 8.42e-04  5_[+1(7.65e-05)]_5
+ISFV-NC_024299.2                 1.68e-02  30
+ISFV-NC_027817.1                 7.22e-02  30
+ISFV-NC_012671.1                 8.42e-04  5_[+1(7.65e-05)]_5
+ISFV-NC_034017.1                 6.40e-02  30
+ISFV-NC_017086.1                 4.31e-07  9_[+1(3.92e-08)]_1
+ISFV-NC_016997.1                 5.47e-05  9_[+1(4.98e-06)]_1
+ISFV-NC_027999.1                 2.53e-07  9_[+1(2.30e-08)]_1
+ISFV-NC_040610.1                 4.07e-10  10_[+1(3.70e-11)]
+ISFV-NC_024017.1                 1.70e-09  9_[+1(1.55e-10)]_1
+MBFV-NC_009026.2                 1.09e-11  9_[+1(9.88e-13)]_1
+MBFV-NC_001477.1                 2.05e-08  10_[+1(1.86e-09)]
+MBFV-NC_001474.2                 2.05e-08  10_[+1(1.86e-09)]
+MBFV-NC_001475.2                 2.05e-08  10_[+1(1.86e-09)]
+MBFV-NC_002640.1                 2.05e-08  10_[+1(1.86e-09)]
+MBFV-NC_012533.1                 1.09e-11  9_[+1(9.88e-13)]_1
+MBFV-NC_001437.1                 1.68e-02  30
+MBFV-NC_000943.1                 1.09e-11  9_[+1(9.88e-13)]_1
+MBFV-NC_007580.2                 3.10e-10  10_[+1(2.82e-11)]
+MBFV-NC_006551.1                 1.09e-11  9_[+1(9.88e-13)]_1
+MBFV-NC_001563.2                 1.09e-11  9_[+1(9.88e-13)]_1
+MBFV-NC_009942.1                 1.09e-11  9_[+1(9.88e-13)]_1
+MBFV-NC_009029.2                 1.09e-11  9_[+1(9.88e-13)]_1
+MBFV-NC_032088.1                 1.09e-11  9_[+1(9.88e-13)]_1
+MBFV-NC_012534.1                 1.09e-11  9_[+1(9.88e-13)]_1
+MBFV-NC_009028.2                 1.76e-11  9_[+1(1.60e-12)]_1
+MBFV-NC_018705.3                 1.09e-11  9_[+1(9.88e-13)]_1
+MBFV-NC_040776.1                 1.09e-11  9_[+1(9.88e-13)]_1
+MBFV-NC_034151.1                 1.09e-11  9_[+1(9.88e-13)]_1
+MBFV-NC_015843.2                 1.09e-11  9_[+1(9.88e-13)]_1
+MBFV-NC_012532.1                 1.43e-02  30
+MBFV-NC_035889.1                 2.05e-08  10_[+1(1.86e-09)]
+MBFV-NC_008719.1                 4.50e-08  9_[+1(4.09e-09)]_1
+MBFV-NC_012735.1                 3.78e-07  10_[+1(3.44e-08)]
+MBFV-NC_002031.1                 3.78e-07  10_[+1(3.44e-08)]
+NKV-NC_008718.1                  1.09e-11  9_[+1(9.88e-13)]_1
+NKV-NC_005039.1                  1.34e-04  9_[+1(1.22e-05)]_1
+NKV-NC_003635.1                  3.18e-02  30
+NKV-NC_004119.1                  6.40e-02  30
+TBFV-NC_003690.1                 7.51e-02  30
+TBFV-NC_001809.1                 3.35e-04  10_[+1(3.04e-05)]
+TBFV-NC_005062.1                 5.20e-02  30
+TBFV-NC_003687.1                 5.36e-04  10_[+1(4.87e-05)]
+TBFV-NC_027709.1                 6.40e-02  30
+TBFV-NC_001672.1                 5.20e-02  30
+--------------------------------------------------------------------------------
+
+********************************************************************************
+
+
+********************************************************************************
+Stopped because requested number of motifs (1) found.
+********************************************************************************
+
+CPU: noble-meme.grid.gs.washington.edu
+
+********************************************************************************
