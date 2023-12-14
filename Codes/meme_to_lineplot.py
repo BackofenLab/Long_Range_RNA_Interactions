@@ -128,6 +128,9 @@ def draw_extra_lineplot(df, meme_sites, extra_bases_roi, output, virus_class):
                        Line2D([0], [0], color='orange', lw=8, label='Subopt'),
                        Line2D([0], [0], color='r', alpha=0.3, lw=linewidths["MEME"], label='MEME Hit'),
                        Line2D([0], [0], color="blue", lw=8, label='CM Hit', alpha=0.5),]
+    if virus_class is "ISFV":
+        legend_elements = [Line2D([0], [0], color=CDS_colours["cISFVG"], lw=8, label=f"{'cISFV'}-CDS"),
+                           Line2D([0], [0], color=CDS_colours["dISFVG"], lw=8, label=f"{'dISFV'}-CDS")] + legend_elements[1:]
     side5.legend(handles=legend_elements[:-1],loc="upper left", prop={"size": 16})
     side3.legend(handles=legend_elements,loc="upper left", prop={"size": 16})
     plt.suptitle(f"Interaction Lineplot {virus_class}", fontsize=48)
@@ -158,6 +161,7 @@ def meme_to_lineplot(df, extra_bases_roi, meme_output):
                 motif_start = int(l_split[1])
                 motif_end = motif_start + len(l_split[4])
                 id = l_split0_split[1]
+                # if l_split[2].split("-")[1] > THRESHOLD: ## has form of "8.92e-11"
                 d[l_split0_split[0]][id] = (motif_start, motif_end)
             elif trigger and l.startswith("--------------"):
                 break

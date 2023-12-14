@@ -70,7 +70,11 @@ def get_locarna_sequences(param_df_path, inta_df_path, output_path):
         part5 = seq5[CDS_start-CDS_left:CDS_start+CDS_right]
         part3 = seq3[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
         seq_dir["all"].append((f"{row['class_x']}-{row['id']}", part5, part3))
-        seq_dir[row['class_x']].append((f"{row['class_x']}-{row['id']}", part5, part3))
+        if row['class_x'] != "ISFV":
+            seq_dir[row['class_x']].append((f"{row['class_x']}-{row['id']}", part5, part3))
+        else: # Separate cISFV and dISFV
+            group_name = row['type_x'][:-1]
+            seq_dir[group_name].append((f"{group_name}-{row['id']}", part5, part3))
     for seq_class in seq_dir:
         make_locarna_fasta(seq_dir[seq_class], f"{output_path}/locARNA_{seq_class}_input.fa", CDS_left, CDS_right)
         run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}")
