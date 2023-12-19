@@ -29,7 +29,7 @@ def draw_lineplots(df, extra_bases_roi, output):
     extra_bases_roi (int): Amount of extra bases from the CDS used on each side
     output (str): Filepath where the plot should be saved
     """
-    ## Need 3 plots:
+    ## Need 2 plots:
     ## 1: UTR5+some_CDS+t_inter (aligned to UTR5/CDS transition)
     ## 2: some_CDS+UTR3+q_inter (aligned to end of UTR3)
     plt.style.use("seaborn-darkgrid")
