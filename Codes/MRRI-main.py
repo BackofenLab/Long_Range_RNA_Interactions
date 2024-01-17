@@ -58,7 +58,6 @@ def findBinary(bin_name):
 
    
 def printCSVRow(B1,B2):
-    return ###################
     d1 = B1
     d2 = B2
     if (d2 == None):
@@ -80,11 +79,10 @@ def printCSVRow(B1,B2):
                 line.append(d1[key])
             else:
                 line.append(str(d1[key])+':'+str(d2[key]))        
-    print((';\t').join(line))
+    ##print((';\t').join(line))
     return E ########################################
 
 def csvHeader(B1):
-    return #############################
     headerNames = []
     for element in sorted(B1.keys()):
         headerNames.append(element)
@@ -99,22 +97,66 @@ def sameBlock( Block1, Block2 ):
     result = all( B2[k]==B3[k] for k in ('start1', 'end1', 'start2', 'end2'))
     #print(result)
 
+
+def hacked_main(q, t, p): 
+    """
+    ....WIP....
+    """
+    {"query": q,
+     "target": t,
+     "parameterFile": p}
+    MRRIHandler = createMRRI(args)
+    #MRRIHandler = main()
+    for qId in MRRIHandler.querySeq.keys():
+        for tId in MRRIHandler.targetSeq.keys():
+            B2 = dict({ 'id1': tId, 'id2' : qId})
+            B1 = MRRIHandler.runIntaRNA(B2)
+            ##print(B1) ### v1: Only 1 Round (like normal IntaRNA
+            ##break
+            B2 = None
+            B3 = None
+            #csvHeader(B1) ### These lines are only printing stuff and are useless
+            iteration = 1
+            E2 = None
+            while True:
+                if iteration % 2 == 1:
+                    E = printCSVRow(B1, B2)################
+                else:
+                    E = printCSVRow(B2, B1)############
+                B3 = MRRIHandler.runIntaRNA(B1)
+                #if(B2 != None and len(B1["hybridDP"]) >= len(B3["hybridDP"])):
+                #if(float(B1["E"]) < float(B3["E"])): ### v2: Directly compare energies
+                if E2 < E: ### v3: Compare new energies
+                #if( B2 == B3):
+                    ####sameBlock(B2, B3)
+                    #print("---------")
+                    print(B1)#########
+                    #print(B2)
+                    #print(B3)
+                    break
+                else:
+                    B2 = B1
+                    B1 = B3
+                    E2 = E #########
+                    #print(B1["E"])
+                iteration +=  1
+
+
 if __name__ == '__main__':
     MRRIHandler = main()
     for qId in MRRIHandler.querySeq.keys():
         for tId in MRRIHandler.targetSeq.keys():
             B2 = dict({ 'id1': tId, 'id2' : qId})
             B1 = MRRIHandler.runIntaRNA(B2)
-            #print(B1)
             B2 = None
             B3 = None
-            csvHeader(B1)
+            #csvHeader(B1)
             iteration = 1
             while True:
-                if iteration % 2 == 1:
-                    printCSVRow(B1, B2)
-                else:
-                    printCSVRow(B2, B1)
+                #if iteration % 2 == 1:
+                #    printCSVRow(B1, B2)
+                #else:
+                #    printCSVRow(B2, B1)
                 B3 = MRRIHandler.runIntaRNA(B1)
                 #if(B2 != None and len(B1["hybridDP"]) >= len(B3["hybridDP"])):
                 if(float(B1["E"]) < float(B3["E"])):

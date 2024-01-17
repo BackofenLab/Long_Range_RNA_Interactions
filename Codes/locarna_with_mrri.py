@@ -23,8 +23,8 @@ def make_locarna_fasta(l, output_name, CDS_left, CDS_right):
                 f.write(f"{i[3]} #FS\n")
                 f.write(f"\n")
     
-def get_mrri_file(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, 
-                  mrri_file_output, raw_mrri_output):
+def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, 
+              mrri_file_output, raw_mrri_output):
     params = pd.read_csv(parameter_table_file)
     additional_args = []
     output = pd.DataFrame()
@@ -34,19 +34,20 @@ def get_mrri_file(parameter_table_file, static_param_path, extra_bases, extra_ba
     start2 = []
     end2 = []
     hybridDPs = []
-    with open(raw_mrri_output, "w") as f:
+    with open(raw_mrri_output, "w") as f_raw:
         for index, row in params.iterrows():
             print(f"MRRI: {row['id']}")
-            f.write(f"{row['id']} :\n")
-            f.write(f"{'#'*(len(row['id']) + 2)}\n")
+            f_raw.write(f"{row['id']} :\n")
+            f_raw.write(f"{'#'*(len(row['id']) + 2)}\n")
             stdout, d = run_mrri(row["seq5"], row["seq3"], row['id'],
                                         extra_bases, extra_bases_roi, static_param_path)
-            f.write(f"{stdout}\n")
+            f_raw.write(f"{stdout}\n")
             hybridDPs.append(d["hybridDP"])
             start1.append(d['start1'])
             end1.append(d['end1'])
             start2.append(d['start2'])
             end2.append(d['end2'])
+            #raise
     output = params
     output["hybridDP"] = hybridDPs
     output["start1"] = start1
@@ -56,11 +57,8 @@ def get_mrri_file(parameter_table_file, static_param_path, extra_bases, extra_ba
     output.to_csv(mrri_file_output, index=False)
 
 def main_loc_with_mrri(mrri_file_path, cm_path,
-                       parameter_table_file, output_path):
-    CDS_left = 30
-    CDS_right = 70
-    CMHit_left = 30
-    CMHit_right = 30
+                       parameter_table_file, output_path,
+                       CDS_left, CDS_right, CMHit_left, CMHit_right):
     os.makedirs(output_path, exist_ok=True)
 
     mrri_file = pd.read_csv(mrri_file_path)
@@ -71,19 +69,24 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
     for index, row in merged_df.iterrows():
         if not "cm_hit_f" in row:
             raise Exception("Dataframe provided does not contain CM-search hits")
-        elif math.isnan(row["cm_hit_f"]):
+        elif math.isnan(row["cm_hit_f"]): ## Skip sequences without CMHits
             continue
         seq5 = row["seq5"]
         seq3 = row["seq3"]
         CDS_start = row["UTR5len_x"]
         CMhit_start = int(row["cm_hit_f"]) - row["UTR3len_x"]
+        CM_right_border = CMhit_start+CMHit_right
         part5 = seq5[CDS_start-CDS_left:CDS_start+CDS_right]
         part3 = seq3[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
 
         hybridDP_split = row['hybridDP'].split("&")
-        FS_seq_5 = ("."*row["start1"] + hybridDP_split[0] + "."*(len(seq5)-row["end1"]))[CDS_start-CDS_left:CDS_start+CDS_right]
-        FS_seq_3 = ("."*row["start2"] + hybridDP_split[1] + "."*(len(seq3)-row["end2"]))[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
-        FS_seq = FS_seq_5 + "NNNNNNN" + FS_seq_3 
+        
+        FS_seq_5 = ("."*(row["start1"]+len(seq5)-200) + hybridDP_split[0] + "."*(100-row["end1"]))[CDS_start-CDS_left:CDS_start+CDS_right]
+        FS_seq_3 = ("."*(row["start2"]+200) + hybridDP_split[1] + "."*(len(seq3)-(row["end2"]+200)))[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
+        FS_seq = FS_seq_5 + "NNNNNNN" + FS_seq_3
+        #print(row["id"])
+        #print(FS_seq)
+        #raise
 
         seq_dir["all"].append((f"{row['class_x']}-{row['id']}", part5, part3, FS_seq))
         if row['class_x'] != "ISFV":
@@ -96,7 +99,7 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
             seq_dir["dISFV+TBFV"].append((f"{'dISFV+TBFV'}-{row['id']}", part5, part3, FS_seq))
     for seq_class in seq_dir:
         make_locarna_fasta(seq_dir[seq_class], f"{output_path}/locARNA_{seq_class}_input.fa", CDS_left, CDS_right)
-        #raise
+        #raise #####
         run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}")
         run_rnaalifold(f"{output_path}/{seq_class}/results")
         

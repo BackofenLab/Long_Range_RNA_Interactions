@@ -27,16 +27,13 @@ def make_locarna_fasta(l, output_name, CDS_left, CDS_right):
 
 
 
-def main_locarna(param_df_path, inta_df_path, output_path):
+def main_locarna(param_df_path, inta_df_path, output_path,
+                 CDS_left, CDS_right, CMHit_left, CMHit_right):
     """Run locARNA with RNAalifold.
     param_df_path (str): Path to the parameter dataframe
     inta_df_path (str): Path to the dataframe resulting from IntaRNA
     output_path (int): Output directory for the extracted sequences
     """
-    CDS_left = 30
-    CDS_right = 70
-    CMHit_left = 30
-    CMHit_right = 30
     os.makedirs(output_path, exist_ok=True)
     seq_dir = collections.defaultdict(list)
     param_df = pd.read_csv(param_df_path)

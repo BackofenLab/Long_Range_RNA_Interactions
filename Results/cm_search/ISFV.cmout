@@ -19,5 +19,5 @@ NIEV_4.1.18.1        -         I.3SL                -          cm        1      
 # Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa
 # Option settings: cmsearch --tblout Results/cm_search/ISFV.cmout --toponly Data/Flavivirus_Covariance/ISFV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa 
 # Current dir:     /home/arkanini/Long_Range_RNA_Interactions
-# Date:            Tue Dec 19 16:53:20 2023
+# Date:            Thu Jan 11 15:40:21 2024
 # [ok]

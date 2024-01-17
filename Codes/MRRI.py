@@ -72,9 +72,28 @@ class MRRI():
             complete += " --parameterFile="+self.args.parameterFile
         # set require CSV columns
         complete += " --outCsvCols=id1,start1,end1,id2,start2,end2,subseqDP,hybridDP,E,E_hybrid,ED1,ED2"
+        ########################################
+        ############ Hacked in #################
+        ########################################
+        UTR5pCDS = self.targetSeq[B1['id1']]
+        UTR3pCDS = self.querySeq[B1['id2']]
+        tidxpos0 = -(len(UTR5pCDS)-200) # len of UTR5 alone
+        tregion_s = tidxpos0 # = len(UTR5)
+        tregion_e = 100 # = 100
+        qidxpos0 = -200 # = -200
+        qregion_s = -100 # = -100
+        qregion_e = len(UTR3pCDS)-200 # len of UTR3 alone
+        complete += f" --tidxpos0 {str(tidxpos0)} " ## Transition UTR5-CDS
+        complete += f"--qidxpos0 {str(qidxpos0)} "  ## Transition CDS-UTR3
+        complete += f"--tregion {str(tregion_s)}-{str(tregion_e)} " ## UTR5start to end+100CDS
+        complete += f"--qregion {str(qregion_s)}-{str(qregion_e)} " ## 100CDS to UTR3end ####
+        ########################################
+        ########################################
+        ########################################
         # TODO (somewhen) parse parameterFile for outCsvCols and add user-requested csv-col ids not already within the list
         if B1.keys().__contains__('start1') and B1.keys().__contains__('start2'):
             complete += ' --tAccConstr="b:'+B1['start1']+'-'+B1['end1']+'" --qAccConstr="b:'+B1['start2']+'-'+B1['end2']+'" '
+        #print("".join(complete))
         return self.csv2dict(self.runCmdLine(complete)[0].replace("query",B1['id2']).replace("target",B1['id1']))
         
 

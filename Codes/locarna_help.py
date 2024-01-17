@@ -50,8 +50,8 @@ def run_ps_to_pdf(ps_file, output):
 
 
 def run_mrri(UTR5pCDS, UTR3pCDS, ID, extra_bases, extra_bases_roi, static_param_path):
-    # 
     cmd = ["python", "Codes/MRRI-main.py", "-q", UTR3pCDS, "-t", UTR5pCDS, "-p", static_param_path]
+    #print(" ".join(cmd))
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     p.wait()
     stdout = list(p.stdout)[0].decode("utf-8")

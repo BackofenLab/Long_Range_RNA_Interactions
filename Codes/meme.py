@@ -26,6 +26,10 @@ def get_meme_sequences(param_df_path, inta_df_path, output_path):
     inta_df_path (str): Path to the dataframe resulting from IntaRNA
     output_path (str): Output directory for the extracted sequences
     """
+    site1 = (-40, 0)  # Position from CDS start
+    site2 = (20, 60)  # Position from CDS start
+    site3 = (-25, 5)  # Position from CMHit start
+    site4 = (5, 35)   # Position from CMHit start
     os.makedirs(output_path, exist_ok=True)
     list_site_1 = []
     list_site_2 = []
@@ -45,10 +49,10 @@ def get_meme_sequences(param_df_path, inta_df_path, output_path):
         seq3 = row["seq3"]
         CDS_start = row["UTR5len_x"]
         CMhit_start = int(row["cm_hit_f"]) - row["UTR3len_x"]
-        part1 = seq5[CDS_start-40:CDS_start+0]
-        part2 = seq5[CDS_start+20:CDS_start+60]
-        part3 = seq3[CMhit_start-25:CMhit_start+5]
-        part4 = seq3[CMhit_start+5:CMhit_start+35]
+        part1 = seq5[CDS_start+site1[0]:CDS_start+site1[1]]
+        part2 = seq5[CDS_start+site2[0]:CDS_start+site2[1]]
+        part3 = seq3[CMhit_start+site3[0]:CMhit_start+site3[1]]
+        part4 = seq3[CMhit_start+site4[0]:CMhit_start+site4[1]]
         list_site_1.append((f"{row['class_x']}-{row['id']}", part1))
         list_site_2.append((f"{row['class_x']}-{row['id']}", part2))
         list_site_3.append((f"{row['class_x']}-{row['id']}", part3))
