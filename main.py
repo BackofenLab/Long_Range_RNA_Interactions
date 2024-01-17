@@ -9,6 +9,19 @@ from Codes.locarna_with_mrri import main_mrri, main_loc_with_mrri
 from Codes.cds_to_protein import cds_to_proteins
 import pandas as pd
 
+tasks = { # Note: You cannot run later tasks without running the earlier ones at least once.
+        "create_parameter_tables" : True,
+        "run_IntaRNA"             : True,
+        "CREATE_CMs"              : False, # Takes very long. Do not set to true unless new data.
+        "run_CM_search"           : True,
+        "draw_IntaRNA_plots"      : True,
+        "MEME+GLAM2"              : True,
+        "run_locARNA"             : True,
+        "run_MRRI"                : True,
+        "locARNA+MRRI"            : True,
+        "draw_MRRI_plots"         : True,
+        "CDS_to_proteins"         : True,
+        }
 
 ## Input IntaRNA Paths:
 database_path = "Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111"
@@ -24,16 +37,18 @@ stockholm_directory = "Data/Flavivirus_Stockholm"
 
 ## Output Covariance Model Paths:
 covariance_dir = "Data/Flavivirus_Covariance"
-cm_output = "Results/cm_search"
+cm_output_dir = "Results/cm_search"
+cm_search_file = f"{cm_output_dir}/Inta_plus_CM.csv"
 
 ## MRRI+locARNA paths:
 raw_MRRI_output = "Results/MRRI_raw_output.txt"
 mrri_file_path = "Results/MRRI_output.csv"
 output_loc_mmri_path = "Results/locARNA_with_MRRI"
+mrri_lineplot_path = "Results/interaction_lineplot_MRRI.png"
 
 ## Outputs
 energy_histo = "Results/energy_histo.png"
-line_plot_output = "Results/interaction_lineplot.png"
+lineplot_output = "Results/interaction_lineplot.png"
 
 meme_output = "Results/MEME"
 locarna_output = "Results/locARNA"
@@ -59,22 +74,39 @@ static_d = {"energyVRNA": "Data/rna_andronescu2007.par",
 
 
 if __name__ == "__main__":
-    #write_static_parameters(static_d, static_param_path)
-    #create_parameter_table(database_path, extra_bases, parameter_table_file)
-    #main_intarna(static_param_path, extra_bases, extra_bases_roi,
-    #             parameter_table_file, IntaRNA_output, raw_IntaRNA_output,
-    #             outNumber)
-    #df = pd.read_csv(IntaRNA_output)
-    ###create_cms(stockholm_directory, covariance_dir) ## Do not uncomment unless new data.
-    #cm_search(df, covariance_dir, database_path, cm_output)
-    #df = pd.read_csv(f"{cm_output}/Inta_plus_CM.csv")
-    #draw_lineplots(df, extra_bases_roi, line_plot_output)
-    #draw_energy_histo(df, energy_histo)
-    #draw_energy_histo_subopt(df, energy_histo)
-    #get_meme_sequences(parameter_table_file, f"{cm_output}/Inta_plus_CM.csv", meme_output)    
-    #meme_to_lineplot(df, extra_bases_roi, meme_output)
-    #glam2_to_lineplot(df, extra_bases_roi, meme_output) # HIGHLY improvised..
-    #main_locarna(parameter_table_file, f"{cm_output}/Inta_plus_CM.csv", locarna_output, , CDS_left, CDS_right, CMHit_left, CMHit_right)
-    main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, mrri_file_path, raw_MRRI_output)
-    main_loc_with_mrri(mrri_file_path, f"{cm_output}/Inta_plus_CM.csv", parameter_table_file, output_loc_mmri_path, CDS_left, CDS_right, CMHit_left, CMHit_right)
-    #cds_to_proteins(parameter_table_file, amino_acids_output, extra_bases_roi)
+    if tasks["create_parameter_tables"]:
+        write_static_parameters(static_d, static_param_path)
+        create_parameter_table(database_path, extra_bases, parameter_table_file)
+    if tasks["run_IntaRNA"]:
+        main_intarna(static_param_path, extra_bases, extra_bases_roi,
+                     parameter_table_file, IntaRNA_output, raw_IntaRNA_output,
+                     outNumber)
+    if tasks["CREATE_CMs"]:  ## Do not execute unless new data.
+        create_cms(stockholm_directory, covariance_dir)
+    if tasks["run_CM_search"]:
+        df = pd.read_csv(IntaRNA_output)
+        cm_search(df, covariance_dir, database_path, cm_output_dir, cm_search_file)
+    if tasks["draw_IntaRNA_plots"]:
+        df = pd.read_csv(cm_search_file)
+        draw_lineplots(df, extra_bases_roi, lineplot_output)
+        draw_energy_histo(df, energy_histo)
+        draw_energy_histo_subopt(df, energy_histo)
+    if tasks["MEME+GLAM2"]:
+        get_meme_sequences(parameter_table_file, cm_search_file, meme_output)    
+        meme_to_lineplot(df, extra_bases_roi, meme_output)
+        glam2_to_lineplot(df, extra_bases_roi, meme_output) # HIGHLY improvised..
+    if tasks["run_locARNA"]:
+        main_locarna(parameter_table_file, cm_search_file, locarna_output, CDS_left, CDS_right, CMHit_left, CMHit_right)
+    if tasks["run_MRRI"]:
+        main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, mrri_file_path, raw_MRRI_output)
+    if tasks["locARNA+MRRI"]:
+        main_loc_with_mrri(mrri_file_path, cm_search_file, parameter_table_file, output_loc_mmri_path, CDS_left, CDS_right, CMHit_left, CMHit_right)
+    if tasks["draw_MRRI_plots"]:
+        mrri_df = pd.read_csv(mrri_file_path)
+        cmdf = pd.read_csv(cm_search_file)
+        mrri_df["cm_hit_f"] = pd.Series(cmdf["cm_hit_f"])
+        mrri_df["cm_hit_t"] = pd.Series(cmdf["cm_hit_t"])
+        mrri_df["cm_hit_src"] = pd.Series(cmdf["cm_hit_src"])
+        draw_lineplots(mrri_df, extra_bases_roi, mrri_lineplot_path, nosubopts=True)
+    if tasks["CDS_to_proteins"]:
+        cds_to_proteins(parameter_table_file, amino_acids_output, extra_bases_roi)

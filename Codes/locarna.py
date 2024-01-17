@@ -27,36 +27,37 @@ def make_locarna_fasta(l, output_name, CDS_left, CDS_right):
 
 
 
-def main_locarna(param_df_path, inta_df_path, output_path,
+def main_locarna(param_df_path, cm_path, output_path,
                  CDS_left, CDS_right, CMHit_left, CMHit_right):
     """Run locARNA with RNAalifold.
     param_df_path (str): Path to the parameter dataframe
-    inta_df_path (str): Path to the dataframe resulting from IntaRNA
+    cm_path (str): Path to the dataframe resulting from CMSearch
     output_path (int): Output directory for the extracted sequences
     """
     os.makedirs(output_path, exist_ok=True)
     seq_dir = collections.defaultdict(list)
     param_df = pd.read_csv(param_df_path)
-    inta_df = pd.read_csv(inta_df_path)
-    merged_df = pd.merge(param_df, inta_df, on=["id"], how="inner")
-    for index, row in merged_df.iterrows():
+    cm_results = pd.read_csv(cm_path)  ## Take the CM-hit starts from previous CM dataframe
+    param_df["cm_hit_f"] = pd.Series(cm_results["cm_hit_f"])  ## Insert them into our dataframe
+
+    for index, row in param_df.iterrows():
         if not "cm_hit_f" in row:
             raise Exception("Dataframe provided does not contain CM-search hits")
         elif math.isnan(row["cm_hit_f"]):
             continue
         seq5 = row["seq5"]
         seq3 = row["seq3"]
-        CDS_start = row["UTR5len_x"]
-        CMhit_start = int(row["cm_hit_f"]) - row["UTR3len_x"]
+        CDS_start = row["UTR5len"]
+        CMhit_start = int(row["cm_hit_f"]) - row["UTR3len"]
         part5 = seq5[CDS_start-CDS_left:CDS_start+CDS_right]
         part3 = seq3[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
-        seq_dir["all"].append((f"{row['class_x']}-{row['id']}", part5, part3))
-        if row['class_x'] != "ISFV":
-            seq_dir[row['class_x']].append((f"{row['class_x']}-{row['id']}", part5, part3))
+        seq_dir["all"].append((f"{row['class']}-{row['id']}", part5, part3))
+        if row['class'] != "ISFV":
+            seq_dir[row['class']].append((f"{row['class']}-{row['id']}", part5, part3))
         else: # Separate cISFV and dISFV
-            group_name = row['type_x'][:-1]
+            group_name = row['type'][:-1]
             seq_dir[group_name].append((f"{group_name}-{row['id']}", part5, part3))
-        if row['class_x'] == "TBFV" or row['type_x'][:-1] == "dISFV": 
+        if row['class'] == "TBFV" or row['type'][:-1] == "dISFV": 
             # dISFV + TBFV alignment
             seq_dir["dISFV+TBFV"].append((f"{'dISFV+TBFV'}-{row['id']}", part5, part3))
     for seq_class in seq_dir:

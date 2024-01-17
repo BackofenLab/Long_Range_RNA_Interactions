@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import collections
 import math
+import ast
 from Codes.locarna_help import run_mlocarna, run_rnaalifold, run_ps_to_pdf, run_mrri
 
 
@@ -29,10 +30,8 @@ def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_
     additional_args = []
     output = pd.DataFrame()
     hybridDPs = []
-    start1 = []
-    end1 = []
-    start2 = []
-    end2 = []
+    t_opt_ranges = []
+    q_opt_ranges = []
     hybridDPs = []
     with open(raw_mrri_output, "w") as f_raw:
         for index, row in params.iterrows():
@@ -43,17 +42,13 @@ def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_
                                         extra_bases, extra_bases_roi, static_param_path)
             f_raw.write(f"{stdout}\n")
             hybridDPs.append(d["hybridDP"])
-            start1.append(d['start1'])
-            end1.append(d['end1'])
-            start2.append(d['start2'])
-            end2.append(d['end2'])
+            t_opt_ranges.append((int(d['start1']), int(d['end1'])))
+            q_opt_ranges.append((int(d['start2']), int(d['end2'])))
             #raise
     output = params
     output["hybridDP"] = hybridDPs
-    output["start1"] = start1
-    output["end1"] = end1
-    output["start2"] = start2
-    output["end2"] = end2
+    output["t_inter_range"] = t_opt_ranges
+    output["q_inter_range"] = q_opt_ranges
     output.to_csv(mrri_file_output, index=False)
 
 def main_loc_with_mrri(mrri_file_path, cm_path,
@@ -61,45 +56,44 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
                        CDS_left, CDS_right, CMHit_left, CMHit_right):
     os.makedirs(output_path, exist_ok=True)
 
-    mrri_file = pd.read_csv(mrri_file_path)
-    cm_results = pd.read_csv(cm_path)
+    mrri_df = pd.read_csv(mrri_file_path)
 
-    merged_df = pd.merge(mrri_file, cm_results, on=["id"], how="inner")
+    cm_results = pd.read_csv(cm_path)  ## Take the CM-hit starts from previous CM dataframe
+    mrri_df["cm_hit_f"] = pd.Series(cm_results["cm_hit_f"])  ## Insert them into our dataframe
+
     seq_dir = collections.defaultdict(list)
-    for index, row in merged_df.iterrows():
+    for index, row in mrri_df.iterrows():
         if not "cm_hit_f" in row:
             raise Exception("Dataframe provided does not contain CM-search hits")
         elif math.isnan(row["cm_hit_f"]): ## Skip sequences without CMHits
             continue
+        start1, end1 = ast.literal_eval(row["t_inter_range"])
+        start2, end2 = ast.literal_eval(row["q_inter_range"])
         seq5 = row["seq5"]
         seq3 = row["seq3"]
-        CDS_start = row["UTR5len_x"]
-        CMhit_start = int(row["cm_hit_f"]) - row["UTR3len_x"]
+        CDS_start = row["UTR5len"]
+        CMhit_start = int(row["cm_hit_f"]) - row["UTR3len"]
         CM_right_border = CMhit_start+CMHit_right
         part5 = seq5[CDS_start-CDS_left:CDS_start+CDS_right]
         part3 = seq3[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
 
         hybridDP_split = row['hybridDP'].split("&")
         
-        FS_seq_5 = ("."*(row["start1"]+len(seq5)-200) + hybridDP_split[0] + "."*(100-row["end1"]))[CDS_start-CDS_left:CDS_start+CDS_right]
-        FS_seq_3 = ("."*(row["start2"]+200) + hybridDP_split[1] + "."*(len(seq3)-(row["end2"]+200)))[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
+        FS_seq_5 = ("."*(start1+len(seq5)-200) + hybridDP_split[0] + "."*(100-end1))[CDS_start-CDS_left:CDS_start+CDS_right]
+        FS_seq_3 = ("."*(start2+200) + hybridDP_split[1] + "."*(len(seq3)-(end2+200)))[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
         FS_seq = FS_seq_5 + "NNNNNNN" + FS_seq_3
-        #print(row["id"])
-        #print(FS_seq)
-        #raise
 
-        seq_dir["all"].append((f"{row['class_x']}-{row['id']}", part5, part3, FS_seq))
-        if row['class_x'] != "ISFV":
-            seq_dir[row['class_x']].append((f"{row['class_x']}-{row['id']}", part5, part3, FS_seq))
+        seq_dir["all"].append((f"{row['class']}-{row['id']}", part5, part3, FS_seq))
+        if row['class'] != "ISFV":
+            seq_dir[row['class']].append((f"{row['class']}-{row['id']}", part5, part3, FS_seq))
         else: # Separate cISFV and dISFV
-            group_name = row['type_x'][:-1]
+            group_name = row['type'][:-1]
             seq_dir[group_name].append((f"{group_name}-{row['id']}", part5, part3, FS_seq))
-        if row['class_x'] == "TBFV" or row['type_x'][:-1] == "dISFV": 
+        if row['class'] == "TBFV" or row['type'][:-1] == "dISFV": 
             # dISFV + TBFV alignment
             seq_dir["dISFV+TBFV"].append((f"{'dISFV+TBFV'}-{row['id']}", part5, part3, FS_seq))
     for seq_class in seq_dir:
         make_locarna_fasta(seq_dir[seq_class], f"{output_path}/locARNA_{seq_class}_input.fa", CDS_left, CDS_right)
-        #raise #####
         run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}")
         run_rnaalifold(f"{output_path}/{seq_class}/results")
         

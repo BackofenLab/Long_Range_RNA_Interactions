@@ -20,7 +20,7 @@ linewidths = {"UTR": 4,
               "Interaction": 4
               }
 
-def draw_lineplots(df, extra_bases_roi, output):
+def draw_lineplots(df, extra_bases_roi, output, nosubopts=False):
     """
     Draw an interaction lineplot 
     showcasing interaction position relative to UTR/CDS.
@@ -57,16 +57,17 @@ def draw_lineplots(df, extra_bases_roi, output):
             side3.plot((row["cm_hit_f"] - row["UTR3len"], row["cm_hit_t"] - row["UTR3len"]), (index, index), 
                        linewidth=linewidths["CMHit"], color=CDS_colours[row["cm_hit_src"]], alpha=0.5, solid_capstyle="butt")
         ## Plot Subopt Interactions:
-        for suboptt in ast.literal_eval(row["suboptts"]): ## 5' Subopt stuff..
-            if suboptt:
-                for subopt in suboptt:
-                    side5.plot((subopt[0], subopt[1]), (index, index), 
-                               linewidth=linewidths["Subopt"], color=main_colours["subopt"], solid_capstyle="butt")
-        for suboptq in ast.literal_eval(row["suboptqs"]): ## 3' Subopt stuff..
-            if suboptq:
-                for subopt in suboptq:
-                    side3.plot((subopt[0] - row["UTR3len"], subopt[1] - row["UTR3len"]), (index, index), 
-                               linewidth=linewidths["Subopt"], color=main_colours["subopt"], solid_capstyle="butt")
+        if not nosubopts:
+            for suboptt in ast.literal_eval(row["suboptts"]): ## 5' Subopt stuff..
+                if suboptt:
+                    for subopt in suboptt:
+                        side5.plot((subopt[0], subopt[1]), (index, index), 
+                                   linewidth=linewidths["Subopt"], color=main_colours["subopt"], solid_capstyle="butt")
+            for suboptq in ast.literal_eval(row["suboptqs"]): ## 3' Subopt stuff..
+                if suboptq:
+                    for subopt in suboptq:
+                        side3.plot((subopt[0] - row["UTR3len"], subopt[1] - row["UTR3len"]), (index, index), 
+                                   linewidth=linewidths["Subopt"], color=main_colours["subopt"], solid_capstyle="butt")
         ## Plot Main Interactions:
         side5.plot((t_tuple[0], t_tuple[1]), (index, index), 
                    linewidth=linewidths["Interaction"], color=main_colours["interaction"], solid_capstyle="butt")
