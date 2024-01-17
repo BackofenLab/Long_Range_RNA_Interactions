@@ -98,50 +98,6 @@ def sameBlock( Block1, Block2 ):
     #print(result)
 
 
-def hacked_main(q, t, p): 
-    """
-    ....WIP....
-    """
-    {"query": q,
-     "target": t,
-     "parameterFile": p}
-    MRRIHandler = createMRRI(args)
-    #MRRIHandler = main()
-    for qId in MRRIHandler.querySeq.keys():
-        for tId in MRRIHandler.targetSeq.keys():
-            B2 = dict({ 'id1': tId, 'id2' : qId})
-            B1 = MRRIHandler.runIntaRNA(B2)
-            ##print(B1) ### v1: Only 1 Round (like normal IntaRNA
-            ##break
-            B2 = None
-            B3 = None
-            #csvHeader(B1) ### These lines are only printing stuff and are useless
-            iteration = 1
-            E2 = None
-            while True:
-                if iteration % 2 == 1:
-                    E = printCSVRow(B1, B2)################
-                else:
-                    E = printCSVRow(B2, B1)############
-                B3 = MRRIHandler.runIntaRNA(B1)
-                #if(B2 != None and len(B1["hybridDP"]) >= len(B3["hybridDP"])):
-                #if(float(B1["E"]) < float(B3["E"])): ### v2: Directly compare energies
-                if E2 < E: ### v3: Compare new energies
-                #if( B2 == B3):
-                    ####sameBlock(B2, B3)
-                    #print("---------")
-                    print(B1)#########
-                    #print(B2)
-                    #print(B3)
-                    break
-                else:
-                    B2 = B1
-                    B1 = B3
-                    E2 = E #########
-                    #print(B1["E"])
-                iteration +=  1
-
-
 if __name__ == '__main__':
     MRRIHandler = main()
     for qId in MRRIHandler.querySeq.keys():
@@ -150,27 +106,34 @@ if __name__ == '__main__':
             B1 = MRRIHandler.runIntaRNA(B2)
             B2 = None
             B3 = None
-            #csvHeader(B1)
+            ##print(B1) ### v1: Only 1 Round (like normal IntaRNA
+            ##break
+            #csvHeader(B1) ### These lines are only printing stuff and are useless
             iteration = 1
+            E2 = 999 ###
+            #E = 0    ###
             while True:
                 #if iteration % 2 == 1:
-                #    printCSVRow(B1, B2)
+                #    E = printCSVRow(B1, B2)
                 #else:
-                #    printCSVRow(B2, B1)
+                #    E = printCSVRow(B2, B1)
                 B3 = MRRIHandler.runIntaRNA(B1)
+                ####E = round(float(B1['E']) + float(B2['E']),2)
                 #if(B2 != None and len(B1["hybridDP"]) >= len(B3["hybridDP"])):
-                if(float(B1["E"]) < float(B3["E"])):
-                #if( B2 == B3):
-                    ####sameBlock(B2, B3)
-                    #print("---------")
-                    print(B1)#########
-                    #print(B2)
-                    #print(B3)
+                if(float(B1["E_hybrid"]) < float(B3["E_hybrid"])): 
+                #if(float(B1["E"]) < float(B3["E"])):  ### v2: Directly compare energies
+                #if E2 <= E: ### v3: Compare new energies # E2: Energy of B1, E: energy of B1
+                #if( B2 == B3): ### v0: Currently doesnt work?
+                    #sameBlock(B2, B3)
+                    #print(E, E2, "WIN")
+                    print(B1)
                     break
                 else:
                     B2 = B1
                     B1 = B3
-                    #print(B1["E"])
+                    #print(E, E2)
+                    #E2 = E
+                    #print(B1)
                 iteration +=  1
 
                 

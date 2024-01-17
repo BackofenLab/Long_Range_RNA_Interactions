@@ -10,17 +10,17 @@ from Codes.cds_to_protein import cds_to_proteins
 import pandas as pd
 
 tasks = { # Note: You cannot run later tasks without running the earlier ones at least once.
-        "create_parameter_tables" : True,
-        "run_IntaRNA"             : True,
-        "CREATE_CMs"              : False, # Takes very long. Do not set to true unless new data.
-        "run_CM_search"           : True,
-        "draw_IntaRNA_plots"      : True,
-        "MEME+GLAM2"              : True,
-        "run_locARNA"             : True,
-        "run_MRRI"                : True,
-        "locARNA+MRRI"            : True,
-        "draw_MRRI_plots"         : True,
-        "CDS_to_proteins"         : True,
+        "create_parameter_tables" : 1,
+        "run_IntaRNA"             : 0,
+        "CREATE_CMs"              : 0, #!# Takes very long. Do not set to true unless new data.
+        "run_CM_search"           : 0,
+        "draw_IntaRNA_plots"      : 0,
+        "MEME+GLAM2"              : 0,
+        "run_locARNA"             : 0,
+        "run_MRRI"                : 1,
+        "locARNA+MRRI"            : 1,
+        "draw_MRRI_plots"         : 1,
+        "CDS_to_proteins"         : 0,
         }
 
 ## Input IntaRNA Paths:
@@ -66,7 +66,7 @@ CMHit_right = 30+0
 
 ## IntaRNA specific:
 static_d = {"energyVRNA": "Data/rna_andronescu2007.par",
-            "intLenMax": 20,
+            #"intLenMax": 20,
             "seedBP": 5,
             "accW": 50,
             "accL": 50,
