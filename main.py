@@ -12,7 +12,7 @@ import pandas as pd
 tasks = { # Note: You cannot run later tasks without running the earlier ones at least once.
         "create_parameter_tables" : 1,
         "run_IntaRNA"             : 0,
-        "CREATE_CMs"              : 0, #!# Takes very long. Do not set to true unless new data.
+        "CREATE_CMs"              : 0, ##!## Takes very long. Do not set to true unless new data.
         "run_CM_search"           : 0,
         "draw_IntaRNA_plots"      : 0,
         "MEME+GLAM2"              : 0,
@@ -20,7 +20,7 @@ tasks = { # Note: You cannot run later tasks without running the earlier ones at
         "run_MRRI"                : 1,
         "locARNA+MRRI"            : 1,
         "draw_MRRI_plots"         : 1,
-        "CDS_to_proteins"         : 0,
+        "CDS_to_proteins"         : 1,
         }
 
 ## Input IntaRNA Paths:
@@ -41,6 +41,7 @@ cm_output_dir = "Results/cm_search"
 cm_search_file = f"{cm_output_dir}/Inta_plus_CM.csv"
 
 ## MRRI+locARNA paths:
+static_param_path_MRRI = "Data/static_parameter_MRRI.cfg"
 raw_MRRI_output = "Results/MRRI_raw_output.txt"
 mrri_file_path = "Results/MRRI_output.csv"
 output_loc_mmri_path = "Results/locARNA_with_MRRI"
@@ -66,7 +67,7 @@ CMHit_right = 30+0
 
 ## IntaRNA specific:
 static_d = {"energyVRNA": "Data/rna_andronescu2007.par",
-            #"intLenMax": 20,
+            "intLenMax": 20,
             "seedBP": 5,
             "accW": 50,
             "accL": 50,
@@ -98,7 +99,11 @@ if __name__ == "__main__":
     if tasks["run_locARNA"]:
         main_locarna(parameter_table_file, cm_search_file, locarna_output, CDS_left, CDS_right, CMHit_left, CMHit_right)
     if tasks["run_MRRI"]:
-        main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, mrri_file_path, raw_MRRI_output)
+        static_d_mrri = dict(static_d)
+        if "intLenMax" in static_d_mrri:
+            del static_d_mrri["intLenMax"]
+        write_static_parameters(static_d_mrri, static_param_path_MRRI)
+        main_mrri(parameter_table_file, static_param_path_MRRI, extra_bases, extra_bases_roi, mrri_file_path, raw_MRRI_output)
     if tasks["locARNA+MRRI"]:
         main_loc_with_mrri(mrri_file_path, cm_search_file, parameter_table_file, output_loc_mmri_path, CDS_left, CDS_right, CMHit_left, CMHit_right)
     if tasks["draw_MRRI_plots"]:

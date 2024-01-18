@@ -105,8 +105,8 @@ class MRRI():
         # set require ED output
         complete += " --out=tAcc:STDOUT --out=qAcc:STDERR"
         # confine output to region of interest
-        l1 = int(B1['end1'])-int(B1['start1'])+1
-        l2 = int(B1['end2'])-int(B1['start2'])+1
+        l1 = min(int(B1['end1'])-int(B1['start1'])+1, 20) ###
+        l2 = min(int(B1['end2'])-int(B1['start2'])+1, 20) ###
         complete += " --tIntLenMax=" + str(l1) + " --qIntLenMax=" +str(l2)
         # run intarna
         outputED = self.runCmdLine( complete )
