@@ -2,7 +2,10 @@ import os
 import sys
 import argparse
 import json
-from MRRI import MRRI
+try:
+    from Codes.MRRI import MRRI
+except:
+    from MRRI import MRRI
 import re, csv
 import numpy as np
 from pathlib import Path
@@ -57,7 +60,7 @@ def findBinary(bin_name):
     return {"exists": exists, "path":bin_name}
 
    
-def printCSVRow(B1,B2):
+def printCSVRow(B1,B2, MRRIHandler):
     d1 = B1
     d2 = B2
     if (d2 == None):
@@ -114,9 +117,9 @@ if __name__ == '__main__':
             #E = 0    ###
             while True:
                 #if iteration % 2 == 1:
-                #    E = printCSVRow(B1, B2)
+                #    E = printCSVRow(B1, B2, MRRIHandler)
                 #else:
-                #    E = printCSVRow(B2, B1)
+                #    E = printCSVRow(B2, B1, MRRIHandler)
                 B3 = MRRIHandler.runIntaRNA(B1)
                 ####E = round(float(B1['E']) + float(B2['E']),2)
                 #if(B2 != None and len(B1["hybridDP"]) >= len(B3["hybridDP"])):
@@ -125,13 +128,11 @@ if __name__ == '__main__':
                 #if E2 <= E: ### v3: Compare new energies # E2: Energy of B1, E: energy of B1
                 #if( B2 == B3): ### v0: Currently doesnt work?
                     #sameBlock(B2, B3)
-                    #print(E, E2, "WIN")
                     print(B1)
                     break
                 else:
                     B2 = B1
                     B1 = B3
-                    #print(E, E2)
                     #E2 = E
                     #print(B1)
                 iteration +=  1

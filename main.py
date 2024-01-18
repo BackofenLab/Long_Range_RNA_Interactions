@@ -11,12 +11,12 @@ import pandas as pd
 
 tasks = { # Note: You cannot run later tasks without running the earlier ones at least once.
         "create_parameter_tables" : 1,
-        "run_IntaRNA"             : 0,
+        "run_IntaRNA"             : 1,
         "CREATE_CMs"              : 0, ##!## Takes very long. Do not set to true unless new data.
-        "run_CM_search"           : 0,
-        "draw_IntaRNA_plots"      : 0,
-        "MEME+GLAM2"              : 0,
-        "run_locARNA"             : 0,
+        "run_CM_search"           : 1,
+        "draw_IntaRNA_plots"      : 1,
+        "MEME+GLAM2"              : 1,
+        "run_locARNA"             : 1,
         "run_MRRI"                : 1,
         "locARNA+MRRI"            : 1,
         "draw_MRRI_plots"         : 1,

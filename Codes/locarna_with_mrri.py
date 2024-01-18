@@ -3,7 +3,7 @@ import pandas as pd
 import collections
 import math
 import ast
-from Codes.locarna_help import run_mlocarna, run_rnaalifold, run_ps_to_pdf, run_mrri
+from Codes.locarna_help import run_mlocarna, run_rnaalifold, run_ps_to_pdf, hacked_MRRI_main
 
 
 def make_locarna_fasta(l, output_name, CDS_left, CDS_right):
@@ -18,7 +18,7 @@ def make_locarna_fasta(l, output_name, CDS_left, CDS_right):
             if len(i[1]) > 0 and len(i[2]) > 0:
                 f.write(f">{i[0]}\n")
                 f.write(f"{i[1]}NNNNNNN{i[2]}\n")
-                f.write(f".{(len(i[1])-1)*'<'}xxxxxxx{len(i[2])*'>'} #S\n")
+                f.write(f"{(len(i[1]))*'<'}xxxxxxx{len(i[2])*'>'} #S\n")
                 f.write(f"{CDS_left*'.'}AAA{(CDS_right-3)*'.'}BBBBBBB{len(i[2])*'.'} #1\n")
                 f.write(f"{CDS_left*'.'}123{(CDS_right-3)*'.'}1234567{len(i[2])*'.'} #2\n")
                 f.write(f"{i[3]} #FS\n")
@@ -38,12 +38,12 @@ def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_
             print(f"MRRI: {row['id']}")
             f_raw.write(f"{row['id']} :\n")
             f_raw.write(f"{'#'*(len(row['id']) + 2)}\n")
-            stdout, d = run_mrri(row["seq5"], row["seq3"], row['id'],
-                                        extra_bases, extra_bases_roi, static_param_path)
+            #stdout, d = run_mrri(row["seq5"], row["seq3"], static_param_path)
+            stdout = hacked_MRRI_main(row["seq5"], row["seq3"], static_param_path)
             f_raw.write(f"{stdout}\n")
-            hybridDPs.append(d["hybridDP"])
-            t_opt_ranges.append((int(d['start1']), int(d['end1'])))
-            q_opt_ranges.append((int(d['start2']), int(d['end2'])))
+            hybridDPs.append(stdout["hybridDP"])
+            t_opt_ranges.append((int(stdout['start1']), int(stdout['end1'])))
+            q_opt_ranges.append((int(stdout['start2']), int(stdout['end2'])))
             #raise
     output = params
     output["hybridDP"] = hybridDPs

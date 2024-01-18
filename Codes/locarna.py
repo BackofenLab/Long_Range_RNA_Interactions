@@ -18,7 +18,7 @@ def make_locarna_fasta(l, output_name, CDS_left, CDS_right):
             if len(i[1]) > 0 and len(i[2]) > 0:
                 f.write(f">{i[0]}\n")
                 f.write(f"{i[1]}NNNNNNN{i[2]}\n")
-                f.write(f".{(len(i[1])-1)*'<'}xxxxxxx{len(i[2])*'>'} #S\n")
+                f.write(f"{(len(i[1]))*'<'}xxxxxxx{len(i[2])*'>'} #S\n")
                 f.write(f"{CDS_left*'.'}AAA{(CDS_right-3)*'.'}BBBBBBB{len(i[2])*'.'} #1\n")
                 f.write(f"{CDS_left*'.'}123{(CDS_right-3)*'.'}1234567{len(i[2])*'.'} #2\n")
                 f.write(f"\n")
