@@ -1,40 +1,40 @@
 #target name         accession query name           accession mdl mdl from   mdl to seq from   seq to strand trunc pass   gc  bias  score   E-value inc description of target
 #------------------- --------- -------------------- --------- --- -------- -------- -------- -------- ------ ----- ---- ---- ----- ------ --------- --- ---------------------
 LIV_2.1.12.1         -         T.3SL                -          cm        1       87      411      497      +    no    1 0.54   0.0  113.8   1.1e-30 !   NC_001809.1 Louping ill virus, complete genome.
-SGEV_2.1.14.1        -         T.3SL                -          cm        1       87      407      493      +    no    1 0.55   0.0  112.9     2e-30 !   NC_027709.1 Spanish goat encephalitis virus isolate AstGoatIREC2011, complete genome.
-POWV_2.1.10.1        -         T.3SL                -          cm        1       87      394      480      +    no    1 0.56   0.0  112.3   2.9e-30 !   NC_003687.1 Powassan virus, complete genome.
-TBEV_2.1.11.1        -         T.3SL                -          cm        1       87      678      764      +    no    1 0.55   0.0  111.4   5.1e-30 !   NC_001672.1 Tick-borne encephalitis virus, complete genome.
-LGTV_2.1.1.1         -         T.3SL                -          cm        1       87      482      568      +    no    1 0.53   0.0  107.8   5.6e-29 !   NC_003690.1 Langat virus, complete genome.
-OHFV_2.1.7.1         -         T.3SL                -          cm        1       87      324      410      +    no    1 0.56   0.0  102.0   2.6e-27 !   NC_005062.1 Omsk hemorrhagic fever virus, complete genome.
-KEDV_1.2.5.1         -         T.3SL                -          cm        1       87      316      384      +    no    1 0.65   0.0   30.4   1.2e-06 !   NC_012533.1 Kedougou virus strain DakAar D1470, complete genome.
-ILHV_1.5.2.1         -         T.3SL                -          cm        1       87      313      385      +    no    1 0.53   0.0   27.2     1e-05 !   NC_009028.2 Ilheus virus, complete genome.
-SEPV_1.7.4.1         -         T.3SL                -          cm        1       87      376      457      +    no    1 0.48   0.0   25.6   2.9e-05 !   NC_008719.1 Sepik virus, complete genome.
-ZIKV_1.6.2.1         -         T.3SL                -          cm        1       87      347      427      +    no    1 0.64   0.0   25.6     3e-05 !   NC_035889.1 Zika virus isolate ZIKV/H. sapiens/Brazil/Natal/2015, complete genome.
-THOV_1.5.16.1        -         T.3SL                -          cm        1       87      480      553      +    no    1 0.50   0.0   25.2   3.9e-05 !   NC_034151.1 T'Ho virus strain T'Ho-Mex07, complete genome.
-TMUV_1.5.5.1         -         T.3SL                -          cm        1       85      538      618      +    3'    3 0.56   0.0   24.1     8e-05 !   NC_015843.2 Tembusu virus flavivirus polyprotein (flavivirus polyprotein gene) gene, complete cds.
-SLEV_1.3.3.1         -         T.3SL                -          cm        1       87      471      547      +    no    1 0.51   0.0   24.1   8.1e-05 !   NC_007580.2 Saint Louis encephalitis virus, complete genome.
-ROCV_1.5.1.1         -         T.3SL                -          cm        1       85      345      424      +    3'    3 0.56   0.0   23.9   9.1e-05 !   NC_040776.1 Rocio virus strain SPH 34675, complete genome.
-EPEV_4.2.14.1        -         T.3SL                -          cm        1       87      232      313      +    no    1 0.45   0.0   23.6   0.00011 !   NC_027999.1 Paraiso Escondido virus isolate Ecuador2012, complete genome.
-DENV2_1.2.2.1        -         T.3SL                -          cm        1       87      376      448      +    no    1 0.49   0.0   23.0   0.00017 !   NC_001474.2 Dengue virus 2, complete genome.
-DENV3_1.2.3.1        -         T.3SL                -          cm        1       87      365      437      +    no    1 0.49   0.0   23.0   0.00017 !   NC_001475.2 Dengue virus 3, complete genome.
-JEV_1.3.1.1          -         T.3SL                -          cm        1       87      501      580      +    no    1 0.49   0.0   22.6   0.00021 !   NC_001437.1 Japanese encephalitis virus, genome.
-NHUV_4.2.8.1         -         T.3SL                -          cm        1       87      362      449      +    no    1 0.36   0.0   22.4   0.00025 !   NC_024017.1 Nhumirim virus strain BrMS-MQ10, complete genome.
-WESSV_1.7.3.1        -         T.3SL                -          cm        1       87      396      475      +    no    1 0.50   0.0   22.1    0.0003 !   NC_012735.1 Wesselsbron virus strain SAH177, complete genome.
-BAGV_1.5.4.1         -         T.3SL                -          cm        1       87      489      565      +    no    1 0.58   0.0   20.4   0.00093 !   NC_012534.1 Bagaza virus strain DakAr B209, complete genome.
-ZIKV_1.6.2.2         -         T.3SL                -          cm        1       87      344      426      +    no    1 0.61   0.0   19.8    0.0014 !   NC_012532.1 Zika virus, complete genome.
-DONV_4.2.4.1         -         T.3SL                -          cm        1       87      261      340      +    no    1 0.40   0.0   19.6    0.0015 !   NC_016997.1 Donggang virus, complete genome.
-DENV1_1.2.1.1        -         T.3SL                -          cm        1       87      387      459      +    no    1 0.47   0.0   19.1    0.0022 !   NC_001477.1 Dengue virus 1, complete genome.
-AROAV_1.1.1.1        -         T.3SL                -          cm        1       86      342      421      +    3'    3 0.59   0.0   16.5     0.012 ?   NC_009026.2 Bussuquara virus, complete genome.
-KOKV_1.4.1.1         -         T.3SL                -          cm        1       87      486      556      +    no    1 0.59   0.0   16.5     0.012 ?   NC_009029.2 Kokobera virus, complete genome.
-CHAOV_4.2.2.1        -         T.3SL                -          cm        1       87      245      322      +    no    1 0.53   0.0   15.2     0.029 ?   NC_017086.1 Chaoyang virus, complete genome.
-NMV_1.4.2.1          -         T.3SL                -          cm        1       87      478      541      +    no    1 0.58   0.0   14.3     0.053 ?   NC_032088.1 New Mapoon virus, complete cds.
+SGEV_2.1.14.1        -         T.3SL                -          cm        1       87      407      493      +    no    1 0.55   0.0  112.9   2.1e-30 !   NC_027709.1 Spanish goat encephalitis virus isolate AstGoatIREC2011, complete genome.
+POWV_2.1.10.1        -         T.3SL                -          cm        1       87      394      480      +    no    1 0.56   0.0  112.3     3e-30 !   NC_003687.1 Powassan virus, complete genome.
+TBEV_2.1.11.1        -         T.3SL                -          cm        1       87      678      764      +    no    1 0.55   0.0  111.4   5.4e-30 !   NC_001672.1 Tick-borne encephalitis virus, complete genome.
+LGTV_2.1.1.1         -         T.3SL                -          cm        1       87      482      568      +    no    1 0.53   0.0  107.8     6e-29 !   NC_003690.1 Langat virus, complete genome.
+OHFV_2.1.7.1         -         T.3SL                -          cm        1       87      324      410      +    no    1 0.56   0.0  102.0   2.8e-27 !   NC_005062.1 Omsk hemorrhagic fever virus, complete genome.
+KEDV_1.2.5.1         -         T.3SL                -          cm        1       87      316      384      +    no    1 0.65   0.0   30.4   1.3e-06 !   NC_012533.1 Kedougou virus strain DakAar D1470, complete genome.
+ILHV_1.5.2.1         -         T.3SL                -          cm        1       87      313      385      +    no    1 0.53   0.0   27.2   1.1e-05 !   NC_009028.2 Ilheus virus, complete genome.
+SEPV_1.7.4.1         -         T.3SL                -          cm        1       87      376      457      +    no    1 0.48   0.0   25.6   3.1e-05 !   NC_008719.1 Sepik virus, complete genome.
+ZIKV_1.6.2.1         -         T.3SL                -          cm        1       87      347      427      +    no    1 0.64   0.0   25.6   3.2e-05 !   NC_035889.1 Zika virus isolate ZIKV/H. sapiens/Brazil/Natal/2015, complete genome.
+THOV_1.5.16.1        -         T.3SL                -          cm        1       87      480      553      +    no    1 0.50   0.0   25.2   4.2e-05 !   NC_034151.1 T'Ho virus strain T'Ho-Mex07, complete genome.
+TMUV_1.5.5.1         -         T.3SL                -          cm        1       85      538      618      +    3'    3 0.56   0.0   24.1   8.5e-05 !   NC_015843.2 Tembusu virus flavivirus polyprotein (flavivirus polyprotein gene) gene, complete cds.
+SLEV_1.3.3.1         -         T.3SL                -          cm        1       87      471      547      +    no    1 0.51   0.0   24.1   8.5e-05 !   NC_007580.2 Saint Louis encephalitis virus, complete genome.
+ROCV_1.5.1.1         -         T.3SL                -          cm        1       85      345      424      +    3'    3 0.56   0.0   23.9   9.7e-05 !   NC_040776.1 Rocio virus strain SPH 34675, complete genome.
+EPEV_4.2.14.1        -         T.3SL                -          cm        1       87      232      313      +    no    1 0.45   0.0   23.6   0.00012 !   NC_027999.1 Paraiso Escondido virus isolate Ecuador2012, complete genome.
+DENV2_1.2.2.1        -         T.3SL                -          cm        1       87      376      448      +    no    1 0.49   0.0   23.0   0.00018 !   NC_001474.2 Dengue virus 2, complete genome.
+DENV3_1.2.3.1        -         T.3SL                -          cm        1       87      365      437      +    no    1 0.49   0.0   23.0   0.00018 !   NC_001475.2 Dengue virus 3, complete genome.
+JEV_1.3.1.1          -         T.3SL                -          cm        1       87      501      580      +    no    1 0.49   0.0   22.6   0.00023 !   NC_001437.1 Japanese encephalitis virus, genome.
+NHUV_4.2.8.1         -         T.3SL                -          cm        1       87      362      449      +    no    1 0.36   0.0   22.4   0.00027 !   NC_024017.1 Nhumirim virus strain BrMS-MQ10, complete genome.
+WESSV_1.7.3.1        -         T.3SL                -          cm        1       87      396      475      +    no    1 0.50   0.0   22.1   0.00032 !   NC_012735.1 Wesselsbron virus strain SAH177, complete genome.
+BAGV_1.5.4.1         -         T.3SL                -          cm        1       87      489      565      +    no    1 0.58   0.0   20.4   0.00099 !   NC_012534.1 Bagaza virus strain DakAr B209, complete genome.
+ZIKV_1.6.2.2         -         T.3SL                -          cm        1       87      344      426      +    no    1 0.61   0.0   19.8    0.0015 !   NC_012532.1 Zika virus, complete genome.
+DONV_4.2.4.1         -         T.3SL                -          cm        1       87      261      340      +    no    1 0.40   0.0   19.6    0.0016 !   NC_016997.1 Donggang virus, complete genome.
+DENV1_1.2.1.1        -         T.3SL                -          cm        1       87      387      459      +    no    1 0.47   0.0   19.1    0.0024 !   NC_001477.1 Dengue virus 1, complete genome.
+AROAV_1.1.1.1        -         T.3SL                -          cm        1       86      342      421      +    3'    3 0.59   0.0   16.5     0.013 ?   NC_009026.2 Bussuquara virus, complete genome.
+KOKV_1.4.1.1         -         T.3SL                -          cm        1       87      486      556      +    no    1 0.59   0.0   16.5     0.013 ?   NC_009029.2 Kokobera virus, complete genome.
+CHAOV_4.2.2.1        -         T.3SL                -          cm        1       87      245      322      +    no    1 0.53   0.0   15.2     0.031 ?   NC_017086.1 Chaoyang virus, complete genome.
+NMV_1.4.2.1          -         T.3SL                -          cm        1       87      478      541      +    no    1 0.58   0.0   14.3     0.056 ?   NC_032088.1 New Mapoon virus, complete cds.
 #
 # Program:         cmsearch
 # Version:         1.1.4 (Dec 2020)
 # Pipeline mode:   SEARCH
 # Query file:      Data/Flavivirus_Covariance/TBFV_3SL.cm
-# Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/all_Flavivirus_RefSeq_20220621_3UTR.fa
-# Option settings: cmsearch --tblout Results/cm_search/TBFV.cmout --toponly Data/Flavivirus_Covariance/TBFV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/all_Flavivirus_RefSeq_20220621_3UTR.fa 
+# Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa
+# Option settings: cmsearch --tblout Results/cm_search/TBFV.cmout --toponly Data/Flavivirus_Covariance/TBFV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa 
 # Current dir:     /home/arkanini/Long_Range_RNA_Interactions
-# Date:            Tue Nov 21 16:42:48 2023
+# Date:            Thu Jan 18 18:23:11 2024
 # [ok]

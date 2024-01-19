@@ -15,14 +15,14 @@ def execute_IntaRNA(UTR5pCDS, UTR3pCDS, ID,
     additional_args (list): Optional additional arguments, must have the form:
                             ["--par1", str(val1), "--par2",...]
     """
-    # extra_region cuts off the difference between
+    # roi_difference cuts off the difference between
     # the extra CDS bases and the extra CDS bases as region of interest
-    extra_region = extra_bases-extra_bases_roi # = 100
+    roi_difference = extra_bases-extra_bases_roi # = 100
     tidxpos0 = -(len(UTR5pCDS)-extra_bases) # len of UTR5 alone
     tregion_s = tidxpos0 # = len(UTR5)
-    tregion_e = extra_region # = 100
+    tregion_e = roi_difference # = 100
     qidxpos0 = -extra_bases # = -200
-    qregion_s = -extra_region # = -100
+    qregion_s = -roi_difference # = -100
     qregion_e = len(UTR3pCDS)-extra_bases # len of UTR3 alone
     cmd = ["IntaRNA", "-t", UTR5pCDS, "-q", UTR3pCDS,
            "--tidxpos0", str(tidxpos0), ## Transition UTR5-CDS
@@ -32,13 +32,10 @@ def execute_IntaRNA(UTR5pCDS, UTR3pCDS, ID,
            "--tId", f"{ID}.5UTR",
            "--qId", f"{ID}.3UTR",
            "--parameterFile", static_param_path,
-           "--outMode", "C" # This seems incredibly useful but I opt to not
-           # use it for now to preserve the readable textfile!
-           # (and because I already went through the effort to write code
-           # to interpret the normal output..
+           "--outMode", "C"
            ]
     cmd += additional_args
-    #print(cmd)
+    #print(" ".join(cmd))
     #raise
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     return p
@@ -127,6 +124,7 @@ def main_intarna(static_param_path, extra_bases, extra_bases_roi,
             suboptes.append((subopt1_e, subopt2_e))
     output["id"] = params["id"]
     output["class"] = params["class"]
+    output["type"] = params["type"]
     output["UTR5len"] = params["UTR5len"]
     output["CDSlen"] = params["CDSlen"]
     output["UTR3len"] = params["UTR3len"]

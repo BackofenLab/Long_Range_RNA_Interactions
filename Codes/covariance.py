@@ -62,7 +62,7 @@ def run_cm_search(cm_file, seq_file, output):
     p.wait()
     return p
     
-def cm_search(df, cm_dir, seq_dir, output_path):
+def cm_search(df, cm_dir, seq_dir, output_path, output_file):
     """Applies cm_search with a given cm directory on a given
     Sequence directory.
 
@@ -104,5 +104,5 @@ def cm_search(df, cm_dir, seq_dir, output_path):
                         df.loc[df.id == id, "cm_hit_f"] = int(f)
                         df.loc[df.id == id, "cm_hit_t"] = int(t)
                         df.loc[df.id == id, "cm_hit_src"] = cm_file
-    df.to_csv(f"{output_path}/Inta_plus_CM.csv", index=False)
+    df.to_csv(output_file, index=False)
     return df

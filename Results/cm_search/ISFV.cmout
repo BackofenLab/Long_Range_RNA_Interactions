@@ -1,22 +1,23 @@
 #target name         accession query name           accession mdl mdl from   mdl to seq from   seq to strand trunc pass   gc  bias  score   E-value inc description of target
 #------------------- --------- -------------------- --------- --- -------- -------- -------- -------- ------ ----- ---- ---- ----- ------ --------- --- ---------------------
-CxFV_4.1.1.1         -         I.3SL                -          cm        1       66      583      647      +    no    1 0.55   0.0   75.5   7.9e-20 !   NC_008604.2 Culex flavivirus, complete genome.
-QBV_4.1.7.1          -         I.3SL                -          cm        1       66      603      666      +    no    1 0.52   0.0   67.1   2.4e-17 !   NC_012671.1 Quang Binh virus, complete genome.
-AEFV_4.1.3.1         -         I.3SL                -          cm        1       66      869      935      +    no    1 0.43   0.0   63.8   2.4e-16 !   NC_012932.1 Aedes flavivirus genomic RNA, complete genome, strain: Narita-21.
-MECDV_4.1.5.1        -         I.3SL                -          cm        1       66      569      634      +    no    1 0.45   0.0   63.4     3e-16 !   NC_027819.1 Mercadeo virus isolate ER-M10, complete genome.
-MSFV_4.1.8.1         -         I.3SL                -          cm        1       66      605      667      +    no    1 0.51   0.0   63.2   3.7e-16 !   NC_021069.1 Mosquito flavivirus isolate LSFlaviV-A20-09, complete genome.
-KRV_4.1.9.1          -         I.3SL                -          cm        1       66     1134     1200      +    no    1 0.42   0.0   62.4   6.2e-16 !   NC_005064.1 Kamiti River virus, complete genome.
-CFAV_4.1.2.1         -         I.3SL                -          cm        1       66      483      548      +    no    1 0.38   0.0   60.7     2e-15 !   NC_001564.2 Cell fusing agent virus strain Galveston, complete genome.
-PaRV_4.1.4.1         -         I.3SL                -          cm        1       66      554      623      +    no    1 0.47   0.0   47.4   1.7e-11 !   NC_027817.1 Parramatta River virus isolate 92-B115745, complete genome.
-XFV_4.1.14.1         -         I.3SL                -          cm        1       66      478      540      +    no    1 0.46   0.0   24.3   0.00012 !   NC_034017.1 Xishuangbanna aedes flavivirus, complete genome.
-NIEV_4.1.18.1        -         I.3SL                -          cm        1       66      641      699      +    no    1 0.47   0.0   24.1   0.00014 !   NC_024299.2 Nienokoue virus isolate B51/CI/2004, complete genome.
+CxFV_4.1.1.1         -         I.3SL                -          cm        1       66      583      647      +    no    1 0.55   0.0   75.5   8.4e-20 !   NC_008604.2 Culex flavivirus, complete genome.
+QBV_4.1.7.1          -         I.3SL                -          cm        1       66      603      666      +    no    1 0.52   0.0   67.1   2.6e-17 !   NC_012671.1 Quang Binh virus, complete genome.
+AEFV_4.1.3.1         -         I.3SL                -          cm        1       66      869      935      +    no    1 0.43   0.0   63.8   2.5e-16 !   NC_012932.1 Aedes flavivirus genomic RNA, complete genome, strain: Narita-21.
+MECDV_4.1.5.1        -         I.3SL                -          cm        1       66      569      634      +    no    1 0.45   0.0   63.4   3.2e-16 !   NC_027819.1 Mercadeo virus isolate ER-M10, complete genome.
+MSFV_4.1.8.1         -         I.3SL                -          cm        1       66      605      667      +    no    1 0.51   0.0   63.2   3.9e-16 !   NC_021069.1 Mosquito flavivirus isolate LSFlaviV-A20-09, complete genome.
+KRV_4.1.9.1          -         I.3SL                -          cm        1       66     1134     1200      +    no    1 0.42   0.0   62.4   6.6e-16 !   NC_005064.1 Kamiti River virus, complete genome.
+CFAV_4.1.2.1         -         I.3SL                -          cm        1       66      483      548      +    no    1 0.38   0.0   60.7   2.2e-15 !   NC_001564.2 Cell fusing agent virus strain Galveston, complete genome.
+PaRV_4.1.4.1         -         I.3SL                -          cm        1       66      554      623      +    no    1 0.47   0.0   47.4   1.8e-11 !   NC_027817.1 Parramatta River virus isolate 92-B115745, complete genome.
+MFV_4.1.16.1         -         I.3SL                -          cm        1       66      471      533      +    no    1 0.46   0.0   26.4   3.2e-05 !   NC_034204.1 Menghai flavivirus isolate MHAedFV1, complete genome.
+XFV_4.1.14.1         -         I.3SL                -          cm        1       66      478      540      +    no    1 0.46   0.0   24.3   0.00013 !   NC_034017.1 Xishuangbanna aedes flavivirus, complete genome.
+NIEV_4.1.18.1        -         I.3SL                -          cm        1       66      641      699      +    no    1 0.47   0.0   24.1   0.00015 !   NC_024299.2 Nienokoue virus isolate B51/CI/2004, complete genome.
 #
 # Program:         cmsearch
 # Version:         1.1.4 (Dec 2020)
 # Pipeline mode:   SEARCH
 # Query file:      Data/Flavivirus_Covariance/ISFV_3SL.cm
-# Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/all_Flavivirus_RefSeq_20220621_3UTR.fa
-# Option settings: cmsearch --tblout Results/cm_search/ISFV.cmout --toponly Data/Flavivirus_Covariance/ISFV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20220621/all_Flavivirus_RefSeq_20220621_3UTR.fa 
+# Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa
+# Option settings: cmsearch --tblout Results/cm_search/ISFV.cmout --toponly Data/Flavivirus_Covariance/ISFV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa 
 # Current dir:     /home/arkanini/Long_Range_RNA_Interactions
-# Date:            Tue Nov 21 16:42:42 2023
+# Date:            Thu Jan 18 18:23:05 2024
 # [ok]
