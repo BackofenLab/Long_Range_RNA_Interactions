@@ -57,9 +57,11 @@ def main_locarna(param_df_path, cm_path, output_path,
         else: # Separate cISFV and dISFV
             group_name = row['type'][:-1]
             seq_dir[group_name].append((f"{group_name}-{row['id']}", part5, part3))
-        if row['class'] == "TBFV" or row['type'][:-1] == "dISFV": 
-            # dISFV + TBFV alignment
-            seq_dir["dISFV+TBFV"].append((f"{'dISFV+TBFV'}-{row['id']}", part5, part3))
+        #if row['class'] == "TBFV" or row['type'][:-1] == "dISFV": 
+    # dISFV + TBFV alignment
+    seq_dir["dISFV+TBFV"] = seq_dir["dISFV"] + seq_dir["TBFV"]
+    seq_dir["MBFV+dISFV"] = seq_dir["MBFV"] + seq_dir["dISFV"]
+    seq_dir["MBFV+TBFV"] = seq_dir["MBFV"] + seq_dir["TBFV"]
     for seq_class in seq_dir:
         make_locarna_fasta(seq_dir[seq_class], f"{output_path}/locARNA_{seq_class}_input.fa", CDS_left, CDS_right)
         run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}")

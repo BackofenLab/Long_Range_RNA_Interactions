@@ -18,8 +18,8 @@ tasks = { # Note: You cannot run later tasks without running the earlier ones at
         "MEME+GLAM2"              : 1,
         "run_locARNA"             : 1,
         "run_MRRI"                : 1,
-        "locARNA+MRRI"            : 1,
         "draw_MRRI_plots"         : 1,
+        "locARNA+MRRI"            : 1,
         "CDS_to_proteins"         : 1,
         }
 
@@ -100,8 +100,8 @@ if __name__ == "__main__":
         main_locarna(parameter_table_file, cm_search_file, locarna_output, CDS_left, CDS_right, CMHit_left, CMHit_right)
     if tasks["run_MRRI"]:
         static_d_mrri = dict(static_d)
-        if "intLenMax" in static_d_mrri:
-            del static_d_mrri["intLenMax"]
+        #if "intLenMax" in static_d_mrri:
+        #    del static_d_mrri["intLenMax"]
         write_static_parameters(static_d_mrri, static_param_path_MRRI)
         main_mrri(parameter_table_file, static_param_path_MRRI, extra_bases, extra_bases_roi, mrri_file_path, raw_MRRI_output)
     if tasks["locARNA+MRRI"]:
@@ -112,6 +112,6 @@ if __name__ == "__main__":
         mrri_df["cm_hit_f"] = pd.Series(cmdf["cm_hit_f"])
         mrri_df["cm_hit_t"] = pd.Series(cmdf["cm_hit_t"])
         mrri_df["cm_hit_src"] = pd.Series(cmdf["cm_hit_src"])
-        draw_lineplots(mrri_df, extra_bases_roi, mrri_lineplot_path, nosubopts=True)
+        draw_lineplots(mrri_df, extra_bases_roi, mrri_lineplot_path)
     if tasks["CDS_to_proteins"]:
         cds_to_proteins(parameter_table_file, amino_acids_output, extra_bases_roi)

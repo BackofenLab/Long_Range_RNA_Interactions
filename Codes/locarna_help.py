@@ -58,6 +58,9 @@ def hacked_MRRI_main(UTR5pCDS, UTR3pCDS, static_param_path):
         for tId in MRRIHandler.targetSeq.keys():
             B2 = dict({ 'id1': tId, 'id2' : qId})
             B1 = MRRIHandler.runIntaRNA(B2)
+            B4 = MRRIHandler.runIntaRNA(B1)
+            B5 = MRRIHandler.runIntaRNA(B4)
+            return B1, [B4]
             B2 = None
             B3 = None
             iteration = 1

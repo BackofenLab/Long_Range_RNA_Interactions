@@ -94,6 +94,7 @@ class MRRI():
         if B1.keys().__contains__('start1') and B1.keys().__contains__('start2'):
             complete += ' --tAccConstr="b:'+B1['start1']+'-'+B1['end1']+'" --qAccConstr="b:'+B1['start2']+'-'+B1['end2']+'" '
         #print("".join(complete))
+        #raise
         return self.csv2dict(self.runCmdLine(complete)[0].replace("query",B1['id2']).replace("target",B1['id1']))
         
 
@@ -105,8 +106,8 @@ class MRRI():
         # set require ED output
         complete += " --out=tAcc:STDOUT --out=qAcc:STDERR"
         # confine output to region of interest
-        l1 = min(int(B1['end1'])-int(B1['start1'])+1, 20) ###
-        l2 = min(int(B1['end2'])-int(B1['start2'])+1, 20) ###
+        l1 = int(B1['end1'])-int(B1['start1'])+1
+        l2 = int(B1['end2'])-int(B1['start2'])+1
         complete += " --tIntLenMax=" + str(l1) + " --qIntLenMax=" +str(l2)
         # run intarna
         outputED = self.runCmdLine( complete )

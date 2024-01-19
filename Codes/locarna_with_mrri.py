@@ -32,6 +32,8 @@ def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_
     hybridDPs = []
     t_opt_ranges = []
     q_opt_ranges = []
+    t_constraint_ranges = []
+    q_constraint_ranges = []
     hybridDPs = []
     with open(raw_mrri_output, "w") as f_raw:
         for index, row in params.iterrows():
@@ -39,16 +41,23 @@ def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_
             f_raw.write(f"{row['id']} :\n")
             f_raw.write(f"{'#'*(len(row['id']) + 2)}\n")
             #stdout, d = run_mrri(row["seq5"], row["seq3"], static_param_path)
-            stdout = hacked_MRRI_main(row["seq5"], row["seq3"], static_param_path)
-            f_raw.write(f"{stdout}\n")
-            hybridDPs.append(stdout["hybridDP"])
-            t_opt_ranges.append((int(stdout['start1']), int(stdout['end1'])))
-            q_opt_ranges.append((int(stdout['start2']), int(stdout['end2'])))
+            main_interaction, c_interactions = hacked_MRRI_main(row["seq5"], row["seq3"], static_param_path)
+            f_raw.write(f"{main_interaction}\n")
+            hybridDPs.append(main_interaction["hybridDP"])
+            t_opt_ranges.append((int(main_interaction['start1']), int(main_interaction['end1'])))
+            q_opt_ranges.append((int(main_interaction['start2']), int(main_interaction['end2'])))
+            for interaction in c_interactions:
+                #print(c_interactions)
+                t_constraint_ranges.append([[(int(interaction["start1"]), int(interaction["end1"]))]])
+                q_constraint_ranges.append([[(int(interaction["start2"]), int(interaction["end2"]))]])
+            #print([t_constraint_ranges])
             #raise
     output = params
     output["hybridDP"] = hybridDPs
     output["t_inter_range"] = t_opt_ranges
     output["q_inter_range"] = q_opt_ranges
+    output["suboptts"] = t_constraint_ranges
+    output["suboptqs"] = q_constraint_ranges
     output.to_csv(mrri_file_output, index=False)
 
 def main_loc_with_mrri(mrri_file_path, cm_path,
@@ -89,9 +98,10 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
         else: # Separate cISFV and dISFV
             group_name = row['type'][:-1]
             seq_dir[group_name].append((f"{group_name}-{row['id']}", part5, part3, FS_seq))
-        if row['class'] == "TBFV" or row['type'][:-1] == "dISFV": 
-            # dISFV + TBFV alignment
-            seq_dir["dISFV+TBFV"].append((f"{'dISFV+TBFV'}-{row['id']}", part5, part3, FS_seq))
+        # dISFV + TBFV alignment
+        seq_dir["dISFV+TBFV"] = seq_dir["dISFV"] + seq_dir["TBFV"]
+        seq_dir["MBFV+dISFV"] = seq_dir["MBFV"] + seq_dir["dISFV"]
+        seq_dir["MBFV+TBFV"] = seq_dir["MBFV"] + seq_dir["TBFV"]
     for seq_class in seq_dir:
         make_locarna_fasta(seq_dir[seq_class], f"{output_path}/locARNA_{seq_class}_input.fa", CDS_left, CDS_right)
         run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}")

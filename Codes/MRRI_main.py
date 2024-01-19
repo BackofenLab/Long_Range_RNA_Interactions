@@ -97,8 +97,8 @@ def sameBlock( Block1, Block2 ):
     #print(B3)
     #print(B2)
     #B2['start1'] == B2['end1'] == B2['start2'] == B2['end2'] == B3['start1'] == B3['start2'] == B3['end1'] == B3['end2']
-    result = all( B2[k]==B3[k] for k in ('start1', 'end1', 'start2', 'end2'))
-    #print(result)
+    result = all( Block1[k]==Block2[k] for k in ('start1', 'end1', 'start2', 'end2'))
+    print(result)
 
 
 if __name__ == '__main__':

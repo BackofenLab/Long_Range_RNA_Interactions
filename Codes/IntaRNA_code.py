@@ -36,7 +36,6 @@ def execute_IntaRNA(UTR5pCDS, UTR3pCDS, ID,
            ]
     cmd += additional_args
     #print(" ".join(cmd))
-    #raise
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     return p
 
