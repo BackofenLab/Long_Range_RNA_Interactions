@@ -56,35 +56,15 @@ def hacked_MRRI_main(UTR5pCDS, UTR3pCDS, static_param_path):
     MRRIHandler = Codes.MRRI_main.main()
     for qId in MRRIHandler.querySeq.keys():
         for tId in MRRIHandler.targetSeq.keys():
-            B2 = dict({ 'id1': tId, 'id2' : qId})
-            B1 = MRRIHandler.runIntaRNA(B2)
-            B4 = MRRIHandler.runIntaRNA(B1)
-            # B5 = MRRIHandler.runIntaRNA(B4)
-            return B1, [B4]
-            # B2 = None
-            # B3 = None
-            # iteration = 1
-            # #E2 = 999
-            # while True:
-                # #if iteration % 2 == 1:
-                # #    E = Codes.MRRI_main.printCSVRow(B1, B2, MRRIHandler)
-                # #else:
-                # #    E = Codes.MRRI_main.printCSVRow(B2, B1, MRRIHandler)
-                # B3 = MRRIHandler.runIntaRNA(B1)
-                # #print(B1)
-                # #print(B3)
-                # #if E2 <= E:
-                # if(float(B1["E_hybrid"]) < float(B3["E_hybrid"])):
-                    # #print(B1)
-                    # #print(B2)
-                    # #print(B3)
-                    # #raise
-                    # return B1
-                # else:
-                    # B2 = B1
-                    # B1 = B3
-                    # #E2 = E
-                # iteration +=  1
+            BE = dict({ 'id1': tId, 'id2' : qId})
+            B1 = MRRIHandler.runIntaRNA(BE)
+            #print(B1)
+            B2 = MRRIHandler.runIntaRNA(B1)
+            #print(B2)
+            B3 = MRRIHandler.runIntaRNA(B2)
+            #print(B3)
+            #raise
+            return B1, [B2, B3]
 
 
 def run_mrri(UTR5pCDS, UTR3pCDS, static_param_path):

@@ -30,9 +30,9 @@ def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_
     additional_args = []
     output = pd.DataFrame()
     hybridDPs = []
-    t_opt_ranges = []
+    t_opt_ranges = [] ## Interaction regions of the main interaction of all sequences
     q_opt_ranges = []
-    t_constraint_ranges = []
+    t_constraint_ranges = []  ## All constrained interactions of all sequences
     q_constraint_ranges = []
     hybridDPs = []
     with open(raw_mrri_output, "w") as f_raw:
@@ -42,22 +42,32 @@ def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_
             f_raw.write(f"{'#'*(len(row['id']) + 2)}\n")
             #stdout, d = run_mrri(row["seq5"], row["seq3"], static_param_path)
             main_interaction, c_interactions = hacked_MRRI_main(row["seq5"], row["seq3"], static_param_path)
+            #if row['id'] == "NC_008604.2":
+            #    print(main_interaction)
+            #    print(c_interactions)
+            #    raise
             f_raw.write(f"{main_interaction}\n")
             hybridDPs.append(main_interaction["hybridDP"])
             t_opt_ranges.append((int(main_interaction['start1']), int(main_interaction['end1'])))
             q_opt_ranges.append((int(main_interaction['start2']), int(main_interaction['end2'])))
+
+            c_inter_ts = [] ## Other constrained interactions of a sequence
+            c_inter_qs = []
             for interaction in c_interactions:
-                #print(c_interactions)
-                t_constraint_ranges.append([[(int(interaction["start1"]), int(interaction["end1"]))]])
-                q_constraint_ranges.append([[(int(interaction["start2"]), int(interaction["end2"]))]])
+                c_inter_ts.append((interaction["start1"], interaction["end1"], interaction["hybridDP"].split("&")[0]))
+                c_inter_qs.append((interaction["start2"], interaction["end2"], interaction["hybridDP"].split("&")[1]))
+            #    t_constraint_ranges.append([[(int(interaction["start1"]), int(interaction["end1"]))]])
+            #    q_constraint_ranges.append([[(int(interaction["start2"]), int(interaction["end2"]))]])
             #print([t_constraint_ranges])
             #raise
+            t_constraint_ranges.append(c_inter_ts)
+            q_constraint_ranges.append(c_inter_qs)
     output = params
     output["hybridDP"] = hybridDPs
     output["t_inter_range"] = t_opt_ranges
     output["q_inter_range"] = q_opt_ranges
-    output["suboptts"] = t_constraint_ranges
-    output["suboptqs"] = q_constraint_ranges
+    output["constrained_predictions_t"] = t_constraint_ranges
+    output["constrained_predictions_q"] = q_constraint_ranges
     output.to_csv(mrri_file_output, index=False)
 
 def main_loc_with_mrri(mrri_file_path, cm_path,
@@ -78,6 +88,8 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
             continue
         start1, end1 = ast.literal_eval(row["t_inter_range"])
         start2, end2 = ast.literal_eval(row["q_inter_range"])
+        constrained_t = ast.literal_eval(row["constrained_predictions_t"])
+        constrained_q = ast.literal_eval(row["constrained_predictions_q"])
         seq5 = row["seq5"]
         seq3 = row["seq3"]
         CDS_start = row["UTR5len"]
@@ -85,11 +97,20 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
         CM_right_border = CMhit_start+CMHit_right
         part5 = seq5[CDS_start-CDS_left:CDS_start+CDS_right]
         part3 = seq3[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
+        #print(len(seq3))
+        #print(seq3)
 
         hybridDP_split = row['hybridDP'].split("&")
         
-        FS_seq_5 = ("."*(start1+len(seq5)-200) + hybridDP_split[0] + "."*(100-end1))[CDS_start-CDS_left:CDS_start+CDS_right]
-        FS_seq_3 = ("."*(start2+200) + hybridDP_split[1] + "."*(len(seq3)-(end2+200)))[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
+        FS_seq_5 = ("."*(start1+len(seq5)-200) + hybridDP_split[0] + "."*(100-end1))
+        FS_seq_5 = FS_seq_5
+        FS_seq_5 = FS_seq_5[:int(constrained_t[0][0])+len(seq5)-200-1] + constrained_t[0][2] + FS_seq_5[int(constrained_t[0][1])+len(seq5)-200:]
+        FS_seq_5 = FS_seq_5[:int(constrained_t[1][0])+len(seq5)-200-1] + constrained_t[1][2] + FS_seq_5[int(constrained_t[1][1])+len(seq5)-200:]
+        FS_seq_5 = FS_seq_5[CDS_start-CDS_left:CDS_start+CDS_right]
+        FS_seq_3 = ("."*(start2+200) + hybridDP_split[1] + "."*(len(seq3)-(end2+200)))
+        FS_seq_3 = FS_seq_3[:int(constrained_q[0][0])+200-1] + constrained_q[0][2] + FS_seq_3[int(constrained_q[0][1])+200:]
+        FS_seq_3 = FS_seq_3[:int(constrained_q[1][0])+200-1] + constrained_q[1][2] + FS_seq_3[int(constrained_q[1][1])+200:]
+        FS_seq_3 = FS_seq_3[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
         FS_seq = FS_seq_5 + "NNNNNNN" + FS_seq_3
 
         seq_dir["all"].append((f"{row['class']}-{row['id']}", part5, part3, FS_seq))

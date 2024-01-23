@@ -9,7 +9,7 @@ import math
 from collections import defaultdict
 
 
-main_colours = {"UTR": "gray", "interaction" : "red", "subopt": "orange"}
+main_colours = {"UTR": "gray", "interaction" : "red", "subopt": "orange", "constrained_i": ["orange", "yellow"]}
 CDS_colours = defaultdict(lambda:"black")
 for k, v in [("ISFV","m"), ("cISFVG","m"), ("dISFVG","plum"),("MBFV","blue"),("NKV","green"),("TBFV","c")]:
     CDS_colours[k] = v
@@ -17,10 +17,11 @@ linewidths = {"UTR": 4,
               "CDS": 4,
               "CMHit": 8,
               "Subopt": 4,
-              "Interaction": 4
+              "Constrained_I": 4,
+              "Interaction": 4,
               }
 
-def draw_lineplots(df, extra_bases_roi, output, nosubopts=False):
+def draw_lineplots(df, extra_bases_roi, output):
     """
     Draw an interaction lineplot 
     showcasing interaction position relative to UTR/CDS.
@@ -32,6 +33,8 @@ def draw_lineplots(df, extra_bases_roi, output, nosubopts=False):
     ## Need 2 plots:
     ## 1: UTR5+some_CDS+t_inter (aligned to UTR5/CDS transition)
     ## 2: some_CDS+UTR3+q_inter (aligned to end of UTR3)
+    no_subopts = False
+    no_constrained_predictions = False
     plt.style.use("seaborn-darkgrid")
     fig, (side5, side3) = plt.subplots(2, figsize=(16, 20))
 
@@ -57,7 +60,7 @@ def draw_lineplots(df, extra_bases_roi, output, nosubopts=False):
             side3.plot((row["cm_hit_f"] - row["UTR3len"], row["cm_hit_t"] - row["UTR3len"]), (index, index), 
                        linewidth=linewidths["CMHit"], color=CDS_colours[row["cm_hit_src"]], alpha=0.5, solid_capstyle="butt")
         ## Plot Subopt Interactions:
-        if not nosubopts:
+        if "suboptts" in row:
             for suboptt in ast.literal_eval(row["suboptts"]): ## 5' Subopt stuff..
                 if suboptt:
                     for subopt in suboptt:
@@ -68,6 +71,25 @@ def draw_lineplots(df, extra_bases_roi, output, nosubopts=False):
                     for subopt in suboptq:
                         side3.plot((subopt[0] - row["UTR3len"], subopt[1] - row["UTR3len"]), (index, index), 
                                    linewidth=linewidths["Subopt"], color=main_colours["subopt"], solid_capstyle="butt")
+        else:
+            no_subopts = True
+        ## Constrained MRRI Interaction Predictions:
+        if "constrained_predictions_t" in row:
+            #print(row["constrained_predictions_t"].split(","))
+            counter = 0
+            for constrained_prediction_t in ast.literal_eval(row["constrained_predictions_t"]): ## 5' Constrained MRRI predictions
+                if constrained_prediction_t:
+                    side5.plot((int(constrained_prediction_t[0]), int(constrained_prediction_t[1])), (index, index), 
+                                   linewidth=linewidths["Constrained_I"], color=main_colours["constrained_i"][counter], solid_capstyle="butt")
+                    counter += 1
+            counter = 0
+            for constrained_prediction_q in ast.literal_eval(row["constrained_predictions_q"]): ## 3' Constrained MRRI predictions
+                if constrained_prediction_q:
+                    side3.plot((int(constrained_prediction_q[0]) - row["UTR3len"], int(constrained_prediction_q[1]) - row["UTR3len"]), (index, index), 
+                                   linewidth=linewidths["Constrained_I"], color=main_colours["constrained_i"][counter], solid_capstyle="butt")
+                    counter += 1
+        else:
+            no_constrained_predictions = True
         ## Plot Main Interactions:
         side5.plot((t_tuple[0], t_tuple[1]), (index, index), 
                    linewidth=linewidths["Interaction"], color=main_colours["interaction"], solid_capstyle="butt")
@@ -89,6 +111,7 @@ def draw_lineplots(df, extra_bases_roi, output, nosubopts=False):
     side3.set_yticklabels(list(df["id"]))
     side5.autoscale_view()
     side3.autoscale_view()
+    ## Legend:
     legend_elements = [Line2D([0], [0], color=CDS_colours["cISFVG"], lw=8, label='cISFV-CDS'),
                        Line2D([0], [0], color=CDS_colours["dISFVG"], lw=8, label='dISFV-CDS'),
                        Line2D([0], [0], color=CDS_colours["MBFV"], lw=8, label='MBFV-CDS'),
@@ -96,9 +119,13 @@ def draw_lineplots(df, extra_bases_roi, output, nosubopts=False):
                        Line2D([0], [0], color=CDS_colours["TBFV"], lw=8, label='TBFV-CDS'),
                        Line2D([0], [0], color='gray', lw=8, label='UTR'),
                        Line2D([0], [0], color='r', lw=8, label='Interaction'),
-                       Line2D([0], [0], color='orange', lw=8, label='Subopt'),
-                       Line2D([0], [0], color="blue", lw=8, label='CM Hit', alpha=0.5),]
-    side5.legend(handles=legend_elements[:-1],loc="upper left", prop={"size": 16})
+                       ]
+    if not no_subopts:
+        legend_elements.append(Line2D([0], [0], color='orange', lw=8, label='Subopt'))
+    if not no_constrained_predictions:
+        legend_elements.append(Line2D([0], [0], color='orange', lw=8, label='Constrained Interaction'))
+    side5.legend(handles=legend_elements,loc="upper left", prop={"size": 16})
+    legend_elements.append(Line2D([0], [0], color="blue", lw=8, label='CM Hit', alpha=0.5))
     side3.legend(handles=legend_elements,loc="upper left", prop={"size": 16})
     plt.suptitle("Interaction Lineplot", fontsize=48)
     plt.savefig(output)

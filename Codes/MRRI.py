@@ -91,11 +91,24 @@ class MRRI():
         ########################################
         ########################################
         # TODO (somewhen) parse parameterFile for outCsvCols and add user-requested csv-col ids not already within the list
-        if B1.keys().__contains__('start1') and B1.keys().__contains__('start2'):
-            complete += ' --tAccConstr="b:'+B1['start1']+'-'+B1['end1']+'" --qAccConstr="b:'+B1['start2']+'-'+B1['end2']+'" '
+        result = {"tAccConstr":"", "qAccConstr":""}
+        if 'start1' in B1:
+            result["tAccConstr"] += f"b:{B1['start1']}-{B1['end1']}"
+            result["qAccConstr"] += f"b:{B1['start2']}-{B1['end2']}"
+            if "tAccConstr" in B1 and B1["tAccConstr"]:
+                result["tAccConstr"] += f",{B1['tAccConstr']}"
+                result["qAccConstr"] += f",{B1['qAccConstr']}"
+            complete += ' --tAccConstr="'+result["tAccConstr"]+'" --qAccConstr="'+result["qAccConstr"]+'" '
         #print("".join(complete))
         #raise
-        return self.csv2dict(self.runCmdLine(complete)[0].replace("query",B1['id2']).replace("target",B1['id1']))
+        result.update(self.csv2dict(self.runCmdLine(complete)[0].replace("query",B1['id2']).replace("target",B1['id1'])))
+        #if "tAccConstr" in result:
+        #    result["tAccConstr"] += f",{result['start1']}-{result['end1']}"
+        #    result["qAccConstr"] += f",{result['start2']}-{result['end2']}"
+        #else:
+        #    result["tAccConstr"] = f"{result['start1']}-{result['end1']}"
+        #    result["qAccConstr"] = f"{result['start2']}-{result['end2']}"
+        return result
         
 
     def getEDunconstraint(self, B1 ):
@@ -125,5 +138,6 @@ class MRRI():
         (stdout, stderr) = ps.communicate()
         if ps.returncode:  # If IntaRNA exits with a returncode != 0, skip this iteration
             sys.stderr.write("IntaRNA failed ({}) for call {}\n".format(stderr,completeCall))
-            exit(ps.returncode)
+            #exit(ps.returncode)
+            return None
         return [stdout,stderr]
