@@ -35,7 +35,7 @@ def draw_lineplots(df, extra_bases_roi, output):
     ## 2: some_CDS+UTR3+q_inter (aligned to end of UTR3)
     no_subopts = False
     no_constrained_predictions = False
-    plt.style.use("seaborn-darkgrid")
+    plt.style.use("seaborn-v0_8-darkgrid")
     fig, (side5, side3) = plt.subplots(2, figsize=(16, 20))
 
     for index, row in df.iterrows():

@@ -11,17 +11,17 @@ import pandas as pd
 import os
 
 tasks = { # Note: You cannot run later tasks without running the earlier ones at least once.
-        "create_parameter_tables" : 0,
-        "run_IntaRNA"             : 0,
+        "create_parameter_tables" : 1,
+        "run_IntaRNA"             : 1,
         "CREATE_CMs"              : 0, ##!## Takes very long. Do not set to true unless new data.
-        "run_CM_search"           : 0,
-        "draw_IntaRNA_plots"      : 0,
-        "MEME+GLAM2"              : 0,
-        "run_locARNA"             : 0,
-        "run_MRRI"                : 0,
-        "draw_MRRI_plots"         : 0,
+        "run_CM_search"           : 1,
+        "draw_IntaRNA_plots"      : 1,
+        "MEME+GLAM2"              : 1,
+        "run_locARNA"             : 1,
+        "run_MRRI"                : 1,
+        "draw_MRRI_plots"         : 1,
         "locARNA+MRRI"            : 1,
-        "CDS_to_proteins"         : 0,
+        "CDS_to_proteins"         : 1,
         }
 
 ## Input IntaRNA Paths:
@@ -98,6 +98,7 @@ if __name__ == "__main__":
         draw_energy_histo(df, energy_histo)
         draw_energy_histo_subopt(df, energy_histo)
     if tasks["MEME+GLAM2"]:
+        df = pd.read_csv(cm_search_file)
         get_meme_sequences(parameter_table_file, cm_search_file, meme_output)    
         meme_to_lineplot(df, extra_bases_roi, meme_output)
         glam2_to_lineplot(df, extra_bases_roi, meme_output) # HIGHLY improvised..

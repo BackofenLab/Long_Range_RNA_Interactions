@@ -7,4 +7,6 @@ Results/locARNA_with_MRRI/*/input/
 Results/locARNA_with_MRRI/*/intermediates/
 *.cpython-37.pyc
 *.cpython-39.pyc
+*.cpython-310.pyc
 *.Identifier
+

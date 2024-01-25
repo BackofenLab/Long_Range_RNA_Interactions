@@ -18,6 +18,8 @@ def run_mlocarna(input_fasta, output_dir):
            "--width=300",
            "--tgtdir", output_dir
            ]
+    #print(" ".join(cmd))
+    #raise
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     p.wait()
 
