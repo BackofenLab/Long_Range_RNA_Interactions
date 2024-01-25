@@ -28,7 +28,7 @@ tasks = { # Note: You cannot run later tasks without running the earlier ones at
 database_path = "Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111"
 
 ## General results directory
-results = "Results" #/18C"
+results = "Results"
 os.makedirs(results, exist_ok=True)
 
 ## Output IntaRNA Paths:
@@ -75,7 +75,7 @@ static_d = {"energyVRNA": "Data/rna_andronescu2007.par",
             "seedBP": 5,
             "accW": 50,
             "accL": 50,
-            #"temperature": 18,
+            "temperature": 18,
             }
 
 
