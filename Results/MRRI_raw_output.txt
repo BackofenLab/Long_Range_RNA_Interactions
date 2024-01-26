@@ -178,6 +178,3 @@ NC_023439.1 :
 NC_023424.1 :
 #############
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-101', 'end1': '-89', 'id2': 'query', 'start2': '194', 'end2': '205', 'subseqDP': 'GUGACUGAGGCCU&AGGCAAGGUCAC', 'hybridDP': '((((((...((((&))))..))))))', 'E': '-10.81', 'E_hybrid': '-20.39', 'ED1': '5.79', 'ED2': '3.79'}
-NC_040555.1 :
-#############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-182', 'end1': '-172', 'id2': 'query', 'start2': '522', 'end2': '532', 'subseqDP': 'UACACCAAUUC&GAAUUGGUGUA', 'hybridDP': '(((((((((((&)))))))))))', 'E': '-11.25', 'E_hybrid': '-18.22', 'ED1': '3.08', 'ED2': '3.89'}
