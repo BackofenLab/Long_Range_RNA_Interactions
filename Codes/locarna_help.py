@@ -5,6 +5,10 @@ import ast
 #from Codes.MRRI import MRRIHandler
 import Codes.MRRI_main
 
+def run_command(cmd):
+    p = subprocess.run(cmd.split(" "))
+
+
 def run_mlocarna(input_fasta, output_dir):
     """Run mlocarna on a given fasta file.
     
@@ -12,12 +16,15 @@ def run_mlocarna(input_fasta, output_dir):
     output_dir (str): Filepath of the resulting CM file
     """
     print(f"mlocarna: {input_fasta} `=> {output_dir}")
-    cmd = ["mlocarna", input_fasta,
+    cmd = ["conda", "run", "-n", "locarna",
+           "mlocarna", input_fasta,
            #"--indel=-50", # Webserver parameter
            #"--indel-opening=-750", # Webserver parameter
            "--width=300",
            "--tgtdir", output_dir
            ]
+    #print(" ".join(cmd))
+    #raise
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     p.wait()
 

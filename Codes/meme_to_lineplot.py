@@ -34,7 +34,7 @@ def draw_extra_lineplot(df, meme_sites, extra_bases_roi, output, virus_class):
     output (str): Filepath where the plot should be saved
     virus_class (str): Name of the given virus class
     """
-    plt.style.use("seaborn-darkgrid")
+    plt.style.use("seaborn-v0_8-darkgrid")
     fig, (side5, side3) = plt.subplots(2, figsize=(16, 20))
 
     for index, row in df.iterrows():
@@ -128,7 +128,7 @@ def draw_extra_lineplot(df, meme_sites, extra_bases_roi, output, virus_class):
                        Line2D([0], [0], color='orange', lw=8, label='Subopt'),
                        Line2D([0], [0], color='r', alpha=0.3, lw=linewidths["MEME"], label='MEME Hit'),
                        Line2D([0], [0], color="blue", lw=8, label='CM Hit', alpha=0.5),]
-    if virus_class is "ISFV":
+    if virus_class == "ISFV":
         legend_elements = [Line2D([0], [0], color=CDS_colours["cISFVG"], lw=8, label=f"{'cISFV'}-CDS"),
                            Line2D([0], [0], color=CDS_colours["dISFVG"], lw=8, label=f"{'dISFV'}-CDS")] + legend_elements[1:]
     side5.legend(handles=legend_elements[:-1],loc="upper left", prop={"size": 16})
