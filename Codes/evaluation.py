@@ -2,6 +2,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from matplotlib.collections import LineCollection
 from matplotlib.lines import Line2D
+from matplotlib.patches import Rectangle
 import ast
 import pandas as pd
 import numpy as np
@@ -21,7 +22,7 @@ linewidths = {"UTR": 4,
               "Interaction": 4,
               }
 
-def draw_lineplots(df, extra_bases_roi, output):
+def draw_lineplots(df, extra_bases_roi, output, draw_roi_box=False):
     """
     Draw an interaction lineplot 
     showcasing interaction position relative to UTR/CDS.
@@ -55,6 +56,7 @@ def draw_lineplots(df, extra_bases_roi, output):
                    linewidth=linewidths["UTR"], color=main_colours["UTR"], solid_capstyle="butt")
         side3.plot((0 - row["UTR3len"], 0), (index, index), 
                    linewidth=linewidths["UTR"], color=main_colours["UTR"], solid_capstyle="butt")
+
         ## Plot CM hits:
         if "cm_hit_f" in row and not math.isnan(row["cm_hit_f"]):
             side3.plot((row["cm_hit_f"] - row["UTR3len"], row["cm_hit_t"] - row["UTR3len"]), (index, index), 
@@ -95,6 +97,13 @@ def draw_lineplots(df, extra_bases_roi, output):
                    linewidth=linewidths["Interaction"], color=main_colours["interaction"], solid_capstyle="butt")
         side3.plot((q_tuple[0] - row["UTR3len"], q_tuple[1] - row["UTR3len"]), (index, index), 
                    linewidth=linewidths["Interaction"], color=main_colours["interaction"], solid_capstyle="butt")
+
+    ## Draw Box marking limited region of interest:
+    if draw_roi_box:
+        rect5 = Rectangle((-40,-1), 110, len(df)+1, color='red', fc = 'none', zorder=2, lw = 2)
+        rect3 = Rectangle((-140,-1), 90, len(df)+1, color='red', fc = 'none', zorder=2, lw = 2)
+        side5.add_patch(rect5)
+        side3.add_patch(rect3)
     ## Annotations:
     side5.set_xlabel("Distance from 5'UTR-CDS transition", fontsize=16)
     side3.set_xlabel("Distance from 3'UTR end", fontsize=16)

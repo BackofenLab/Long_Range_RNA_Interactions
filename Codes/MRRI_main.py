@@ -2,10 +2,11 @@ import os
 import sys
 import argparse
 import json
-try:
-    from Codes.MRRI import MRRI
-except:
-    from MRRI import MRRI
+from Codes.MRRI import MRRI
+#try:
+#    from Codes.MRRI import MRRI
+#except:
+#    from MRRI import MRRI
 import re, csv
 import numpy as np
 from pathlib import Path

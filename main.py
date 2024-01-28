@@ -11,17 +11,18 @@ import pandas as pd
 import os
 
 tasks = { # Note: You cannot run later tasks without running the earlier ones at least once.
-        "create_parameter_tables" : 1,
-        "run_IntaRNA"             : 1,
+        "create_parameter_tables" : 0,
+        "run_IntaRNA"             : 0,
         "CREATE_CMs"              : 0, ##!## Takes very long. Do not set to true unless new data.
-        "run_CM_search"           : 1,
-        "draw_IntaRNA_plots"      : 1,
-        "MEME+GLAM2"              : 1,
+        "run_CM_search"           : 0,
+        "draw_IntaRNA_plots"      : 0,
+        "MEME+GLAM2"              : 0,
         "run_locARNA"             : 1,
-        "run_MRRI"                : 1,
-        "draw_MRRI_plots"         : 1,
+        "run_MRRI_1"              : 0, ## Restrictions like "run_IntaRNA"
+        "run_MRRI_2"              : 0, ## Further restrictions
+        "draw_MRRI_plots"         : 0,
         "locARNA+MRRI"            : 1,
-        "CDS_to_proteins"         : 1,
+        "CDS_to_proteins"         : 0,
         }
 
 ## Input IntaRNA Paths:
@@ -46,10 +47,13 @@ cm_output_dir = f"{results}/cm_search"
 cm_search_file = f"{cm_output_dir}/Inta_plus_CM.csv"
 
 ## MRRI+locARNA paths:
-raw_MRRI_output = f"{results}/MRRI_raw_output.txt"
-mrri_file_path = f"{results}/MRRI_output.csv"
+raw_MRRI_output_1 = f"{results}/MRRI_raw_output_1.txt"
+raw_MRRI_output_2 = f"{results}/MRRI_raw_output_2.txt"
+mrri_file_path_1 = f"{results}/MRRI_output_1.csv"
+mrri_file_path_2 = f"{results}/MRRI_output_2.csv"
 output_loc_mmri_path = f"{results}/locARNA_with_MRRI"
-mrri_lineplot_path = f"{results}/interaction_lineplot_MRRI.png"
+mrri_lineplot_path_1 = f"{results}/interaction_lineplot_MRRI_1.png"
+mrri_lineplot_path_2 = f"{results}/interaction_lineplot_MRRI_2.png"
 
 ## Outputs
 energy_histo = f"{results}/energy_histo.png"
@@ -64,10 +68,11 @@ extra_bases = 200
 extra_bases_roi = 100
 outNumber = 4 # Allow n-1 subops, must be at least 1
 
-CDS_left = 30+0
-CDS_right = 70+0
-CMHit_left = 30+0
-CMHit_right = 30+0
+## Region for locARNA
+CDS_left = 30
+CDS_right = 70
+CMHit_left = 30
+CMHit_right = 30
 
 ## IntaRNA specific:
 static_d = {"energyVRNA": "Data/rna_andronescu2007.par",
@@ -104,16 +109,27 @@ if __name__ == "__main__":
         glam2_to_lineplot(df, extra_bases_roi, meme_output) # HIGHLY improvised..
     if tasks["run_locARNA"]:
         main_locarna(parameter_table_file, cm_search_file, locarna_output, CDS_left, CDS_right, CMHit_left, CMHit_right)
-    if tasks["run_MRRI"]:
-        main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, mrri_file_path, raw_MRRI_output)
+    if tasks["run_MRRI_1"]:
+        param_mode = 1
+        main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, mrri_file_path_1, raw_MRRI_output_1, param_mode)
+    if tasks["run_MRRI_2"]:
+        param_mode = 2
+        main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, mrri_file_path_2, raw_MRRI_output_2, param_mode)
     if tasks["locARNA+MRRI"]:
-        main_loc_with_mrri(mrri_file_path, cm_search_file, parameter_table_file, output_loc_mmri_path, CDS_left, CDS_right, CMHit_left, CMHit_right)
+        main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_path, CDS_left, CDS_right, CMHit_left, CMHit_right)
     if tasks["draw_MRRI_plots"]:
-        mrri_df = pd.read_csv(mrri_file_path)
         cmdf = pd.read_csv(cm_search_file)
-        mrri_df["cm_hit_f"] = pd.Series(cmdf["cm_hit_f"])
-        mrri_df["cm_hit_t"] = pd.Series(cmdf["cm_hit_t"])
-        mrri_df["cm_hit_src"] = pd.Series(cmdf["cm_hit_src"])
-        draw_lineplots(mrri_df, extra_bases_roi, mrri_lineplot_path)
+        if os.path.isfile(mrri_file_path_1):
+            mrri_df_1 = pd.read_csv(mrri_file_path_1)
+            mrri_df_1["cm_hit_f"] = pd.Series(cmdf["cm_hit_f"])
+            mrri_df_1["cm_hit_t"] = pd.Series(cmdf["cm_hit_t"])
+            mrri_df_1["cm_hit_src"] = pd.Series(cmdf["cm_hit_src"])
+            draw_lineplots(mrri_df_1, extra_bases_roi, mrri_lineplot_path_1)
+        if os.path.isfile(mrri_file_path_2):
+            mrri_df_2 = pd.read_csv(mrri_file_path_2)
+            mrri_df_2["cm_hit_f"] = pd.Series(cmdf["cm_hit_f"])
+            mrri_df_2["cm_hit_t"] = pd.Series(cmdf["cm_hit_t"])
+            mrri_df_2["cm_hit_src"] = pd.Series(cmdf["cm_hit_src"])
+            draw_lineplots(mrri_df_2, extra_bases_roi, mrri_lineplot_path_2, draw_roi_box=True)
     if tasks["CDS_to_proteins"]:
         cds_to_proteins(parameter_table_file, amino_acids_output, extra_bases_roi)

@@ -1,54 +1,54 @@
 NC_012932.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-7', 'end1': '1', 'id2': 'query', 'start2': '841', 'end2': '848', 'subseqDP': 'GGUUCGUA&UGCGAACC', 'hybridDP': '((((((((&))))))))', 'E': '-4.9', 'E_hybrid': '-11.87', 'ED1': '4.3', 'ED2': '2.67'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '76', 'end1': '89', 'id2': 'query', 'start2': '117', 'end2': '126', 'subseqDP': 'GCGGAAAAGAGGGU&ACCCUCACGC', 'hybridDP': '(((.....((((((&)))))).)))', 'E': '-13.16', 'E_hybrid': '-16.77', 'ED1': '2.1', 'ED2': '1.51'}
 NC_031327.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '32', 'end1': '39', 'id2': 'query', 'start2': '372', 'end2': '380', 'subseqDP': 'GAGGAGGC&GCACUCCUC', 'hybridDP': '((((((((&)).))))))', 'E': '-6.47', 'E_hybrid': '-15.56', 'ED1': '3.06', 'ED2': '6.03'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '28', 'end1': '40', 'id2': 'query', 'start2': '426', 'end2': '438', 'subseqDP': 'GAGGGAGGAGGCG&CGCCACCUCCCUU', 'hybridDP': '((((((((.((((&)))).))))))))', 'E': '-13.85', 'E_hybrid': '-25.69', 'ED1': '4.35', 'ED2': '7.49'}
 NC_001564.2 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '40', 'end1': '45', 'id2': 'query', 'start2': '460', 'end2': '465', 'subseqDP': 'GGGAGG&CCUCCU', 'hybridDP': '((((((&))))))', 'E': '-8.72', 'E_hybrid': '-12.48', 'ED1': '1.26', 'ED2': '2.5'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '40', 'end1': '48', 'id2': 'query', 'start2': '323', 'end2': '331', 'subseqDP': 'GGGAGGGAU&AUCCCUCCC', 'hybridDP': '(((((((((&)))))))))', 'E': '-16.57', 'E_hybrid': '-20.63', 'ED1': '1.99', 'ED2': '2.07'}
 NC_030290.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '9', 'end1': '14', 'id2': 'query', 'start2': '514', 'end2': '519', 'subseqDP': 'GGUGAC&GUCACC', 'hybridDP': '((((((&))))))', 'E': '-4.51', 'E_hybrid': '-9.58', 'ED1': '3.25', 'ED2': '1.82'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '44', 'end1': '60', 'id2': 'query', 'start2': '-22', 'end2': '-4', 'subseqDP': 'GAGGAGGAAAACGCGGU&ACCAGAGUUGUCUCUCUUC', 'hybridDP': '((((((((.(((..(((&)))...))).)).))))))', 'E': '-9.41', 'E_hybrid': '-20.51', 'ED1': '3.33', 'ED2': '7.77'}
 NC_040682.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '25', 'end1': '41', 'id2': 'query', 'start2': '-6', 'end2': '11', 'subseqDP': 'GCUUUGUUCGCCUCAUU&GGUUAGGCGGAAAAAGC', 'hybridDP': '(((((.(((((((.(((&))).))))))).)))))', 'E': '-10.91', 'E_hybrid': '-19.92', 'ED1': '4.1', 'ED2': '4.91'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-107', 'end1': '-95', 'id2': 'query', 'start2': '100', 'end2': '112', 'subseqDP': 'ACCAGCGUGUUGG&UCAGCACGUUGGU', 'hybridDP': '(((((((((((((&)))))))))))))', 'E': '-12.3', 'E_hybrid': '-21.23', 'ED1': '5.79', 'ED2': '3.14'}
 NC_040645.1 :
 #############
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-31', 'end1': '-18', 'id2': 'query', 'start2': '340', 'end2': '351', 'subseqDP': 'UGGGAGGAGGAGGA&UCCACCCUCCCA', 'hybridDP': '(((((((.(..(((&))).))))))))', 'E': '-14.99', 'E_hybrid': '-20.9', 'ED1': '3.34', 'ED2': '2.57'}
 NC_008604.2 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '2', 'end1': '13', 'id2': 'query', 'start2': '558', 'end2': '569', 'subseqDP': 'UGGGAAAGGACG&CGCCACCUCCCG', 'hybridDP': '(((((..((.((&))))...)))))', 'E': '-4.15', 'E_hybrid': '-13.68', 'ED1': '5.58', 'ED2': '3.95'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '30', 'end1': '39', 'id2': 'query', 'start2': '453', 'end2': '463', 'subseqDP': 'GGGGCCGGGC&GCUCCGGCCCC', 'hybridDP': '((((((((((&)).))))))))', 'E': '-12.7', 'E_hybrid': '-24.97', 'ED1': '7.06', 'ED2': '5.21'}
 NC_035118.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '32', 'end1': '40', 'id2': 'query', 'start2': '397', 'end2': '404', 'subseqDP': 'GAGGAGGUG&CACUCCUC', 'hybridDP': '((((((.((&))))))))', 'E': '-7.61', 'E_hybrid': '-15.9', 'ED1': '2.06', 'ED2': '6.23'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '29', 'end1': '47', 'id2': 'query', 'start2': '448', 'end2': '465', 'subseqDP': 'GUGGAGGAGGUGGAAAGCU&AGCGCCACCUCCCUUAAC', 'hybridDP': '((((.((((((((...(((&))).))))))))))..))', 'E': '-18.25', 'E_hybrid': '-27.76', 'ED1': '6.11', 'ED2': '3.4'}
 NC_005064.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '48', 'end1': '54', 'id2': 'query', 'start2': '1073', 'end2': '1079', 'subseqDP': 'CCGUCCG&CGGACGG', 'hybridDP': '(((((((&)))))))', 'E': '-7.56', 'E_hybrid': '-14.98', 'ED1': '3.66', 'ED2': '3.76'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-32', 'end1': '-19', 'id2': 'query', 'start2': '433', 'end2': '445', 'subseqDP': 'GGAGUUGUUCGGAA&UUCUCGCAACUCC', 'hybridDP': '((((((((..((((&)))).))))))))', 'E': '-12.05', 'E_hybrid': '-17.79', 'ED1': '3.21', 'ED2': '2.53'}
 NC_027819.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '58', 'end1': '62', 'id2': 'query', 'start2': '551', 'end2': '555', 'subseqDP': 'CGGGG&CCCCG', 'hybridDP': '(((((&)))))', 'E': '-7.58', 'E_hybrid': '-10.28', 'ED1': '1.67', 'ED2': '1.03'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '49', 'end1': '65', 'id2': 'query', 'start2': '454', 'end2': '467', 'subseqDP': 'GGAGGAAAACGGGGCUU&GGGCUCCGUCCUCC', 'hybridDP': '((((((...((((((((&))))))))))))))', 'E': '-14.72', 'E_hybrid': '-28.17', 'ED1': '5.44', 'ED2': '8.01'}
 NC_034204.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '31', 'end1': '41', 'id2': 'query', 'start2': '443', 'end2': '454', 'subseqDP': 'GGAGGUGGUCG&CGACCACCCUCU', 'hybridDP': '(((((((((((&)))))).)))))', 'E': '-10.24', 'E_hybrid': '-21.22', 'ED1': '6.83', 'ED2': '4.15'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '55', 'end1': '66', 'id2': 'query', 'start2': '70', 'end2': '79', 'subseqDP': 'GAGGGGCUGGGG&CCCCCCCCUU', 'hybridDP': '((((((..((((&))))))))))', 'E': '-11.82', 'E_hybrid': '-19.82', 'ED1': '7.21', 'ED2': '0.79'}
 NC_021069.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '45', 'end1': '57', 'id2': 'query', 'start2': '543', 'end2': '553', 'subseqDP': 'GCGCCCUCCGACC&GGUGAGGGCGC', 'hybridDP': '((((((((..(((&)))))))))))', 'E': '-12.42', 'E_hybrid': '-24.73', 'ED1': '5.3', 'ED2': '7.01'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '18', 'end1': '32', 'id2': 'query', 'start2': '348', 'end2': '359', 'subseqDP': 'GGGAGUAGUGGAGAG&CUCUCCGCCCCC', 'hybridDP': '(((.(..((((((((&))))))))))))', 'E': '-12.69', 'E_hybrid': '-20.19', 'ED1': '3.64', 'ED2': '3.86'}
 NC_024299.2 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '47', 'end1': '51', 'id2': 'query', 'start2': '581', 'end2': '585', 'subseqDP': 'CGCCC&GGGCG', 'hybridDP': '(((((&)))))', 'E': '-7.77', 'E_hybrid': '-9.97', 'ED1': '0.87', 'ED2': '1.33'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '28', 'end1': '37', 'id2': 'query', 'start2': '514', 'end2': '523', 'subseqDP': 'GGGAGAAGGG&CCCAGUUCCC', 'hybridDP': '(((((..(((&)))..)))))', 'E': '-8.62', 'E_hybrid': '-13.24', 'ED1': '2.11', 'ED2': '2.51'}
 NC_034242.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '30', 'end1': '48', 'id2': 'query', 'start2': '35', 'end2': '53', 'subseqDP': 'CAAGGGGAAGAAAAAUCGU&ACGAUUUUUAAAUACUUUG', 'hybridDP': '(((((.....(((((((((&))))))))).....)))))', 'E': '-9.03', 'E_hybrid': '-17.42', 'ED1': '4.76', 'ED2': '3.63'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '63', 'end1': '75', 'id2': 'query', 'start2': '92', 'end2': '106', 'subseqDP': 'GCGGCAGGGCGGG&CCCUCCAUUGCCAGU', 'hybridDP': '(((((((((.(((&))).)).))))).))', 'E': '-9.41', 'E_hybrid': '-18.32', 'ED1': '4.93', 'ED2': '3.98'}
 NC_027817.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '49', 'end1': '56', 'id2': 'query', 'start2': '493', 'end2': '499', 'subseqDP': 'GCCCCUGU&GCAGGGC', 'hybridDP': '((.(((((&)))))))', 'E': '-5.52', 'E_hybrid': '-13.09', 'ED1': '4.7', 'ED2': '2.87'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-24', 'end1': '-17', 'id2': 'query', 'start2': '97', 'end2': '104', 'subseqDP': 'CUGGUGUC&GAUGCCAG', 'hybridDP': '((((((((&))))))))', 'E': '-8.69', 'E_hybrid': '-14.43', 'ED1': '3.47', 'ED2': '2.27'}
 NC_012671.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '19', 'end1': '28', 'id2': 'query', 'start2': '580', 'end2': '587', 'subseqDP': 'GGAGUGGUGG&CCACCCCC', 'hybridDP': '((.(.(((((&))))))))', 'E': '-7.32', 'E_hybrid': '-12.01', 'ED1': '2.09', 'ED2': '2.6'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '18', 'end1': '32', 'id2': 'query', 'start2': '346', 'end2': '358', 'subseqDP': 'UGGAGUGGUGGAGAG&CUCUCCGCCCCCA', 'hybridDP': '(((.(.(((((((((&)))))))))))))', 'E': '-15.49', 'E_hybrid': '-24.56', 'ED1': '4.55', 'ED2': '4.52'}
 NC_034017.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '54', 'end1': '59', 'id2': 'query', 'start2': '456', 'end2': '461', 'subseqDP': 'AGAGGG&CCCUCU', 'hybridDP': '((((((&))))))', 'E': '-6.42', 'E_hybrid': '-11.18', 'ED1': '1.75', 'ED2': '3.01'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-80', 'end1': '-61', 'id2': 'query', 'start2': '158', 'end2': '177', 'subseqDP': 'GCUUUUACCAGGUCACAGGU&GCCCGUGACUUGGUAGGAGU', 'hybridDP': '((((((((((((((((.(((&))).))))))))))))))))', 'E': '-14.03', 'E_hybrid': '-31.92', 'ED1': '8.09', 'ED2': '9.8'}
 NC_017086.1 :
 #############
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '38', 'end1': '48', 'id2': 'query', 'start2': '213', 'end2': '223', 'subseqDP': 'UCGAUAUAGUG&CACUAUAUCGA', 'hybridDP': '(((((((((((&)))))))))))', 'E': '-12.48', 'E_hybrid': '-17.62', 'ED1': '3.27', 'ED2': '1.87'}
@@ -63,10 +63,10 @@ NC_040610.1 :
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '39', 'end1': '49', 'id2': 'query', 'start2': '282', 'end2': '292', 'subseqDP': 'UGUCAAUAUGC&GCAUAUUGACA', 'hybridDP': '(((((((((((&)))))))))))', 'E': '-13.25', 'E_hybrid': '-19.24', 'ED1': '3.55', 'ED2': '2.44'}
 NC_024017.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '39', 'end1': '51', 'id2': 'query', 'start2': '331', 'end2': '343', 'subseqDP': 'UGUUAAUAUGCUA&UAGCAUAUUGACA', 'hybridDP': '(((((((((((((&)))))))))))))', 'E': '-10.94', 'E_hybrid': '-18.02', 'ED1': '3.56', 'ED2': '3.52'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '21', 'end1': '29', 'id2': 'query', 'start2': '150', 'end2': '159', 'subseqDP': 'GCCCGCCGC&GCGUGUGGGC', 'hybridDP': '(((((((((&))).))))))', 'E': '-11.02', 'E_hybrid': '-20.55', 'ED1': '4.72', 'ED2': '4.81'}
 NC_033715.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '26', 'end1': '31', 'id2': 'query', 'start2': '251', 'end2': '256', 'subseqDP': 'UCGCUA&UAGCGA', 'hybridDP': '((((((&))))))', 'E': '-5.67', 'E_hybrid': '-10.4', 'ED1': '3.4', 'ED2': '1.33'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '49', 'end1': '55', 'id2': 'query', 'start2': '331', 'end2': '338', 'subseqDP': 'CUAACCC&GAGGUUAG', 'hybridDP': '(((((((&).))))))', 'E': '-7.55', 'E_hybrid': '-9.87', 'ED1': '1.27', 'ED2': '1.05'}
 NC_009026.2 :
 #############
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '33', 'end1': '50', 'id2': 'query', 'start2': '316', 'end2': '332', 'subseqDP': 'CCGGGUCGUCAAUAUGCU&AGCAUAUUGACACCUGG', 'hybridDP': '((((((.(((((((((((&)))))))))))))))))', 'E': '-11.66', 'E_hybrid': '-31.65', 'ED1': '13.23', 'ED2': '6.76'}
@@ -81,7 +81,7 @@ NC_001475.2 :
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '38', 'end1': '48', 'id2': 'query', 'start2': '335', 'end2': '345', 'subseqDP': 'UCAAUAUGCUG&CAGCAUAUUGA', 'hybridDP': '(((((((((((&)))))))))))', 'E': '-12.8', 'E_hybrid': '-18.99', 'ED1': '3.63', 'ED2': '2.56'}
 NC_002640.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-17', 'end1': '-5', 'id2': 'query', 'start2': '302', 'end2': '315', 'subseqDP': 'AGCAGAUCUCUGG&CCAGAGAUCCUGCU', 'hybridDP': '(((((((((((((&)))))))).)))))', 'E': '-11.65', 'E_hybrid': '-25.86', 'ED1': '6.86', 'ED2': '7.35'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '35', 'end1': '52', 'id2': 'query', 'start2': '138', 'end2': '152', 'subseqDP': 'UCAAUAUGCUGAAACGCG&CGCGUGGCAUAUUGG', 'hybridDP': '((((((((((...(((((&)))))))))))))))', 'E': '-12.49', 'E_hybrid': '-23.81', 'ED1': '6.88', 'ED2': '4.44'}
 NC_012533.1 :
 #############
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '35', 'end1': '45', 'id2': 'query', 'start2': '281', 'end2': '291', 'subseqDP': 'UCAAUAUGCUG&CAGCAUAUUGA', 'hybridDP': '(((((((((((&)))))))))))', 'E': '-13.13', 'E_hybrid': '-18.87', 'ED1': '3.3', 'ED2': '2.44'}
@@ -117,7 +117,7 @@ NC_009028.2 :
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '40', 'end1': '50', 'id2': 'query', 'start2': '282', 'end2': '292', 'subseqDP': 'GUCAAUAUGCU&AGCAUAUUGAC', 'hybridDP': '(((((((((((&)))))))))))', 'E': '-10.16', 'E_hybrid': '-17.9', 'ED1': '3.49', 'ED2': '4.25'}
 NC_018705.3 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-32', 'end1': '-26', 'id2': 'query', 'start2': '459', 'end2': '465', 'subseqDP': 'ACAGUUU&AAGCUGU', 'hybridDP': '(((((((&)))))))', 'E': '-5.73', 'E_hybrid': '-8.29', 'ED1': '1.58', 'ED2': '0.98'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '35', 'end1': '53', 'id2': 'query', 'start2': '527', 'end2': '544', 'subseqDP': 'CCCGGGUUGUCAAUAUGCU&AGCAUAUUGACACCUGGG', 'hybridDP': '(((((((.(((((((((((&))))))))))))))))))', 'E': '-17.93', 'E_hybrid': '-34.76', 'ED1': '10.82', 'ED2': '6.01'}
 NC_040776.1 :
 #############
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '35', 'end1': '50', 'id2': 'query', 'start2': '319', 'end2': '333', 'subseqDP': 'GGGUUGUCAAUAUGCU&AGCAUAUUGACACCU', 'hybridDP': '((((.(((((((((((&)))))))))))))))', 'E': '-14.79', 'E_hybrid': '-25.01', 'ED1': '5.32', 'ED2': '4.9'}
@@ -144,7 +144,7 @@ NC_002031.1 :
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '29', 'end1': '47', 'id2': 'query', 'start2': '395', 'end2': '412', 'subseqDP': 'CCCUGGGCGUCAAUAUGGU&ACCAUAUUGACGCCAGGG', 'hybridDP': '((((((.((((((((((((&))))))))))))))))))', 'E': '-23.06', 'E_hybrid': '-36.71', 'ED1': '5.77', 'ED2': '7.88'}
 NC_008718.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-7', 'end1': '-2', 'id2': 'query', 'start2': '31', 'end2': '36', 'subseqDP': 'AGACGC&GCGUCU', 'hybridDP': '((((((&))))))', 'E': '-5.29', 'E_hybrid': '-10.1', 'ED1': '2.1', 'ED2': '2.71'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '83', 'end1': '88', 'id2': 'query', 'start2': '142', 'end2': '147', 'subseqDP': 'CCGGUC&GACCGG', 'hybridDP': '((((((&))))))', 'E': '-9.06', 'E_hybrid': '-12.62', 'ED1': '2.21', 'ED2': '1.35'}
 NC_005039.1 :
 #############
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '51', 'end1': '60', 'id2': 'query', 'start2': '299', 'end2': '308', 'subseqDP': 'GCAAAAUCCA&UGGAUUUUGC', 'hybridDP': '((((((((((&))))))))))', 'E': '-13.45', 'E_hybrid': '-17.58', 'ED1': '0.51', 'ED2': '3.62'}
@@ -156,25 +156,25 @@ NC_004119.1 :
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '9', 'end1': '27', 'id2': 'query', 'start2': '345', 'end2': '363', 'subseqDP': 'AGGCAAAAUGAAAAACGCG&CGCGUUUUUCAAAUUGCCU', 'hybridDP': '((((((..(((((((((((&)))))))))))..))))))', 'E': '-19.13', 'E_hybrid': '-29.65', 'ED1': '4.76', 'ED2': '5.76'}
 NC_003690.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-23', 'end1': '-8', 'id2': 'query', 'start2': '488', 'end2': '504', 'subseqDP': 'GCUUAGGAGAACAAGA&UCUUGUUCUCCCUGAGC', 'hybridDP': '((((((((((((((((&))))))))).)))))))', 'E': '-15.81', 'E_hybrid': '-27.25', 'ED1': '5.34', 'ED2': '6.1'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-23', 'end1': '-8', 'id2': 'query', 'start2': '488', 'end2': '504', 'subseqDP': 'GCUUAGGAGAACAAGA&UCUUGUUCUCCCUGAGC', 'hybridDP': '((((((((((((((((&)))))))))).))))))', 'E': '-15.81', 'E_hybrid': '-27.25', 'ED1': '5.34', 'ED2': '6.1'}
 NC_001809.1 :
 #############
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-23', 'end1': '-8', 'id2': 'query', 'start2': '417', 'end2': '433', 'subseqDP': 'GCUUAGGAGAACAAGA&UCUUGUUCUCCCUGAGC', 'hybridDP': '((((((((((((((((&))))))))))).)))))', 'E': '-16.96', 'E_hybrid': '-27.35', 'ED1': '4.26', 'ED2': '6.13'}
 NC_005062.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-23', 'end1': '-8', 'id2': 'query', 'start2': '330', 'end2': '346', 'subseqDP': 'GCUUAGGAGAACAAGA&UCUUGUUCUCCCUGAGC', 'hybridDP': '((((((((((((((((&))))))))))).)))))', 'E': '-16.02', 'E_hybrid': '-27.23', 'ED1': '5.11', 'ED2': '6.1'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-23', 'end1': '-8', 'id2': 'query', 'start2': '330', 'end2': '346', 'subseqDP': 'GCUUAGGAGAACAAGA&UCUUGUUCUCCCUGAGC', 'hybridDP': '((((((((((((((((&)))))))))).))))))', 'E': '-16.02', 'E_hybrid': '-27.23', 'ED1': '5.11', 'ED2': '6.1'}
 NC_003687.1 :
 #############
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-24', 'end1': '-10', 'id2': 'query', 'start2': '396', 'end2': '410', 'subseqDP': 'GGAGAACAAGAGCUG&CGGUUCUUGUUCUCC', 'hybridDP': '(((((((((((((((&)))))))))))))))', 'E': '-16.72', 'E_hybrid': '-26.37', 'ED1': '4.6', 'ED2': '5.05'}
 NC_027709.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-23', 'end1': '-8', 'id2': 'query', 'start2': '413', 'end2': '429', 'subseqDP': 'GCUUAGGAGAACAAGA&UCUUGUUCUCCCUGAGC', 'hybridDP': '((((((((((((((((&))))))))))).)))))', 'E': '-15.67', 'E_hybrid': '-27.23', 'ED1': '5.53', 'ED2': '6.03'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-23', 'end1': '-8', 'id2': 'query', 'start2': '413', 'end2': '429', 'subseqDP': 'GCUUAGGAGAACAAGA&UCUUGUUCUCCCUGAGC', 'hybridDP': '((((((((((((((((&))))))))).)))))))', 'E': '-15.67', 'E_hybrid': '-27.23', 'ED1': '5.53', 'ED2': '6.03'}
 NC_001672.1 :
 #############
 {'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-18', 'end1': '-4', 'id2': 'query', 'start2': '680', 'end2': '694', 'subseqDP': 'GGAGAACAAGAGCUG&CGGUUCUUGUUCUCC', 'hybridDP': '(((((((((((((((&)))))))))))))))', 'E': '-16.37', 'E_hybrid': '-26.58', 'ED1': '5.11', 'ED2': '5.1'}
 NC_023439.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '26', 'end1': '31', 'id2': 'query', 'start2': '212', 'end2': '218', 'subseqDP': 'GCGGUA&UACCGGC', 'hybridDP': '((((((&))))).)', 'E': '-3.73', 'E_hybrid': '-9.02', 'ED1': '1.05', 'ED2': '4.24'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-146', 'end1': '-133', 'id2': 'query', 'start2': '53', 'end2': '65', 'subseqDP': 'CUCUUCCCCCCUCC&GGAGGGCGAAGGG', 'hybridDP': '((((((..((((((&)))))).))))))', 'E': '-19.06', 'E_hybrid': '-24.59', 'ED1': '1.91', 'ED2': '3.62'}
 NC_023424.1 :
 #############
-{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '46', 'end1': '51', 'id2': 'query', 'start2': '200', 'end2': '205', 'subseqDP': 'GUGACC&GGUCAC', 'hybridDP': '((((((&))))))', 'E': '-8.26', 'E_hybrid': '-13.57', 'ED1': '3.65', 'ED2': '1.66'}
+{'tAccConstr': '', 'qAccConstr': '', 'id1': 'target', 'start1': '-101', 'end1': '-89', 'id2': 'query', 'start2': '194', 'end2': '205', 'subseqDP': 'GUGACUGAGGCCU&AGGCAAGGUCAC', 'hybridDP': '((((((...((((&))))..))))))', 'E': '-10.81', 'E_hybrid': '-20.39', 'ED1': '5.79', 'ED2': '3.79'}

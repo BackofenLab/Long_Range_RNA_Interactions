@@ -25,7 +25,7 @@ def make_locarna_fasta(l, output_name, CDS_left, CDS_right):
                 f.write(f"\n")
     
 def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, 
-              mrri_file_output, raw_mrri_output):
+              mrri_file_output, raw_mrri_output, param_mode):
     params = pd.read_csv(parameter_table_file)
     additional_args = []
     output = pd.DataFrame()
@@ -40,12 +40,7 @@ def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_
             print(f"MRRI: {row['id']}")
             f_raw.write(f"{row['id']} :\n")
             f_raw.write(f"{'#'*(len(row['id']) + 2)}\n")
-            #stdout, d = run_mrri(row["seq5"], row["seq3"], static_param_path)
-            main_interaction, c_interactions = hacked_MRRI_main(row["seq5"], row["seq3"], static_param_path)
-            #if row['id'] == "NC_008604.2":
-            #    print(main_interaction)
-            #    print(c_interactions)
-            #    raise
+            main_interaction, c_interactions = hacked_MRRI_main(row["seq5"], row["seq3"], static_param_path, param_mode)
             f_raw.write(f"{main_interaction}\n")
             hybridDPs.append(main_interaction["hybridDP"])
             t_opt_ranges.append((int(main_interaction['start1']), int(main_interaction['end1'])))
@@ -56,10 +51,6 @@ def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_
             for interaction in c_interactions:
                 c_inter_ts.append((interaction["start1"], interaction["end1"], interaction["hybridDP"].split("&")[0]))
                 c_inter_qs.append((interaction["start2"], interaction["end2"], interaction["hybridDP"].split("&")[1]))
-            #    t_constraint_ranges.append([[(int(interaction["start1"]), int(interaction["end1"]))]])
-            #    q_constraint_ranges.append([[(int(interaction["start2"]), int(interaction["end2"]))]])
-            #print([t_constraint_ranges])
-            #raise
             t_constraint_ranges.append(c_inter_ts)
             q_constraint_ranges.append(c_inter_qs)
     output = params
