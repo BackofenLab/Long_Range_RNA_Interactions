@@ -21,6 +21,7 @@ def run_mlocarna(input_fasta, output_dir):
            #"--indel=-50", # Webserver parameter
            #"--indel-opening=-750", # Webserver parameter
            "--width=300",
+           #"--pw-aligner=$(which carna)",
            "--tgtdir", output_dir
            ]
     #print(" ".join(cmd))

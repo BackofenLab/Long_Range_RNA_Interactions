@@ -4,6 +4,7 @@ import collections
 import math
 import ast
 from Codes.locarna_help import run_mlocarna, run_rnaalifold, run_ps_to_pdf, hacked_MRRI_main
+import string
 
 
 def make_locarna_fasta(l, output_name, CDS_left, CDS_right):
@@ -42,15 +43,20 @@ def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_
             f_raw.write(f"{'#'*(len(row['id']) + 2)}\n")
             main_interaction, c_interactions = hacked_MRRI_main(row["seq5"], row["seq3"], static_param_path, param_mode)
             f_raw.write(f"{main_interaction}\n")
-            hybridDPs.append(main_interaction["hybridDP"])
+            f_raw.write(f"{c_interactions}\n")
+            hybridDPs.append(main_interaction["hybridDP"].replace("(","A").replace(")","a"))
             t_opt_ranges.append((int(main_interaction['start1']), int(main_interaction['end1'])))
             q_opt_ranges.append((int(main_interaction['start2']), int(main_interaction['end2'])))
 
             c_inter_ts = [] ## Other constrained interactions of a sequence
             c_inter_qs = []
-            for interaction in c_interactions:
-                c_inter_ts.append((interaction["start1"], interaction["end1"], interaction["hybridDP"].split("&")[0]))
-                c_inter_qs.append((interaction["start2"], interaction["end2"], interaction["hybridDP"].split("&")[1]))
+            for i in range(0, len(c_interactions)):
+                interaction = c_interactions[i]
+                hybDP_0, hybDP_1 = interaction["hybridDP"].split("&")
+                hybDP_0 = hybDP_0.replace("(", string.ascii_uppercase[i+1])
+                hybDP_1 = hybDP_1.replace(")", string.ascii_lowercase[i+1])
+                c_inter_ts.append((interaction["start1"], interaction["end1"], hybDP_0))
+                c_inter_qs.append((interaction["start2"], interaction["end2"], hybDP_1))
             t_constraint_ranges.append(c_inter_ts)
             q_constraint_ranges.append(c_inter_qs)
     output = params
