@@ -7,22 +7,23 @@ from Codes.locarna import main_locarna
 from Codes.meme_to_lineplot import meme_to_lineplot, glam2_to_lineplot
 from Codes.locarna_with_mrri import main_mrri, main_loc_with_mrri
 from Codes.cds_to_protein import cds_to_proteins
+from Codes.locarna_consensus import get_all_locarna_consensus
 import pandas as pd
 import os
 
 tasks = { # Note: You cannot run later tasks without running the earlier ones at least once.
-        "create_parameter_tables" : 0,
-        "run_IntaRNA"             : 0,
+        "create_parameter_tables" : 1,
+        "run_IntaRNA"             : 1,
         "CREATE_CMs"              : 0, ##!## Takes very long. Do not set to true unless new data.
-        "run_CM_search"           : 0,
-        "draw_IntaRNA_plots"      : 0,
-        "MEME+GLAM2"              : 0,
+        "run_CM_search"           : 1,
+        "draw_IntaRNA_plots"      : 1,
+        "MEME+GLAM2"              : 1,
         "run_locARNA"             : 1,
-        "run_MRRI_1"              : 0, ## Restrictions like "run_IntaRNA"
-        "run_MRRI_2"              : 0, ## Further restrictions
-        "draw_MRRI_plots"         : 0,
+        "run_MRRI_1"              : 1, ## Restrictions like "run_IntaRNA"
+        "run_MRRI_2"              : 1, ## Further restrictions
+        "draw_MRRI_plots"         : 1,
         "locARNA+MRRI"            : 1,
-        "CDS_to_proteins"         : 0,
+        "CDS_to_proteins"         : 1,
         }
 
 ## Input IntaRNA Paths:
@@ -117,6 +118,7 @@ if __name__ == "__main__":
         main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, mrri_file_path_2, raw_MRRI_output_2, param_mode)
     if tasks["locARNA+MRRI"]:
         main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_path, CDS_left, CDS_right, CMHit_left, CMHit_right)
+        get_all_locarna_consensus(output_loc_mmri_path)
     if tasks["draw_MRRI_plots"]:
         cmdf = pd.read_csv(cm_search_file)
         if os.path.isfile(mrri_file_path_1):

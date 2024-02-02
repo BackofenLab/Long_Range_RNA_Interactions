@@ -44,5 +44,5 @@ ENTV_3.1.1.1         -         JEVG.3SL             -          cm        1      
 # Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa
 # Option settings: cmsearch --tblout Results/cm_search/MBFV.cmout --toponly Data/Flavivirus_Covariance/MBFV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa 
 # Current dir:     /home/arkanini/Long_Range_RNA_Interactions
-# Date:            Sun Jan 28 18:12:50 2024
+# Date:            Fri Feb  2 12:08:18 2024
 # [ok]
