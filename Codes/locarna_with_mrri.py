@@ -3,7 +3,8 @@ import pandas as pd
 import collections
 import math
 import ast
-from Codes.locarna_help import run_mlocarna, run_rnaalifold, run_ps_to_pdf, hacked_MRRI_main
+from Codes.locarna_help import (run_mlocarna, run_rnaalifold, run_ps_to_pdf, 
+                                hacked_MRRI_main, find_all, integrate_into)
 import string
 
 
@@ -24,6 +25,7 @@ def make_locarna_fasta(l, output_name, CDS_left, CDS_right):
                 f.write(f"{CDS_left*'.'}123{(CDS_right-3)*'.'}1234567{len(i[2])*'.'} #2\n")
                 f.write(f"{i[3]} #FS\n")
                 f.write(f"\n")
+    
     
 def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, 
               mrri_file_output, raw_mrri_output, param_mode):
@@ -91,23 +93,22 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
         seq3 = row["seq3"]
         CDS_start = row["UTR5len"]
         CMhit_start = int(row["cm_hit_f"]) - row["UTR3len"]
-        CM_right_border = CMhit_start+CMHit_right
         part5 = seq5[CDS_start-CDS_left:CDS_start+CDS_right]
-        part3 = seq3[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
-        #print(len(seq3))
-        #print(seq3)
+        #part3 = seq3[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
+        part3 = seq3[len(seq3)-150:len(seq3)-50] #####
 
         hybridDP_split = row['hybridDP'].split("&")
         
-        FS_seq_5 = ("."*(start1+len(seq5)-200) + hybridDP_split[0] + "."*(100-end1))
-        FS_seq_5 = FS_seq_5
-        FS_seq_5 = FS_seq_5[:int(constrained_t[0][0])+len(seq5)-200-1] + constrained_t[0][2] + FS_seq_5[int(constrained_t[0][1])+len(seq5)-200:]
-        FS_seq_5 = FS_seq_5[:int(constrained_t[1][0])+len(seq5)-200-1] + constrained_t[1][2] + FS_seq_5[int(constrained_t[1][1])+len(seq5)-200:]
+        FS_seq_5 = integrate_into("."*(len(seq5)-100), "."*(start1+len(seq5)-200) + hybridDP_split[0] + "."*(99-end1) ,"A")
+        for i in range(len(constrained_t)):
+            FS_seq_5 = integrate_into(FS_seq_5, "."*(int(constrained_t[i][0])+len(seq5)-200) + constrained_t[i][2] + "."*(99-int(constrained_t[i][1])), string.ascii_uppercase[i+1])
         FS_seq_5 = FS_seq_5[CDS_start-CDS_left:CDS_start+CDS_right]
-        FS_seq_3 = ("."*(start2+200) + hybridDP_split[1] + "."*(len(seq3)-(end2+200)))
-        FS_seq_3 = FS_seq_3[:int(constrained_q[0][0])+200-1] + constrained_q[0][2] + FS_seq_3[int(constrained_q[0][1])+200:]
-        FS_seq_3 = FS_seq_3[:int(constrained_q[1][0])+200-1] + constrained_q[1][2] + FS_seq_3[int(constrained_q[1][1])+200:]
-        FS_seq_3 = FS_seq_3[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
+        FS_seq_3 = integrate_into("."*(len(seq3)), "."*(start2+200) + hybridDP_split[1] + "."*(len(seq3)-(end2+200)),"a")
+        for i in range(len(constrained_q)):
+            FS_seq_3 = integrate_into(FS_seq_3, "."*(int(constrained_q[i][0])+200) + constrained_q[i][2] + "."*(len(seq3)-(int(constrained_q[i][1])+200)), string.ascii_lowercase[i+1])
+
+        #FS_seq_3 = FS_seq_3[CMhit_start-CMHit_left:CMhit_start+CMHit_right])
+        FS_seq_3 = FS_seq_3[len(FS_seq_3)-140:len(FS_seq_3)-49] #####
         FS_seq = FS_seq_5 + "NNNNNNN" + FS_seq_3
 
         seq_dir["all"].append((f"{row['class']}-{row['id']}", part5, part3, FS_seq))

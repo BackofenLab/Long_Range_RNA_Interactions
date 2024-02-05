@@ -9,6 +9,25 @@ def run_command(cmd):
     p = subprocess.run(cmd.split(" "))
 
 
+def find_all(s, c):
+    """Generator that finds and returns the locations 
+    of all characters c in a string s.
+    """
+    idx = s.find(c)
+    while idx != -1:
+        yield idx
+        idx = s.find(c, idx + 1)
+
+
+def integrate_into(s1, s2, l):
+    ##s1 = ..AA..AA
+    ##s2 = ....CC..
+    pos = find_all(s2, l)
+    for i in pos:
+        s1 = s1[:i] + l + s1[i+1:]
+    return s1
+
+
 def run_mlocarna(input_fasta, output_dir):
     """Run mlocarna on a given fasta file.
     

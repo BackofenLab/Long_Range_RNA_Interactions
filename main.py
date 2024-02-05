@@ -12,18 +12,18 @@ import pandas as pd
 import os
 
 tasks = { # Note: You cannot run later tasks without running the earlier ones at least once.
-        "create_parameter_tables" : 1,
-        "run_IntaRNA"             : 1,
+        "create_parameter_tables" : 0,
+        "run_IntaRNA"             : 0,
         "CREATE_CMs"              : 0, ##!## Takes very long. Do not set to true unless new data.
-        "run_CM_search"           : 1,
-        "draw_IntaRNA_plots"      : 1,
-        "MEME+GLAM2"              : 1,
-        "run_locARNA"             : 1,
-        "run_MRRI_1"              : 1, ## Restrictions like "run_IntaRNA"
-        "run_MRRI_2"              : 1, ## Further restrictions
-        "draw_MRRI_plots"         : 1,
+        "run_CM_search"           : 0,
+        "draw_IntaRNA_plots"      : 0,
+        "MEME+GLAM2"              : 0,
+        "run_locARNA"             : 0,
+        "run_MRRI_1"              : 0, ## Restrictions like "run_IntaRNA"
+        "run_MRRI_2"              : 0, ## Further restrictions
+        "draw_MRRI_plots"         : 0,
         "locARNA+MRRI"            : 1,
-        "CDS_to_proteins"         : 1,
+        "CDS_to_proteins"         : 0,
         }
 
 ## Input IntaRNA Paths:
@@ -70,7 +70,7 @@ extra_bases_roi = 100
 outNumber = 4 # Allow n-1 subops, must be at least 1
 
 ## Region for locARNA
-CDS_left = 30
+CDS_left = 40
 CDS_right = 70
 CMHit_left = 30
 CMHit_right = 30
