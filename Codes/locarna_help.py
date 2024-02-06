@@ -90,17 +90,17 @@ def hacked_MRRI_main(UTR5pCDS, UTR3pCDS, static_param_path, param_mode):
                 B2 = MRRIHandler.runIntaRNA(B1, param_mode)
             else:
                 BErr = {"start1":0, "end1":0, "start2":0, "end2":0, "hybridDP":0}
-                return BErr, [] ## First IntaRNA round didnt find anything
+                return [BErr] ## First IntaRNA round didnt find anything
             #print(B2)
             if "id2" in B2:
                 B3 = MRRIHandler.runIntaRNA(B2, param_mode)
             else:
-                return B1, []
+                return [B1]
             #print(B3)
             if "id2" in B3:
-                return B1, [B2, B3]
+                return [B1, B2, B3]
             else:
-                return B1, [B2]
+                return [B1, B2]
 
 
 def run_mrri(UTR5pCDS, UTR3pCDS, static_param_path):

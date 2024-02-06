@@ -25,28 +25,23 @@ class MRRI():
 
     
     def get_param_mode(self, B1, param_mode=1):
+        UTR5pCDS = self.targetSeq[B1['id1']]
+        UTR3pCDS = self.querySeq[B1['id2']]
+        tidxpos0 = -(len(UTR5pCDS)-200) # len of UTR5 alone
+        qidxpos0 = -200 # = -200
         if param_mode == 1:
-            UTR5pCDS = self.targetSeq[B1['id1']]
-            UTR3pCDS = self.querySeq[B1['id2']]
-            tidxpos0 = -(len(UTR5pCDS)-200) # len of UTR5 alone
             tregion_s = tidxpos0 # = len(UTR5)
             tregion_e = 100 # = 100
             qidxpos0 = -200 # = -200
             qregion_s = -100 # = -100
             qregion_e = len(UTR3pCDS)-200 # len of UTR3 alone
-            tregion = f"{str(tregion_s)}-{str(tregion_e)}"
-            qregion = f"{str(qregion_s)}-{str(qregion_e)}"
         if param_mode == 2:
-            UTR5pCDS = self.targetSeq[B1['id1']]
-            UTR3pCDS = self.querySeq[B1['id2']]
-            tidxpos0 = -(len(UTR5pCDS)-200) # len of UTR5 alone
             tregion_s = -40 # = UTR5/CDS transition - 40
             tregion_e = +70 # = UTR5/CDS transition +70 40
-            qidxpos0 = -200 # = -200
             qregion_s = len(UTR3pCDS)-200-140
             qregion_e = len(UTR3pCDS)-200-50 # len of UTR3 alone
-            tregion = f"{str(tregion_s)}-{str(tregion_e)}"
-            qregion = f"{str(qregion_s)}-{str(qregion_e)}"
+        tregion = f"{str(tregion_s)}-{str(tregion_e)}"
+        qregion = f"{str(qregion_s)}-{str(qregion_e)}"
         return tidxpos0, qidxpos0, tregion, qregion
 
     def runIntaRNA(self, B1= None, param_mode=1):
@@ -80,9 +75,22 @@ class MRRI():
             if "tAccConstr" in B1 and B1["tAccConstr"]:
                 result["tAccConstr"] += f",{B1['tAccConstr']}"
                 result["qAccConstr"] += f",{B1['qAccConstr']}"
-            complete += ' --tAccConstr="'+result["tAccConstr"]+'" --qAccConstr="'+result["qAccConstr"]+'" '
+            complete += ' --tAccConstr="'+result["tAccConstr"]+'" --qAccConstr="'+result["qAccConstr"]+'" ' ## Add \xa0 before --tAccConst?
         #print("".join(complete))
         result.update(self.csv2dict(self.runCmdLine(complete)[0].replace("query",B1['id2']).replace("target",B1['id1'])))
+        ### This might be neccessary? This actually works but something something utf-8.......
+        #try:
+        #    result.update(self.csv2dict(self.runCmdLine(complete)[0].replace("query",B1['id2']).replace("target",B1['id1'])))
+        #except:
+        #    pass
+        #if "start1" in result:
+        #    s1 = int(result["start1"])
+        #    e1 = int(result["end1"])
+        #    if s1 >= 0:
+        #        #print(str(s1) + " ####################")
+        #        result["start1"] = str(s1-1)
+        #    if e1 >= 0:
+        #        result["end1"] = str(e1-1)
         #print(result)
         return result
 
