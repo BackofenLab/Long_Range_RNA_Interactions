@@ -132,7 +132,6 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
         seq_dir["MBFV+TBFV"] = seq_dir["MBFV"] + seq_dir["TBFV"]
     for seq_class in seq_dir:
         make_locarna_fasta(seq_dir[seq_class], f"{output_path}/locARNA_{seq_class}_input.fa", CDS_left, CDS_right)
-        raise
         run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}")
         run_rnaalifold(f"{output_path}/{seq_class}/results")
         
