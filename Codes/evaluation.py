@@ -10,7 +10,7 @@ import math
 from collections import defaultdict
 
 
-main_colours = {"UTR": "gray", "interaction" : "red", "subopt": "orange", "constrained_i": ["orange", "yellow"]}
+main_colours = {"UTR": "gray", "interaction" : "red", "subopt": "orange", "constrained_i": ["yellow", "orange", "red"]}
 CDS_colours = defaultdict(lambda:"black")
 for k, v in [("ISFV","m"), ("cISFVG","m"), ("dISFVG","plum"),("MBFV","blue"),("NKV","green"),("TBFV","c")]:
     CDS_colours[k] = v
@@ -40,8 +40,12 @@ def draw_lineplots(df, extra_bases_roi, output, draw_roi_box=False):
     fig, (side5, side3) = plt.subplots(2, figsize=(16, 20))
 
     for index, row in df.iterrows():
-        t_tuple = ast.literal_eval(row["t_inter_range"])
-        q_tuple = ast.literal_eval(row["q_inter_range"])
+        if "t_inter_range" in row:
+            t_tuple = ast.literal_eval(row["t_inter_range"])
+            q_tuple = ast.literal_eval(row["q_inter_range"])
+            no_main_interaction = False
+        else:
+            no_main_interaction = True
         line5sub = []
         line3sub = []
         ## Plot CDS:
@@ -79,13 +83,13 @@ def draw_lineplots(df, extra_bases_roi, output, draw_roi_box=False):
         if "constrained_predictions_t" in row:
             #print(row["constrained_predictions_t"].split(","))
             counter = 0
-            for constrained_prediction_t in ast.literal_eval(row["constrained_predictions_t"]): ## 5' Constrained MRRI predictions
+            for constrained_prediction_t in reversed(ast.literal_eval(row["constrained_predictions_t"])): ## 5' Constrained MRRI predictions
                 if constrained_prediction_t:
                     side5.plot((int(constrained_prediction_t[0]), int(constrained_prediction_t[1])), (index, index), 
                                    linewidth=linewidths["Constrained_I"], color=main_colours["constrained_i"][counter], solid_capstyle="butt")
                     counter += 1
             counter = 0
-            for constrained_prediction_q in ast.literal_eval(row["constrained_predictions_q"]): ## 3' Constrained MRRI predictions
+            for constrained_prediction_q in reversed(ast.literal_eval(row["constrained_predictions_q"])): ## 3' Constrained MRRI predictions
                 if constrained_prediction_q:
                     side3.plot((int(constrained_prediction_q[0]) - row["UTR3len"], int(constrained_prediction_q[1]) - row["UTR3len"]), (index, index), 
                                    linewidth=linewidths["Constrained_I"], color=main_colours["constrained_i"][counter], solid_capstyle="butt")
@@ -93,10 +97,11 @@ def draw_lineplots(df, extra_bases_roi, output, draw_roi_box=False):
         else:
             no_constrained_predictions = True
         ## Plot Main Interactions:
-        side5.plot((t_tuple[0], t_tuple[1]), (index, index), 
-                   linewidth=linewidths["Interaction"], color=main_colours["interaction"], solid_capstyle="butt")
-        side3.plot((q_tuple[0] - row["UTR3len"], q_tuple[1] - row["UTR3len"]), (index, index), 
-                   linewidth=linewidths["Interaction"], color=main_colours["interaction"], solid_capstyle="butt")
+        if not no_main_interaction:
+            side5.plot((t_tuple[0], t_tuple[1]), (index, index), 
+                       linewidth=linewidths["Interaction"], color=main_colours["interaction"], solid_capstyle="butt")
+            side3.plot((q_tuple[0] - row["UTR3len"], q_tuple[1] - row["UTR3len"]), (index, index), 
+                       linewidth=linewidths["Interaction"], color=main_colours["interaction"], solid_capstyle="butt")
 
     ## Draw Box marking limited region of interest:
     if draw_roi_box:

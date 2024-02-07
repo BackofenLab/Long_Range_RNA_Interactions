@@ -72,7 +72,8 @@ def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_
 
 def main_loc_with_mrri(mrri_file_path, cm_path,
                        parameter_table_file, output_path,
-                       CDS_left, CDS_right, CMHit_left, CMHit_right):
+                       CDS_left, CDS_right, 
+                       CMHit_left, CMHit_right, use_carna=False):
     os.makedirs(output_path, exist_ok=True)
 
     mrri_df = pd.read_csv(mrri_file_path)
@@ -132,7 +133,7 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
         seq_dir["MBFV+TBFV"] = seq_dir["MBFV"] + seq_dir["TBFV"]
     for seq_class in seq_dir:
         make_locarna_fasta(seq_dir[seq_class], f"{output_path}/locARNA_{seq_class}_input.fa", CDS_left, CDS_right)
-        run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}")
+        run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}", use_carna)
         run_rnaalifold(f"{output_path}/{seq_class}/results")
         
         run_ps_to_pdf(f"{output_path}/{seq_class}/results/alirna.ps", f"{output_path}/{seq_class}_alirna.pdf")

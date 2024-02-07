@@ -28,23 +28,37 @@ def integrate_into(s1, s2, l):
     return s1
 
 
-def run_mlocarna(input_fasta, output_dir):
+def run_mlocarna(input_fasta, output_dir, use_carna=False):
     """Run mlocarna on a given fasta file.
     
     input_fasta (str): Filepath to a fasta file to apply locarna on
     output_dir (str): Filepath of the resulting CM file
     """
-    print(f"mlocarna: {input_fasta} `=> {output_dir}")
-    cmd = ["conda", "run", "-n", "locarna",
-           "mlocarna", input_fasta,
+    
+    if use_carna:
+        print(f"mlocarna(+carna): {input_fasta} `=> {output_dir}")
+        ## Doesnt work: :(
+        #carna_loc = subprocess.Popen(["conda", "run", "-n", "carna", "which", "carna"], stdout=subprocess.PIPE)
+        #carna_loc.wait()
+        #print(carna_loc)
+        #raise
+        carna_loc = "/home/arkanini/miniconda3/envs/carna/bin/carna"
+        cmd = ["conda", "run", "-n", "carna"]
+    else:
+        print(f"mlocarna: {input_fasta} `=> {output_dir}")
+        cmd = ["conda", "run", "-n", "locarna"]
+    cmd += ["mlocarna", input_fasta,
            #"--indel=-50", # Webserver parameter
            #"--indel-opening=-750", # Webserver parameter
            "--width=300",
+           "--use-ribosum=true",
            #"--pw-aligner=$(which carna)",
            "--tgtdir", output_dir
            ]
-    #print(" ".join(cmd))
-    #raise
+    if use_carna:
+        cmd += [f"--pw-aligner={carna_loc}"]
+    print(" ".join(cmd))
+    raise
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     p.wait()
 
