@@ -28,6 +28,45 @@ def integrate_into(s1, s2, l):
     return s1
 
 
+def cm_compare(id, seq, cm_file):
+    """- Open alignment file where the CMhit is from
+    - find right sequence
+    - read sequence from input and compare with cmhit
+    - if match, insert respective part from cmhit
+    - if not, shift cmhit sequence to the next base
+    - pray that this works"""
+    #print(id)
+    location = None
+    result_string = ""
+    name_found = False
+    with open(cm_file, "r") as f:
+        for line in f.readlines():
+            if (not name_found) and line.startswith("#=GS") and line.split()[3] == id:
+                name, location = line.split()[1].split("/")
+                name_found = True
+                #print(name, location)
+            elif name_found and line.startswith(name):
+                cm_seq = line.split()[1]
+                cm_seq = cm_seq.upper().replace("U", "T")
+            elif line.startswith("#=GC SS_cons"):
+                align_cons = line.split()[-1]
+            #elif id == "NC_018705.3":
+            #    print(line)
+    #print("AAAAAAAAAA")
+    if not location:
+        print(f"No CM alignment found for {id}")
+        return None
+    else:
+        location_start, location_end = location.split("-")
+        cut_seq = seq[int(location_start)+199:]
+        cut_seq_pos = 0
+        for i in range(len(cm_seq)):
+            if cm_seq[i] == cut_seq[cut_seq_pos]:
+                result_string += align_cons[i]
+                cut_seq_pos += 1
+        return result_string
+
+
 def run_mlocarna(input_fasta, output_dir, use_carna=False):
     """Run mlocarna on a given fasta file.
     
@@ -38,11 +77,11 @@ def run_mlocarna(input_fasta, output_dir, use_carna=False):
     if use_carna:
         print(f"mlocarna(+carna): {input_fasta} `=> {output_dir}")
         ## Doesnt work: :(
-        #carna_loc = subprocess.Popen(["conda", "run", "-n", "carna", "which", "carna"], stdout=subprocess.PIPE)
-        #carna_loc.wait()
-        #print(carna_loc)
-        #raise
-        carna_loc = "/home/arkanini/miniconda3/envs/carna/bin/carna"
+        conda_base = subprocess.Popen(["conda", "info", "--base"], stdout=subprocess.PIPE)
+        conda_base.wait()
+        carna_loc = list(conda_base.stdout)[0].decode("utf-8").rstrip("\n")
+        carna_loc += "/envs/carna/bin/carna"
+        #carna_loc = "/home/arkanini/miniconda3/envs/carna/bin/carna"
         cmd = ["conda", "run", "-n", "carna"]
     else:
         print(f"mlocarna: {input_fasta} `=> {output_dir}")
@@ -57,8 +96,8 @@ def run_mlocarna(input_fasta, output_dir, use_carna=False):
            ]
     if use_carna:
         cmd += [f"--pw-aligner={carna_loc}"]
-    print(" ".join(cmd))
-    raise
+    #print(" ".join(cmd))
+    #raise
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     p.wait()
 

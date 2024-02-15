@@ -1,0 +1,106 @@
+# STOCKHOLM 1.0
+#=GF AU Infernal 1.1.4
+
+#=GS JEV_1.3.1.1/483-582    DE NC_001437.1 Japanese encephalitis virus, genome.
+#=GS MVEV_1.3.6.1/515-614   DE NC_000943.1 Murray Valley encephalitis virus, complete genome.
+#=GS USUV_1.3.7.1/565-665   DE NC_006551.1 Usutu virus, complete cds.
+#=GS WNV_1.3.2.1/538-631    DE NC_009942.1 West Nile virus lineage 1, complete genome.
+#=GS SLEV_1.3.3.1/455-549   DE NC_007580.2 Saint Louis encephalitis virus, complete genome.
+#=GS WNV_1.3.2.2/480-573    DE NC_001563.2 West Nile virus lineage 2, complete genome.
+#=GS ROCV_1.5.1.1/332-424   DE NC_040776.1 Rocio virus strain SPH 34675, complete genome.
+#=GS THOV_1.5.16.1/460-556  DE NC_034151.1 T'Ho virus strain T'Ho-Mex07, complete genome.
+#=GS ILHV_1.5.2.1/295-388   DE NC_009028.2 Ilheus virus, complete genome.
+#=GS TMUV_1.5.5.1/525-618   DE NC_015843.2 Tembusu virus flavivirus polyprotein (flavivirus polyprotein gene) gene, complete cds.
+#=GS BAGV_1.5.4.1/473-566   DE NC_012534.1 Bagaza virus strain DakAr B209, complete genome.
+#=GS NMV_1.4.2.1/458-546    DE NC_032088.1 New Mapoon virus, complete cds.
+#=GS KOKV_1.4.1.1/469-558   DE NC_009029.2 Kokobera virus, complete genome.
+#=GS AROAV_1.1.1.1/329-420  DE NC_009026.2 Bussuquara virus, complete genome.
+#=GS ZIKV_1.6.2.1/332-428   DE NC_035889.1 Zika virus isolate ZIKV/H. sapiens/Brazil/Natal/2015, complete genome.
+#=GS DENV4_1.2.4.1/292-383  DE NC_002640.1 Dengue virus 4, complete genome.
+#=GS EPEV_4.2.14.1/214-315  DE NC_027999.1 Paraiso Escondido virus isolate Ecuador2012, complete genome.
+#=GS DENV1_1.2.1.1/370-461  DE NC_001477.1 Dengue virus 1, complete genome.
+#=GS ZIKV_1.6.2.2/331-428   DE NC_012532.1 Zika virus, complete genome.
+#=GS CHAOV_4.2.2.1/227-324  DE NC_017086.1 Chaoyang virus, complete genome.
+#=GS KEDV_1.2.5.1/295-390   DE NC_012533.1 Kedougou virus strain DakAar D1470, complete genome.
+#=GS DENV2_1.2.2.1/359-450  DE NC_001474.2 Dengue virus 2, complete genome.
+#=GS DONV_4.2.4.1/244-342   DE NC_016997.1 Donggang virus, complete genome.
+#=GS DENV3_1.2.3.1/348-439  DE NC_001475.2 Dengue virus 3, complete genome.
+#=GS WESSV_1.7.3.1/378-477  DE NC_012735.1 Wesselsbron virus strain SAH177, complete genome.
+#=GS YFV17D_1.7.2.1/407-506 DE NC_002031.1 Yellow fever virus, complete genome.
+#=GS SEPV_1.7.4.1/360-458   DE NC_008719.1 Sepik virus, complete genome.
+#=GS NHUV_4.2.8.1/345-449   DE NC_024017.1 Nhumirim virus strain BrMS-MQ10, complete genome.
+#=GS NANV_4.2.7.1/293-394   DE NC_040610.1 Nanay virus strain PRD316/PER/09, complete genome.
+#=GS LIV_2.1.12.1/396-497   DE NC_001809.1 Louping ill virus, complete genome.
+#=GS SGEV_2.1.14.1/392-493  DE NC_027709.1 Spanish goat encephalitis virus isolate AstGoatIREC2011, complete genome.
+#=GS LGTV_2.1.1.1/467-568   DE NC_003690.1 Langat virus, complete genome.
+#=GS POWV_2.1.10.1/379-480  DE NC_003687.1 Powassan virus, complete genome.
+
+JEV_1.3.1.1/483-582            CUGGGAA.UAGACUG.G.G..AGAUCUUCUG.CUC..UA..U.CUCA.ACAUCAGCUAC..UAGGCACAGAGCGCC...GAAGUA.U..GUAGCUG.GUGG.UGAGG.aAGAA.CACA.GGAUCU
+#=GR JEV_1.3.1.1/483-582    PP *******.*******.*.*..**********.***..**..*.****.***********..***************...******.*..*******.****.****9.9****.****.******
+MVEV_1.3.6.1/515-614           CUGGGAA.AAGACUA.G.G..AGAUCUUCUG.CUC..UA..U.UCCA.ACAUCAGUCAC..AAGGCACCGAGCGCC...GAACAC.U..GUGACUG.AUGG.GGGAG.aAGAC.CACA.GGAUCU
+#=GR MVEV_1.3.6.1/515-614   PP *******.*******.*.*..**********.***..**..*.****.***********..***************...******.*..*******.****.****9.9****.****.******
+USUV_1.3.7.1/565-665           CUGGGAAuUAGACUA.G.G..AGAUCUUCUG.CUC..UA..U.UCCA.ACAUCAACCAC..AAGGCACAGAGCGCC...GAAAAU.U..GUGGCUG.GUGG.GGAAC.uAGAC.CACA.GGAUCU
+#=GR USUV_1.3.7.1/565-665   PP ******989******.*.*..**********.***..**..*.****.***********..***************...******.*..*******.****.99999.9****.****.******
+WNV_1.3.2.1/538-631            CUGGGA-.UAGACUA.G.G..AGAUCUUCUG.CUC..--..-.UGCA.CAACCAGCCAC..ACGGCACAGUGCGCC...GACAAU.G..GUGGCUG.GUGG.UGCG-..AGAA.CACA.GGAUCU
+#=GR WNV_1.3.2.1/538-631    PP *****8..8******.*.*..**********.***........****.***********..***************...******.*..*******.****.****...6***.****.******
+SLEV_1.3.3.1/455-549           CCUGGAA.-AGACAG.G.-..AGAUCCCCUG.CUU..--..U.UUCA.ACACCAGCCAC..AAGGCACAGAGCGCC...GUAAAG.U..GUGGCUG.GUGG.UGAAA..AAAU.CACA.GGAUCU
+#=GR SLEV_1.3.3.1/455-549   PP *****96..******.*....**********.***......9.****.***********..***************...******.*..*******.****.*****..****.****.******
+WNV_1.3.2.2/480-573            CUGGGA-.UAGACUA.G.G..GGAUCUUCUG.CUC..--..-.UGCA.CAACCAGCCAC..ACGGCACAGUGCGCC...GACAUA.G..GUGGCUG.GUGG.UGCU-..AGAA.CACA.GGAUCU
+#=GR WNV_1.3.2.2/480-573    PP *****8..8******.*.*..**********.***........9***.***********..***************...******.*..*******.****.***9...6***.****.******
+ROCV_1.5.1.1/332-424           CUGGGAA.-AGACCG.G.G..AGACCCUCUG.CUC..--..-.UGCA.ACACCAGCCAC..UAGGCACAGAUCGCC...GAAAUC.U..GUGGCUG.GUGC.UGCA-..-AAA.CACA.GGAUCU
+#=GR ROCV_1.5.1.1/332-424   PP *****96..******.*.*..**********.**9........****.***********..***************...******.*..*******.****.****....899.****.******
+THOV_1.5.16.1/460-556          CUGGGA-.UAGACUG.G.G..AGACCCUCUG.CUU..-A..U.UUCA.ACACCAGCCAC..UCGGCACAGAACGCC...GUA-AG.U..GUGGCUG.GUGG.UGAAA.aUAAA.CACA.GAGUCU
+#=GR THOV_1.5.16.1/460-556  PP *****8..8******.*.*..**********.*98...9..9.****.***********..***************...986.56.7..*******.****.****9.7799*.****.******
+ILHV_1.5.2.1/295-388           CUGGGAA.-AGACCG.G.G..AGAUCCUCUG.CUU..--..-.UCCA.UCACCAGCCAC..UAGGCACAGAUCGCC...GCAAGU.A..GUGGCUG.GUGG.UGAA-..-AAA.CACAuGGAUCU
+#=GR ILHV_1.5.2.1/295-388   PP *****96..******.*.*..**********.***........****.***********..***************...******.*..*******.****.***9....999.99977******
+TMUV_1.5.5.1/525-618           CUGGGA-.UAGACUA.G.G..AGACCCUCUG.UCC..--..U.AACA.ACACCAGCCAC..UUGGCACAGAUCGCC...GAAA-G.U..GUGGCUG.GUGG.UGGU-..AGAA.CACA.GGAUCU
+#=GR TMUV_1.5.5.1/525-618   PP *****8..8******.*.*..**********.888......5.66**.***********..***************...9875.6.7..*******.****.**98...9***.****.******
+BAGV_1.5.4.1/473-566           CUGGGA-.GAGACUA.G.G..AGACCCUCUG.UCC..--..U.AACA.ACACCAGCCAU..CCGGCACAGAGCGCC...GUAA-G.U..GUGGCUG.GUGG.UGGU-..AGAA.CACA.GUGUCU
+#=GR BAGV_1.5.4.1/473-566   PP *****8..7******.*.*..**********.888......5.66**.***********..***************...9865.6.7..9******.****.**98...9***.****.******
+NMV_1.4.2.1/458-546            CUGGGA-.UAGACUA.G.G..AGAUCCGCUG.CUC..--..-.-UGG.AACCCCAGUUC..UAGGCACAGAACGCC...GUAA--.U..GAACUGG.GGUG.CCA--..-AAA.CACC.GAAUCU
+#=GR NMV_1.4.2.1/458-546    PP *****8..8******.*.*..**********.*75.........677.88888888888..89*************...9876...5..8888888.8888.776.....567.****.******
+KOKV_1.4.1.1/469-558           CUGGGAA.-AGACUA.G.G..GGAUUUGCUG.CUC..--..-.-UGG.ACUUCCGGCUC..UCGGCACAGAACGCC...GUUGAG.-..GAGCCGG.AGGC.CCA--..-AAA.CACC.AGAUCU
+#=GR KOKV_1.4.1.1/469-558   PP *****96..******.*.*..**********.*75.........677.78888888888..89*************...*98874....8888888.8887.776.....567.****.******
+AROAV_1.1.1.1/329-420          CUGGGA-.UAGACCG.G.A..GAAUUUGCUG.CCU..--..-.CGCA.ACACCUCCCAC..CCGGCACAGAACGCC...GACA-U.G..GUGGGAG.GGGU.--CGU..AAGA.CACC.AGAUUC
+#=GR AROAV_1.1.1.1/329-420  PP *****8..8******.*.*..**********.***........9999.999999999**..***************...*986.5.6..9*99999.8666...677..8***.****.******
+ZIKV_1.6.2.1/332-428           CUGGGAA.-AGACCA.G.-..AGACUCCAUG.AGU..UU..C.CACC.ACGCUGGCCGC..CAGGCACAGAUCGCC...GAAUAGcG..GCGGCCG.GUGU.GGGGA..AAUC.CAUG.G-GUCU
+#=GR ZIKV_1.6.2.1/332-428   PP *****96..******.*....**********.***..**..*.****.***********..***************...*9877526..9******.****.*****..****.**76.5.9***
+DENV4_1.2.4.1/292-383          CUGGGAA.-AGACCA.G.A..GAUCCUGCUGuCUC..--..-.UGCA.ACAUCAAUCCA..--GGCACAGAGCGCC...GCAAGA.-..UGGAUUG.GUGU.UGUU-..-GAUcCAAC.AGGUUC
+#=GR DENV4_1.2.4.1/292-383  PP *****96..******.*.*..**********6666........9999.99***999996....*************...**9999....599999*.**99.9999....7777****.******
+EPEV_4.2.14.1/214-315          CAGGGAA.AAGACCG.G.A..GAAACUUCUUgCUU..AC..U.CGCA.GCAACCACCGA..AAGGCACAGUAUGCC..uGAAACA.U..UCGGUGG.UUGA.UGUAG..UAAAcAACC.AGUUUC
+#=GR EPEV_4.2.14.1/214-315  PP *******.*******.*.*..*******8754999..99..*.****.***********..***************..7888899.9..*******.****.***99..666615889.******
+DENV1_1.2.1.1/370-461          CUGGGA-.GAGACCA.G.A..GAUCCUGCUGuCUC..--..-.UACA.GCAUCAUUCC-..-AGGCACAGAACGCC...AAAAAA.U..-GGAAUG.GUGC.UGUU-..-GAAuCAAC.AGGUUC
+#=GR DENV1_1.2.1.1/370-461  PP *****8..7******.*.*..**********6666........5666.6666666666....5*************...***999.6...666666.6666.6666....6655****.******
+ZIKV_1.6.2.2/331-428           GUGGGAA.-AGACCA.-.G..AGACUCCAUG.AGU..UU..C.CACC.ACGCUGGCCGC..CAGGCACAGAUCGCC...GAACUUcG..GCGGCCG.GUGU.GGGGA..AAUC.CAUG.GUUUCU
+#=GR ZIKV_1.6.2.2/331-428   PP *****96..******...8..**********.***..**..*.****.***********..***************...*9876527..9******.****.*****..****.****.******
+CHAOV_4.2.2.1/227-324          UUGGGAA.-AGACCAgA.G..GUACUCGCUG.AUU..CA..C.CG-C.CACCAGACUAC..ACGGCACAGCGCGCC...GGAAAA.G..GUAGUUU.GGAG.GUUGU..AAAA.CAAC.AAGUAU
+#=GR CHAOV_4.2.2.1/227-324  PP *****96..99999835.8..**********.***..99..6.66.5.579********..***************...******.*..*******.**99.99999..****.****.******
+KEDV_1.2.5.1/295-390           CUGGGAA.-AGACCG.G.A..GACUCUGUUG.-GC..UU..U.CCCC.ACACCAGCCCC..CUGGCACAGAGCGCC...-AGAUC.G..GGGGUUG.GUGU.GGAGC..AACC.CAAC.AGGACU
+#=GR KEDV_1.2.5.1/295-390   PP *****96..******.*.8..8889999999..66..78..9.****.***********..***************....56678.8..*******.****.****9..9999.9999.99****
+DENV2_1.2.2.1/359-450          CUGGGAA.-AGACCA.G.A..GAUCCUGCUGuCUC..--..-.CUCA.GCAUCAUUCC-..-AGGCACAGAACGCC...AGAAAA.U..-GGAAUG.GUGC.UGUU-..-GAAuCAAC.AGGUUC
+#=GR DENV2_1.2.2.1/359-450  PP *****96..******.*.*..**********5555........3455.5666665555....5*************...999998.6...555566.6665.5544....5555****.******
+DONV_4.2.4.1/244-342           CUAGGAA.-AGACUG.G.A..GAUACCUUUG.GUU..--..C.UUCG.ACACUAACUCCuaAUGGCACAGAGCGCC...AUAAGA.AacGGAGUUA.GUA-.UGGAA..AAAA.CAUA.AGUAUC
+#=GR DONV_4.2.4.1/244-342   PP *****96..******.*.*..**********.***......7.8899.999999999998899*************...998887.7789999999.997..67777..9999.****.******
+DENV3_1.2.3.1/348-439          CUGGGA-.GAGACCA.G.A..GAUCCUGCUGuCUC..--..-.CUCA.GCAUCAUUCC-..-AGGCACAGAACGCC...AGAAAA.U..-GGAAUG.GUGC.UGUU-..-GAAuCAAC.AGGUUC
+#=GR DENV3_1.2.3.1/348-439  PP *****8..7******.*.*..**********5555........3455.5666665555....5*************...999998.6...555566.6665.5544....5555****.******
+WESSV_1.7.3.1/378-477          CCAGGGA.AAGACCG.G.A..GACACUCCUU.GAU..UC..U.CACC.UUUCUCGCCCU..AAAGCACAGAUUGCU...UGAAUG.C..AGGGCGG.GGAA.GUUGA.gAACC.AACU.AGUGUC
+#=GR WESSV_1.7.3.1/378-477  PP *******.*******.*.*..**********.***..9*..*.****.***********..***************...******.*..*******.****.****9.99999.****.******
+YFV17D_1.7.2.1/407-506         CCAGGGA.AAGACCG.GaG..UGGUUCUCUG.CUU..--..U.UCCU.CCAGAGGUCUG..UGAGCACAGUUUGCUcaaGAAUAA.G..CAGACCU.UUGG.AUGAC..-AAA.CACA.AAACCA
+#=GR YFV17D_1.7.2.1/407-506 PP *******.*******.*66..**********.**9......7.9999.9**********..***************444455566.7..*******.***9.99996...677.****.******
+SEPV_1.7.4.1/360-458           CUGGGAA.-AGACCG.G.A..GACACUCCUU.GAU..UC..U.CACC.UUUCUCACCCU..UAAGCACAGAUUGCU...UGAAUG.C..AGGGUGG.GGAA.GUUGG.gAACC.AACU.AGUGUC
+#=GR SEPV_1.7.4.1/360-458   PP *****96..******.*.*..**********.***..**..*.****.***********..***************...******.*..*******.****.****9.99***.****.******
+NHUV_4.2.8.1/345-449           UUGGGAA.GAGACCA.GaG..AUAUGAUGUU.GUU..UG..UcAAUG.CUGACAACAGC.cAUGGCACAGAGCGCC...UGAAGA.G.aGCUGUUG.UUAU.AAUUUacAAAA.AAUA.ACAUAU
+#=GR NHUV_4.2.8.1/345-449   PP *******.******9.538..**********.999..76..626666.9*********9.789*************...655555.5.4*******.***9.66665478999.****.******
+NANV_4.2.7.1/293-394           CCAGGGA.UAGACCG.GaG..AAAUACACAAuUUC..UG..-.GGCAcUAAACAACUAC..A-AGCACAGAGCGCU...UCGAGA.A..GUAGUUG.UUUCuUGACG..AGAGaAUAU.GUAUAU
+#=GR NANV_4.2.7.1/293-394   PP *******.*******.*55..999****9862555..55....5555599*********..6.8************...******.*..*******.**99556666..76642588*.******
+LIV_2.1.12.1/396-497           CCUCGA-.CAGAGGG.G.G..GGCGGUUCUU.GUU..CUccC.UGAG.CCACCAUCACC..CAGACACAGAUAGUC...UGACAA.GgaGGUGAUGuGUGA.CUCGG..A-AA.AACA.CCCGCU
+#=GR LIV_2.1.12.1/396-497   PP *****8..8******.*.*..*********9.888..54226.89**.***********..***************...665544.3349******9****.**996..5.55.99**.******
+SGEV_2.1.14.1/392-493          CCUCGA-.CAGAGGG.G.G..GGCGGUUCUU.GUU..CUccC.UGAG.CCACCAUCACC..CAGACACAGAUAGUC...UGACAA.GgaGGUGAUGcGUGA.CUCGG..A-AA.AACA.CCCGCU
+#=GR SGEV_2.1.14.1/392-493  PP *****8..8******.*.*..*********9.888..54226.89**.***********..***************...665544.3349***********.***96..5.55.99**.******
+LGTV_2.1.1.1/467-568           CCUCGU-.CAGAGGG.G.G..GGCGGUUCUU.GUU..CUccC.UGAG.CCACCAUCACC..UAGACACAGAUAGUC...UGAAAA.GgaGGUGAUGcGUGU.CUCGG..A-AA.AACA.CCCGCU
+#=GR LGTV_2.1.1.1/467-568   PP *****8..8******.*.*..*********9.888..54226.89**.***********..***************...655554.3349******9****.**996..5.55.99**.******
+POWV_2.1.10.1/379-480          CCAGGAA.---ACUG.G.GggGGCGGUUCUU.GUUcuCC..C.UGAG.CCACCACCAUC..CAGGCACAGAUAGCC...UGACAA.GgaGAUGGUGuGUGA.CUCGG..A-AA.AACA.CCCGCU
+#=GR POWV_2.1.10.1/379-480  PP *****87....7999.8.6337788888887.7762234..6.8999.***********..***************...665554.32499****999**9.99986..5.44.7788.888888
+#=GC SS_cons                   <<<<___.____>>>.>.-..<<<<<<<-<<.-<<..--..-.<<<<.-<<<<<<<<<<..--<<<_______>>>...------.-..>>>>>>>.>>>-.>>>>-..->>-.>>->.>>>>>>
+#=GC RF                        CugGGAA.uAGACca.G.G..aGauCcuCuG.Cuc..UA..U.ccCa.acacCaGccaC..aaGGCACaGaGCGCC...GAaaau.u..GuggCuG.gugG.uGgga..Agaa.CaCa.gGauCu
+//

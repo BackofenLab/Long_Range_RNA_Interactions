@@ -8,6 +8,7 @@ from Codes.meme_to_lineplot import meme_to_lineplot, glam2_to_lineplot
 from Codes.locarna_with_mrri import main_mrri, main_loc_with_mrri
 from Codes.cds_to_protein import cds_to_proteins
 from Codes.locarna_consensus import get_all_locarna_consensus
+from Codes.energy_histos import plot_energy_histos
 import pandas as pd
 import os
 
@@ -21,10 +22,10 @@ tasks = { # Note: You cannot run later tasks without running the earlier ones at
         "run_locARNA"             : 0,
         "run_MRRI_1"              : 0, ## Restrictions like "run_IntaRNA"
         "run_MRRI_2"              : 0, ## Further restrictions
-        "draw_MRRI_plots"         : 0,
+        "draw_MRRI_plots"         : 1,
         "locARNA+MRRI"            : 1,
-        "locARNA+MRRI+CARNA"      : 0, ## Old version of locARNA that also uses CARNA
-        "CDS_to_proteins"         : 0,
+        "locARNA+MRRI+CARNA"      : 1, ## Old version of locARNA that also uses CARNA
+        "CDS_to_proteins"         : 1,
         }
 
 ## Input IntaRNA Paths:
@@ -59,7 +60,7 @@ mrri_lineplot_path_1 = f"{results}/interaction_lineplot_MRRI_1.png"
 mrri_lineplot_path_2 = f"{results}/interaction_lineplot_MRRI_2.png"
 
 ## Outputs
-energy_histo = f"{results}/energy_histo.png"
+energy_histo = f"{results}/old_energy_histo.png"
 lineplot_output = f"{results}/interaction_lineplot.png"
 
 meme_output = f"{results}/MEME"
@@ -119,10 +120,10 @@ if __name__ == "__main__":
         param_mode = 2
         main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, mrri_file_path_2, raw_MRRI_output_2, param_mode)
     if tasks["locARNA+MRRI"]:
-        main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_path, CDS_left, CDS_right, CMHit_left, CMHit_right, use_carna=False)
+        main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_path, CDS_left, CDS_right, CMHit_left, CMHit_right, cm_output_dir, use_carna=False)
         get_all_locarna_consensus(output_loc_mmri_path)
     if tasks["locARNA+MRRI+CARNA"]:
-        main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_carna_path, CDS_left, CDS_right, CMHit_left, CMHit_right, use_carna=True)
+        main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_carna_path, CDS_left, CDS_right, CMHit_left, CMHit_right, cm_output_dir, use_carna=True)
         get_all_locarna_consensus(output_loc_mmri_carna_path)
     if tasks["draw_MRRI_plots"]:
         cmdf = pd.read_csv(cm_search_file)
@@ -138,5 +139,7 @@ if __name__ == "__main__":
             mrri_df_2["cm_hit_t"] = pd.Series(cmdf["cm_hit_t"])
             mrri_df_2["cm_hit_src"] = pd.Series(cmdf["cm_hit_src"])
             draw_lineplots(mrri_df_2, extra_bases_roi, mrri_lineplot_path_2, draw_roi_box=True)
+            plot_energy_histos(mrri_df_2, results)
     if tasks["CDS_to_proteins"]:
         cds_to_proteins(parameter_table_file, amino_acids_output, extra_bases_roi)
+    

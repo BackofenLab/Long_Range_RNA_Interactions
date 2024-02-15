@@ -10,7 +10,7 @@ SEPV_1.7.4.1         -         N.3SL                -          cm        1      
 # Pipeline mode:   SEARCH
 # Query file:      Data/Flavivirus_Covariance/NKV_3SL.cm
 # Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa
-# Option settings: cmsearch --tblout Results/cm_search/NKV.cmout --toponly Data/Flavivirus_Covariance/NKV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa 
+# Option settings: cmsearch -A Results/cm_search/NKV_alignment.cmout --tblout Results/cm_search/NKV.cmout --toponly Data/Flavivirus_Covariance/NKV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa 
 # Current dir:     /home/arkanini/Long_Range_RNA_Interactions
-# Date:            Fri Feb  2 12:08:18 2024
+# Date:            Thu Feb 15 17:08:20 2024
 # [ok]

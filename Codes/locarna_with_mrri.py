@@ -4,7 +4,7 @@ import collections
 import math
 import ast
 from Codes.locarna_help import (run_mlocarna, run_rnaalifold, run_ps_to_pdf, 
-                                hacked_MRRI_main, find_all, integrate_into)
+                                hacked_MRRI_main, find_all, integrate_into, cm_compare)
 import string
 
 
@@ -20,7 +20,7 @@ def make_locarna_fasta(l, output_name, CDS_left, CDS_right):
             if len(i[1]) > 0 and len(i[2]) > 0:
                 f.write(f">{i[0]}\n")
                 f.write(f"{i[1]}NNNNNNN{i[2]}\n")
-                f.write(f"{(len(i[1]))*'<'}xxxxxxx{len(i[2])*'>'} #S\n")
+                f.write(f"{(len(i[1]))*'<'}xxxxxxx{i[4]} #S\n")
                 f.write(f"{CDS_left*'.'}AAA{(CDS_right-3)*'.'}BBBBBBB{len(i[2])*'.'} #1\n")
                 f.write(f"{CDS_left*'.'}123{(CDS_right-3)*'.'}1234567{len(i[2])*'.'} #2\n")
                 f.write(f"{i[3]} #FS\n")
@@ -59,8 +59,8 @@ def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_
                     s1 = str(s1-1)
                 if e1 >= 0:
                     e1 = str(e1-1)
-                c_inter_ts.append((s1, e1, hybDP_0))
-                c_inter_qs.append((interaction["start2"], interaction["end2"], hybDP_1))
+                c_inter_ts.append((s1, e1, interaction['E'], hybDP_0))
+                c_inter_qs.append((interaction["start2"], interaction["end2"], interaction['E'], hybDP_1))
             #raise
             t_constraint_ranges.append(c_inter_ts)
             q_constraint_ranges.append(c_inter_qs)
@@ -73,13 +73,17 @@ def main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_
 def main_loc_with_mrri(mrri_file_path, cm_path,
                        parameter_table_file, output_path,
                        CDS_left, CDS_right, 
-                       CMHit_left, CMHit_right, use_carna=False):
+                       CMHit_left, CMHit_right, cm_output_dir, 
+                       use_carna=False):
     os.makedirs(output_path, exist_ok=True)
 
     mrri_df = pd.read_csv(mrri_file_path)
 
-    cm_results = pd.read_csv(cm_path)  ## Take the CM-hit starts from previous CM dataframe
+    cm_results = pd.read_csv(cm_path)  ## Take the CM-hits from previous CM dataframe
     mrri_df["cm_hit_f"] = pd.Series(cm_results["cm_hit_f"])  ## Insert them into our dataframe
+    mrri_df["cm_hit_t"] = pd.Series(cm_results["cm_hit_t"])
+    mrri_df["cm_hit_src"] = pd.Series(cm_results["cm_hit_src"])
+    mrri_df["align_cons_3SL"] = pd.Series(cm_results["align_cons_3SL"])
 
     seq_dir = collections.defaultdict(list)
     for index, row in mrri_df.iterrows():
@@ -89,44 +93,55 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
             raise Exception("Dataframe provided does not contain CM-search hits")
         elif math.isnan(row["cm_hit_f"]): ## Skip sequences without CMHits
             continue
-        #hybridDP_split = row['hybridDP'].split("&")
-        #start1, end1 = ast.literal_eval(row["t_inter_range"])
-        #start2, end2 = ast.literal_eval(row["q_inter_range"])
         ranges_t = []
         ranges_q = []
-        #ranges_t = [(start1, end1, hybridDP_split[0])]
-        #ranges_q = [(start2, end2, hybridDP_split[1])]
         ranges_t += ast.literal_eval(row["constrained_predictions_t"])
         ranges_q += ast.literal_eval(row["constrained_predictions_q"])
         seq5 = row["seq5"]
         seq3 = row["seq3"]
+        cm_hit_f = int(row["cm_hit_f"])
+        cm_hit_t = int(row["cm_hit_t"])
         CDS_start = row["UTR5len"]
-        CMhit_start = int(row["cm_hit_f"]) - row["UTR3len"]
-        part5 = seq5[CDS_start-CDS_left:CDS_start+CDS_right]
-        #part3 = seq3[CMhit_start-CMHit_left:CMhit_start+CMHit_right]
-        part3 = seq3[len(seq3)-141:len(seq3)-49] #####
+        CMhit_start = cm_hit_f - row["UTR3len"]
+        align_cons_3SL = row["align_cons_3SL"]
+        
+        
+        cutoff_5_left = CDS_start-CDS_left
+        cutoff_5_right = CDS_start+CDS_right
+        cutoff_3_left = len(seq3)-141
+        cutoff_3_right = None ##### Old: len(seq3)-49
 
-        FS_seq_5 = "."*(len(seq5)-100)
-        for i in range(len(ranges_t)):
-            FS_seq_5 = integrate_into(FS_seq_5, "."*(int(ranges_t[i][0])+len(seq5)-200) + ranges_t[i][2], string.ascii_uppercase[i])
-        FS_seq_5 = FS_seq_5[CDS_start-CDS_left:CDS_start+CDS_right]
+        FS_seq_5 = "."*(len(seq5)-100)        
         FS_seq_3 = "."*(len(seq3))
-        for i in range(len(ranges_q)):
-            FS_seq_3 = integrate_into(FS_seq_3, "."*(int(ranges_q[i][0])+199) + ranges_q[i][2], string.ascii_lowercase[i])
-
-        #FS_seq_3 = FS_seq_3[CMhit_start-CMHit_left:CMhit_start+CMHit_right])
-        FS_seq_3 = FS_seq_3[len(FS_seq_3)-141:len(FS_seq_3)-49] #####
+        for i in range(len(ranges_t)): # ranges_t[i][0] = Start_index, [3] = hybridDP
+            FS_seq_5 = integrate_into(FS_seq_5, "."*(int(ranges_t[i][0])+len(seq5)-200) + ranges_t[i][3], string.ascii_uppercase[i])
+        for i in range(len(ranges_q)): # ranges_q[i][0] = Start_index, [3] = hybridDP
+            FS_seq_3 = integrate_into(FS_seq_3, "."*(int(ranges_q[i][0])+199) + ranges_q[i][3], string.ascii_lowercase[i])
+            #print(ranges_q[i][0])
+        cm_seq = cm_compare(row['id'], seq3, f"{cm_output_dir}/{row['cm_hit_src']}_alignment.cmout")
+        if cm_seq:
+            covar_3SL = "."*(cm_hit_f+199) + cm_seq
+            covar_3SL += "."*max(0, len(FS_seq_3) - len(covar_3SL))
+            #covar_3SL += "."*(len(FS_seq_3) - (cm_hit_t + 200)) # This does not work for very few specific cases
+            #print(row['id'], len(FS_seq_3), cm_hit_t + 200, len(FS_seq_3) - (cm_hit_t + 200))
+        else:
+            covar_3SL = "."*len(FS_seq_3)
+        FS_seq_5 = FS_seq_5[cutoff_5_left:cutoff_5_right]
+        FS_seq_3 = FS_seq_3[cutoff_3_left:cutoff_3_right]
+        part5 = seq5[cutoff_5_left:cutoff_5_right]
+        part3 = seq3[cutoff_3_left:cutoff_3_right]
+        covar_3SL = covar_3SL[cutoff_3_left:cutoff_3_right]
         FS_seq = FS_seq_5 + "NNNNNNN" + FS_seq_3
         #print(FS_seq_5.count("A") == FS_seq_3.count("a"))
         #print(FS_seq_5.count("B") == FS_seq_3.count("b"))
         #print(FS_seq_5.count("C") == FS_seq_3.count("c"))
 
-        seq_dir["all"].append((f"{row['class']}-{row['id']}", part5, part3, FS_seq))
+        seq_dir["all"].append((f"{row['class']}-{row['id']}", part5, part3, FS_seq, covar_3SL))
         if row['class'] != "ISFV":
-            seq_dir[row['class']].append((f"{row['class']}-{row['id']}", part5, part3, FS_seq))
+            seq_dir[row['class']].append((f"{row['class']}-{row['id']}", part5, part3, FS_seq, covar_3SL))
         else: # Separate cISFV and dISFV
             group_name = row['type'][:-1]
-            seq_dir[group_name].append((f"{group_name}-{row['id']}", part5, part3, FS_seq))
+            seq_dir[group_name].append((f"{group_name}-{row['id']}", part5, part3, FS_seq, covar_3SL))
         # dISFV + TBFV alignment
         seq_dir["dISFV+TBFV"] = seq_dir["dISFV"] + seq_dir["TBFV"]
         seq_dir["MBFV+dISFV"] = seq_dir["MBFV"] + seq_dir["dISFV"]
