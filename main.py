@@ -22,10 +22,10 @@ tasks = { # Note: You cannot run later tasks without running the earlier ones at
         "run_locARNA"             : 0,
         "run_MRRI_1"              : 0, ## Restrictions like "run_IntaRNA"
         "run_MRRI_2"              : 0, ## Further restrictions
-        "draw_MRRI_plots"         : 1,
-        "locARNA+MRRI"            : 1,
+        "locARNA+MRRI"            : 0,
         "locARNA+MRRI+CARNA"      : 1, ## Old version of locARNA that also uses CARNA
-        "CDS_to_proteins"         : 1,
+        "draw_MRRI_plots"         : 1,
+        "CDS_to_proteins"         : 0,
         }
 
 ## Input IntaRNA Paths:
@@ -55,7 +55,8 @@ raw_MRRI_output_2 = f"{results}/MRRI_raw_output_2.txt"
 mrri_file_path_1 = f"{results}/MRRI_output_1.csv"
 mrri_file_path_2 = f"{results}/MRRI_output_2.csv"
 output_loc_mmri_path = f"{results}/locARNA_with_MRRI"
-output_loc_mmri_carna_path = f"{results}/locARNA_with_CARNA_and_MRRI"
+output_loc_mmri_carna_path = f"{results}/locARNA_with_MRRI_only_cm_pos"
+output_loc_mmri_carna_path_mode_3 = f"{results}/locARNA_with_MRRI_only_inter"
 mrri_lineplot_path_1 = f"{results}/interaction_lineplot_MRRI_1.png"
 mrri_lineplot_path_2 = f"{results}/interaction_lineplot_MRRI_2.png"
 
@@ -121,10 +122,11 @@ if __name__ == "__main__":
         main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, mrri_file_path_2, raw_MRRI_output_2, param_mode)
     if tasks["locARNA+MRRI"]:
         main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_path, CDS_left, CDS_right, CMHit_left, CMHit_right, cm_output_dir, use_carna=False)
-        get_all_locarna_consensus(output_loc_mmri_path)
+        #get_all_locarna_consensus(output_loc_mmri_path)
     if tasks["locARNA+MRRI+CARNA"]:
-        main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_carna_path, CDS_left, CDS_right, CMHit_left, CMHit_right, cm_output_dir, use_carna=True)
-        get_all_locarna_consensus(output_loc_mmri_carna_path)
+        main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_carna_path, CDS_left, CDS_right, CMHit_left, CMHit_right, cm_output_dir, use_carna=False, skip_FS=True, mode=2)
+        main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_carna_path_mode_3, CDS_left, CDS_right, CMHit_left, CMHit_right, cm_output_dir, use_carna=False, skip_FS=True, mode=3)
+        #get_all_locarna_consensus(output_loc_mmri_carna_path)
     if tasks["draw_MRRI_plots"]:
         cmdf = pd.read_csv(cm_search_file)
         if os.path.isfile(mrri_file_path_1):

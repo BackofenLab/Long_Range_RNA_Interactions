@@ -20,13 +20,36 @@ def find_all(s, c):
 
 
 def integrate_into(s1, s2, l):
-    ##s1 = ..AA..AA
-    ##s2 = ....CC..
+    """
+    s1 = "..AA..AA"
+    s2 = "....CC.."
+    l  = "C"
+    res= "..AACCAA"
+    """
     pos = find_all(s2, l)
     for i in pos:
         s1 = s1[:i] + l + s1[i+1:]
     return s1
 
+
+def add_cm_hit_to_fs(fs, cmhit, cmstart):
+    """
+    fs    = "AAAAAA.NNN..a.aa.aaa......."
+    cmhit = "<<-<->->>"
+    cmstart= 8
+    # Insert into our fs string
+    result= "AAAAAA.NNN..a.aa.a<<-<->->>"
+    # Replace replaced letters on the opposing site with "."
+    result= "..AAAA.NNN..a.aa.a<<-<->->>"
+    ..Should be good enough to replace the first n occurences of that letter?
+    """
+    from collection import Counter
+    counts = Counter(fs[cmhit:]) # Count occurences of each letter thats being replaced
+    for letter, amount in counts:
+        if letter == ".":
+            continue
+        fs.replace(letter.upper(), ".", amount)
+    return fs
 
 def cm_compare(id, seq, cm_file):
     """- Open alignment file where the CMhit is from
@@ -34,7 +57,7 @@ def cm_compare(id, seq, cm_file):
     - read sequence from input and compare with cmhit
     - if match, insert respective part from cmhit
     - if not, shift cmhit sequence to the next base
-    - pray that this works"""
+    """
     #print(id)
     location = None
     result_string = ""
@@ -91,7 +114,6 @@ def run_mlocarna(input_fasta, output_dir, use_carna=False):
            #"--indel-opening=-750", # Webserver parameter
            "--width=300",
            "--use-ribosum=true",
-           #"--pw-aligner=$(which carna)",
            "--tgtdir", output_dir
            ]
     if use_carna:

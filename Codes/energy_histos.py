@@ -22,10 +22,10 @@ def plot_energy_histos(IntaRNA_df, output_dir):
                 grouplist.append(1) ## Add to group 2 (5' pos > 0)
     edf = pd.DataFrame({"vclass": classlist, "interaction_number": interaction_number_list, "group": grouplist, "energy": energylist})
     for vclass in edf.vclass.unique():
-        for pos_group in [0, 1]:
-            filtered_edf = edf.loc[(edf["vclass"]==vclass) & (edf["group"]==pos_group)]
-            #print(filtered_edf)
-            #raise
-            sns.histplot(filtered_edf, x="energy", hue="interaction_number", multiple="stack", palette={0:"red", 1:"orange", 2:"yellow"})
-            plt.savefig(f"{output_dir}/energy_{vclass}_{pos_group}.png")
-            plt.close()
+        #for pos_group in [0, 1]:
+        filtered_edf = edf.loc[(edf["vclass"]==vclass)]# & (edf["group"]==pos_group)]
+        #print(filtered_edf)
+        #raise
+        sns.histplot(filtered_edf, x="energy", hue="interaction_number", multiple="stack", palette={0:"red", 1:"orange", 2:"yellow"})
+        plt.savefig(f"{output_dir}/energy_{vclass}.png")
+        plt.close()
