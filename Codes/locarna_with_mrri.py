@@ -152,7 +152,7 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
                 cons_S = cons_S.replace("C", "(").replace("c", ")")
             else: # C is not nested with A and B so it gets ignored
                 cons_S = cons_S.replace("C", ".").replace("c", ".")
-            cons_S = cons_S.replace(".", "x")
+            #cons_S = cons_S.replace(".", "x")
         elif mode == 4: ## Outdated: Covariance Sequences as #S constraint
             cm_seq = cm_compare(row['id'], seq3, f"{cm_output_dir}/{row['cm_hit_src']}_alignment.cmout")
             if cm_seq:
