@@ -165,7 +165,6 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
         else:
             raise ValueError("Invalid mode for #S constraint")
         
-        
         ## Constraint 1/2:
         cons_1 = f"{CDS_left*'.'}AAA{(CDS_right-3)*'.'}BBBBBBB{len(part3)*'.'}"
         cons_2 = f"{CDS_left*'.'}123{(CDS_right-3)*'.'}1234567{len(part3)*'.'}"
@@ -175,10 +174,10 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
 
         # seq_dir["all"].append((f"{row['class']}-{row['id']}", part5, part3, cons_S, cons_1, cons_2, cons_FS))
         if row['class'] != "ISFV":
-            seq_dir[row['class']].append((f"{row['class']}-{row['id']}", part5, part3, cons_S, cons_1, cons_2, cons_FS))
+            seq_dir[row['class']].append([f"{row['class']}-{row['id']}", part5, part3, cons_S, cons_1, cons_2, cons_FS])
         else: # Separate cISFV and dISFV
             group_name = row['type'][:-1]
-            seq_dir[group_name].append((f"{group_name}-{row['id']}", part5, part3, cons_S, cons_1, cons_2, cons_FS))
+            seq_dir[group_name].append([f"{group_name}-{row['id']}", part5, part3, cons_S, cons_1, cons_2, cons_FS])
         # dISFV + TBFV alignment
         seq_dir["dISFV+TBFV"] = seq_dir["dISFV"] + seq_dir["TBFV"]
         seq_dir["MBFV+dISFV"] = seq_dir["MBFV"] + seq_dir["dISFV"]
@@ -186,7 +185,7 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
     for seq_class in seq_dir:
         make_locarna_fasta(seq_dir[seq_class], f"{output_path}/locARNA_{seq_class}_input.fa", skip_FS=skip_FS)
         #continue
-        run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}", use_carna)
-        run_rnaalifold(f"{output_path}/{seq_class}/results")
+        ####run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}", use_carna)
+        run_rnaalifold(f"{output_path}/{seq_class}/results", seq_dir[seq_class], mode)
         run_ps_to_pdf(f"{output_path}/{seq_class}/results/alirna.ps", f"{output_path}/{seq_class}_alirna.pdf")
         run_ps_to_pdf(f"{output_path}/{seq_class}/results/aln.ps", f"{output_path}/{seq_class}_aln.pdf")

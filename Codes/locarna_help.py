@@ -2,6 +2,7 @@ import os
 import sys
 import subprocess
 import ast
+import math
 #from Codes.MRRI import MRRIHandler
 import Codes.MRRI_main
 
@@ -124,24 +125,94 @@ def run_mlocarna(input_fasta, output_dir, use_carna=False):
     p.wait()
 
 
-def run_rnaalifold(input_dir):
+def get_modified_s_cons_for_seq(seq_dir_list, locarna_alignment_seq, mode):
+    seq = seq_dir_list[0] + "NNNNNNN" + seq_dir_list[1]
+    seq = seq.replace("T", "U")
+    filler = "."
+    if mode == 2:
+        filler = "x"
+    current_pos = 0
+    reached_end = False
+    result = ""
+    for base in locarna_alignment_seq:
+        if (not reached_end) and base == seq[current_pos]:
+            result += seq_dir_list[2][current_pos]
+            current_pos += 1
+            reached_end = current_pos >= len(seq)
+        else:
+            result += filler
+    return result
+
+def run_rnaalifold(input_dir, seq_dir_entries, mode=0):
+    """
+    input_dir(str): Directory location of the locARNA result to look at
+    seq_dir_entries(list): list of seq_dir entries corrosponding to the input_dir, 
+                           [(id, part5, part3, cons_S, cons_1, cons_2, cons_FS), (), ...]
+    mode(int): Mode for the S constraints used
+               0: Empty S constraint                   ( ....xxxxxxx.... )
+               1: Left/Right separated                 ( <<<<xxxxxxx>>>> )
+               2: Blocked except for CMHit             ( xxxxxxxxxxxx... )
+               3: Constraint using old FS interactions ( .((.xxxxxxx.).) )
+    """
     print(f"RNAalifold : {input_dir}/result.aln => {input_dir}/alirna.ps+aln.ps")
     input_file = f"{input_dir}/result.aln"
+    seq_dir_entry_dict = {}
+    for i in seq_dir_entries:
+        seq_dir_entry_dict[i[0]] = i[1:]
     with open(input_file, "r") as f:
         for line in f.readlines():
+            split_line = line.split()
+            #print(split_line)
+            if ((mode == 2 or mode == 3) and
+                len(split_line) == 2 and split_line[0] != "#A1"):
+                new_s_cons = get_modified_s_cons_for_seq(seq_dir_entry_dict[split_line[0]], split_line[1], mode)
+                seq_dir_entry_dict[split_line[0]].append(new_s_cons)
             if line.startswith("#A1"):
-                anchor_seq = line.split(" ")[-1]
+                anchor_seq = line.split()[-1]
                 s1, s2 = anchor_seq.split("BBBBBBB")
-                constraint = b"."+b"<"*(len(s1)-1) + b"xxxxxxx" + b">"*(len(s2)-1)
+                if mode == 0:
+                    constraint = "."*len(s1) + "xxxxxxx" + "."*(len(s2)-1)
+                elif mode == 1:
+                    constraint = "<"*len(s1) + "xxxxxxx" + ">"*(len(s2)-1)
+                elif mode == 2:
+                    earliest_pos = math.inf
+                    for key, value in seq_dir_entry_dict.items():
+                        group = key.split("-")[0]
+                        if group in input_dir:
+                            cons = value[-1]
+                            cm_pos = cons.find(".")
+                            if cm_pos < earliest_pos:
+                                earliest_pos = cm_pos
+                    constraint = "x"*earliest_pos + "."*(len(s1)+7+len(s2)-1-earliest_pos)
+                elif mode == 3:
+                    constraint = ""
+                    for key, value in seq_dir_entry_dict.items():
+                        group = key.split("-")[0]
+                        if group in input_dir:
+                            cons = value[-1]
+                            if not constraint:
+                                constraint = cons
+                            else:
+                                for i in range(len(cons)):
+                                    if ((constraint[i] == "(" and cons[i] == ".") or
+                                        (cons[i] == "(" and constraint[i] == ".")):
+                                        constraint = constraint[:i] + "<" + constraint[i+1:]
+                                    elif ((constraint[i] == ")" and cons[i] == ".") or
+                                          (cons[i] == ")" and constraint[i] == ".")):
+                                        constraint = constraint[:i] + ">" + constraint[i+1:]
+                else:
+                    raise ValueError("Invalid mode for #S constraint")
+                                    
                 break
+        print(constraint)
     cmd = ["RNAalifold", input_file,
            "--aln", "--ribosum_scoring",
            "--cfactor", "0.6",
            "--nfactor", "0.5",
-           "--color", "-C"
+           "--color", "-C" # -C is constraint
            ]
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
-    p.communicate(input=constraint)
+    p.communicate(input=str.encode(constraint))
     p.wait()
     os.rename("alirna.ps", f"{input_dir}/alirna.ps")
     os.rename("aln.ps", f"{input_dir}/aln.ps")
