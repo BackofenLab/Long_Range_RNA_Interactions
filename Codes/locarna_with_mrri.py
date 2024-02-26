@@ -122,7 +122,7 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
             cons_FS_3 = integrate_into(cons_FS_3, "."*(int(ranges_q[i][0])+199) + ranges_q[i][3], string.ascii_lowercase[i])
         cons_FS_5 = cons_FS_5[cutoff_5_left:cutoff_5_right]
         cons_FS_3 = cons_FS_3[cutoff_3_left:cutoff_3_right]
-        cons_FS = cons_FS_5 + "......." + cons_FS_3
+        cons_FS = cons_FS_5 + "xxxxxxx" + cons_FS_3
         
         ## #S constraint:
         if mode == 0:   ## None:    .......xxxxxxx.......
@@ -185,7 +185,7 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
     for seq_class in seq_dir:
         make_locarna_fasta(seq_dir[seq_class], f"{output_path}/locARNA_{seq_class}_input.fa", skip_FS=skip_FS)
         #continue
-        ####run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}", use_carna)
-        run_rnaalifold(f"{output_path}/{seq_class}/results", seq_dir[seq_class], mode)
-        run_ps_to_pdf(f"{output_path}/{seq_class}/results/alirna.ps", f"{output_path}/{seq_class}_alirna.pdf")
-        run_ps_to_pdf(f"{output_path}/{seq_class}/results/aln.ps", f"{output_path}/{seq_class}_aln.pdf")
+        run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}", use_carna)
+        #run_rnaalifold(f"{output_path}/{seq_class}/results", seq_dir[seq_class], mode=mode, locARNA_input=f"{output_path}/locARNA_{seq_class}_input.fa")
+        #run_ps_to_pdf(f"{output_path}/{seq_class}/results/alirna.ps", f"{output_path}/{seq_class}_alirna.pdf")
+        #run_ps_to_pdf(f"{output_path}/{seq_class}/results/aln.ps", f"{output_path}/{seq_class}_aln.pdf")

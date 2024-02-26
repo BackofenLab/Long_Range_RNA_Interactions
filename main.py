@@ -24,7 +24,7 @@ tasks = { # Note: You cannot run later tasks without running the earlier ones at
         "run_MRRI_2"              : 0, ## Further restrictions
         "locARNA+MRRI"            : 0,
         "locARNA+MRRI+CARNA"      : 1, ## Old version of locARNA that also uses CARNA
-        "draw_MRRI_plots"         : 1,
+        "draw_MRRI_plots"         : 0,
         "CDS_to_proteins"         : 0,
         }
 
@@ -124,7 +124,7 @@ if __name__ == "__main__":
         main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_path, CDS_left, CDS_right, CMHit_left, CMHit_right, cm_output_dir, use_carna=False)
         #get_all_locarna_consensus(output_loc_mmri_path)
     if tasks["locARNA+MRRI+CARNA"]:
-        main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_carna_path, CDS_left, CDS_right, CMHit_left, CMHit_right, cm_output_dir, use_carna=False, skip_FS=True, mode=2)
+        #main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_carna_path, CDS_left, CDS_right, CMHit_left, CMHit_right, cm_output_dir, use_carna=False, skip_FS=True, mode=2)
         main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_carna_path_mode_3, CDS_left, CDS_right, CMHit_left, CMHit_right, cm_output_dir, use_carna=False, skip_FS=True, mode=3)
         #get_all_locarna_consensus(output_loc_mmri_carna_path)
     if tasks["draw_MRRI_plots"]:

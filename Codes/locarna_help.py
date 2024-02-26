@@ -113,7 +113,7 @@ def run_mlocarna(input_fasta, output_dir, use_carna=False):
     cmd += ["mlocarna", input_fasta,
            #"--indel=-50", # Webserver parameter
            #"--indel-opening=-750", # Webserver parameter
-           "--width=300",
+           "--width=3000",
            "--use-ribosum=true",
            "--tgtdir", output_dir
            ]
@@ -123,6 +123,18 @@ def run_mlocarna(input_fasta, output_dir, use_carna=False):
     #raise
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     p.wait()
+
+
+def run_consensus_constraint(locARNA_input, locARNA_output):
+    cmd = ["conda", "run", "-n", "r-tidyverse"]
+    cmd += ["Rscript", "--vanilla", "Codes/consensus-constraint.R",
+            "-a", locARNA_output,
+            "-c", locARNA_input]
+    print(" ".join(cmd))
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    p.wait()
+    consensus_constraint = list(p.stdout)[0].decode("utf-8")
+    return consensus_constraint
 
 
 def get_modified_s_cons_for_seq(seq_dir_list, locarna_alignment_seq, mode):
@@ -143,23 +155,25 @@ def get_modified_s_cons_for_seq(seq_dir_list, locarna_alignment_seq, mode):
             result += filler
     return result
 
-def run_rnaalifold(input_dir, seq_dir_entries, mode=0):
+
+def run_rnaalifold(locARNA_output_dir, seq_dir_entries, mode=0, locARNA_input=""):
     """
-    input_dir(str): Directory location of the locARNA result to look at
-    seq_dir_entries(list): list of seq_dir entries corrosponding to the input_dir, 
+    locARNA_output_dir(str): Directory location of the locARNA result to look at
+    seq_dir_entries(list): list of seq_dir entries corrosponding to the locARNA_output_dir, 
                            [(id, part5, part3, cons_S, cons_1, cons_2, cons_FS), (), ...]
     mode(int): Mode for the S constraints used
-               0: Empty S constraint                   ( ....xxxxxxx.... )
-               1: Left/Right separated                 ( <<<<xxxxxxx>>>> )
-               2: Blocked except for CMHit             ( xxxxxxxxxxxx... )
-               3: Constraint using old FS interactions ( .((.xxxxxxx.).) )
+               0: Empty S constraint                              ( ....xxxxxxx.... )
+               1: Left/Right separated                            ( <<<<xxxxxxx>>>> )
+               2: Blocked except for CMHit                        ( xxxxxxxxxxxx... )
+               3: Consensus constraint of locARNA FS interactions ( .((.xxxxxxx.).) )
+    locARNA_input(str): Directory of file that was used as the input for locARNA. Only needed for mode 3
     """
-    print(f"RNAalifold : {input_dir}/result.aln => {input_dir}/alirna.ps+aln.ps")
-    input_file = f"{input_dir}/result.aln"
+    print(f"RNAalifold : {locARNA_output_dir}/result.aln => {locARNA_output_dir}/alirna.ps+aln.ps")
+    locARNA_output = f"{locARNA_output_dir}/result.aln"
     seq_dir_entry_dict = {}
     for i in seq_dir_entries:
         seq_dir_entry_dict[i[0]] = i[1:]
-    with open(input_file, "r") as f:
+    with open(locARNA_output, "r") as f:
         for line in f.readlines():
             split_line = line.split()
             #print(split_line)
@@ -178,44 +192,30 @@ def run_rnaalifold(input_dir, seq_dir_entries, mode=0):
                     earliest_pos = math.inf
                     for key, value in seq_dir_entry_dict.items():
                         group = key.split("-")[0]
-                        if group in input_dir:
+                        if group in locARNA_output_dir:
                             cons = value[-1]
                             cm_pos = cons.find(".")
                             if cm_pos < earliest_pos:
                                 earliest_pos = cm_pos
                     constraint = "x"*earliest_pos + "."*(len(s1)+7+len(s2)-1-earliest_pos)
                 elif mode == 3:
-                    constraint = ""
-                    for key, value in seq_dir_entry_dict.items():
-                        group = key.split("-")[0]
-                        if group in input_dir:
-                            cons = value[-1]
-                            if not constraint:
-                                constraint = cons
-                            else:
-                                for i in range(len(cons)):
-                                    if ((constraint[i] == "(" and cons[i] == ".") or
-                                        (cons[i] == "(" and constraint[i] == ".")):
-                                        constraint = constraint[:i] + "<" + constraint[i+1:]
-                                    elif ((constraint[i] == ")" and cons[i] == ".") or
-                                          (cons[i] == ")" and constraint[i] == ".")):
-                                        constraint = constraint[:i] + ">" + constraint[i+1:]
+                    constraint = run_consensus_constraint(locARNA_input, locARNA_output)
                 else:
                     raise ValueError("Invalid mode for #S constraint")
-                                    
                 break
-        print(constraint)
-    cmd = ["RNAalifold", input_file,
+    cmd = ["RNAalifold", locARNA_output,
            "--aln", "--ribosum_scoring",
            "--cfactor", "0.6",
            "--nfactor", "0.5",
            "--color", "-C" # -C is constraint
            ]
+    #print(" ".join(cmd))
+    #print(constraint)
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
     p.communicate(input=str.encode(constraint))
     p.wait()
-    os.rename("alirna.ps", f"{input_dir}/alirna.ps")
-    os.rename("aln.ps", f"{input_dir}/aln.ps")
+    os.rename("alirna.ps", f"{locARNA_output_dir}/alirna.ps")
+    os.rename("aln.ps", f"{locARNA_output_dir}/aln.ps")
 
 
 def run_ps_to_pdf(ps_file, output):
@@ -247,14 +247,3 @@ def hacked_MRRI_main(UTR5pCDS, UTR3pCDS, static_param_path, param_mode):
                 return [B1, B2, B3]
             else:
                 return [B1, B2]
-
-
-def run_mrri(UTR5pCDS, UTR3pCDS, static_param_path):
-    """Outdated. Currently not in use"""
-    cmd = ["python", "Codes/MRRI_main.py", "-q", UTR3pCDS, "-t", UTR5pCDS, "-p", static_param_path]
-    #print(" ".join(cmd))
-    p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-    p.wait()
-    stdout = list(p.stdout)[0].decode("utf-8")
-    d = ast.literal_eval(stdout)
-    return stdout, d
