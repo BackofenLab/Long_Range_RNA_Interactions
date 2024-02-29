@@ -1,4 +1,4 @@
-#####install.packages("optparse", repos = "http://cran.us.r-project.org")
+
 suppressWarnings(
   suppressPackageStartupMessages({
     library(optparse)
@@ -17,6 +17,10 @@ suppressWarnings(
 clustalw.alignment.file <- NA
 # constraint file
 locarna.constraint.file <- NA
+# constraint type
+constraint.type <- "S"
+# minimal number of constraints to be considered in consensus
+min.constraints <- 2
 ################################################
 
 
@@ -58,7 +62,7 @@ if (isNamespaceLoaded("rstudioapi")) {
                     "and maps the constraints to the alignment positions to\n",
                     "generate a consensus constraint to be used with RNAalifold.\n",
                     "\n",
-                    "NOTE: requires a structure constraint FOR EACH aligned sequence!"
+                    "NOTE: requires a NESTED structure constraint FOR EACH aligned sequence!"
                     ),
                   add_help_option = T
                   ) |> 
@@ -71,8 +75,25 @@ if (isNamespaceLoaded("rstudioapi")) {
                 type="character",
                 metavar = "fasta.file",
                 help = str_c(
-                  "LocARNA FASTA input file with '#S' structure constraints used to generate the alignment"
-                  )) 
+                  "LocARNA FASTA input file with structure constraints used to generate the alignment"
+                )) |> 
+    add_option( c("-t","--type"),
+                type="character",
+                metavar = "S|FS",
+                default = constraint.type,
+                help = str_c(
+                  "LocARNA structure constraint type to be used: (S)tructure constraint or (FS) = fixed structure constraint.",
+                  "Default: '",constraint.type,"'"
+                )) |> 
+    add_option( c("-m","--min"),
+                type="integer",
+                metavar = "(>0)",
+                default = as.character(min.constraints),
+                help = str_c(
+                  "Minimal number of similar constraints per position to be considered in consensus.",
+                  "Default: ", min.constraints
+                ))  
+    
   
   # parse and store command line arguments
   # prints help message and exits if "--help" or "-h" found among arguments
@@ -81,12 +102,28 @@ if (isNamespaceLoaded("rstudioapi")) {
   # store parsing results
   clustalw.alignment.file <- args$alignment
   locarna.constraint.file <- args$constraint
+  constraint.type <- args$type
+  min.constraints <- args$min
   
-  if (is.na(clustalw.alignment.file) | is.na(locarna.constraint.file)) {
+  # sanity check
+  if (is.null(clustalw.alignment.file) | is.null(locarna.constraint.file)) {
     stop("Alignment and constraint file must be provided.")
   }
 }
 
+# input validation
+if (min.constraints < 1) {
+  stop("Minimal number of constraints to be considered in consensus must be greater than 0.")
+}
+if ( ! (constraint.type %in% c("S","FS")) ) {
+  stop("Constraint type must be either 'S' or 'FS'")
+}
+if ( ! file.exists(clustalw.alignment.file) ) {
+  stop(str_c("Alignment file '",clustalw.alignment.file,"' does not exist."))
+}
+if ( ! file.exists(locarna.constraint.file) ) {
+  stop(str_c("Constraint file '",locarna.constraint.file,"' does not exist."))
+}
 
 # read alignment 
 alignment <- 
@@ -101,7 +138,7 @@ constraints <-
   read_tsv(
     locarna.constraint.file,
            col_names="dat", show_col_types = F ) |> 
-  filter( str_detect(dat,"\\s#S\\s*$") | str_detect(dat,"^>") ) |> 
+  filter( str_detect(dat,str_c("\\s#",constraint.type,"\\s*$")) | str_detect(dat,"^>") ) |> 
   # number ids and constraints consecutively (assuming one constraint FOR EACH sequence)
   mutate( isID = str_detect(dat,"^>") ) |>
   group_by( isID ) |>
@@ -209,27 +246,27 @@ left_join( alignment, constraints, by="genome" ) |>
   mutate( 
     # get count of distinct constraint encodings at each position
     consCount = unlist(all) |> unique() |> length(),
-    `c(` = sum(na.omit(unlist(all)) > pos ) > 0,
-    `c)` = sum(na.omit(unlist(all)) < pos & na.omit(unlist(all)) > 0 ) > 0,
-    `c<` = sum(na.omit(unlist(all)) == -1 ) > 0,
-    `c>` = sum(na.omit(unlist(all)) == -2 ) > 0,
-    `cx` = sum(na.omit(unlist(all)) == 0 ) > 0,
+    `c(` = sum(na.omit(unlist(all)) > pos ),
+    `c)` = sum(na.omit(unlist(all)) < pos & na.omit(unlist(all)) > 0 ),
+    `c<` = sum(na.omit(unlist(all)) == -1 ),
+    `c>` = sum(na.omit(unlist(all)) == -2 ),
+    `cx` = sum(na.omit(unlist(all)) == 0 ),
     cons = ifelse(consCount==1,
                   # agreement in constraint
                   case_when(
-                    `c(` ~ "(", # exactly the same pairing partner within alignment
-                    `c)` ~ ")", # exactly the same pairing partner within alignment
-                    `c<` ~ "<",
-                    `c>` ~ ">",
-                    `cx` ~ "x"
+                    `c(`>0 ~ "(", # exactly the same pairing partner within alignment
+                    `c)`>0 ~ ")", # exactly the same pairing partner within alignment
+                    `c<`>0 ~ "<",
+                    `c>`>0 ~ ">",
+                    `cx`>0 ~ "x"
                   ),
-                  ifelse( `cx`,
+                  ifelse( `cx`>0,
                           # at least one block constraint 'x' at this position
                           "x",
-                          ifelse( (`c<` | `c(`) & !(`c>` | `c)`),
+                          ifelse( sum(`c<`,`c(`)>=min.constraints & sum(`c>`,`c)`)==0,
                                   # only upstream pair constraints at this position
                                   "<",
-                                  ifelse( (`c>` | `c)`) & !(`c<` | `c(`),
+                                  ifelse( sum(`c>`,`c)`)>=min.constraints & sum(`c<`,`c(`)==0,
                                           # only downstream pair constraints at this position
                                           ">",
                                           # mixed pair constraints at this position
@@ -238,6 +275,6 @@ left_join( alignment, constraints, by="genome" ) |>
   # view()
   pull(cons) |>
   str_c(collapse="") |> 
-  writeLines() # write consensus constraint to console
+  writeLines(sep="") # write consensus constraint to console
 
 

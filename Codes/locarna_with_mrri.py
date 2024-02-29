@@ -153,15 +153,6 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
             else: # C is not nested with A and B so it gets ignored
                 cons_S = cons_S.replace("C", ".").replace("c", ".")
             #cons_S = cons_S.replace(".", "x")
-        elif mode == 4: ## Outdated: Covariance Sequences as #S constraint
-            cm_seq = cm_compare(row['id'], seq3, f"{cm_output_dir}/{row['cm_hit_src']}_alignment.cmout")
-            if cm_seq:
-                covar_3SL = "."*(cm_hit_f+199) + cm_seq
-                covar_3SL += "."*max(0, len(seq3) - len(covar_3SL)) ## Extend remaining dots
-            else:
-                covar_3SL = "."*len(seq3)
-            covar_3SL = covar_3SL[cutoff_3_left:cutoff_3_right]
-            cons_S = f"{(len(part5))*'.'}xxxxxxx{covar_3SL}"
         else:
             raise ValueError("Invalid mode for #S constraint")
         
@@ -182,10 +173,15 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
         seq_dir["dISFV+TBFV"] = seq_dir["dISFV"] + seq_dir["TBFV"]
         seq_dir["MBFV+dISFV"] = seq_dir["MBFV"] + seq_dir["dISFV"]
         seq_dir["MBFV+TBFV"] = seq_dir["MBFV"] + seq_dir["TBFV"]
+        if row['id'] == "NC_009942.1":
+            seq_dir["WNV"].append([f"WNV-{row['id']}", part5, part3, cons_S, cons_1, cons_2, cons_FS])
+            seq_dir["WNV"].append([f"WNV-{row['id']}a", part5, part3, cons_S, cons_1, cons_2, cons_FS])
     for seq_class in seq_dir:
+        #if seq_class != "WNV":
+        #    continue
         make_locarna_fasta(seq_dir[seq_class], f"{output_path}/locARNA_{seq_class}_input.fa", skip_FS=skip_FS)
         #continue
         run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}", use_carna)
-        #run_rnaalifold(f"{output_path}/{seq_class}/results", seq_dir[seq_class], mode=mode, locARNA_input=f"{output_path}/locARNA_{seq_class}_input.fa")
-        #run_ps_to_pdf(f"{output_path}/{seq_class}/results/alirna.ps", f"{output_path}/{seq_class}_alirna.pdf")
-        #run_ps_to_pdf(f"{output_path}/{seq_class}/results/aln.ps", f"{output_path}/{seq_class}_aln.pdf")
+        run_rnaalifold(f"{output_path}/{seq_class}/results", seq_dir[seq_class], mode=mode, locARNA_input=f"{output_path}/locARNA_{seq_class}_input.fa")
+        run_ps_to_pdf(f"{output_path}/{seq_class}/results/alirna.ps", f"{output_path}/{seq_class}_alirna.pdf")
+        run_ps_to_pdf(f"{output_path}/{seq_class}/results/aln.ps", f"{output_path}/{seq_class}_aln.pdf")

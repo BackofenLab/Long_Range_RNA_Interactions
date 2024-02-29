@@ -129,8 +129,10 @@ def run_consensus_constraint(locARNA_input, locARNA_output):
     cmd = ["conda", "run", "-n", "r-tidyverse"]
     cmd += ["Rscript", "--vanilla", "Codes/consensus-constraint.R",
             "-a", locARNA_output,
-            "-c", locARNA_input]
-    print(" ".join(cmd))
+            "-c", locARNA_input,
+            #"-t", "FS"
+            ]
+    #print(" ".join(cmd))
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     p.wait()
     consensus_constraint = list(p.stdout)[0].decode("utf-8")
@@ -177,7 +179,7 @@ def run_rnaalifold(locARNA_output_dir, seq_dir_entries, mode=0, locARNA_input=""
         for line in f.readlines():
             split_line = line.split()
             #print(split_line)
-            if ((mode == 2 or mode == 3) and
+            if ((mode == 2) and
                 len(split_line) == 2 and split_line[0] != "#A1"):
                 new_s_cons = get_modified_s_cons_for_seq(seq_dir_entry_dict[split_line[0]], split_line[1], mode)
                 seq_dir_entry_dict[split_line[0]].append(new_s_cons)
@@ -207,7 +209,10 @@ def run_rnaalifold(locARNA_output_dir, seq_dir_entries, mode=0, locARNA_input=""
            "--aln", "--ribosum_scoring",
            "--cfactor", "0.6",
            "--nfactor", "0.5",
-           "--color", "-C" # -C is constraint
+           "--color", "-C", "--enforceConstraint", # -C is constraint
+           "--mis", 
+           "-t", "0", 
+           "--noLP"
            ]
     #print(" ".join(cmd))
     #print(constraint)
