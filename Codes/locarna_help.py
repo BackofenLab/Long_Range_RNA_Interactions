@@ -212,7 +212,8 @@ def run_rnaalifold(locARNA_output_dir, seq_dir_entries, mode=0, locARNA_input=""
            "--color", "-C", "--enforceConstraint", # -C is constraint
            "--mis", 
            "-t", "0", 
-           "--noLP"
+           "--noLP",
+           "-T", "18.0"
            ]
     #print(" ".join(cmd))
     #print(constraint)
