@@ -135,6 +135,7 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
             covar_3SL = covar_3SL[:len(seq3)] ## One specific sequence has cm_t LARGER than the sequence itself so..
             covar_3SL = covar_3SL[cutoff_3_left:cutoff_3_right]
             cons_S = f"{(len(part5))*'x'}xxxxxxx{covar_3SL}"
+            skip_FS = True  ## Enforce #FS to be skipped since #S is otherwise ignored
         elif mode == 3: ## #S constraint using interactions (using the #FS sequence)
             # Only take C and c if they are nested with A and B
             cons_S = str(cons_FS)
@@ -153,6 +154,9 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
             else: # C is not nested with A and B so it gets ignored
                 cons_S = cons_S.replace("C", ".").replace("c", ".")
             #cons_S = cons_S.replace(".", "x")
+            cons_FS = cons_S
+            cons_S = f"{'.'*len(part5)}xxxxxxx{'.'*len(part3)}"
+            skip_FS = False ## Enforce #FS to be actually used in this mode
         else:
             raise ValueError("Invalid mode for #S constraint")
         

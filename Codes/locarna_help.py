@@ -130,7 +130,7 @@ def run_consensus_constraint(locARNA_input, locARNA_output):
     cmd += ["Rscript", "--vanilla", "Codes/consensus-constraint.R",
             "-a", locARNA_output,
             "-c", locARNA_input,
-            #"-t", "FS"
+            "-t", "FS"
             ]
     #print(" ".join(cmd))
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
@@ -218,7 +218,7 @@ def run_rnaalifold(locARNA_output_dir, seq_dir_entries, mode=0, locARNA_input=""
     #print(" ".join(cmd))
     #print(constraint)
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
-    p.communicate(input=str.encode(constraint))
+    p.communicate(input=str.encode(constraint)) # Transmit constraints manually
     p.wait()
     os.rename("alirna.ps", f"{locARNA_output_dir}/alirna.ps")
     os.rename("aln.ps", f"{locARNA_output_dir}/aln.ps")
