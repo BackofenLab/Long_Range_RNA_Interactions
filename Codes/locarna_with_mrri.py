@@ -166,6 +166,12 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
         #print(cons_FS.count("A") == cons_FS.count("a"))
         #print(cons_FS.count("B") == cons_FS.count("b"))
         #print(cons_FS.count("C") == cons_FS.count("c"))
+        #print(cons_FS.count("(") == cons_FS.count(")"))
+        if not ((cons_FS.count("(") == cons_FS.count(")"))
+           and (cons_FS.count("A") == cons_FS.count("a"))
+           and (cons_FS.count("B") == cons_FS.count("b"))
+           and (cons_FS.count("C") == cons_FS.count("c"))):
+           print(f"FS constraint unbalanced for {row['id']}")
 
         # seq_dir["all"].append((f"{row['class']}-{row['id']}", part5, part3, cons_S, cons_1, cons_2, cons_FS))
         if row['class'] != "ISFV":
@@ -177,13 +183,13 @@ def main_loc_with_mrri(mrri_file_path, cm_path,
         seq_dir["dISFV+TBFV"] = seq_dir["dISFV"] + seq_dir["TBFV"]
         seq_dir["MBFV+dISFV"] = seq_dir["MBFV"] + seq_dir["dISFV"]
         seq_dir["MBFV+TBFV"] = seq_dir["MBFV"] + seq_dir["TBFV"]
-        if row['id'] == "NC_009942.1":
+        if row['id'] == "NC_009942.1": ###### TEMPORARY FOR TESTING
             seq_dir["WNV"].append([f"WNV-{row['id']}", part5, part3, cons_S, cons_1, cons_2, cons_FS])
             seq_dir["WNV"].append([f"WNV-{row['id']}a", part5, part3, cons_S, cons_1, cons_2, cons_FS])
     for seq_class in seq_dir:
-        #if seq_class != "WNV":
+        #if seq_class != "MBFV":
         #    continue
-        make_locarna_fasta(seq_dir[seq_class], f"{output_path}/locARNA_{seq_class}_input.fa", skip_FS=skip_FS)
+        #make_locarna_fasta(seq_dir[seq_class], f"{output_path}/locARNA_{seq_class}_input.fa", skip_FS=skip_FS)
         #continue
         run_mlocarna(f"{output_path}/locARNA_{seq_class}_input.fa", f"{output_path}/{seq_class}", use_carna)
         run_rnaalifold(f"{output_path}/{seq_class}/results", seq_dir[seq_class], mode=mode, locARNA_input=f"{output_path}/locARNA_{seq_class}_input.fa")

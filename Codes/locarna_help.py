@@ -175,36 +175,37 @@ def run_rnaalifold(locARNA_output_dir, seq_dir_entries, mode=0, locARNA_input=""
     seq_dir_entry_dict = {}
     for i in seq_dir_entries:
         seq_dir_entry_dict[i[0]] = i[1:]
-    with open(locARNA_output, "r") as f:
-        for line in f.readlines():
-            split_line = line.split()
-            #print(split_line)
-            if ((mode == 2) and
-                len(split_line) == 2 and split_line[0] != "#A1"):
-                new_s_cons = get_modified_s_cons_for_seq(seq_dir_entry_dict[split_line[0]], split_line[1], mode)
-                seq_dir_entry_dict[split_line[0]].append(new_s_cons)
-            if line.startswith("#A1"):
-                anchor_seq = line.split()[-1]
-                s1, s2 = anchor_seq.split("BBBBBBB")
-                if mode == 0:
-                    constraint = "."*len(s1) + "xxxxxxx" + "."*(len(s2)-1)
-                elif mode == 1:
-                    constraint = "<"*len(s1) + "xxxxxxx" + ">"*(len(s2)-1)
-                elif mode == 2:
-                    earliest_pos = math.inf
-                    for key, value in seq_dir_entry_dict.items():
-                        group = key.split("-")[0]
-                        if group in locARNA_output_dir:
-                            cons = value[-1]
-                            cm_pos = cons.find(".")
-                            if cm_pos < earliest_pos:
-                                earliest_pos = cm_pos
-                    constraint = "x"*earliest_pos + "."*(len(s1)+7+len(s2)-1-earliest_pos)
-                elif mode == 3:
-                    constraint = run_consensus_constraint(locARNA_input, locARNA_output)
-                else:
-                    raise ValueError("Invalid mode for #S constraint")
-                break
+    if mode == 3:
+        constraint = run_consensus_constraint(locARNA_input, locARNA_output)
+    else:
+        with open(locARNA_output, "r") as f:
+            for line in f.readlines():
+                split_line = line.split()
+                #print(split_line)
+                if ((mode == 2) and
+                    len(split_line) == 2 and split_line[0] != "#A1"):
+                    new_s_cons = get_modified_s_cons_for_seq(seq_dir_entry_dict[split_line[0]], split_line[1], mode)
+                    seq_dir_entry_dict[split_line[0]].append(new_s_cons)
+                if line.startswith("#A1"):
+                    anchor_seq = line.split()[-1]
+                    s1, s2 = anchor_seq.split("BBBBBBB")
+                    if mode == 0:
+                        constraint = "."*len(s1) + "xxxxxxx" + "."*(len(s2)-1)
+                    elif mode == 1:
+                        constraint = "<"*len(s1) + "xxxxxxx" + ">"*(len(s2)-1)
+                    elif mode == 2:
+                        earliest_pos = math.inf
+                        for key, value in seq_dir_entry_dict.items():
+                            group = key.split("-")[0]
+                            if group in locARNA_output_dir:
+                                cons = value[-1]
+                                cm_pos = cons.find(".")
+                                if cm_pos < earliest_pos:
+                                    earliest_pos = cm_pos
+                        constraint = "x"*earliest_pos + "."*(len(s1)+7+len(s2)-1-earliest_pos)
+                    else:
+                        raise ValueError("Invalid mode for the RNAalifold constraint")
+                    break
     cmd = ["RNAalifold", locARNA_output,
            "--aln", "--ribosum_scoring",
            "--cfactor", "0.6",
