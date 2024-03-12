@@ -24,7 +24,11 @@ class MRRI():
         self.b3 = None
 
     
-    def get_param_mode(self, B1, param_mode=1):
+    def get_region_of_interest(self, B1, param_mode=1):
+        """
+        param_mode (int): 1 - Whole sequence from 5' to 100 into CDS and last 100 to 3' end
+                          2 - Limited to small area around 5'UTR/CDS transition and short area in 3' UTR
+        """
         UTR5pCDS = self.targetSeq[B1['id1']]
         UTR3pCDS = self.querySeq[B1['id2']]
         tidxpos0 = -(len(UTR5pCDS)-200) # len of UTR5 alone
@@ -37,9 +41,9 @@ class MRRI():
             qregion_e = len(UTR3pCDS)-200 # len of UTR3 alone
         if param_mode == 2:
             tregion_s = -40 # = UTR5/CDS transition - 40
-            tregion_e = +70 # = UTR5/CDS transition +70 40
-            qregion_s = len(UTR3pCDS)-200-140
-            qregion_e = len(UTR3pCDS)-200-50 # len of UTR3 alone
+            tregion_e = +70 # = UTR5/CDS transition +70
+            qregion_s = len(UTR3pCDS)-200-140 # From 3' end 140 bases to the left
+            qregion_e = len(UTR3pCDS)-200-50  # To 50 bases to the left of the 3' end
         tregion = f"{str(tregion_s)}-{str(tregion_e)}"
         qregion = f"{str(qregion_s)}-{str(qregion_e)}"
         return tidxpos0, qidxpos0, tregion, qregion
@@ -59,7 +63,7 @@ class MRRI():
         ########################################
         ############ Hacked in #################
         ########################################
-        tidxpos0, qidxpos0, tregion, qregion = self.get_param_mode(B1, param_mode)
+        tidxpos0, qidxpos0, tregion, qregion = self.get_region_of_interest(B1, param_mode)
         complete += f" --tidxpos0 {str(tidxpos0)} " ## Transition UTR5-CDS
         complete += f"--qidxpos0 {str(qidxpos0)} "  ## Transition CDS-UTR3
         complete += f"--tregion {tregion} " ## UTR5start to end+100CDS

@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 import math
 from collections import defaultdict
+from Codes.evaluation import draw_lineplots
 
 
 main_colours = {"UTR": "gray", "interaction" : "red", "subopt": "orange", "MEME": "red"}
@@ -169,9 +170,9 @@ def meme_to_lineplot(df, extra_bases_roi, meme_output):
             mega_dict[virus_class][site] = d[virus_class]
     for virus_class in virus_classes:
         meme_sites = mega_dict[virus_class]
-        draw_extra_lineplot(df.loc[df["class"] == virus_class], meme_sites,
-                            extra_bases_roi,
-                            f"{meme_output}/MEME_{virus_class}.png", virus_class)
+        draw_lineplots(df.loc[df["class"] == virus_class],
+                       extra_bases_roi,
+                       f"{meme_output}/MEME_{virus_class}.png", subopt_mode=True, meme_sites=meme_sites) #virus_class ? 
  
     
 def glam2_to_lineplot(df, extra_bases_roi, meme_output):
@@ -212,6 +213,6 @@ def glam2_to_lineplot(df, extra_bases_roi, meme_output):
             mega_dict[virus_class][site] = d[virus_class]
     for virus_class in virus_classes:
         meme_sites = mega_dict[virus_class]
-        draw_extra_lineplot(df.loc[df["class"] == virus_class], meme_sites,
-                            extra_bases_roi,
-                            f"{meme_output}/GLAM2_{virus_class}.png", virus_class)
+        draw_lineplots(df.loc[df["class"] == virus_class],
+                       extra_bases_roi,
+                       f"{meme_output}/GLAM2_{virus_class}.png", subopt_mode=True, meme_sites=meme_sites)

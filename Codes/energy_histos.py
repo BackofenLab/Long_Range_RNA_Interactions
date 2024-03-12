@@ -9,8 +9,8 @@ def plot_energy_histos(IntaRNA_df, output_dir):
     grouplist = []
     interaction_number_list = []
     for index, row in IntaRNA_df.iterrows():
-        constrained_predictions_t = ast.literal_eval(row["constrained_predictions_t"])
-        constrained_predictions_q = ast.literal_eval(row["constrained_predictions_q"])
+        constrained_predictions_t = ast.literal_eval(row["predictions_t"])
+        constrained_predictions_q = ast.literal_eval(row["predictions_q"])
         for i in range(0, len(constrained_predictions_t)):
             interaction_t = constrained_predictions_t[i]
             classlist.append(row["class"])

@@ -6,9 +6,6 @@ import math
 #from Codes.MRRI import MRRIHandler
 import Codes.MRRI_main
 
-def run_command(cmd):
-    p = subprocess.run(cmd.split(" "))
-
 
 def find_all(s, c):
     """Generator that finds and returns the locations 
@@ -96,6 +93,7 @@ def run_mlocarna(input_fasta, output_dir, use_carna=False):
     
     input_fasta (str): Filepath to a fasta file to apply locarna on
     output_dir (str): Filepath of the resulting CM file
+    use_carna (bool): If crossing structures are expected to be in the input use carna
     """
     
     if use_carna:
@@ -225,32 +223,47 @@ def run_rnaalifold(locARNA_output_dir, seq_dir_entries, mode=0, locARNA_input=""
     os.rename("aln.ps", f"{locARNA_output_dir}/aln.ps")
 
 
+def make_tmp_fasta(seq, cons, output_name):
+    with open(output_name, "w") as f:
+        f.write(f">tmp\n")
+        f.write(f"{seq}\n")
+        f.write(f"{cons}\n")
+
+
+def get_special_combined_constraint(seq, constraint):
+    """
+    Take constraint
+    Find last ")" in it
+    Make 2. string where every position up to that ")" including itself is replaced with "x"
+    Create temp fasta of that seq with constraint
+    Run RNAfold with that fasta
+    Take the result of that
+    Merge it with first constraint 
+    (original constraint should only have "." at the end so those are replaced with the new)
+    Return that
+    """
+    tmp_fasta_name = "tmp.fa"
+    last_pos = constraint.rfind(")") + 1
+    tmp_cons = "x"*(last_pos)+"."*(len(constraint)-(last_pos))
+    make_tmp_fasta(seq, tmp_cons, tmp_fasta_name) # Make temporary fasta file 
+    cmd = ["RNAfold", tmp_fasta_name, "-C",
+           "-T", "18.0", 
+           "-t", "0", "--noLP"]
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE)
+    p.wait()
+    ## get result of RNAfold
+    ## element 2 has structure b'structure (energy)' => we cut off the energy
+    res_fold = list(p.stdout)[2].decode("utf-8").split(" ")[0]
+    new_constraint = constraint[:last_pos] + res_fold[last_pos:]
+    #print(constraint)
+    #print(tmp_cons)
+    #print(new_constraint)
+    #raise
+    return new_constraint
+
+
 def run_ps_to_pdf(ps_file, output):
     print(f"ps2pdf: {ps_file} `=> {output}")
     cmd = ["ps2pdf", "-dEPSCrop", ps_file, output]
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     p.wait()
-
-def hacked_MRRI_main(UTR5pCDS, UTR3pCDS, static_param_path, param_mode):
-    sys.argv = ["Codes/MRRI_main.py", "-q", UTR3pCDS, "-t", UTR5pCDS, "-p", static_param_path]
-    MRRIHandler = Codes.MRRI_main.main()
-    for qId in MRRIHandler.querySeq.keys():
-        for tId in MRRIHandler.targetSeq.keys():
-            BE = dict({ 'id1': tId, 'id2' : qId})
-            B1 = MRRIHandler.runIntaRNA(BE, param_mode)
-            #print(B1)
-            if "id2" in B1:
-                B2 = MRRIHandler.runIntaRNA(B1, param_mode)
-            else:
-                BErr = {"start1":0, "end1":0, "start2":0, "end2":0, "hybridDP":0}
-                return [BErr] ## First IntaRNA round didnt find anything
-            #print(B2)
-            if "id2" in B2:
-                B3 = MRRIHandler.runIntaRNA(B2, param_mode)
-            else:
-                return [B1]
-            #print(B3)
-            if "id2" in B3:
-                return [B1, B2, B3]
-            else:
-                return [B1, B2]

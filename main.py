@@ -1,31 +1,31 @@
 from Codes.parameters import write_static_parameters, create_parameter_table
-from Codes.evaluation import draw_lineplots, draw_energy_histo, draw_energy_histo_subopt
-from Codes.IntaRNA_code import main_intarna
+from Codes.evaluation import draw_lineplots
+from Codes.intarna import main_intarna, main_mrri
 from Codes.covariance import create_cms, cm_search
 from Codes.meme import get_meme_sequences
-from Codes.locarna import main_locarna
+##from Codes.locarna import main_locarna
 from Codes.meme_to_lineplot import meme_to_lineplot, glam2_to_lineplot
-from Codes.locarna_with_mrri import main_mrri, main_loc_with_mrri
+from Codes.locarna import main_locarna
 from Codes.cds_to_protein import cds_to_proteins
-from Codes.locarna_consensus import get_all_locarna_consensus
 from Codes.energy_histos import plot_energy_histos
 import pandas as pd
 import os
 
 tasks = { # Note: You cannot run later tasks without running the earlier ones at least once.
-        "create_parameter_tables" : 0,
-        "run_IntaRNA"             : 0,
-        "CREATE_CMs"              : 0, ##!## Takes very long. Do not set to true unless new data.
-        "run_CM_search"           : 0,
-        "draw_IntaRNA_plots"      : 0,
-        "MEME+GLAM2"              : 0,
-        "run_locARNA"             : 0,
-        "run_MRRI_1"              : 0, ## Restrictions like "run_IntaRNA"
-        "run_MRRI_2"              : 0, ## Further restrictions
-        "locARNA+MRRI"            : 0,
+        "create_parameter_tables" : 1,
+        "run_IntaRNA"             : 1,
+        "CREATE_CMs"              : 0, ##!## Calibrating takes very long. Do not set to true unless new data.
+        "run_CM_search"           : 1,
+        "draw_IntaRNA_plots"      : 1,
+        "MEME+GLAM2_prep"         : 1, ## Prepare files so they can be used for the MEME suite
+        "MEME+GLAM2_lineplots"    : 1, ## Will not work until the sequences were run through the MEME Suite and the results saved in Results/MEME 
+        "run_locARNA"             : 1,
+        "run_MRRI_1"              : 1, ## Restrictions like "run_IntaRNA"
+        "run_MRRI_2"              : 1, ## Further restrictions
+        "locARNA+MRRI"            : 1,
         "locARNA+MRRI+CARNA"      : 1, ## Old version of locARNA that also uses CARNA
-        "draw_MRRI_plots"         : 0,
-        "CDS_to_proteins"         : 0,
+        "draw_MRRI_plots"         : 1,
+        "CDS_to_proteins"         : 1,
         }
 
 ## Input IntaRNA Paths:
@@ -54,9 +54,9 @@ raw_MRRI_output_1 = f"{results}/MRRI_raw_output_1.txt"
 raw_MRRI_output_2 = f"{results}/MRRI_raw_output_2.txt"
 mrri_file_path_1 = f"{results}/MRRI_output_1.csv"
 mrri_file_path_2 = f"{results}/MRRI_output_2.csv"
-output_loc_mmri_path = f"{results}/locARNA_with_MRRI"
-output_loc_mmri_carna_path = f"{results}/locARNA_with_MRRI_only_cm_pos"
-output_loc_mmri_carna_path_mode_3 = f"{results}/locARNA_with_MRRI_only_inter"
+output_loc_mmri_path_mode_2 = f"{results}/locARNA_with_MRRI_only_cm_pos"
+output_loc_mmri_path_mode_3 = f"{results}/locARNA_with_MRRI_only_inter"
+output_loc_mmri_path_carna = f"{results}/locARNA_with_MRRI_crossing"
 mrri_lineplot_path_1 = f"{results}/interaction_lineplot_MRRI_1.png"
 mrri_lineplot_path_2 = f"{results}/interaction_lineplot_MRRI_2.png"
 
@@ -104,29 +104,26 @@ if __name__ == "__main__":
         cm_search(df, covariance_dir, database_path, cm_output_dir, cm_search_file)
     if tasks["draw_IntaRNA_plots"]:
         df = pd.read_csv(cm_search_file)
-        draw_lineplots(df, extra_bases_roi, lineplot_output)
-        draw_energy_histo(df, energy_histo)
-        draw_energy_histo_subopt(df, energy_histo)
-    if tasks["MEME+GLAM2"]:
-        df = pd.read_csv(cm_search_file)
-        get_meme_sequences(parameter_table_file, cm_search_file, meme_output)    
+        draw_lineplots(df, extra_bases_roi, lineplot_output, subopt_mode=True)
+    if tasks["MEME+GLAM2_prep"]:
+        get_meme_sequences(cm_search_file, meme_output) 
+    if tasks["MEME+GLAM2_lineplots"]:
+        df = pd.read_csv(cm_search_file)        
         meme_to_lineplot(df, extra_bases_roi, meme_output)
         glam2_to_lineplot(df, extra_bases_roi, meme_output) # HIGHLY improvised..
     if tasks["run_locARNA"]:
-        main_locarna(parameter_table_file, cm_search_file, locarna_output, CDS_left, CDS_right, CMHit_left, CMHit_right)
+        main_locarna(IntaRNA_output, cm_search_file, locarna_output, CDS_left, CDS_right, CMHit_left, CMHit_right)
     if tasks["run_MRRI_1"]:
-        param_mode = 1
+        param_mode = 1 # decides the region of interest for MRRI
         main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, mrri_file_path_1, raw_MRRI_output_1, param_mode)
     if tasks["run_MRRI_2"]:
-        param_mode = 2
+        param_mode = 2 # decides the region of interest for MRRI
         main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, mrri_file_path_2, raw_MRRI_output_2, param_mode)
     if tasks["locARNA+MRRI"]:
-        main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_path, CDS_left, CDS_right, CMHit_left, CMHit_right, cm_output_dir, use_carna=False)
-        #get_all_locarna_consensus(output_loc_mmri_path)
+        main_locarna(mrri_file_path_2, cm_search_file, output_loc_mmri_path_mode_2, CDS_left, CDS_right, CMHit_left, CMHit_right, use_carna=False, mode=2)
+        main_locarna(mrri_file_path_2, cm_search_file, output_loc_mmri_path_mode_3, CDS_left, CDS_right, CMHit_left, CMHit_right, use_carna=False, mode=3)
     if tasks["locARNA+MRRI+CARNA"]:
-        main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_carna_path, CDS_left, CDS_right, CMHit_left, CMHit_right, cm_output_dir, use_carna=False, skip_FS=True, mode=2)
-        main_loc_with_mrri(mrri_file_path_2, cm_search_file, parameter_table_file, output_loc_mmri_carna_path_mode_3, CDS_left, CDS_right, CMHit_left, CMHit_right, cm_output_dir, use_carna=False, skip_FS=True, mode=3)
-        #get_all_locarna_consensus(output_loc_mmri_carna_path)
+        main_locarna(mrri_file_path_2, cm_search_file, output_loc_mmri_path_carna, CDS_left, CDS_right, CMHit_left, CMHit_right, use_carna=True, mode=1)
     if tasks["draw_MRRI_plots"]:
         cmdf = pd.read_csv(cm_search_file)
         if os.path.isfile(mrri_file_path_1):
