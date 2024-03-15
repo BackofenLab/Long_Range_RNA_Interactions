@@ -72,6 +72,7 @@ amino_acids_output = f"{results}/AminoAcids.fa"
 extra_bases = 200
 extra_bases_roi = 100
 outNumber = 4 # Allow n-1 subops, must be at least 1
+temperature = 18
 
 ## Region for locARNA
 CDS_left = 40
@@ -85,7 +86,7 @@ static_d = {"energyVRNA": "Data/rna_andronescu2007.par",
             "seedBP": 5,
             "accW": 50,
             "accL": 50,
-            "temperature": 18,
+            "temperature": temperature,
             }
 
 
@@ -120,10 +121,10 @@ if __name__ == "__main__":
         param_mode = 2 # decides the region of interest for MRRI
         main_mrri(parameter_table_file, static_param_path, extra_bases, extra_bases_roi, mrri_file_path_2, raw_MRRI_output_2, param_mode)
     if tasks["locARNA+MRRI"]:
-        main_locarna(mrri_file_path_2, cm_search_file, output_loc_mmri_path_mode_2, CDS_left, CDS_right, CMHit_left, CMHit_right, use_carna=False, mode=2)
-        main_locarna(mrri_file_path_2, cm_search_file, output_loc_mmri_path_mode_3, CDS_left, CDS_right, CMHit_left, CMHit_right, use_carna=False, mode=3)
+        main_locarna(mrri_file_path_2, cm_search_file, output_loc_mmri_path_mode_2, CDS_left, CDS_right, CMHit_left, CMHit_right, use_carna=False, mode=2, temperature=temperature)
+        main_locarna(mrri_file_path_2, cm_search_file, output_loc_mmri_path_mode_3, CDS_left, CDS_right, CMHit_left, CMHit_right, use_carna=False, mode=3, temperature=temperature)
     if tasks["locARNA+MRRI+CARNA"]:
-        main_locarna(mrri_file_path_2, cm_search_file, output_loc_mmri_path_carna, CDS_left, CDS_right, CMHit_left, CMHit_right, use_carna=True, mode=1)
+        main_locarna(mrri_file_path_2, cm_search_file, output_loc_mmri_path_carna, CDS_left, CDS_right, CMHit_left, CMHit_right, use_carna=True, mode=1, temperature=temperature)
     if tasks["draw_MRRI_plots"]:
         cmdf = pd.read_csv(cm_search_file)
         if os.path.isfile(mrri_file_path_1):

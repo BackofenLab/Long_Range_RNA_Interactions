@@ -32,7 +32,7 @@ def make_locarna_fasta(l, output_name, skip_FS=False):
 def main_locarna(input_df_file_path, cm_path, output_path,
                  CDS_left, CDS_right, 
                  CMHit_left, CMHit_right, 
-                 use_carna=False, skip_FS=False, mode=1):
+                 use_carna=False, skip_FS=False, mode=1, temperature=18):
     """Run locARNA with RNAalifold.
     param_df_path (str): Path to the parameter dataframe
     cm_path (str): Path to the dataframe resulting from CMSearch
@@ -148,7 +148,7 @@ def main_locarna(input_df_file_path, cm_path, output_path,
     for seq_class in seq_dir:
         fasta_file_name = f"{output_path}/locARNA_{seq_class}_input.fa"
         make_locarna_fasta(seq_dir[seq_class], fasta_file_name, skip_FS=skip_FS)
-        run_mlocarna(fasta_file_name, f"{output_path}/{seq_class}", use_carna)
-        run_rnaalifold(f"{output_path}/{seq_class}/results", seq_dir[seq_class], mode=mode, locARNA_input=fasta_file_name)
+        run_mlocarna(fasta_file_name, f"{output_path}/{seq_class}", use_carna, temperature=temperature)
+        run_rnaalifold(f"{output_path}/{seq_class}/results", seq_dir[seq_class], mode=mode, locARNA_input=fasta_file_name, temperature=temperature)
         run_ps_to_pdf(f"{output_path}/{seq_class}/results/alirna.ps", f"{output_path}/{seq_class}_alirna.pdf")
         run_ps_to_pdf(f"{output_path}/{seq_class}/results/aln.ps", f"{output_path}/{seq_class}_aln.pdf")

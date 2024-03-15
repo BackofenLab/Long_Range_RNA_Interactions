@@ -88,7 +88,7 @@ def cm_compare(id, seq, cm_file):
         return result_string
 
 
-def run_mlocarna(input_fasta, output_dir, use_carna=False):
+def run_mlocarna(input_fasta, output_dir, use_carna=False, temperature=18):
     """Run mlocarna on a given fasta file.
     
     input_fasta (str): Filepath to a fasta file to apply locarna on
@@ -113,6 +113,7 @@ def run_mlocarna(input_fasta, output_dir, use_carna=False):
            #"--indel-opening=-750", # Webserver parameter
            "--width=3000",
            "--use-ribosum=true",
+           "--rnafold-temperature", str(temperature),
            "--tgtdir", output_dir
            ]
     if use_carna:
@@ -156,7 +157,7 @@ def get_modified_s_cons_for_seq(seq_dir_list, locarna_alignment_seq, mode):
     return result
 
 
-def run_rnaalifold(locARNA_output_dir, seq_dir_entries, mode=0, locARNA_input=""):
+def run_rnaalifold(locARNA_output_dir, seq_dir_entries, mode=0, locARNA_input="", temperature=18):
     """
     locARNA_output_dir(str): Directory location of the locARNA result to look at
     seq_dir_entries(list): list of seq_dir entries corrosponding to the locARNA_output_dir, 
@@ -212,7 +213,7 @@ def run_rnaalifold(locARNA_output_dir, seq_dir_entries, mode=0, locARNA_input=""
            "--mis", 
            "-t", "0", 
            "--noLP",
-           "-T", "18.0"
+           "-T", str(temperature)
            ]
     #print(" ".join(cmd))
     #print(constraint)
