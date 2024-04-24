@@ -1,7 +1,6 @@
 import os
 import sys
 import subprocess
-import ast
 import math
 #from Codes.MRRI import MRRIHandler
 import Codes.MRRI_main
@@ -213,7 +212,8 @@ def run_rnaalifold(locARNA_output_dir, seq_dir_entries, mode=0, locARNA_input=""
            "--mis", 
            "-t", "0", 
            "--noLP",
-           "-T", str(temperature)
+           "-T", str(temperature),
+           "--aln-EPS-cols", "300",
            ]
     #print(" ".join(cmd))
     #print(constraint)

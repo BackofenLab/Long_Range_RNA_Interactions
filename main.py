@@ -12,20 +12,20 @@ import pandas as pd
 import os
 
 tasks = { # Note: You cannot run later tasks without running the earlier ones at least once.
-        "create_parameter_tables" : 1,
-        "run_IntaRNA"             : 1,
+        "create_parameter_tables" : 0,
+        "run_IntaRNA"             : 0,
         "CREATE_CMs"              : 0, ##!## Calibrating takes very long. Do not set to true unless new data.
-        "run_CM_search"           : 1,
+        "run_CM_search"           : 0,
         "draw_IntaRNA_plots"      : 1,
-        "MEME+GLAM2_prep"         : 1, ## Prepare files so they can be used for the MEME suite
-        "MEME+GLAM2_lineplots"    : 1, ## Will not work until the sequences were run through the MEME Suite and the results saved in Results/MEME 
-        "run_locARNA"             : 1,
-        "run_MRRI_1"              : 1, ## Restrictions like "run_IntaRNA"
-        "run_MRRI_2"              : 1, ## Further restrictions
-        "locARNA+MRRI"            : 1,
-        "locARNA+MRRI+CARNA"      : 1, ## Old version of locARNA that also uses CARNA
-        "draw_MRRI_plots"         : 1,
-        "CDS_to_proteins"         : 1,
+        "MEME+GLAM2_prep"         : 0, ## Prepare files so they can be used for the MEME suite
+        "run_locARNA"             : 0,
+        "run_MRRI_1"              : 0, ## Restrictions like "run_IntaRNA"
+        "run_MRRI_2"              : 0, ## Further restrictions
+        "locARNA+MRRI"            : 0,
+        "locARNA+MRRI+CARNA"      : 0, ## Old version of locARNA that also uses CARNA
+        "MEME+GLAM2_lineplots"    : 0, ## Will not work until the sequences were run through the MEME Suite and the results saved in Results/MEME 
+        "draw_MRRI_plots"         : 0,
+        "CDS_to_proteins"         : 0,
         }
 
 ## Input IntaRNA Paths:
@@ -107,11 +107,7 @@ if __name__ == "__main__":
         df = pd.read_csv(cm_search_file)
         draw_lineplots(df, extra_bases_roi, lineplot_output, subopt_mode=True)
     if tasks["MEME+GLAM2_prep"]:
-        get_meme_sequences(cm_search_file, meme_output) 
-    if tasks["MEME+GLAM2_lineplots"]:
-        df = pd.read_csv(cm_search_file)        
-        meme_to_lineplot(df, extra_bases_roi, meme_output)
-        glam2_to_lineplot(df, extra_bases_roi, meme_output) # HIGHLY improvised..
+        get_meme_sequences(cm_search_file, meme_output)
     if tasks["run_locARNA"]:
         main_locarna(IntaRNA_output, cm_search_file, locarna_output, CDS_left, CDS_right, CMHit_left, CMHit_right)
     if tasks["run_MRRI_1"]:
@@ -125,21 +121,26 @@ if __name__ == "__main__":
         main_locarna(mrri_file_path_2, cm_search_file, output_loc_mmri_path_mode_3, CDS_left, CDS_right, CMHit_left, CMHit_right, use_carna=False, mode=3, temperature=temperature)
     if tasks["locARNA+MRRI+CARNA"]:
         main_locarna(mrri_file_path_2, cm_search_file, output_loc_mmri_path_carna, CDS_left, CDS_right, CMHit_left, CMHit_right, use_carna=True, mode=1, temperature=temperature)
-    if tasks["draw_MRRI_plots"]:
+    if tasks["draw_MRRI_plots"] or tasks["MEME+GLAM2_lineplots"]:
         cmdf = pd.read_csv(cm_search_file)
         if os.path.isfile(mrri_file_path_1):
             mrri_df_1 = pd.read_csv(mrri_file_path_1)
             mrri_df_1["cm_hit_f"] = pd.Series(cmdf["cm_hit_f"])
             mrri_df_1["cm_hit_t"] = pd.Series(cmdf["cm_hit_t"])
             mrri_df_1["cm_hit_src"] = pd.Series(cmdf["cm_hit_src"])
-            draw_lineplots(mrri_df_1, extra_bases_roi, mrri_lineplot_path_1)
+            if tasks["draw_MRRI_plots"]:
+                draw_lineplots(mrri_df_1, extra_bases_roi, mrri_lineplot_path_1)
         if os.path.isfile(mrri_file_path_2):
             mrri_df_2 = pd.read_csv(mrri_file_path_2)
             mrri_df_2["cm_hit_f"] = pd.Series(cmdf["cm_hit_f"])
             mrri_df_2["cm_hit_t"] = pd.Series(cmdf["cm_hit_t"])
             mrri_df_2["cm_hit_src"] = pd.Series(cmdf["cm_hit_src"])
-            draw_lineplots(mrri_df_2, extra_bases_roi, mrri_lineplot_path_2, draw_roi_box=True)
-            plot_energy_histos(mrri_df_2, results)
+            if tasks["draw_MRRI_plots"]:
+                draw_lineplots(mrri_df_2, extra_bases_roi, mrri_lineplot_path_2, draw_roi_box=True)
+                plot_energy_histos(mrri_df_2, results)
+            if tasks["MEME+GLAM2_lineplots"]:
+                meme_to_lineplot(mrri_df_2, extra_bases_roi, meme_output)
+                glam2_to_lineplot(mrri_df_2, extra_bases_roi, meme_output) # HIGHLY improvised..
     if tasks["CDS_to_proteins"]:
         cds_to_proteins(parameter_table_file, amino_acids_output, extra_bases_roi)
     

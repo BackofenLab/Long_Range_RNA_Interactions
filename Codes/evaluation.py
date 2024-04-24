@@ -44,7 +44,7 @@ def draw_lineplots(df, extra_bases_roi, output, subopt_mode=False, draw_roi_box=
     no_cm_hits = False
     appeared_virus_types = {}
     plt.style.use("seaborn-v0_8-darkgrid")
-    fig, (side5, side3) = plt.subplots(2, figsize=(16, 20))
+    fig, (side5, side3) = plt.subplots(1, 2, figsize=(16, 9)) # Formerly (24, 20)
 
     for index, row in df.iterrows():
         appeared_virus_types[row["type"] if row["class"] == "ISFV" else row["class"]] = 1
@@ -145,17 +145,17 @@ def draw_lineplots(df, extra_bases_roi, output, subopt_mode=False, draw_roi_box=
     ## Annotations:
     side5.set_xlabel("Distance from 5'UTR-CDS transition", fontsize=16)
     side3.set_xlabel("Distance from 3'UTR end", fontsize=16)
-    side5.set_ylabel("Index", fontsize=16)
-    side3.set_ylabel("Index", fontsize=16)
+    side5.set_ylabel("Accession number", fontsize=16)
+    side3.set_ylabel("Accession number", fontsize=16)
     side5.yaxis.set_label_position("right")
     side5.yaxis.tick_right()
     side3.yaxis.set_label_position("right")
     side3.yaxis.tick_right()
 
     side5.set_yticks(np.arange(len(df["id"])))
-    side5.set_yticklabels(list(df["id"]))
+    side5.set_yticklabels(list(df["id"]+"_"+df["virus"]))
     side3.set_yticks(np.arange(len(df["id"])))
-    side3.set_yticklabels(list(df["id"]))
+    side3.set_yticklabels(list(df["id"]+"_"+df["virus"]))
     side5.autoscale_view()
     side3.autoscale_view()
     ## Legend:
@@ -167,7 +167,8 @@ def draw_lineplots(df, extra_bases_roi, output, subopt_mode=False, draw_roi_box=
     if subopt_mode:
         legend_elements.append(Line2D([0], [0], color='orange', lw=8, label='Subopt'))
     elif not no_predictions:
-        legend_elements.append(Line2D([0], [0], color='orange', lw=8, label='Constrained Interaction'))
+        legend_elements.append(Line2D([0], [0], color='orange', lw=8, label='Constrained Interaction 1'))
+        legend_elements.append(Line2D([0], [0], color='yellow', lw=8, label='Constrained Interaction 2'))
     if meme_sites:
          legend_elements.append(Line2D([0], [0], color='r', alpha=0.3, lw=linewidths["MEME"], label='MEME Hit'))
     side5.legend(handles=legend_elements,loc="upper left", prop={"size": 16})
@@ -175,5 +176,14 @@ def draw_lineplots(df, extra_bases_roi, output, subopt_mode=False, draw_roi_box=
         legend_elements.append(Line2D([0], [0], color="blue", lw=8, label='CM Hit', alpha=0.5))
     side3.legend(handles=legend_elements,loc="upper left", prop={"size": 16})
     plt.suptitle("Interaction Lineplot", fontsize=48)
-    plt.savefig(output)
+    plt.savefig(output, bbox_inches='tight')
+    
+    # Save plots separately too:
+    #extent5 = side5.get_tightbbox().transformed(fig.dpi_scale_trans.inverted())
+    #extent3 = side3.get_tightbbox().transformed(fig.dpi_scale_trans.inverted())
+    #o_split = output.split(".",1)
+    #print(extent5[0], extent3)
+    #plt.savefig(f"{o_split[0]}_5.{o_split[1]}", bbox_inches=extent5)
+    #plt.savefig(f"{o_split[0]}_3.{o_split[1]}", bbox_inches=extent3) # .expanded(1.2, 1.2)
+
     plt.close()
