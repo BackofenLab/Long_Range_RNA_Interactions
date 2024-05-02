@@ -12,20 +12,20 @@ import pandas as pd
 import os
 
 tasks = { # Note: You cannot run later tasks without running the earlier ones at least once.
-        "create_parameter_tables" : 1,
-        "run_IntaRNA"             : 1,
+        "create_parameter_tables" : 0,
+        "run_IntaRNA"             : 0,
         "CREATE_CMs"              : 0, ##!## Calibrating takes very long. Do not set to true unless new data.
-        "run_CM_search"           : 1,
+        "run_CM_search"           : 0,
         "draw_IntaRNA_plots"      : 1,
-        "MEME+GLAM2_prep"         : 1, ## Prepare files so they can be used for the MEME suite
-        "run_locARNA"             : 1,
-        "run_MRRI_1"              : 1, ## Restrictions like "run_IntaRNA"
-        "run_MRRI_2"              : 1, ## Further restrictions
-        "locARNA+MRRI"            : 1,
-        "locARNA+MRRI+CARNA"      : 1, ## Old version of locARNA that also uses CARNA
-        "MEME+GLAM2_lineplots"    : 1, ## Will not work until the sequences were run through the MEME Suite and the results saved in Results/MEME 
+        "MEME+GLAM2_prep"         : 0, ## Prepare files so they can be used for the MEME suite
+        "run_locARNA"             : 0,
+        "run_MRRI_1"              : 0, ## Restrictions like "run_IntaRNA"
+        "run_MRRI_2"              : 0, ## Further restrictions
+        "locARNA+MRRI"            : 0,
+        "locARNA+MRRI+CARNA"      : 0, ## Old version of locARNA that also uses CARNA
+        "MEME+GLAM2_lineplots"    : 0, ## Will not work until the sequences were run through the MEME Suite and the results saved in Results/MEME 
         "draw_MRRI_plots"         : 1,
-        "CDS_to_proteins"         : 1,
+        "CDS_to_proteins"         : 0,
         }
 
 ## Input IntaRNA Paths:
