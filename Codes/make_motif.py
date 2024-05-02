@@ -162,8 +162,7 @@ def create_motif(input_fasta_left, input_fasta_right, output_file="",
     if not output_file:
         output_file = input_fasta_left.replace("_left.fa", ".png")
     plt.savefig(output_file)
-    #raise
-    #motif.fig.show()
+    plt.close()
 
 
 if __name__ == "__main__":
