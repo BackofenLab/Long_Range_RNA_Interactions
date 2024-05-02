@@ -144,6 +144,8 @@ def create_motif(input_fasta_left, input_fasta_right, output_file="",
     #motif2.ax.tick_params(axis="x", labelsize=24)
     #motif.ax.set_yticks([0.2, 0.4, 0.6, 0.8, 1])
     #motif2.ax.set_yticks([0.2, 0.4, 0.6, 0.8, 1])
+    motif.ax.axis('off')
+    motif2.ax.axis('off')
     if vertical:
         plt.subplots_adjust(hspace=0.5, bottom=0.05, top=0.99, left=0.05, right=0.99)
     else:
