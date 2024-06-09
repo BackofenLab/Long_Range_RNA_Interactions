@@ -22,7 +22,88 @@ class MRRI():
         self.b1 = None
         self.b2 = None
         self.b3 = None
+
     
+    def get_region_of_interest(self, B1, param_mode=1):
+        """
+        param_mode (int): 1 - Whole sequence from 5' to 100 into CDS and last 100 to 3' end
+                          2 - Limited to small area around 5'UTR/CDS transition and short area in 3' UTR
+        """
+        UTR5pCDS = self.targetSeq[B1['id1']]
+        UTR3pCDS = self.querySeq[B1['id2']]
+        tidxpos0 = -(len(UTR5pCDS)-200) # len of UTR5 alone
+        qidxpos0 = -200 # = -200
+        if param_mode == 1:
+            tregion_s = tidxpos0 # = len(UTR5)
+            tregion_e = 100 # = 100
+            qidxpos0 = -200 # = -200
+            qregion_s = -100 # = -100
+            qregion_e = len(UTR3pCDS)-200 # len of UTR3 alone
+        if param_mode == 2:
+            tregion_s = -40 # = UTR5/CDS transition - 40
+            tregion_e = +70 # = UTR5/CDS transition +70
+            qregion_s = len(UTR3pCDS)-200-140 # From 3' end 140 bases to the left
+            qregion_e = len(UTR3pCDS)-200-50  # To 50 bases to the left of the 3' end
+        tregion = f"{str(tregion_s)}-{str(tregion_e)}"
+        qregion = f"{str(qregion_s)}-{str(qregion_e)}"
+        return tidxpos0, qidxpos0, tregion, qregion
+
+    def runIntaRNA(self, B1= None, param_mode=1):
+        '''
+            Run IntaRNA on given query and target
+            params have value of start and end numbers
+        
+        '''
+        complete = str(self.args.intarnaBin) + ' -q ' + self.querySeq[B1['id2']] + ' -t ' + self.targetSeq[B1['id1']] +' --outMode=C -n 1 '#--energyNoDangles'
+        # add parameterFile to call if given
+        if self.args.parameterFile :
+            complete += " --parameterFile="+self.args.parameterFile
+        # set require CSV columns
+        complete += " --outCsvCols=id1,start1,end1,id2,start2,end2,subseqDP,hybridDP,E,E_hybrid,ED1,ED2"
+        ########################################
+        ############ Hacked in #################
+        ########################################
+        tidxpos0, qidxpos0, tregion, qregion = self.get_region_of_interest(B1, param_mode)
+        complete += f" --tidxpos0 {str(tidxpos0)} " ## Transition UTR5-CDS
+        complete += f"--qidxpos0 {str(qidxpos0)} "  ## Transition CDS-UTR3
+        complete += f"--tregion {tregion} " ## UTR5start to end+100CDS
+        complete += f"--qregion {qregion} " ## 100CDS to UTR3end ####
+        ########################################
+        ########################################
+        ########################################
+        # TODO (somewhen) parse parameterFile for outCsvCols and add user-requested csv-col ids not already within the list
+        result = {"tAccConstr":"", "qAccConstr":""}
+        if 'start1' in B1:
+            result["tAccConstr"] += f"b:{B1['start1']}-{B1['end1']}"
+            result["qAccConstr"] += f"b:{B1['start2']}-{B1['end2']}"
+            if "tAccConstr" in B1 and B1["tAccConstr"]:
+                result["tAccConstr"] += f",{B1['tAccConstr']}"
+                result["qAccConstr"] += f",{B1['qAccConstr']}"
+            complete += ' --tAccConstr="'+result["tAccConstr"]+'" --qAccConstr="'+result["qAccConstr"]+'" ' ## Add \xa0 before --tAccConst?
+        #print("".join(complete))
+        result.update(self.csv2dict(self.runCmdLine(complete)[0].replace("query",B1['id2']).replace("target",B1['id1'])))
+        ### This might be neccessary? This actually works but something something utf-8.......
+        #try:
+        #    result.update(self.csv2dict(self.runCmdLine(complete)[0].replace("query",B1['id2']).replace("target",B1['id1'])))
+        #except:
+        #    pass
+        #if "start1" in result:
+        #    s1 = int(result["start1"])
+        #    e1 = int(result["end1"])
+        #    if s1 >= 0:
+        #        #print(str(s1) + " ####################")
+        #        result["start1"] = str(s1-1)
+        #    if e1 >= 0:
+        #        result["end1"] = str(e1-1)
+        #print(result)
+        return result
+
+
+##################################
+##### Currently unused stuff #####
+##################################       
+
+
     def csv2dict( self, intarnaCsvOut ):
         if (intarnaCsvOut == None):
             return {}
@@ -59,57 +140,6 @@ class MRRI():
                 if match.group().strip("") != "":
                     tempDict[seqname] += str(match.group())
             return tempDict
-   
-    def runIntaRNA(self, B1= None):
-        '''
-            Run IntaRNA on given query and target
-            params have value of start and end numbers
-        
-        '''
-        complete = str(self.args.intarnaBin) + ' -q ' + self.querySeq[B1['id2']] + ' -t ' + self.targetSeq[B1['id1']] +' --outMode=C -n 1 '#--energyNoDangles'
-        # add parameterFile to call if given
-        if self.args.parameterFile :
-            complete += " --parameterFile="+self.args.parameterFile
-        # set require CSV columns
-        complete += " --outCsvCols=id1,start1,end1,id2,start2,end2,subseqDP,hybridDP,E,E_hybrid,ED1,ED2"
-        ########################################
-        ############ Hacked in #################
-        ########################################
-        UTR5pCDS = self.targetSeq[B1['id1']]
-        UTR3pCDS = self.querySeq[B1['id2']]
-        tidxpos0 = -(len(UTR5pCDS)-200) # len of UTR5 alone
-        tregion_s = tidxpos0 # = len(UTR5)
-        tregion_e = 100 # = 100
-        qidxpos0 = -200 # = -200
-        qregion_s = -100 # = -100
-        qregion_e = len(UTR3pCDS)-200 # len of UTR3 alone
-        complete += f" --tidxpos0 {str(tidxpos0)} " ## Transition UTR5-CDS
-        complete += f"--qidxpos0 {str(qidxpos0)} "  ## Transition CDS-UTR3
-        complete += f"--tregion {str(tregion_s)}-{str(tregion_e)} " ## UTR5start to end+100CDS
-        complete += f"--qregion {str(qregion_s)}-{str(qregion_e)} " ## 100CDS to UTR3end ####
-        ########################################
-        ########################################
-        ########################################
-        # TODO (somewhen) parse parameterFile for outCsvCols and add user-requested csv-col ids not already within the list
-        result = {"tAccConstr":"", "qAccConstr":""}
-        if 'start1' in B1:
-            result["tAccConstr"] += f"b:{B1['start1']}-{B1['end1']}"
-            result["qAccConstr"] += f"b:{B1['start2']}-{B1['end2']}"
-            if "tAccConstr" in B1 and B1["tAccConstr"]:
-                result["tAccConstr"] += f",{B1['tAccConstr']}"
-                result["qAccConstr"] += f",{B1['qAccConstr']}"
-            complete += ' --tAccConstr="'+result["tAccConstr"]+'" --qAccConstr="'+result["qAccConstr"]+'" '
-        #print("".join(complete))
-        #raise
-        result.update(self.csv2dict(self.runCmdLine(complete)[0].replace("query",B1['id2']).replace("target",B1['id1'])))
-        #if "tAccConstr" in result:
-        #    result["tAccConstr"] += f",{result['start1']}-{result['end1']}"
-        #    result["qAccConstr"] += f",{result['start2']}-{result['end2']}"
-        #else:
-        #    result["tAccConstr"] = f"{result['start1']}-{result['end1']}"
-        #    result["qAccConstr"] = f"{result['start2']}-{result['end2']}"
-        return result
-        
 
     def getEDunconstraint(self, B1 ):
         complete = str(self.args.intarnaBin) + ' -q ' + self.querySeq[B1['id2']] + ' -t ' + self.targetSeq[B1['id1']] +' --out=/dev/null -n 0 '#--energyNoDangles'

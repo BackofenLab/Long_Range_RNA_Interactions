@@ -1,0 +1,19 @@
+# STOCKHOLM 1.0
+#=GF AU Infernal 1.1.4
+
+#=GS MODV_3.2.4.1/290-366  DE NC_003635.1 Modoc virus, complete genome.
+#=GS MMLV_3.3.4.1/387-460  DE NC_004119.1 Montana myotis leukoencephalitis virus, complete genome.
+#=GS WESSV_1.7.3.1/404-471 DE NC_012735.1 Wesselsbron virus strain SAH177, complete genome.
+#=GS SEPV_1.7.4.1/383-455  DE NC_008719.1 Sepik virus, complete genome.
+
+MODV_3.2.4.1/290-366          GUGAUUAGCCAUGGUCGCACAGAUCAAGCUCAGAUUGCUUACAUGUAAUCUGUGUGGUCAUGAAUAUGACCUCCGCU
+#=GR MODV_3.2.4.1/290-366  PP *****************************************************************************
+MMLV_3.3.4.1/387-460          GUGGAUAUAUACUCCAGCCAGAAAAGA-CUCAGAUUGUCUCAUGACU-UUCUGACUGGCGUACAUA-GCCAUCCGCU
+#=GR MMLV_3.3.4.1/387-460  PP ***************************.*******************.******************.**********
+WESSV_1.7.3.1/404-471         GAUUCUCACCUUUCUCGCCCUAA---AGCACAGAUUGCUUGAAUG-C---AGGGCGGGGAAGUUGA-GAACCAA-CU
+#=GR WESSV_1.7.3.1/404-471 PP ********************965...4777**********99985.3...8***************.7666665.**
+SEPV_1.7.4.1/383-455          UUGAUUCUCACCUUUCUCACCCU-UAAGCACAGAUUGCUUGAAUGCA--GGGUGGGGAAGUUGGGA-ACCAACUAGU
+#=GR SEPV_1.7.4.1/383-455  PP ****9888777777776666654.4579************9998854..55666667777777788.9*********
+#=GC SS_cons                  <<<<<<<<-<<<<<<<<<<<<<<<<<---<<<<________>>>>>>>>>>>>>>>>>>>>>->>>->---->>>>:
+#=GC RF                       GUGgcUacAuacgcCcgcacgGAuggAGCccaGAUUGcuUaCuggccaUCcgugcgGgcguauguAUgcCAUcCGCU
+//

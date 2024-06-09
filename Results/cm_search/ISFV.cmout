@@ -17,7 +17,7 @@ NIEV_4.1.18.1        -         I.3SL                -          cm        1      
 # Pipeline mode:   SEARCH
 # Query file:      Data/Flavivirus_Covariance/ISFV_3SL.cm
 # Target file:     Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa
-# Option settings: cmsearch --tblout Results/cm_search/ISFV.cmout --toponly Data/Flavivirus_Covariance/ISFV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa 
+# Option settings: cmsearch -A Results/cm_search/ISFV_alignment.cmout --tblout Results/cm_search/ISFV.cmout --toponly Data/Flavivirus_Covariance/ISFV_3SL.cm Data/Flavivirus_NCBI/Flavivirus_RefSeq_20231111/all_Flavivirus_RefSeq_20220621_3UTR.fa 
 # Current dir:     /home/arkanini/Long_Range_RNA_Interactions
-# Date:            Fri Jan 26 12:41:03 2024
+# Date:            Thu Mar 21 15:16:22 2024
 # [ok]

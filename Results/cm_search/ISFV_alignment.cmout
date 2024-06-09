@@ -1,0 +1,40 @@
+# STOCKHOLM 1.0
+#=GF AU Infernal 1.1.4
+
+#=GS CxFV_4.1.1.1/583-647  DE NC_008604.2 Culex flavivirus, complete genome.
+#=GS QBV_4.1.7.1/603-666   DE NC_012671.1 Quang Binh virus, complete genome.
+#=GS AEFV_4.1.3.1/869-935  DE NC_012932.1 Aedes flavivirus genomic RNA, complete genome, strain: Narita-21.
+#=GS MECDV_4.1.5.1/569-634 DE NC_027819.1 Mercadeo virus isolate ER-M10, complete genome.
+#=GS MSFV_4.1.8.1/605-667  DE NC_021069.1 Mosquito flavivirus isolate LSFlaviV-A20-09, complete genome.
+#=GS KRV_4.1.9.1/1134-1200 DE NC_005064.1 Kamiti River virus, complete genome.
+#=GS CFAV_4.1.2.1/483-548  DE NC_001564.2 Cell fusing agent virus strain Galveston, complete genome.
+#=GS PaRV_4.1.4.1/554-623  DE NC_027817.1 Parramatta River virus isolate 92-B115745, complete genome.
+#=GS MFV_4.1.16.1/471-533  DE NC_034204.1 Menghai flavivirus isolate MHAedFV1, complete genome.
+#=GS XFV_4.1.14.1/478-540  DE NC_034017.1 Xishuangbanna aedes flavivirus, complete genome.
+#=GS NIEV_4.1.18.1/641-699 DE NC_024299.2 Nienokoue virus isolate B51/CI/2004, complete genome.
+
+CxFV_4.1.1.1/583-647          AACAG....AGCAUGCC.UGCAGCAGCAGG....UCUCCACCGUUAGGAGAC.UUGUUGCG-GGCAAGC.UCUUGUU
+#=GR CxFV_4.1.1.1/583-647  PP *****....********.************....******************.********.*******.*******
+QBV_4.1.7.1/603-666           GACAG....GCU-UGCU.CGCAGCAGCAAA....UCUCCACCGUUAGGAGAU.UUGUUGUG-AGCAUUG.CCUUGUC
+#=GR QBV_4.1.7.1/603-666   PP *****....***.****.************....******************.********.*******.*******
+AEFV_4.1.3.1/869-935          UAUG-....GGGAAAAG.UACCCAUCUAAG...cCUCCCACCGUUAGGGAGU.UUGGAAUACCUUUUCUaUACCAUA
+#=GR AEFV_4.1.3.1/869-935  PP ****.....9*******.************...*******************.************************
+MECDV_4.1.5.1/569-634         AUGAU...gACAAGAAU.CAGAUGGA-AGA....UCCCCACCGUUAGGGGAU.CCAUCCAGCAUUCUUG.GAAUCAU
+#=GR MECDV_4.1.5.1/569-634 PP *****...*********.********.***....******************.****************.*******
+MSFV_4.1.8.1/605-667          GACAG....GCU-UGCU.CGCAGCAGCAAA....UCUCCACCGUUAGGAGAU.UUGUUGUG-AGCAUUG.CU-UGUC
+#=GR MSFV_4.1.8.1/605-667  PP *****....***.****.************....******************.********.*****99.87.****
+KRV_4.1.9.1/1134-1200         UAUG-....GGGAAAAG.AACCCAGCUAAA...uCUCCCACCGAUAGGGAGU.UUGGACUAUCUUUUCUaUACCAUA
+#=GR KRV_4.1.9.1/1134-1200 PP ****.....9*******.************...*******************.************************
+CFAV_4.1.2.1/483-548          UAUG-....-GGGAAAG.AACUCAUCUUAA...cCUCCCACCGUUAGGGAGU.UUUGAUUAUCUUUUCUaUACCAUA
+#=GR CFAV_4.1.2.1/483-548  PP ***6......555****.************...*******************.************************
+PaRV_4.1.4.1/554-623          AUUGCg.acUAGAACUA.AAGUCGA-GAGU...cUCCCCACCGAUAGGGGAG.CUCGUCAGUUUGUUUUaGUCCAAU
+#=GR PaRV_4.1.4.1/554-623  PP ******.**9999****.*******.****...*******************.************************
+MFV_4.1.16.1/471-533          UGUGC....GGAAAAA-.----UCC-AAAGacugUCCCCACCGAUAGGGGAC.UUUGGGAAAGUU-UUU.CAACACA
+#=GR MFV_4.1.16.1/471-533  PP *****....8877775......444.33333333******************.988888885555.555.566****
+XFV_4.1.14.1/478-540          UGUGC....GGAAAAAUcCAAAG---AAUG....UCCCCACCGAUAGGGGGC.UUUGGGAAAGUUUUU-.CAACACA
+#=GR XFV_4.1.14.1/478-540  PP *****....77766654033332...6778....******************.999888885555555..555****
+NIEV_4.1.18.1/641-699         CAUGUugagUC------.UA-UACAACAGG....CUUCCACCGGUAGGAAGCgUUGUUGUG--A---UG.ACACAUG
+#=GR NIEV_4.1.18.1/641-699 PP *****763333.......33.46666799*....******************677777766..2...44.779****
+#=GC SS_cons                  <<<<<....-<<-<<<<.----<<<<<<<<....<<<<<_______>>>>>>.>>>>>>>-->>>>->>.-->>>>>
+#=GC RF                       aAcag....aggAagcc.uACaucaccAag....UCCCCACCGUUAGGGGAc.uUggugaGuggcuUcc.uauugUu
+//

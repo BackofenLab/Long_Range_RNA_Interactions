@@ -1,6 +1,7 @@
 import subprocess
 import os
 import re
+import pandas as pd
 
 
 def run_cmbuild(input_stk, output_cm):
@@ -46,7 +47,7 @@ def create_cms(stk_dir, out_cm_dir, calibrate=True):
                     calibrate_cm(cmfile_path)
 
 
-def run_cm_search(cm_file, seq_file, output):
+def run_cm_search(cm_file, seq_file, output, output_alignment):
     """
     Runs cm_search with the given files.
     Should look like:
@@ -56,8 +57,9 @@ def run_cm_search(cm_file, seq_file, output):
     cm_file (str): Filepath for CM file
     seq_file (str): Filepath for Sequence file 
     output (str): Filepath of the resulting output table
+    output_alignment (str): Filepath to the alignment file of cm_search
     """
-    cmd = ["cmsearch", "--tblout", output, "--toponly", cm_file, seq_file]
+    cmd = ["cmsearch", "--tblout", output, "-A", output_alignment, "--toponly", cm_file, seq_file]
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     p.wait()
     return p
@@ -77,6 +79,7 @@ def cm_search(df, cm_dir, seq_dir, output_path, output_file):
     cm_dir_names = os.listdir(cm_dir)      ## This part is maybe unneccessary
     cm_end = cm_dir_names[0].split("_")[1] ## But I want to ensure modability
     cm_files = [i.split("_")[0] for i in os.listdir(cm_dir)]
+    #df = pd.DataFrame()
     for file in os.listdir(seq_dir):
         if file.endswith("3UTR.fa"): ## Find the right file
         
@@ -89,20 +92,28 @@ def cm_search(df, cm_dir, seq_dir, output_path, output_file):
                 if not os.path.isfile(f"{cm_dir}/{cm_file}_{cm_end}"):
                     continue # Skip directories
                 out_file = f"{output_path}/{cm_file}.cmout"
+                out_align_file = f"{output_path}/{cm_file}_alignment.cmout"
                 p = run_cm_search(f"{cm_dir}/{cm_file}_{cm_end}", 
-                                  f"{seq_dir}/{file}", out_file)
+                                  f"{seq_dir}/{file}", out_file, out_align_file)
+                with open(out_align_file, "r") as f_align:
+                    for line in f_align.readlines():
+                        if line.startswith("#=GC SS_cons"):
+                            align_cons_3SL = line.split()[-1]
                 f = open(out_file, "r")
                 for line in f.readlines():
                     if line.startswith("#"):
                         continue
+                    #print(line)
+                    #continue
                     split_line = line.split()
                     id = split_line[17]
-                    score = split_line[14]
+                    score = float(split_line[14])
                     if (not id in scores) or (scores[id] < score):
                         scores[id] = score # Update score if its better
                         f, t = split_line[7:9] # Save hit with best score
                         df.loc[df.id == id, "cm_hit_f"] = int(f)
                         df.loc[df.id == id, "cm_hit_t"] = int(t)
                         df.loc[df.id == id, "cm_hit_src"] = cm_file
+                        df.loc[df.id == id, "align_cons_3SL"] = align_cons_3SL
     df.to_csv(output_file, index=False)
     return df
